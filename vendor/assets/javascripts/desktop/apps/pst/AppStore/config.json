@@ -1,0 +1,28 @@
+{
+	"parentNodeId" : "",
+	"name"	: "HomePage",
+	"title"	: "utilhub store",
+	"theme" : "Soria",
+	"scenes" : {
+		"icons"	: {
+			"type"  : "/assets/desktop/src/qface/system/desktop/scene/impl/icons/Scene",
+			"theme" : "soria",
+			"wallpaper": {
+				"image": "/assets/desktop/wallpaper1.png",
+				"color": "#696969",
+				"style": "centered",
+				"storedList": []
+			},
+			"apps"  : [
+				{
+					"sysname":"AppStore.AppStore",
+					"name":"Appstore",
+					"category":"System",
+					"icon":"icon-32-apps-preferences-desktop-screensaver",
+					"version":"1.0"
+				}
+			]
+		}
+	}
+}
+			

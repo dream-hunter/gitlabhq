@@ -1,0 +1,9 @@
+table.form td {
+    padding: 5px;
+}
+.message {
+    position: absolute;
+    left: 0;
+    padding: 7px;
+    color: red;
+}

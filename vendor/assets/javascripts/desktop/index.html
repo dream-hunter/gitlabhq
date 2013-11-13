@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html role="application" lang="ja">
+	<head>
+		<title>iW3term</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<link type="text/css" rel="stylesheet" media="screen" href="./lib/dojo/resources/dojo.css" />
+		<link type="text/css" rel="stylesheet" media="screen" href="./resources/qfacex/dijit.css" />
+	    <link type="text/css" rel="stylesheet" media="screen" href="./resources/qfacex/dijit_rtl.css" />
+	    <link type="text/css" rel="stylesheet" media="screen" href="./resources/qfacex/qface.css" />
+
+		<script type="text/javascript">
+			dojoConfig = {
+				async:true,
+				isDebug:true,
+				extraLocale: ["'ja","ja-jp"],
+				baseUrl:"/",
+				packages:[
+					{
+						name:"dojo",
+						location:"lib/dojo"
+					},
+					{
+						name:"dijit",
+						location:"lib/dijit"
+					},
+					{
+						name:"dojox",
+						location:"lib/dojox"
+					},
+					{
+						name:"qface",
+						location:"qface"
+					},
+					{
+						name:"res",
+						location:"resources"
+					},
+					{
+						name:"qfacex",
+						location:"qfacex"
+					},
+					{
+						name:"apps",
+						location:"apps"
+					}
+
+				]
+			};
+		</script>
+		
+		<script type="text/javascript" src="./lib/dojo/dojo.js"></script>
+	    <script type="text/javascript">
+			require([
+				"dojo/json",
+				"dijit/dijit-all",
+				"qface/Runtime",
+				"Desktop",
+				"dojo/text!config/config.json", 
+				"dojo/domReady!"
+			], function(JSON,dijit,Runtime,Desktop,txtConfig) {
+				var config;
+		    	try {
+		    		config = JSON.parse(txtConfig);
+		            config.parentNodeId = "W3termWebPage";
+		    	} catch(e) {
+		    		throw e;
+		    	}
+		    	function hideLoadingPane() {
+		    		var loading = dojo.query('.loading');
+		    		if (loading[0]){ // remove the loading div
+		    			loading[0].parentNode.removeChild(loading[0]);
+		    		}
+		    	}
+		      Runtime.run(Desktop,config,hideLoadingPane);
+			});
+		</script> 			
+		
+	</head>
+	<body class="dijit" onselectstart="return false" oncontextmenu="return false" ondragstart="return false">
+		<noscript>
+			<div style="text-align: center; margin-top: 15%; font-size: 20px;">
+				<div>You must have javascript enabled to use the desktop.</div>
+				<div>Please enable javascript and refresh the page to continue.</div>
+			</div>
+		</noscript>
+	</body>
+</html>

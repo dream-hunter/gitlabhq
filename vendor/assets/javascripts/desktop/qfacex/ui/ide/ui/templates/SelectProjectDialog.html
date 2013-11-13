@@ -1,0 +1,11 @@
+<div>
+	<div class="dijitDialogPaneContentArea">
+		<div>${uiNLS.currentProject} <span data-dojo-attach-point="currentProjectName" style="font-weight: bold"></span></div>
+		<div style="margin-top: 10px;">${uiNLS.selectProject}</div>
+		<div data-dojo-type="qfacex/ui/ide/ui/widgets/ProjectSelection" data-dojo-props="_workspace:this._workspace" data-dojo-attach-point="projectSelection" data-dojo-attach-event="onChange:_onChange"></div>
+	</div>	
+	<div class="dijitDialogPaneActionBar">
+		<button data-dojo-type='dijit/form/Button' data-dojo-attach-point="_okButton" data-dojo-attach-event='onClick:okButton' label='${uiNLS.open}' class="maqPrimaryButton" disabled="true" type="submit"></button>
+		<button data-dojo-type='dijit/form/Button' data-dojo-attach-event='onClick:cancelButton' label='${uiNLS.cancelButtonLabel}' class="maqSecondaryButton"></button>
+	</div>
+</div>

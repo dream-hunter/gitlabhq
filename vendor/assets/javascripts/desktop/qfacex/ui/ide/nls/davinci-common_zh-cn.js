@@ -1,0 +1,9 @@
+define('qfacex/ui/ide/nls/davinci-common_zh-cn',{
+'dijit/form/nls/validate':{"rangeMessage":"此?超出范?。","invalidMessage":"?入的?无效。","missingMessage":"??是必需的。"}
+,
+'dijit/nls/loading':{"loadingState":"正在加?...","errorState":"?不起，?生了??"}
+,
+'dojox/form/nls/PasswordValidator':{"badPasswordMessage":"密?无效。","nomatchMessage":"密?不匹配。"}
+,
+'dijit/nls/common':{"buttonOk":"?定","buttonCancel":"取消","buttonSave":"保存","itemClose":"??"}
+});

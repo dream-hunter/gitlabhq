@@ -1,0 +1,9 @@
+define('qfacex/ui/ide/nls/davinci-common_zh-tw',{
+'dijit/form/nls/validate':{"rangeMessage":"此?超出範圍。","invalidMessage":"輸入的?無效。","missingMessage":"必須提供此?。"}
+,
+'dijit/nls/loading':{"loadingState":"載入中...","errorState":"抱歉，發生錯誤"}
+,
+'dojox/form/nls/PasswordValidator':{"badPasswordMessage":"無效的密碼。","nomatchMessage":"密碼不符合。"}
+,
+'dijit/nls/common':{"buttonOk":"確定","buttonCancel":"取消","buttonSave":"儲存","itemClose":"關閉"}
+});

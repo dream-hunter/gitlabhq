@@ -1,7 +1,6 @@
-class ProjectsController < ApplicationController
-  skip_before_filter :authenticate_user!, only: [:show]
-  before_filter :project, except: [:new, :create]
-  before_filter :repository, except: [:new, :create]
+class ProjectsController < Projects::ApplicationController
+  skip_before_filter :project, only: [:new, :create]
+  skip_before_filter :repository, only: [:new, :create]
 
   # Authorize
   before_filter :authorize_read_project!, except: [:index, :new, :create]
@@ -54,23 +53,29 @@ class ProjectsController < ApplicationController
     ::Projects::TransferContext.new(project, current_user, params).execute
   end
 
-  def show
-    return authenticate_user! unless @project.public || current_user
+  def run 
+    # render :layout => false
+    @containerID = "runContainer" + create_container_uniq_id(@project.name) + create_container_uniq_id(current_user.username)
+  end
 
+  def show
     limit = (params[:limit] || 20).to_i
+
     @events = @project.events.recent
     @events = event_filter.apply_filter(@events)
     @events = @events.limit(limit).offset(params[:offset] || 0)
 
+    # Ensure project default branch is set if it possible
+    # Normally it defined on push or during creation
+    @project.discover_default_branch
+
     respond_to do |format|
       format.html do
         if @project.empty_repo?
-          render "projects/empty", layout: user_layout
+          render "projects/empty"
         else
-          if current_user
-            @last_push = current_user.recent_push(@project.id)
-          end
-          render :show, layout: user_layout
+          @last_push = current_user.recent_push(@project.id)
+          render :show
         end
       end
       format.js
@@ -122,7 +127,7 @@ class ProjectsController < ApplicationController
     @title = 'New Project'
   end
 
-  def user_layout
-    current_user ? "projects" : "public_projects"
+  def create_container_uniq_id(item)
+    item.nil? ? "" : item.split(" ").collect{|i| i.capitalize}.join()
   end
 end

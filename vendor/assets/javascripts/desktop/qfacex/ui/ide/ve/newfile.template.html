@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+	TODO: margin:0 is a temporary hack. In previous releases, we always included dojo.css
+	which set margin:0, but we now only include dojo.css with the first Dojo widget
+	added to the page. That causes scrollbars when page was loaded initially,
+	which went want when first Dojo widget was added.
+	Need to rethink this whole business of width:100%;height:100%;margin:0
+-->
+<html style="height: 100%; width: 100%; margin: 0;" class="pc">
+	<head>
+		<base href="/"/>
+		<title>Qface App</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+		<link type="text/css" rel="stylesheet" media="screen" href="/desktop/lib/dojo/resources/dojo.css" />
+		<link type="text/css" rel="stylesheet" media="screen" href="/desktop/res/qfacex/dijit.css" />
+	    <link type="text/css" rel="stylesheet" media="screen" href="/desktop/res/qfacex/dijit_rtl.css" />
+	    <link type="text/css" rel="stylesheet" media="screen" href="/desktop/res/qfacex/qface.css" />
+	    <link type="text/css" rel="stylesheet" media="screen" href="/desktop/src/openstar/resources/openstar_rtl.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="/desktop/res/qfacex/themes/soria/dijit.css" id="qface_theme_soria_dijit">	    
+
+		<script type="text/javascript">
+			dojoConfig = {
+				async:true,
+				isDebug:true,
+				extraLocale: ["'ja","ja-jp"],
+				baseUrl:"/desktop/",
+				packages:[
+							{
+								name:"dojo",
+								location:"lib/dojo"
+							},
+							{
+								name:"dijit",
+								location:"lib/dijit"
+							},
+							{
+								name:"dojox",
+								location:"lib/dojox"
+							},
+							{
+								name:"orion",
+								location:"lib/orion"
+							},
+							{
+								name:"qface",
+								location:"qface"
+							},
+							{
+								name:"qfacex",
+								location:"qfacex"
+							},
+							{
+								name:"openstar",
+								location:"src/openstar"
+							},
+							{
+								name:"apps",
+								location:"apps"
+							}
+
+						]
+			};
+		</script>
+		
+		<script type="text/javascript" src="/desktop/lib/dojo/dojo.js"></script>
+	    <script type="text/javascript">
+			require([
+				'dojo/parser',
+				'dojox/html/_base',
+				"dijit/dijit-all",
+				"qface/Runtime",
+				"dojo/domReady!"
+			],  top.loading{id});
+		</script> 			
+		
+	</head>
+	<body class="dijit soria">
+	</body>
+</html>
+

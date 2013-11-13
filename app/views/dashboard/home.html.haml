@@ -1,0 +1,59 @@
+!!!
+%html{:lang => "en", :role => "application"}
+  %head
+    %meta{:content => "text/html;charset=UTF-8", "http-equiv" => "Content-Type"}
+    %title
+      = "Home"
+      Utilhub
+  = favicon_link_tag 'favicon.ico'
+  = stylesheet_link_tag    "application"
+  = javascript_include_tag  "application"
+  = csrf_meta_tags
+  = include_gon
+   
+  %link{:href => "/assets/desktop/lib/dojo/resources/dojo.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}
+  %link{:href => "/assets/desktop/res/qfacex/dijit.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+  %link{:href => "/assets/desktop/res/qfacex/dijit_rtl.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+  %link{:href => "/assets/desktop/res/qfacex/themes/soria/icons.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+  %link{:href => "/assets/desktop/res/qfacex/qface.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+  = javascript_include_tag "desktop/config"
+  = javascript_include_tag "desktop/lib/dojo/dojo"
+  :javascript
+    require([
+      "dojo/json",
+      "dijit/dijit-all",
+      "qface/Runtime",
+      "/assets/desktop/Desktop",
+      "dojo/text!config/config.json",              
+      "dojo/domReady!"
+    ], function(JSON,dijit,Runtime,Desktop,txtConfig) {
+      var config;
+      try {
+         config = JSON.parse(txtConfig);
+         config.parentNodeId = "W3termWebPage";
+      } catch(e) {
+        throw e;
+      }
+
+      function hideLoadingPane() {
+        var loading = dojo.query('.loading');
+        if (loading[0]){ // remove the loading div
+          loading[0].parentNode.removeChild(loading[0]);
+        }
+      }
+      Runtime.run(Desktop,config,hideLoadingPane);
+      
+    });
+  
+
+  %body.dijit.soria{:oncontextmenu => "return false", :ondragstart => "return false", :onselectstart => "return false"}
+    = render "layouts/head_panel", title: "Dashboard"
+    = render "layouts/flash"
+    %nav.main-nav
+      .container= render 'layouts/nav/dashboard'
+    //.container
+    #W3termWebPage
+    %noscript
+      %div{:style => "text-align: center; margin-top: 15%; font-size: 20px;"}
+        %div You must have javascript enabled to use the desktop.
+        %div Please enable javascript and refresh the page to continue.

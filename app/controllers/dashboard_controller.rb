@@ -2,9 +2,13 @@ class DashboardController < ApplicationController
   respond_to :html
 
   before_filter :load_projects, except: [:projects]
-  before_filter :event_filter, only: :show
+  before_filter :event_filter, only: :events
 
   def show
+    render :layout => false
+  end
+
+  def events
     # Fetch only 30 projects.
     # If user needs more - point to Dashboard#projects page
     @projects_limit = 30

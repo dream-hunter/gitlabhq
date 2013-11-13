@@ -1,0 +1,39 @@
+= render 'clone_panel'
+
+.runContainer{:id => @containerID, :style => "height:80%;width:100%;margin:0 auto;-webkit-border-radius: 12px;-moz-border-radius: 12px;border-radius: 12px;box-shadow: 0 0 12px black;min-height:600px;", "data-pjax-container" => true}
+
+%link{:href => "/assets/desktop/lib/dojo/resources/dojo.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}
+%link{:href => "/assets/desktop/res/qfacex/dijit.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+%link{:href => "/assets/desktop/res/qfacex/dijit_rtl.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+%link{:href => "/assets/desktop/res/qfacex/themes/soria/window.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+%link{:href => "/assets/desktop/res/qfacex/qface.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+
+= javascript_include_tag "desktop/lib/dojo/dojo"
+= javascript_include_tag "desktop/config"
+:javascript
+  require([
+    "dojo/json",
+  	"dojo/query",
+  	"dojo/dom-style",
+  	"/assets/desktop/SingleAppDesktop",
+  	"/assets/desktop/apps/pst/sample/game/MineSweep/App",
+  	"dojo/text!/assets/desktop/apps/AppStore/config.json",  
+  	"dojo/domReady!"
+  ], function(JSON,query,domStyle,AppDesktop,App,jsonConfig) {
+
+  	var container = query(".runContainer")[0];
+
+  	var config;
+  	
+  	try{
+  		config = JSON.parse(jsonConfig);
+  		config.parentNodeId = container.id;
+  	} catch(e){
+  		throw e;
+  	}
+  	desktop = new AppDesktop();
+
+  	desktop.init(config);
+  	desktop.start();
+  });
+

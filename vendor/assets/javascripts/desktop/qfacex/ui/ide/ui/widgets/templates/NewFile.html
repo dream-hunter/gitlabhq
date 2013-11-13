@@ -1,0 +1,51 @@
+<div class="fileDialog" data-dojo-attach-point="_fileDialog">
+	<div class="dijitDialogPaneContentArea">
+	  <div data-dojo-attach-point="additionalMessage" class="maqDialogMessage" style="display: none">
+	  </div>
+
+		<table class="fileFolderTable">
+			<tr class='fileNameRow'>
+				<td class="fileDialogLabelCell">
+					<label>${fileFieldLabel}:</label>
+				</td>
+				<td>
+					<input data-dojo-type="dijit/form/TextBox" type="text" data-dojo-attach-point="fileDialogFileName"></input>
+				</td>
+				<td>
+				</td>
+			</tr>
+			<tr class='folderNameRow'>
+				<td class="fileDialogLabelCell">
+					<label>${folderFieldLabel}</label>
+				</td>
+				<td data-dojo-attach-point="fileDialogWhereDropDownCell">
+					<!-- DropDownButton goes here -->
+				</td>
+				<td>
+					<span data-dojo-attach-point="fileDialogDetailsArrow">
+						<span class='folder_details_arrow folder_details_show_arrow'>&nbsp;</span>
+						<span class='folder_details_arrow folder_details_hide_arrow'>&nbsp;</span>
+					</span>
+				</td>
+			</tr>
+		</table>
+		
+		<div class="folderContainer">
+			<div data-dojo-type="dijit/layout/ContentPane">
+				<div class="fileDialogTreeWidget" data-dojo-attach-point="fileTree" data-dojo-type="dijit/Tree" data-dojo-props="model:this._workbench.getUserWorkspace(),showRoot:false, persist:false,labelAttr:'name',childrenAttrs:'children',getIconClass: this.getIconClass,getRowClass: this.getRowClass"> </div>
+			</div>
+			<div class='folderContainerButtonRow'><button data-dojo-type="dijit/form/Button" data-dojo-attach-point="__newFolderButton" data-dojo-attach-event="onClick:_newFolder">${newFolderLabel}</button></div>
+		</div>
+		
+		<div data-dojo-attach-point="dialogSpecificOptionsDiv"></div>
+	</div>
+	
+	<div class="dijitDialogPaneActionBar">
+		<span data-dojo-attach-point="dialogSpecificButtonsSpan" class="dialogSecondaryButtons"></span>
+		<span class="fileDialogStdButtons">
+			<button data-dojo-type="dijit/form/Button" data-dojo-attach-point="__okButton" class="maqPrimaryButton" type="submit">${finishButtonLabel}</button>
+			<button data-dojo-type="dijit/form/Button" data-dojo-attach-point="__cancelButton" data-dojo-attach-event="onClick:cancelButton" class="maqSecondaryButton">${cancelButtonLabel}</button>
+		</span>
+	</div>
+	
+</div>

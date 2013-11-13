@@ -1,9 +1,57 @@
-- if @has_authorized_projects
-  .dashboard
-    .activities.span8
-      = render 'activities'
-    .side.span4
-      = render 'sidebar'
+!!!
+%html{:lang => "en", :role => "application"}
+  %head
+    %meta{:content => "text/html;charset=UTF-8", "http-equiv" => "Content-Type"}
+    %title
+      = "Home"
+      Utilhub
+  = favicon_link_tag 'favicon.ico'
+  = stylesheet_link_tag    "application"
+  = javascript_include_tag  "application"
+  / = csrf_meta_tags
+  / = include_gon
+   
+  %link{:href => "/assets/desktop/lib/dojo/resources/dojo.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}
+  %link{:href => "/assets/desktop/resources/qfacex/dijit.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+  %link{:href => "/assets/desktop/resources/qfacex/dijit_rtl.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+  %link{:href => "/assets/desktop/resources/qfacex/themes/soria/icons.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+  %link{:href => "/assets/desktop/resources/qfacex/qface.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
+  = javascript_include_tag "desktop/config/config"
+  = javascript_include_tag "desktop/lib/dojo/dojo"
+  :javascript
+    require([
+    	"dojo/json",
+    	"dijit/dijit-all",
+    	"qface/Runtime",
+    	"/assets/desktop/Desktop",
+    	"dojo/text!config/config.json",              
+    	"dojo/domReady!"
+    ], function(JSON,dijit,Runtime,Desktop,txtConfig) {
+    	var config;
+    	try {
+    		 config = JSON.parse(txtConfig);
+         config.parentNodeId = "W3termWebPage";
+    	} catch(e) {
+    		throw e;
+    	}
 
-- else
-  = render "zero_authorized_projects"
+    	function hideLoadingPane() {
+    		var loading = dojo.query('.loading');
+    		if (loading[0]){ // remove the loading div
+    			loading[0].parentNode.removeChild(loading[0]);
+    		}
+    	}
+    	Runtime.run(Desktop,config,hideLoadingPane);
+    	
+    });
+	
+
+  %body.dijit.soria{:oncontextmenu => "return false", :ondragstart => "return false", :onselectstart => "return false"}
+    = render "layouts/head_panel", title: "Dashboard"
+    = render "layouts/flash"
+    //.container
+    #W3termWebPage{:style=>"height:80%;width:95%;margin:0 auto;-webkit-border-radius: 12px;-moz-border-radius: 12px;border-radius: 12px;box-shadow: 0 0 12px black;min-width:1200px;min-height:600px;", "data-pjax-container" => true}
+    %noscript
+      %div{:style => "text-align: center; margin-top: 15%; font-size: 20px;"}
+        %div You must have javascript enabled to use the desktop.
+        %div Please enable javascript and refresh the page to continue.

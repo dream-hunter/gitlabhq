@@ -1,0 +1,108 @@
+define([
+    	"dojo/_base/declare",
+    	"qfacex/ui/ide/ve/widget",
+    	"qfacex/util/StyleArray"
+    	//"qfacex/ui/ide/ve/widget", // circular dep
+    	//"qfacex/ui/ide/ve/States" // circular dep
+], function(declare, Widget, StyleArray){
+
+
+return declare( null, {
+
+	name: "style",
+
+	constructor: function(widget, values, applyToWhichState){
+	
+		this._newValues = values;
+		this._id = widget ? widget.id : undefined;
+		// applyToWhichState controls whether style change is attached to Normal or other states
+		//   (null|undefined|"undefined"|"Normal") => apply to Normal state
+		//   other string => apply to that particular state
+		this._applyToStateIndex = (!applyToWhichState || applyToWhichState=='Normal' || applyToWhichState=='undefined')
+									? 'undefined' : applyToWhichState;
+		this._context = widget.getContext();
+		this._workbench = this._context._workbench;
+	},
+
+	add: function(command){
+		if(!command || command._id != this._id){
+			return;
+		}
+
+		if(command._newValues){
+			dojo.mixin(this._newValues, command._newValues);
+		}
+	},
+	
+	execute: function(){
+		if(!this._id || !this._newValues){
+			return;
+		}
+		var widget = require("qfacex/ui/ide/ve/widget").byId(this._id);
+		if(!widget || !widget.domNode){
+			return;
+		}
+		
+		var veStates = require("qfacex/ui/ide/ve/States");
+		var styleValuesAllStates = widget.getStyleValuesAllStates();
+		this._oldStyleValuesAllStates = dojo.clone(styleValuesAllStates);
+		if(styleValuesAllStates[this._applyToStateIndex]){
+			styleValuesAllStates[this._applyToStateIndex] = StyleArray.mergeStyleArrays(styleValuesAllStates[this._applyToStateIndex], this._newValues);
+		}else{
+			styleValuesAllStates[this._applyToStateIndex] = this._newValues;
+		}
+		
+		widget.setStyleValuesAllStates(styleValuesAllStates);
+		var currentStatesList = veStates.getStatesListCurrent(widget.domNode);
+		var styleValuesCanvas = StyleArray.mergeStyleArrays([], styleValuesAllStates['undefined']);
+		for(var i=0; i<currentStatesList.length; i++){
+			if(styleValuesAllStates[currentStatesList[i]]){
+				styleValuesCanvas = StyleArray.mergeStyleArrays(styleValuesCanvas, styleValuesAllStates[currentStatesList[i]]);
+			}
+		}
+		widget.setStyleValuesCanvas(styleValuesCanvas);
+		widget.setStyleValuesModel(styleValuesAllStates['undefined']);
+		widget.refresh();
+		// Recompute styling properties in case we aren't in Normal state
+		veStates.resetState(widget.domNode);
+				
+		//FIXME: Various widget changed events (/qfacex/ui/ide/ui/widget*Changed) need to be cleaned up.
+		// I defined yet another one here (widgetPropertiesChanged) just before Preview3
+		// rather than re-use or alter one of the existing widget*Changed events just before
+		// the Preview 3 release to minimize risk of bad side effects, with idea we would clean up later.
+		// For time being, I made payload compatible with /qfacex/ui/ide/ui/widgetSelectionChanged. 
+		// Double array is necessary because this._workbench.publish strips out the outer array.
+		this._workbench.publish("/davinci/ui/widgetPropertiesChanged",[widget]);
+	},
+
+	undo: function(){
+		if(!this._id || !this._oldStyleValuesAllStates){
+			return;
+		}
+		var widget = require("qfacex/ui/ide/ve/widget").byId(this._id);
+		if(!widget){
+			return;
+		}
+
+		var veStates = require("qfacex/ui/ide/ve/States");
+		var styleValuesAllStates = this._oldStyleValuesAllStates;
+		var currentStateIndex = this._applyToStateIndex;
+		widget.setStyleValuesAllStates(styleValuesAllStates);
+		var styleValuesCanvas = StyleArray.mergeStyleArrays(styleValuesAllStates['undefined'], styleValuesAllStates[currentStateIndex]);
+		widget.setStyleValuesCanvas(styleValuesCanvas);
+		widget.setStyleValuesModel(this._oldStyleValuesAllStates['undefined']);
+		
+		widget.refresh();
+		// Recompute styling properties in case we aren't in Normal state
+		require("qfacex/ui/ide/ve/States").resetState(widget.domNode);
+		
+		//FIXME: Various widget changed events (/qfacex/ui/ide/ui/widget*Changed) need to be cleaned up.
+		// I defined yet another one here (widgetPropertiesChanged) just before Preview3
+		// rather than re-use or alter one of the existing widget*Changed events just before
+		// the Preview 3 release to minimize risk of bad side effects, with idea we would clean up later.
+		// For time being, I made payload compatible with /qfacex/ui/ide/ui/widgetSelectionChanged. 
+		// Double array is necessary because this._workbench.publish strips out the outer array.
+		this._workbench.publish("/davinci/ui/widgetPropertiesChanged", [widget]);
+	}
+});
+});

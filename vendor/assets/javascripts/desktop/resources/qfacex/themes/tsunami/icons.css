@@ -1,0 +1,1280 @@
+.tsunami .icon-loading-indicator {
+	background-image: url("./icons/load.gif");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+}
+
+/* 16x16 icons */
+.tsunami .icon-16-actions-window-unfull
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/unfull.png"); }
+.tsunami .icon-16-actions-winbtn-normal
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/winbtn_normal.gif"); }
+.tsunami .icon-16-actions-address-book-new
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/address-book-new.png"); }
+.tsunami .icon-16-actions-appointment-new
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/appointment-new.png"); }
+.tsunami .icon-16-actions-bookmark-new
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/bookmark-new.png"); }
+.tsunami .icon-16-actions-contact-new
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/contact-new.png"); }
+.tsunami .icon-16-actions-document-new
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/document-new.png"); }
+.tsunami .icon-16-actions-document-open
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/document-open.png"); }
+.tsunami .icon-16-actions-document-print
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/document-print.png"); }
+.tsunami .icon-16-actions-document-print-preview
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/document-print-preview.png"); }
+.tsunami .icon-16-actions-document-properties
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/document-properties.png"); }
+.tsunami .icon-16-actions-document-save
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/document-save.png"); }
+.tsunami .icon-16-actions-document-save-as
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/document-save-as.png"); }
+.tsunami .icon-16-actions-edit-clear
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/edit-clear.png"); }
+.tsunami .icon-16-actions-edit-copy
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/edit-copy.png"); }
+.tsunami .icon-16-actions-edit-cut
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/edit-cut.png"); }
+.tsunami .icon-16-actions-edit-delete
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/edit-delete.png"); }
+.tsunami .icon-16-actions-edit-find
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/edit-find.png"); }
+.tsunami .icon-16-actions-edit-find-replace
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/edit-find-replace.png"); }
+.tsunami .icon-16-actions-edit-paste
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/edit-paste.png"); }
+.tsunami .icon-16-actions-edit-redo
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/edit-redo.png"); }
+.tsunami .icon-16-actions-edit-select-all
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/edit-select-all.png"); }
+.tsunami .icon-16-actions-edit-undo
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/edit-undo.png"); }
+.tsunami .icon-16-actions-folder-new
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/folder-new.png"); }
+.tsunami .icon-16-actions-format-indent-less
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/format-indent-less.png"); }
+.tsunami .icon-16-actions-format-indent-more
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/format-indent-more.png"); }
+.tsunami .icon-16-actions-format-justify-center
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/format-justify-center.png"); }
+.tsunami .icon-16-actions-format-justify-fill
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/format-justify-fill.png"); }
+.tsunami .icon-16-actions-format-justify-left
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/format-justify-left.png"); }
+.tsunami .icon-16-actions-format-justify-right
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/format-justify-right.png"); }
+.tsunami .icon-16-actions-format-text-bold
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/format-text-bold.png"); }
+.tsunami .icon-16-actions-format-text-italic
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/format-text-italic.png"); }
+.tsunami .icon-16-actions-format-text-underline
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/format-text-underline.png"); }
+.tsunami .icon-16-actions-go-bottom
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/go-bottom.png"); }
+.tsunami .icon-16-actions-go-down
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/go-down.png"); }
+.tsunami .icon-16-actions-go-first
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/go-first.png"); }
+.tsunami .icon-16-actions-go-home
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/go-home.png"); }
+.tsunami .icon-16-actions-go-jump
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/go-jump.png"); }
+.tsunami .icon-16-actions-go-last
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/go-last.png"); }
+.tsunami .icon-16-actions-go-previous
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/go-previous.png"); }
+.tsunami .icon-16-actions-go-next
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/go-next.png"); }
+.tsunami .icon-16-actions-go-top
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/go-top.png"); }
+.tsunami .icon-16-actions-go-up
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/go-up.png"); }
+.tsunami .icon-16-actions-list-add
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/list-add.png"); }
+.tsunami .icon-16-actions-list-remove
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/list-remove.png"); }
+.tsunami .icon-16-actions-mail-forward
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/mail-forward.png"); }
+.tsunami .icon-16-actions-mail-mark-junk
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/mail-mark-junk.png"); }
+.tsunami .icon-16-actions-mail-mark-not-junk
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/mail-mark-not-junk.png"); }
+.tsunami .icon-16-actions-mail-message-new
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/mail-message-new.png"); }
+.tsunami .icon-16-actions-mail-reply-all
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/mail-reply-all.png"); }
+.tsunami .icon-16-actions-mail-reply-sender
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/mail-reply-sender.png"); }
+.tsunami .icon-16-actions-mail-send-receive
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/mail-send-receive.png"); }
+.tsunami .icon-16-actions-media-eject
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/media-eject.png"); }
+.tsunami .icon-16-actions-media-playback-pause
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/media-playback-pause.png"); }
+.tsunami .icon-16-actions-media-playback-start
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/media-playback-start.png"); }
+.tsunami .icon-16-actions-media-playback-stop
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/media-playback-stop.png"); }
+.tsunami .icon-16-actions-media-record
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/media-record.png"); }
+.tsunami .icon-16-actions-media-seek-backward
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/media-seek-backward.png"); }
+.tsunami .icon-16-actions-media-seek-forward
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/media-seek-forward.png"); }
+.tsunami .icon-16-actions-media-skip-backward
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/media-skip-backward.png"); }
+.tsunami .icon-16-actions-media-skip-forward
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/media-skip-forward.png"); }
+.tsunami .icon-16-actions-process-stop
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/process-stop.png"); }
+.tsunami .icon-16-actions-system-lock-screen
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/system-lock-screen.png"); }
+.tsunami .icon-16-actions-system-log-out
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/system-log-out.png"); }
+.tsunami .icon-16-actions-system-search
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/system-search.png"); }
+.tsunami .icon-16-actions-system-shutdown
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/system-shutdown.png"); }
+.tsunami .icon-16-actions-tab-new
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/tab-new.png"); }
+.tsunami .icon-16-actions-view-fullscreen
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/view-fullscreen.png"); }
+.tsunami .icon-16-actions-view-unfullscreen
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/view-unfullscreen.png"); }
+.tsunami .icon-16-actions-view-refresh
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/view-refresh.png"); }
+.tsunami .icon-16-actions-window-new
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/actions/window-new.png"); }
+.tsunami .icon-16-animations-process-working
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/animations/process-working.png"); }
+.tsunami .icon-16-apps-accessories-calculator
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/accessories-calculator.png"); }
+.tsunami .icon-16-apps-accessories-character-map
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/accessories-character-map.png"); }
+.tsunami .icon-16-apps-accessories-text-editor
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/accessories-text-editor.png"); }
+.tsunami .icon-16-apps-help-browser
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/help-browser.png"); }
+.tsunami .icon-16-apps-internet-group-chat
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/internet-group-chat.png"); }
+.tsunami .icon-16-apps-internet-mail
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/internet-mail.png"); }
+.tsunami .icon-16-apps-internet-news-reader
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/internet-news-reader.png"); }
+.tsunami .icon-16-apps-internet-web-browser
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/internet-web-browser.png"); }
+.tsunami .icon-16-apps-office-calendar
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/office-calendar.png"); }
+.tsunami .icon-16-apps-preferences-desktop-accessibility
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/preferences-desktop-accessibility.png"); }
+.tsunami .icon-16-apps-preferences-desktop-assistive-technology
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/preferences-desktop-assistive-technology.png"); }
+.tsunami .icon-16-apps-preferences-desktop-font
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/preferences-desktop-font.png"); }
+.tsunami .icon-16-apps-preferences-desktop-keyboard-shortcuts
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/preferences-desktop-keyboard-shortcuts.png"); }
+.tsunami .icon-16-apps-preferences-desktop-locale
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/preferences-desktop-locale.png"); }
+.tsunami .icon-16-apps-preferences-desktop-remote-desktop
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/preferences-desktop-remote-desktop.png"); }
+.tsunami .icon-16-apps-preferences-desktop-screensaver
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/preferences-desktop-screensaver.png"); }
+.tsunami .icon-16-apps-preferences-desktop-sound
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/preferences-desktop-sound.png"); }
+.tsunami .icon-16-apps-preferences-desktop-theme
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/preferences-desktop-theme.png"); }
+.tsunami .icon-16-apps-preferences-desktop-wallpaper
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/preferences-desktop-wallpaper.png"); }
+.tsunami .icon-16-apps-preferences-system-network-proxy
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/preferences-system-network-proxy.png"); }
+.tsunami .icon-16-apps-preferences-system-session
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/preferences-system-session.png"); }
+.tsunami .icon-16-apps-preferences-system-windows
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/preferences-system-windows.png"); }
+.tsunami .icon-16-apps-system-file-manager
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/system-file-manager.png"); }
+.tsunami .icon-16-apps-system-installer
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/system-installer.png"); }
+.tsunami .icon-16-apps-default
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/default.png"); }
+.tsunami .icon-16-apps-app-store
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/app-store.png"); }
+.tsunami .icon-16-apps-system-users
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/system-users.png"); }
+.tsunami .icon-16-apps-utilities-system-monitor
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/utilities-system-monitor.png"); }
+.tsunami .icon-16-apps-utilities-terminal
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/apps/utilities-terminal.png"); }
+.tsunami .icon-16-categories-applications-accessories
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/categories/applications-accessories.png"); }
+.tsunami .icon-16-categories-applications-development
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/categories/applications-development.png"); }
+.tsunami .icon-16-categories-applications-games
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/categories/applications-games.png"); }
+.tsunami .icon-16-categories-applications-graphics
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/categories/applications-graphics.png"); }
+.tsunami .icon-16-categories-applications-internet
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/categories/applications-internet.png"); }
+.tsunami .icon-16-categories-applications-multimedia
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/categories/applications-multimedia.png"); }
+.tsunami .icon-16-categories-applications-office
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/categories/applications-office.png"); }
+.tsunami .icon-16-categories-applications-other
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/categories/applications-other.png"); }
+.tsunami .icon-16-categories-applications-system
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/categories/applications-system.png"); }
+.tsunami .icon-16-categories-preferences-desktop
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/categories/preferences-desktop.png"); }
+.tsunami .icon-16-categories-preferences-desktop-peripherals
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/categories/preferences-desktop-peripherals.png"); }
+.tsunami .icon-16-categories-preferences-system
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/categories/preferences-system.png"); }
+.tsunami .icon-16-devices-audio-card
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/audio-card.png"); }
+.tsunami .icon-16-devices-audio-input-microphone
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/audio-input-microphone.png"); }
+.tsunami .icon-16-devices-battery
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/battery.png"); }
+.tsunami .icon-16-devices-camera-photo
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/camera-photo.png"); }
+.tsunami .icon-16-devices-camera-video
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/camera-video.png"); }
+.tsunami .icon-16-devices-computer
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/computer.png"); }
+.tsunami .icon-16-devices-drive-harddisk
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/drive-harddisk.png"); }
+.tsunami .icon-16-devices-drive-optical
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/drive-optical.png"); }
+.tsunami .icon-16-devices-drive-removable-media
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/drive-removable-media.png"); }
+.tsunami .icon-16-devices-input-gaming
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/input-gaming.png"); }
+.tsunami .icon-16-devices-input-keyboard
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/input-keyboard.png"); }
+.tsunami .icon-16-devices-input-mouse
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/input-mouse.png"); }
+.tsunami .icon-16-devices-media-flash
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/media-flash.png"); }
+.tsunami .icon-16-devices-media-optical
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/media-optical.png"); }
+.tsunami .icon-16-devices-multimedia-player
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/multimedia-player.png"); }
+.tsunami .icon-16-devices-network-wired
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/network-wired.png"); }
+.tsunami .icon-16-devices-network-wireless
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/network-wireless.png"); }
+.tsunami .icon-16-devices-printer
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/printer.png"); }
+.tsunami .icon-16-devices-video-display
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/devices/video-display.png"); }
+.tsunami .icon-16-emblems-emblem-favorite
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emblems/emblem-favorite.png"); }
+.tsunami .icon-16-emblems-emblem-important
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emblems/emblem-important.png"); }
+.tsunami .icon-16-emblems-emblem-photos
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emblems/emblem-photos.png"); }
+.tsunami .icon-16-emblems-emblem-readonly
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emblems/emblem-readonly.png"); }
+.tsunami .icon-16-emblems-emblem-symbolic-link
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emblems/emblem-symbolic-link.png"); }
+.tsunami .icon-16-emblems-emblem-system
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emblems/emblem-system.png"); }
+.tsunami .icon-16-emblems-emblem-unreadable
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emblems/emblem-unreadable.png"); }
+.tsunami .icon-16-emotes-face-angel
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emotes/face-angel.png"); }
+.tsunami .icon-16-emotes-face-crying
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emotes/face-crying.png"); }
+.tsunami .icon-16-emotes-face-devil-grin
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emotes/face-devil-grin.png"); }
+.tsunami .icon-16-emotes-face-glasses
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emotes/face-glasses.png"); }
+.tsunami .icon-16-emotes-face-kiss
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emotes/face-kiss.png"); }
+.tsunami .icon-16-emotes-face-monkey
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emotes/face-monkey.png"); }
+.tsunami .icon-16-emotes-face-plain
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emotes/face-plain.png"); }
+.tsunami .icon-16-emotes-face-sad
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emotes/face-sad.png"); }
+.tsunami .icon-16-emotes-face-smile
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emotes/face-smile.png"); }
+.tsunami .icon-16-emotes-face-smile-big
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emotes/face-smile-big.png"); }
+.tsunami .icon-16-emotes-face-surprise
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emotes/face-surprise.png"); }
+.tsunami .icon-16-emotes-face-wink
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/emotes/.png"); }
+.tsunami .icon-16-mimetypes-application-certificate
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/application-certificate.png"); }
+.tsunami .icon-16-mimetypes-application-x-executable
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/application-x-executable.png"); }
+.tsunami .icon-16-mimetypes-audio-x-generic
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/audio-x-generic.png"); }
+.tsunami .icon-16-mimetypes-font-x-generic
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/font-x-generic.png"); }
+.tsunami .icon-16-mimetypes-image-x-generic
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/image-x-generic.png"); }
+.tsunami .icon-16-mimetypes-package-x-generic
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/package-x-generic.png"); }
+.tsunami .icon-16-mimetypes-text-x-generic
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/text-x-generic.png"); }
+.tsunami .icon-16-mimetypes-text-x-generic-template
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/text-x-generic-template.png"); }
+.tsunami .icon-16-mimetypes-text-x-script
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/text-x-script.png"); }
+.tsunami .icon-16-mimetypes-video-x-generic
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/video-x-generic.png"); }
+.tsunami .icon-16-mimetypes-x-office-address-book
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/x-office-address-book.png"); }
+.tsunami .icon-16-mimetypes-x-office-calendar
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/x-office-calendar.png"); }
+.tsunami .icon-16-mimetypes-x-office-document
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/x-office-document.png"); }
+.tsunami .icon-16-mimetypes-x-office-document-template
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/x-office-document-template.png"); }
+.tsunami .icon-16-mimetypes-x-office-drawing
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/x-office-drawing.png"); }
+.tsunami .icon-16-mimetypes-x-office-drawing-template
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/x-office-drawing-template.png"); }
+.tsunami .icon-16-mimetypes-x-office-presentation
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/x-office-presentation.png"); }
+.tsunami .icon-16-mimetypes-x-office-presentation-template
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/x-office-presentation-template.png"); }
+.tsunami .icon-16-mimetypes-x-office-spreadsheet
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/x-office-spreadsheet.png"); }
+.tsunami .icon-16-mimetypes-x-office-spreadsheet-template
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/mimetypes/x-office-spreadsheet-template.png"); }
+.tsunami .icon-16-places-folder
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/places/folder.png"); }
+.tsunami .icon-16-places-folder-remote
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/places/folder-remote.png"); }
+.tsunami .icon-16-places-folder-saved-search
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/places/folder-saved-search.png"); }
+.tsunami .icon-16-places-network-server
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/places/network-server.png"); }
+.tsunami .icon-16-places-network-workgroup
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/places/network-workgroup.png"); }
+.tsunami .icon-16-places-start-here
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/places/start-here.png"); }
+.tsunami .icon-16-places-user-desktop
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/places/user-desktop.png"); }
+.tsunami .icon-16-places-user-home
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/places/user-home.png"); }
+.tsunami .icon-16-places-user-trash
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/places/user-trash.png"); }
+.tsunami .icon-16-status-audio-volume-high
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/audio-volume-high.png"); }
+.tsunami .icon-16-status-audio-volume-low
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/audio-volume-low.png"); }
+.tsunami .icon-16-status-audio-volume-medium
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/audio-volume-medium.png"); }
+.tsunami .icon-16-status-audio-volume-muted
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/audio-volume-muted.png"); }
+.tsunami .icon-16-status-battery-caution
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/battery-caution.png"); }
+.tsunami .icon-16-status-dialog-error
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/dialog-error.png"); }
+.tsunami .icon-16-status-dialog-information
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/dialog-information.png"); }
+.tsunami .icon-16-status-dialog-warning
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/dialog-warning.png"); }
+.tsunami .icon-16-status-folder-drag-accept
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/folder-drag-accept.png"); }
+.tsunami .icon-16-status-folder-open
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/folder-open.png"); }
+.tsunami .icon-16-status-folder-visiting
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/folder-visiting.png"); }
+.tsunami .icon-16-status-image-loading
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/image-loading.png"); }
+.tsunami .icon-16-status-image-missing
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/image-missing.png"); }
+.tsunami .icon-16-status-mail-attachment
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/mail-attachment.png"); }
+.tsunami .icon-16-status-network-error
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/network-error.png"); }
+.tsunami .icon-16-status-network-idle
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/network-idle.png"); }
+.tsunami .icon-16-status-network-offline
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/network-offline.png"); }
+.tsunami .icon-16-status-network-receive
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/network-receive.png"); }
+.tsunami .icon-16-status-network-transmit
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/network-transmit.png"); }
+.tsunami .icon-16-status-network-transmit-receive
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/network-transmit-receive.png"); }
+.tsunami .icon-16-status-network-wireless-encrypted
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/wireless-encrypted.png"); }
+.tsunami .icon-16-status-printer-error
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/printer-error.png"); }
+.tsunami .icon-16-status-user-trash
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/user-trash.png"); }
+.tsunami .icon-16-status-weather-clear
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/weather-clear.png"); }
+.tsunami .icon-16-status-weather-clear-night
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/weather-clear-night.png"); }
+.tsunami .icon-16-status-weather-few-clouds
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/weather-few-clouds.png"); }
+.tsunami .icon-16-status-weather-few-clouds-night
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/weather-few-clouds-night.png"); }
+.tsunami .icon-16-status-weather-overcast
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/weather-overcast.png"); }
+.tsunami .icon-16-status-weather-severe-alert
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/severe-alert.png"); }
+.tsunami .icon-16-status-weather-showers
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/weather-showers.png"); }
+.tsunami .icon-16-status-weather-showers-scattered
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/weather-showers-scattered.png"); }
+.tsunami .icon-16-status-weather-snow
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/weather-snow.png"); }
+.tsunami .icon-16-status-weather-storm
+{ display: inherit; width: 16px; height: 16px; background-repeat: no-repeat;  background-image: url("./icons/16x16/status/weather-storm.png"); }
+
+/* 22x22 icons */
+
+.tsunami .icon-22-actions-address-book-new
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/address-book-new.png"); }
+.tsunami .icon-22-actions-appointment-new
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/appointment-new.png"); }
+.tsunami .icon-22-actions-bookmark-new
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/bookmark-new.png"); }
+.tsunami .icon-22-actions-contact-new
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/contact-new.png"); }
+.tsunami .icon-22-actions-document-new
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/document-new.png"); }
+.tsunami .icon-22-actions-document-open
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/document-open.png"); }
+.tsunami .icon-22-actions-document-print
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/document-print.png"); }
+.tsunami .icon-22-actions-document-print-preview
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/document-print-preview.png"); }
+.tsunami .icon-22-actions-document-properties
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/document-properties.png"); }
+.tsunami .icon-22-actions-document-save
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/document-save.png"); }
+.tsunami .icon-22-actions-document-save-as
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/document-save-as.png"); }
+.tsunami .icon-22-actions-edit-clear
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/edit-clear.png"); }
+.tsunami .icon-22-actions-edit-copy
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/edit-copy.png"); }
+.tsunami .icon-22-actions-edit-cut
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/edit-cut.png"); }
+.tsunami .icon-22-actions-edit-delete
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/edit-delete.png"); }
+.tsunami .icon-22-actions-edit-find
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/edit-find.png"); }
+.tsunami .icon-22-actions-edit-find-replace
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/edit-find-replace.png"); }
+.tsunami .icon-22-actions-edit-paste
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/edit-paste.png"); }
+.tsunami .icon-22-actions-edit-redo
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/edit-redo.png"); }
+.tsunami .icon-22-actions-edit-select-all
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/edit-select-all.png"); }
+.tsunami .icon-22-actions-edit-undo
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/edit-undo.png"); }
+.tsunami .icon-22-actions-folder-new
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/folder-new.png"); }
+.tsunami .icon-22-actions-format-indent-less
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/format-indent-less.png"); }
+.tsunami .icon-22-actions-format-indent-more
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/format-indent-more.png"); }
+.tsunami .icon-22-actions-format-justify-center
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/format-justify-center.png"); }
+.tsunami .icon-22-actions-format-justify-fill
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/format-justify-fill.png"); }
+.tsunami .icon-22-actions-format-justify-left
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/format-justify-left.png"); }
+.tsunami .icon-22-actions-format-justify-right
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/format-justify-right.png"); }
+.tsunami .icon-22-actions-format-text-bold
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/format-text-bold.png"); }
+.tsunami .icon-22-actions-format-text-italic
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/format-text-italic.png"); }
+.tsunami .icon-22-actions-format-text-underline
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/format-text-underline.png"); }
+.tsunami .icon-22-actions-go-bottom
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/go-bottom.png"); }
+.tsunami .icon-22-actions-go-down
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/go-down.png"); }
+.tsunami .icon-22-actions-go-first
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/go-first.png"); }
+.tsunami .icon-22-actions-go-home
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/go-home.png"); }
+.tsunami .icon-22-actions-go-jump
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/go-jump.png"); }
+.tsunami .icon-22-actions-go-last
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/go-last.png"); }
+.tsunami .icon-22-actions-go-previous
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/go-previous.png"); }
+.tsunami .icon-22-actions-go-next
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/go-next.png"); }
+.tsunami .icon-22-actions-go-top
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/go-top.png"); }
+.tsunami .icon-22-actions-go-up
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/go-up.png"); }
+.tsunami .icon-22-actions-list-add
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/list-add.png"); }
+.tsunami .icon-22-actions-list-remove
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/list-remove.png"); }
+.tsunami .icon-22-actions-mail-forward
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/mail-forward.png"); }
+.tsunami .icon-22-actions-mail-mark-junk
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/mail-mark-junk.png"); }
+.tsunami .icon-22-actions-mail-mark-not-junk
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/mail-mark-not-junk.png"); }
+.tsunami .icon-22-actions-mail-message-new
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/mail-message-new.png"); }
+.tsunami .icon-22-actions-mail-reply-all
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/mail-reply-all.png"); }
+.tsunami .icon-22-actions-mail-reply-sender
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/mail-reply-sender.png"); }
+.tsunami .icon-22-actions-mail-send-receive
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/mail-send-receive.png"); }
+.tsunami .icon-22-actions-media-eject
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/media-eject.png"); }
+.tsunami .icon-22-actions-media-playback-pause
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/media-playback-pause.png"); }
+.tsunami .icon-22-actions-media-playback-start
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/media-playback-start.png"); }
+.tsunami .icon-22-actions-media-playback-stop
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/media-playback-stop.png"); }
+.tsunami .icon-22-actions-media-record
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/media-record.png"); }
+.tsunami .icon-22-actions-media-seek-backward
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/media-seek-backward.png"); }
+.tsunami .icon-22-actions-media-seek-forward
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/media-seek-forward.png"); }
+.tsunami .icon-22-actions-media-skip-backward
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/media-skip-backward.png"); }
+.tsunami .icon-22-actions-media-skip-forward
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/media-skip-forward.png"); }
+.tsunami .icon-22-actions-process-stop
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/process-stop.png"); }
+.tsunami .icon-22-actions-system-lock-screen
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/system-lock-screen.png"); }
+.tsunami .icon-22-actions-system-log-out
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/system-log-out.png"); }
+.tsunami .icon-22-actions-system-search
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/system-search.png"); }
+.tsunami .icon-22-actions-system-shutdown
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/system-shutdown.png"); }
+.tsunami .icon-22-actions-tab-new
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/tab-new.png"); }
+.tsunami .icon-22-actions-view-fullscreen
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/view-fullscreen.png"); }
+.tsunami .icon-22-actions-view-refresh
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/view-refresh.png"); }
+.tsunami .icon-22-actions-window-new
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/actions/window-new.png"); }
+.tsunami .icon-22-animations-process-working
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/animations/process-working.png"); }
+.tsunami .icon-22-apps-accessories-calculator
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/accessories-calculator.png"); }
+.tsunami .icon-22-apps-accessories-character-map
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/accessories-character-map.png"); }
+.tsunami .icon-22-apps-accessories-text-editor
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/accessories-text-editor.png"); }
+.tsunami .icon-22-apps-help-browser
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/help-browser.png"); }
+.tsunami .icon-22-apps-internet-group-chat
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/internet-group-chat.png"); }
+.tsunami .icon-22-apps-internet-mail
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/internet-mail.png"); }
+.tsunami .icon-22-apps-internet-news-reader
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/internet-news-reader.png"); }
+.tsunami .icon-22-apps-internet-web-browser
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/internet-web-browser.png"); }
+.tsunami .icon-22-apps-office-calendar
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/office-calendar.png"); }
+.tsunami .icon-22-apps-preferences-desktop-accessibility
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/preferences-desktop-accessibility.png"); }
+.tsunami .icon-22-apps-preferences-desktop-assistive-technology
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/preferences-desktop-assistive-technology.png"); }
+.tsunami .icon-22-apps-preferences-desktop-font
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/preferences-desktop-font.png"); }
+.tsunami .icon-22-apps-preferences-desktop-keyboard-shortcuts
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/preferences-desktop-keyboard-shortcuts.png"); }
+.tsunami .icon-22-apps-preferences-desktop-locale
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/preferences-desktop-locale.png"); }
+.tsunami .icon-22-apps-preferences-desktop-remote-desktop
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/preferences-desktop-remote-desktop.png"); }
+.tsunami .icon-22-apps-preferences-desktop-screensaver
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/preferences-desktop-screensaver.png"); }
+.tsunami .icon-22-apps-preferences-desktop-sound
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/preferences-desktop-sound.png"); }
+.tsunami .icon-22-apps-preferences-desktop-theme
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/preferences-desktop-theme.png"); }
+.tsunami .icon-22-apps-preferences-desktop-wallpaper
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/preferences-desktop-wallpaper.png"); }
+.tsunami .icon-22-apps-preferences-system-network-proxy
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/preferences-system-network-proxy.png"); }
+.tsunami .icon-22-apps-preferences-system-session
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/preferences-system-session.png"); }
+.tsunami .icon-22-apps-preferences-system-windows
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/preferences-system-windows.png"); }
+.tsunami .icon-22-apps-system-file-manager
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/system-file-manager.png"); }
+.tsunami .icon-22-apps-system-installer
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/system-installer.png"); }
+.tsunami .icon-22-apps-default
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/default.png"); }
+.tsunami .icon-22-apps-app-store
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/app-store.png"); }
+.tsunami .icon-22-apps-system-users
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/system-users.png"); }
+.tsunami .icon-22-apps-utilities-system-monitor
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/utilities-system-monitor.png"); }
+.tsunami .icon-22-apps-utilities-terminal
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/apps/utilities-terminal.png"); }
+.tsunami .icon-22-categories-applications-accessories
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/categories/applications-accessories.png"); }
+.tsunami .icon-22-categories-applications-development
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/categories/applications-development.png"); }
+.tsunami .icon-22-categories-applications-games
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/categories/applications-games.png"); }
+.tsunami .icon-22-categories-applications-graphics
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/categories/applications-graphics.png"); }
+.tsunami .icon-22-categories-applications-internet
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/categories/applications-internet.png"); }
+.tsunami .icon-22-categories-applications-multimedia
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/categories/applications-multimedia.png"); }
+.tsunami .icon-22-categories-applications-office
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/categories/applications-office.png"); }
+.tsunami .icon-22-categories-applications-other
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/categories/applications-other.png"); }
+.tsunami .icon-22-categories-applications-system
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/categories/applications-system.png"); }
+.tsunami .icon-22-categories-preferences-desktop
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/categories/preferences-desktop.png"); }
+.tsunami .icon-22-categories-preferences-desktop-peripherals
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/categories/preferences-desktop-peripherals.png"); }
+.tsunami .icon-22-categories-preferences-system
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/categories/preferences-system.png"); }
+.tsunami .icon-22-devices-audio-card
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/audio-card.png"); }
+.tsunami .icon-22-devices-audio-input-microphone
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/audio-input-microphone.png"); }
+.tsunami .icon-22-devices-battery
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/battery.png"); }
+.tsunami .icon-22-devices-camera-photo
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/camera-photo.png"); }
+.tsunami .icon-22-devices-camera-video
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/camera-video.png"); }
+.tsunami .icon-22-devices-computer
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/computer.png"); }
+.tsunami .icon-22-devices-drive-harddisk
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/drive-harddisk.png"); }
+.tsunami .icon-22-devices-drive-optical
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/drive-optical.png"); }
+.tsunami .icon-22-devices-drive-removable-media
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/drive-removable-media.png"); }
+.tsunami .icon-22-devices-input-gaming
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/input-gaming.png"); }
+.tsunami .icon-22-devices-input-keyboard
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/input-keyboard.png"); }
+.tsunami .icon-22-devices-input-mouse
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/input-mouse.png"); }
+.tsunami .icon-22-devices-media-flash
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/media-flash.png"); }
+.tsunami .icon-22-devices-media-optical
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/media-optical.png"); }
+.tsunami .icon-22-devices-multimedia-player
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/multimedia-player.png"); }
+.tsunami .icon-22-devices-network-wired
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/network-wired.png"); }
+.tsunami .icon-22-devices-network-wireless
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/network-wireless.png"); }
+.tsunami .icon-22-devices-printer
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/printer.png"); }
+.tsunami .icon-22-devices-video-display
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/devices/video-display.png"); }
+.tsunami .icon-22-emblems-emblem-favorite
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emblems/emblem-favorite.png"); }
+.tsunami .icon-22-emblems-emblem-important
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emblems/emblem-important.png"); }
+.tsunami .icon-22-emblems-emblem-photos
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emblems/emblem-photos.png"); }
+.tsunami .icon-22-emblems-emblem-readonly
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emblems/emblem-readonly.png"); }
+.tsunami .icon-22-emblems-emblem-symbolic-link
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emblems/emblem-symbolic-link.png"); }
+.tsunami .icon-22-emblems-emblem-system
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emblems/emblem-system.png"); }
+.tsunami .icon-22-emblems-emblem-unreadable
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emblems/emblem-unreadable.png"); }
+.tsunami .icon-22-emotes-face-angel
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emotes/face-angel.png"); }
+.tsunami .icon-22-emotes-face-crying
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emotes/face-crying.png"); }
+.tsunami .icon-22-emotes-face-devil-grin
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emotes/face-devil-grin.png"); }
+.tsunami .icon-22-emotes-face-glasses
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emotes/face-glasses.png"); }
+.tsunami .icon-22-emotes-face-kiss
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emotes/face-kiss.png"); }
+.tsunami .icon-22-emotes-face-monkey
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emotes/face-monkey.png"); }
+.tsunami .icon-22-emotes-face-plain
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emotes/face-plain.png"); }
+.tsunami .icon-22-emotes-face-sad
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emotes/face-sad.png"); }
+.tsunami .icon-22-emotes-face-smile
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emotes/face-smile.png"); }
+.tsunami .icon-22-emotes-face-smile-big
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emotes/face-smile-big.png"); }
+.tsunami .icon-22-emotes-face-surprise
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emotes/face-surprise.png"); }
+.tsunami .icon-22-emotes-face-wink
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/emotes/.png"); }
+.tsunami .icon-22-mimetypes-application-certificate
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/application-certificate.png"); }
+.tsunami .icon-22-mimetypes-application-x-executable
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/application-x-executable.png"); }
+.tsunami .icon-22-mimetypes-audio-x-generic
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/audio-x-generic.png"); }
+.tsunami .icon-22-mimetypes-font-x-generic
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/font-x-generic.png"); }
+.tsunami .icon-22-mimetypes-image-x-generic
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/image-x-generic.png"); }
+.tsunami .icon-22-mimetypes-package-x-generic
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/package-x-generic.png"); }
+.tsunami .icon-22-mimetypes-text-x-generic
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/text-x-generic.png"); }
+.tsunami .icon-22-mimetypes-text-x-generic-template
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/text-x-generic-template.png"); }
+.tsunami .icon-22-mimetypes-text-x-script
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/text-x-script.png"); }
+.tsunami .icon-22-mimetypes-video-x-generic
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/video-x-generic.png"); }
+.tsunami .icon-22-mimetypes-x-office-address-book
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/x-office-address-book.png"); }
+.tsunami .icon-22-mimetypes-x-office-calendar
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/x-office-calendar.png"); }
+.tsunami .icon-22-mimetypes-x-office-document
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/x-office-document.png"); }
+.tsunami .icon-22-mimetypes-x-office-document-template
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/x-office-document-template.png"); }
+.tsunami .icon-22-mimetypes-x-office-drawing
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/x-office-drawing.png"); }
+.tsunami .icon-22-mimetypes-x-office-drawing-template
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/x-office-drawing-template.png"); }
+.tsunami .icon-22-mimetypes-x-office-presentation
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/x-office-presentation.png"); }
+.tsunami .icon-22-mimetypes-x-office-presentation-template
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/x-office-presentation-template.png"); }
+.tsunami .icon-22-mimetypes-x-office-spreadsheet
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/x-office-spreadsheet.png"); }
+.tsunami .icon-22-mimetypes-x-office-spreadsheet-template
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/mimetypes/x-office-spreadsheet-template.png"); }
+.tsunami .icon-22-places-folder
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/places/folder.png"); }
+.tsunami .icon-22-places-folder-remote
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/places/folder-remote.png"); }
+.tsunami .icon-22-places-folder-saved-search
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/places/folder-saved-search.png"); }
+.tsunami .icon-22-places-network-server
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/places/network-server.png"); }
+.tsunami .icon-22-places-network-workgroup
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/places/network-workgroup.png"); }
+.tsunami .icon-22-places-start-here
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/places/start-here.png"); }
+.tsunami .icon-22-places-user-desktop
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/places/user-desktop.png"); }
+.tsunami .icon-22-places-user-home
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/places/user-home.png"); }
+.tsunami .icon-22-places-user-trash
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/places/user-trash.png"); }
+.tsunami .icon-22-status-audio-volume-high
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/audio-volume-high.png"); }
+.tsunami .icon-22-status-audio-volume-low
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/audio-volume-low.png"); }
+.tsunami .icon-22-status-audio-volume-medium
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/audio-volume-medium.png"); }
+.tsunami .icon-22-status-audio-volume-muted
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/audio-volume-muted.png"); }
+.tsunami .icon-22-status-battery-caution
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/battery-caution.png"); }
+.tsunami .icon-22-status-dialog-error
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/dialog-error.png"); }
+.tsunami .icon-22-status-dialog-information
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/dialog-information.png"); }
+.tsunami .icon-22-status-dialog-warning
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/dialog-warning.png"); }
+.tsunami .icon-22-status-folder-drag-accept
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/folder-drag-accept.png"); }
+.tsunami .icon-22-status-folder-open
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/folder-open.png"); }
+.tsunami .icon-22-status-folder-visiting
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/folder-visiting.png"); }
+.tsunami .icon-22-status-image-loading
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/image-loading.png"); }
+.tsunami .icon-22-status-image-missing
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/image-missing.png"); }
+.tsunami .icon-22-status-mail-attachment
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/mail-attachment.png"); }
+.tsunami .icon-22-status-network-error
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/network-error.png"); }
+.tsunami .icon-22-status-network-idle
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/network-idle.png"); }
+.tsunami .icon-22-status-network-offline
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/network-offline.png"); }
+.tsunami .icon-22-status-network-receive
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/network-receive.png"); }
+.tsunami .icon-22-status-network-transmit
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/network-transmit.png"); }
+.tsunami .icon-22-status-network-transmit-receive
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/network-transmit-receive.png"); }
+.tsunami .icon-22-status-network-wireless-encrypted
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/wireless-encrypted.png"); }
+.tsunami .icon-22-status-printer-error
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/printer-error.png"); }
+.tsunami .icon-22-status-user-trash
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/user-trash.png"); }
+.tsunami .icon-22-status-weather-clear
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/weather-clear.png"); }
+.tsunami .icon-22-status-weather-clear-night
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/weather-clear-night.png"); }
+.tsunami .icon-22-status-weather-few-clouds
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/weather-few-clouds.png"); }
+.tsunami .icon-22-status-weather-few-clouds-night
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/weather-few-clouds-night.png"); }
+.tsunami .icon-22-status-weather-overcast
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/weather-overcast.png"); }
+.tsunami .icon-22-status-weather-severe-alert
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/severe-alert.png"); }
+.tsunami .icon-22-status-weather-showers
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/weather-showers.png"); }
+.tsunami .icon-22-status-weather-showers-scattered
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/weather-showers-scattered.png"); }
+.tsunami .icon-22-status-weather-snow
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/weather-snow.png"); }
+.tsunami .icon-22-status-weather-storm
+{ display: inherit; width: 22px; height: 22px; background-repeat: no-repeat;  background-image: url("./icons/22x22/status/weather-storm.png"); }
+
+/* 32x32 icons */
+
+.tsunami .icon-32-actions-address-book-new
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/address-book-new.png"); }
+.tsunami .icon-32-actions-appointment-new
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/appointment-new.png"); }
+.tsunami .icon-32-actions-bookmark-new
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/bookmark-new.png"); }
+.tsunami .icon-32-actions-contact-new
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/contact-new.png"); }
+.tsunami .icon-32-actions-document-new
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/document-new.png"); }
+.tsunami .icon-32-actions-document-open
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/document-open.png"); }
+.tsunami .icon-32-actions-document-print
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/document-print.png"); }
+.tsunami .icon-32-actions-document-print-preview
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/document-print-preview.png"); }
+.tsunami .icon-32-actions-document-properties
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/properties.png"); }
+.tsunami .icon-32-actions-save
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/save.png"); }
+.tsunami .icon-32-actions-save-as
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/edit-saveas.png"); }
+.tsunami .icon-32-actions-edit-clear
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/edit-clear.png"); }
+.tsunami .icon-32-actions-edit-copy
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/edit-copy.png"); }
+.tsunami .icon-32-actions-edit-cut
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/edit-cut.png"); }
+.tsunami .icon-32-actions-edit-delete
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/edit-delete.png"); }
+.tsunami .icon-32-actions-edit-find
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/edit-find.png"); }
+.tsunami .icon-32-actions-edit-find-replace
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/edit-find-replace.png"); }
+.tsunami .icon-32-actions-edit-paste
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/edit-paste.png"); }
+.tsunami .icon-32-actions-edit-redo
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/edit-redo.png"); }
+.tsunami .icon-32-actions-edit-select-all
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/edit-select-all.png"); }
+.tsunami .icon-32-actions-edit-undo
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/edit-undo.png"); }
+.tsunami .icon-32-actions-folder-new
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/folder-new.png"); }
+.tsunami .icon-32-actions-format-indent-less
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/format-indent-less.png"); }
+.tsunami .icon-32-actions-format-indent-more
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/format-indent-more.png"); }
+.tsunami .icon-32-actions-format-justify-center
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/format-justify-center.png"); }
+.tsunami .icon-32-actions-format-justify-fill
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/format-justify-fill.png"); }
+.tsunami .icon-32-actions-format-justify-left
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/format-justify-left.png"); }
+.tsunami .icon-32-actions-format-justify-right
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/format-justify-right.png"); }
+.tsunami .icon-32-actions-format-text-bold
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/format-text-bold.png"); }
+.tsunami .icon-32-actions-format-text-italic
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/format-text-italic.png"); }
+.tsunami .icon-32-actions-format-text-underline
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/format-text-underline.png"); }
+.tsunami .icon-32-actions-go-bottom
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/go-bottom.png"); }
+.tsunami .icon-32-actions-go-down
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/go-down.png"); }
+.tsunami .icon-32-actions-go-first
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/go-first.png"); }
+.tsunami .icon-32-actions-go-home
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/go-home.png"); }
+.tsunami .icon-32-actions-go-jump
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/go-jump.png"); }
+.tsunami .icon-32-actions-go-last
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/go-last.png"); }
+.tsunami .icon-32-actions-go-previous
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/go-previous.png"); }
+.tsunami .icon-32-actions-go-next
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/go-next.png"); }
+.tsunami .icon-32-actions-go-top
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/go-top.png"); }
+.tsunami .icon-32-actions-go-up
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/go-up.png"); }
+.tsunami .icon-32-actions-list-add
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/list-add.png"); }
+.tsunami .icon-32-actions-list-remove
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/list-remove.png"); }
+.tsunami .icon-32-actions-mail-forward
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/mail-forward.png"); }
+.tsunami .icon-32-actions-mail-mark-junk
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/mail-mark-junk.png"); }
+.tsunami .icon-32-actions-mail-mark-not-junk
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/mail-mark-not-junk.png"); }
+.tsunami .icon-32-actions-mail-message-new
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/mail-message-new.png"); }
+.tsunami .icon-32-actions-mail-reply-all
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/mail-reply-all.png"); }
+.tsunami .icon-32-actions-mail-reply-sender
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/mail-reply-sender.png"); }
+.tsunami .icon-32-actions-mail-send-receive
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/mail-send-receive.png"); }
+.tsunami .icon-32-actions-media-eject
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/media-eject.png"); }
+.tsunami .icon-32-actions-media-playback-pause
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/media-playback-pause.png"); }
+.tsunami .icon-32-actions-media-playback-start
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/media-playback-start.png"); }
+.tsunami .icon-32-actions-media-playback-stop
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/media-playback-stop.png"); }
+.tsunami .icon-32-actions-media-record
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/media-record.png"); }
+.tsunami .icon-32-actions-media-seek-backward
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/media-seek-backward.png"); }
+.tsunami .icon-32-actions-media-seek-forward
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/media-seek-forward.png"); }
+.tsunami .icon-32-actions-media-skip-backward
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/media-skip-backward.png"); }
+.tsunami .icon-32-actions-media-skip-forward
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/media-skip-forward.png"); }
+.tsunami .icon-32-actions-process-stop
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/process-stop.png"); }
+.tsunami .icon-32-actions-system-lock-screen
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/system-lock-screen.png"); }
+.tsunami .icon-32-actions-system-log-out
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/system-log-out.png"); }
+.tsunami .icon-32-actions-system-search
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/system-search.png"); }
+.tsunami .icon-32-actions-system-shutdown
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/system-shutdown.png"); }
+.tsunami .icon-32-actions-tab-new
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/tab-new.png"); }
+.tsunami .icon-32-actions-view-fullscreen
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/view-fullscreen.png"); }
+.tsunami .icon-32-actions-view-refresh
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/view-refresh.png"); }
+.tsunami .icon-32-actions-window-new
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/actions/window-new.png"); }
+.tsunami .icon-32-animations-process-working
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/animations/process-working.png"); }
+.tsunami .icon-32-apps-accessories-calculator
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/accessories-calculator.png"); }
+.tsunami .icon-32-apps-accessories-character-map
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/accessories-character-map.png"); }
+.tsunami .icon-32-apps-accessories-text-editor
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/accessories-text-editor.png"); }
+.tsunami .icon-32-apps-help-browser
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/help-browser.png"); }
+.tsunami .icon-32-apps-internet-group-chat
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/internet-group-chat.png"); }
+.tsunami .icon-32-apps-internet-mail
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/internet-mail.png"); }
+.tsunami .icon-32-apps-internet-news-reader
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/internet-news-reader.png"); }
+.tsunami .icon-32-apps-internet-web-browser
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/internet-web-browser.png"); }
+.tsunami .icon-32-apps-office-calendar
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/office-calendar.png"); }
+.tsunami .icon-32-apps-preferences-desktop-accessibility
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/preferences-desktop-accessibility.png"); }
+.tsunami .icon-32-apps-preferences-desktop-assistive-technology
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/preferences-desktop-assistive-technology.png"); }
+.tsunami .icon-32-apps-preferences-desktop-font
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/preferences-desktop-font.png"); }
+.tsunami .icon-32-apps-preferences-desktop-keyboard-shortcuts
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/preferences-desktop-keyboard-shortcuts.png"); }
+.tsunami .icon-32-apps-preferences-desktop-locale
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/preferences-desktop-locale.png"); }
+.tsunami .icon-32-apps-preferences-desktop-remote-desktop
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/preferences-desktop-remote-desktop.png"); }
+.tsunami .icon-32-apps-preferences-desktop-screensaver
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/preferences-desktop-screensaver.png"); }
+.tsunami .icon-32-apps-preferences-desktop-sound
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/preferences-desktop-sound.png"); }
+.tsunami .icon-32-apps-preferences-desktop-theme
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/preferences-desktop-theme.png"); }
+.tsunami .icon-32-apps-preferences-desktop-wallpaper
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/preferences-desktop-wallpaper.png"); }
+.tsunami .icon-32-apps-preferences-system-network-proxy
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/preferences-system-network-proxy.png"); }
+.tsunami .icon-32-apps-preferences-system-session
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/preferences-system-session.png"); }
+.tsunami .icon-32-apps-preferences-system-windows
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/preferences-system-windows.png"); }
+.tsunami .icon-32-apps-system-file-manager
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/system-file-manager.png"); }
+.tsunami .icon-32-apps-system-installer
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/system-installer.png"); }
+.tsunami .icon-32-apps-default
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/default.png"); }
+.tsunami .icon-32-apps-app-store
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/app-store.png"); }
+.tsunami .icon-32-apps-system-users
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/system-users.png"); }
+.tsunami .icon-32-apps-utilities-system-monitor
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/utilities-system-monitor.png"); }
+.tsunami .icon-32-apps-utilities-terminal
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/apps/utilities-terminal.png"); }
+.tsunami .icon-32-categories-applications-accessories
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/categories/applications-accessories.png"); }
+.tsunami .icon-32-categories-applications-development
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/categories/applications-development.png"); }
+.tsunami .icon-32-categories-applications-games
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/categories/applications-games.png"); }
+.tsunami .icon-32-categories-applications-graphics
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/categories/applications-graphics.png"); }
+.tsunami .icon-32-categories-applications-internet
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/categories/applications-internet.png"); }
+.tsunami .icon-32-categories-applications-multimedia
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/categories/applications-multimedia.png"); }
+.tsunami .icon-32-categories-applications-office
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/categories/applications-office.png"); }
+.tsunami .icon-32-categories-applications-other
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/categories/applications-other.png"); }
+.tsunami .icon-32-categories-applications-system
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/categories/applications-system.png"); }
+.tsunami .icon-32-categories-preferences-desktop
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/categories/preferences-desktop.png"); }
+.tsunami .icon-32-categories-preferences-desktop-peripherals
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/categories/preferences-desktop-peripherals.png"); }
+.tsunami .icon-32-categories-preferences-system
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/categories/preferences-system.png"); }
+.tsunami .icon-32-devices-audio-card
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/audio-card.png"); }
+.tsunami .icon-32-devices-audio-input-microphone
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/audio-input-microphone.png"); }
+.tsunami .icon-32-devices-battery
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/battery.png"); }
+.tsunami .icon-32-devices-camera-photo
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/camera-photo.png"); }
+.tsunami .icon-32-devices-camera-video
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/camera-video.png"); }
+.tsunami .icon-32-devices-computer
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/computer.png"); }
+.tsunami .icon-32-devices-drive-harddisk
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/drive-harddisk.png"); }
+.tsunami .icon-32-devices-drive-optical
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/drive-optical.png"); }
+.tsunami .icon-32-devices-drive-removable-media
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/drive-removable-media.png"); }
+.tsunami .icon-32-devices-input-gaming
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/input-gaming.png"); }
+.tsunami .icon-32-devices-input-keyboard
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/input-keyboard.png"); }
+.tsunami .icon-32-devices-input-mouse
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/input-mouse.png"); }
+.tsunami .icon-32-devices-media-flash
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/media-flash.png"); }
+.tsunami .icon-32-devices-media-optical
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/media-optical.png"); }
+.tsunami .icon-32-devices-multimedia-player
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/multimedia-player.png"); }
+.tsunami .icon-32-devices-network-wired
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/network-wired.png"); }
+.tsunami .icon-32-devices-network-wireless
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/network-wireless.png"); }
+.tsunami .icon-32-devices-printer
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/printer.png"); }
+.tsunami .icon-32-devices-video-display
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/devices/video-display.png"); }
+.tsunami .icon-32-emblems-emblem-favorite
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emblems/emblem-favorite.png"); }
+.tsunami .icon-32-emblems-emblem-important
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emblems/emblem-important.png"); }
+.tsunami .icon-32-emblems-emblem-photos
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emblems/emblem-photos.png"); }
+.tsunami .icon-32-emblems-emblem-readonly
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emblems/emblem-readonly.png"); }
+.tsunami .icon-32-emblems-emblem-symbolic-link
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emblems/emblem-symbolic-link.png"); }
+.tsunami .icon-32-emblems-emblem-system
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emblems/emblem-system.png"); }
+.tsunami .icon-32-emblems-emblem-unreadable
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emblems/emblem-unreadable.png"); }
+.tsunami .icon-32-emotes-face-angel
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emotes/face-angel.png"); }
+.tsunami .icon-32-emotes-face-crying
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emotes/face-crying.png"); }
+.tsunami .icon-32-emotes-face-devil-grin
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emotes/face-devil-grin.png"); }
+.tsunami .icon-32-emotes-face-glasses
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emotes/face-glasses.png"); }
+.tsunami .icon-32-emotes-face-kiss
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emotes/face-kiss.png"); }
+.tsunami .icon-32-emotes-face-monkey
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emotes/face-monkey.png"); }
+.tsunami .icon-32-emotes-face-plain
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emotes/face-plain.png"); }
+.tsunami .icon-32-emotes-face-sad
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emotes/face-sad.png"); }
+.tsunami .icon-32-emotes-face-smile
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emotes/face-smile.png"); }
+.tsunami .icon-32-emotes-face-smile-big
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emotes/face-smile-big.png"); }
+.tsunami .icon-32-emotes-face-surprise
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emotes/face-surprise.png"); }
+.tsunami .icon-32-emotes-face-wink
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/emotes/.png"); }
+.tsunami .icon-32-mimetypes-application-certificate
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/application-certificate.png"); }
+.tsunami .icon-32-mimetypes-application-x-executable
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/application-x-executable.png"); }
+.tsunami .icon-32-mimetypes-audio-x-generic
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/audio-x-generic.png"); }
+.tsunami .icon-32-mimetypes-font-x-generic
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/font-x-generic.png"); }
+.tsunami .icon-32-mimetypes-image-x-generic
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/image-x-generic.png"); }
+.tsunami .icon-32-mimetypes-package-x-generic
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/package-x-generic.png"); }
+.tsunami .icon-32-mimetypes-text-x-generic
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/text-x-generic.png"); }
+.tsunami .icon-32-mimetypes-text-x-generic-template
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/text-x-generic-template.png"); }
+.tsunami .icon-32-mimetypes-text-x-script
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/text-x-script.png"); }
+.tsunami .icon-32-mimetypes-video-x-generic
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/video-x-generic.png"); }
+.tsunami .icon-32-mimetypes-x-office-address-book
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/x-office-address-book.png"); }
+.tsunami .icon-32-mimetypes-x-office-calendar
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/x-office-calendar.png"); }
+.tsunami .icon-32-mimetypes-x-office-document
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/x-office-document.png"); }
+.tsunami .icon-32-mimetypes-x-office-document-template
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/x-office-document-template.png"); }
+.tsunami .icon-32-mimetypes-x-office-drawing
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/x-office-drawing.png"); }
+.tsunami .icon-32-mimetypes-x-office-drawing-template
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/x-office-drawing-template.png"); }
+.tsunami .icon-32-mimetypes-x-office-presentation
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/x-office-presentation.png"); }
+.tsunami .icon-32-mimetypes-x-office-presentation-template
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/x-office-presentation-template.png"); }
+.tsunami .icon-32-mimetypes-x-office-spreadsheet
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/x-office-spreadsheet.png"); }
+.tsunami .icon-32-mimetypes-x-office-spreadsheet-template
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/mimetypes/x-office-spreadsheet-template.png"); }
+.tsunami .icon-32-places-folder
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/places/folder.png"); }
+.tsunami .icon-32-places-folder-remote
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/places/folder-remote.png"); }
+.tsunami .icon-32-places-folder-saved-search
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/places/folder-saved-search.png"); }
+.tsunami .icon-32-places-network-server
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/places/network-server.png"); }
+.tsunami .icon-32-places-network-workgroup
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/places/network-workgroup.png"); }
+.tsunami .icon-32-places-start-here
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/places/start-here.png"); }
+.tsunami .icon-32-places-user-desktop
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/places/user-desktop.png"); }
+.tsunami .icon-32-places-user-home
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/places/user-home.png"); }
+.tsunami .icon-32-places-user-trash
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/places/user-trash.png"); }
+.tsunami .icon-32-status-audio-volume-high
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/audio-volume-high.png"); }
+.tsunami .icon-32-status-audio-volume-low
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/audio-volume-low.png"); }
+.tsunami .icon-32-status-audio-volume-medium
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/audio-volume-medium.png"); }
+.tsunami .icon-32-status-audio-volume-muted
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/audio-volume-muted.png"); }
+.tsunami .icon-32-status-battery-caution
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/battery-caution.png"); }
+.tsunami .icon-32-status-dialog-error
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/dialog-error.png"); }
+.tsunami .icon-32-status-dialog-information
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/dialog-information.png"); }
+.tsunami .icon-32-status-dialog-warning
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/dialog-warning.png"); }
+.tsunami .icon-32-status-folder-drag-accept
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/folder-drag-accept.png"); }
+.tsunami .icon-32-status-folder-open
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/folder-open.png"); }
+.tsunami .icon-32-status-folder-visiting
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/folder-visiting.png"); }
+.tsunami .icon-32-status-image-loading
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/image-loading.png"); }
+.tsunami .icon-32-status-image-missing
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/image-missing.png"); }
+.tsunami .icon-32-status-mail-attachment
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/mail-attachment.png"); }
+.tsunami .icon-32-status-network-error
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/network-error.png"); }
+.tsunami .icon-32-status-network-idle
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/network-idle.png"); }
+.tsunami .icon-32-status-network-offline
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/network-offline.png"); }
+.tsunami .icon-32-status-network-receive
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/network-receive.png"); }
+.tsunami .icon-32-status-network-transmit
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/network-transmit.png"); }
+.tsunami .icon-32-status-network-transmit-receive
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/network-transmit-receive.png"); }
+.tsunami .icon-32-status-network-wireless-encrypted
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/wireless-encrypted.png"); }
+.tsunami .icon-32-status-printer-error
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/printer-error.png"); }
+.tsunami .icon-32-status-user-trash
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/user-trash.png"); }
+.tsunami .icon-32-status-weather-clear
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/weather-clear.png"); }
+.tsunami .icon-32-status-weather-clear-night
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/weather-clear-night.png"); }
+.tsunami .icon-32-status-weather-few-clouds
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/weather-few-clouds.png"); }
+.tsunami .icon-32-status-weather-few-clouds-night
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/weather-few-clouds-night.png"); }
+.tsunami .icon-32-status-weather-overcast
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/weather-overcast.png"); }
+.tsunami .icon-32-status-weather-severe-alert
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/severe-alert.png"); }
+.tsunami .icon-32-status-weather-showers
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/weather-showers.png"); }
+.tsunami .icon-32-status-weather-showers-scattered
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/weather-showers-scattered.png"); }
+.tsunami .icon-32-status-weather-snow
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/weather-snow.png"); }
+.tsunami .icon-32-status-weather-storm
+{ display: inherit; width: 32px; height: 32px; background-repeat: no-repeat;  background-image: url("./icons/32x32/status/weather-storm.png"); }

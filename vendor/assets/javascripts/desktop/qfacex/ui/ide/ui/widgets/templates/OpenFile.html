@@ -1,0 +1,12 @@
+<div class="fileDialog">
+	<div class="dijitDialogPaneContentArea folderContainer">
+		<div data-dojo-type="dijit/layout/ContentPane" data-dojo-attach-point="contentpane">
+		<div class="fileDialogTreeWidget" data-dojo-attach-point="fileTree" data-dojo-type="dijit/Tree" data-dojo-props="model:this._workbench.getUserWorkspace(), persist:false,labelAttr:'name',childrenAttrs:'children'" data-dojo-attach-event="onDblClick:_onDblClick,onKeyPress:_onKeyPress"></div>
+		</div>
+	</div>
+	
+	<div class="dijitDialogPaneActionBar">
+		<button data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick:_okButton" class="maqPrimaryButton" type="submit">${finishButtonLabel}</button>
+		<button data-dojo-type="dijit/form/Button" data-dojo-attach-event="onClick:_cancelButton" class="maqSecondaryButton">${cancelButtonLabel}</button>
+	</div>
+</div>

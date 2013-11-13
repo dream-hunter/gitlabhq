@@ -1,0 +1,16 @@
+<div>
+	<div class="dijitDialogPaneContentArea">
+		<table>
+		<tr>
+			<td class="NewProjectDialogLabel">${uiNLS.parentFolder}</td><td><div class='templateInput'  data-dojo-attach-point="fileDialogParentFolder"  ></input></td>
+		</tr>
+		<tr>
+		<td class="NewProjectDialogLabel">${uiNLS.newFolderName}</td><td><input data-dojo-type="dijit/form/TextBox" type="text" data-dojo-attach-point="folderName"></input></td><td><div data-dojo-attach-point='_error4'></div></td>
+		</tr>
+		</table>
+	</div>
+	<div class="dijitDialogPaneActionBar">
+		<button data-dojo-type='dijit/form/Button' data-dojo-attach-point="okButton" class="maqPrimaryButton" type="submit">${uiNLS.create}</button>
+		<button data-dojo-type='dijit/form/Button' data-dojo-attach-event='onClick:_cancelButton' class="maqSecondaryButton">${uiNLS.cancelButtonLabel}</button>		
+	</div>		
+</div>

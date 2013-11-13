@@ -1,0 +1,362 @@
+define([
+  "dojo/dom",
+  "dojo/on",
+  "dojo/request",
+  "dojo/html",
+  "dojo/dom-construct",
+  "dojo/dom-attr",
+  "dojo/_base/array",
+  'dojo/_base/json',
+  "dojo/_base/lang",
+  "dojo/_base/declare",
+  "dojo/dom-style",
+  "dojo/dom-class",
+  "dojo/query",
+  "dojo/aspect",
+  "dojo/store/Memory",
+  "dijit/_WidgetBase",
+  "dijit/_TemplatedMixin",
+  "dijit/_WidgetsInTemplateMixin",
+  "dojo/text!./templates/paginate.html"
+],function(dom,on,request,html,domConstruct,domAttr,array,dJson,lang,declare,domStyle,domClass,query,aspect,Memory,WidgetBase,TemplatedMixin,
+  _WidgetsInTemplateMixin,template){
+
+  return declare([WidgetBase, TemplatedMixin,_WidgetsInTemplateMixin], {
+    templateString: template,
+    sortObj:{},
+    sortName: 'name',
+    sortCons: {descending:false},
+    baseData: [],
+    perPage: 2,
+    pgCursor: 3, // when to change page nav num
+    pgleftShowCt: 3, 
+    pgShowCt: 6, // the size of nav bar page item
+    pageSize: 0,
+    firstPgNum: 1,
+    currentPgNum: 1,
+    pages: [],
+    pageANodes: {},
+    baseClass: "pagination",
+
+    postCreate: function(){
+      this._createSortCnt();
+      this._gotPageItems();
+      this._createPageCnt(this.pages[0]);
+      this._createPageNavCnt();
+      this.inherited(arguments);
+    },
+
+    _createSortCnt: function(){
+      var self = this;
+      var UlNode = domConstruct.create("ul",{},this.sortCnt);
+      var sortObj = this.sortObj;
+      for(var key in sortObj){
+        var liNode = domConstruct.create("li",{},UlNode);
+        var aNode = domConstruct.create("a",{
+          href:"javascript:void(0);",
+          innerHTML:sortObj[key],
+          onclick: function(){
+            self.doSort();
+          }
+        },liNode);
+      }
+    },
+
+    _createPageCnt: function(page){
+      domConstruct.empty(this.pageCnt);
+      array.forEach(page,lang.hitch(this,function(p,index){
+        var colorClass = index % 2 === 0 ? "evenItem" : "oddItem";
+        var itemDiv = domConstruct.create("div",{"class": colorClass},this.pageCnt);
+        itemDiv.appendChild(p.domNode);
+      }));
+    },
+
+    _createPageNavCnt: function(){
+      if(this.pageSize <= this.currentPgNum) return;
+      var self = this;
+      // previous page
+      domConstruct.create("a",{
+        "class":"prevPg",
+        "id":"prevPg",
+        innerHTML: "Previous",
+        style:"display:none",
+        href:"javascript:void(0);",
+        onclick: function(){
+          query(".cntPg").removeClass("cntPg");
+          domClass.add(dom.byId("pg" + (self.currentPgNum - 1)),"cntPg");
+          self.currentPgNum -= 1; 
+          self.goToPage(self.currentPgNum);
+        }
+      },self.pageNavCnt);
+
+      // firstPage
+      var firstPgDiv = domConstruct.create("div",{"class":"firstPg"},self.pageNavCnt);
+      domConstruct.create("a",{
+        "id":"firstPg",
+        innerHTML: "First Page",
+        style:"display:none",
+        href:"javascript:void(0);",
+        onclick: function(){
+          query(".cntPg").removeClass("cntPg");
+          domClass.add(dom.byId("pg1"),"cntPg");
+          query(".showPg").removeClass("showPg");
+          query(".showPg").forEach(aNode){
+            var pgId = "pg" + parseInt(aNode.text);
+            domStyle.set(dom.byId(pgId),"display","none");
+            domClass.remove(pgId,"showPg");
+          }
+          for(i=1;i<=self.pgShowCt;i++){
+            var pgId = "pg" + i;
+            domClass.add(pgId,"showPg");
+            domStyle.set(dom.byId(pgId),"display","inline-block");
+          }
+          self.currentPgNum = 1; 
+          self.goToPage(1);
+        }
+      },firstPgDiv);
+      domConstruct.create("span",{"class":"otherPg",innerHTML:"..."},firstPgDiv);
+      if(domClass.contains("pg1","showPg")) 
+        domStyle(firstPgDiv,"display","inline-block");
+
+      self._createPageNavItem();
+
+      // lastPage
+      var lastPgDiv = domConstruct.create("div",{"class":"lastPg"},self.pageNavCnt);
+      domConstruct.create("span",{"class":"otherPg",innerHTML:"..."},lastPgDiv);
+      domConstruct.create("a",{
+        "id":"lastPg",
+        innerHTML: "Last Page",
+        style:"display:none",
+        href:"javascript:void(0);",
+        onclick: function(){
+          query(".cntPg").removeClass("cntPg");
+          domClass.add(dom.byId("pg" + self.pageSize),"cntPg");
+          query(".showPg").forEach(aNode){
+            var pgId = "pg" + parseInt(aNode.text);
+            domStyle.set(dom.byId(pgId),"display","none");
+            domClass.remove(pgId,"showPg");
+          }
+          for(i=self.pageSize - self.pgShowCt +1;i<self.pageSize;i++){
+            var pgId = "pg" + i;
+            domClass.add(pgId,"showPg");
+            domStyle.set(dom.byId(pgId),"display","inline-block");
+          }
+          self.currentPgNum = self.pageSize; 
+          self.goToPage(self.pageSize);
+        }
+      },lastPgDiv);
+      if(domClass.contains("pg" + self.pageSize,"showPg")) 
+        domStyle(lastPgDiv,"display","inline-block");
+
+      // next page
+      domConstruct.create("a",{
+        "class":"nextPg",
+        "id":"nextPg",
+        innerHTML: "Next",
+        href:"javascript:void(0);",
+        onclick: function(){
+          query(".cntPg").removeClass("cntPg");
+          domClass.add(dom.byId("pg" + (self.currentPgNum + 1)),"cntPg");
+          self.currentPgNum += 1; 
+          self.goToPage(self.currentPgNum);
+        }
+      },self.pageNavCnt);
+    },
+
+    _createPageA: function(class,id,text,pageNum,style){
+      domConstruct.create("a",{
+        "class":"nextPg",
+        "id":"nextPg",
+        innerHTML: "Next",
+        href:"javascript:void(0);",
+        onclick: function(){
+          query(".cntPg").removeClass("cntPg");
+          domClass.add(dom.byId("pg" + (self.currentPgNum + 1)),"cntPg");
+          self.currentPgNum += 1; 
+          self.goToPage(self.currentPgNum);
+        }
+      },this.pageNavCnt);
+    },
+
+    _createPageNavItem: function(){
+      var self = this;
+      for(var i=1; i<=self.pageSize;i++){
+        if(i<=self.pgShowCt){
+          var className = i === 1 ? "cntPg pg" : "pg";
+          var aShowStyle = "display:inline-block" 
+          className += " showPg";
+        } else{
+          var aShowStyle = "display:none";
+        }
+        self.pageANodes[i] = domConstruct.create("a",{
+          "class": className,
+          id:"pg" + i,
+          innerHTML: i,
+          style:aShowStyle,
+          href:"javascript:void(0);",
+          onclick: function(){
+            query(".cntPg").removeClass("cntPg");
+            domClass.add(this,"cntPg");
+            var pgNum = parseInt(this.text);
+            self.goToPage(pgNum);
+            self.currentPgNum = pgNum;
+   
+            var prevShowStyle = self.currentPgNum === 1 ? "none" : "inline";
+            domStyle.set(dom.byId("prevPg"),"display",prevShowStyle);
+
+            var nextShowStyle = self.currentPgNum === self.pageSize ? "none" : "inline";
+            domStyle.set(dom.byId("nextPg"),"display",nextShowStyle);
+            self._addPaginationAfterEvent();
+          }
+        },self.pageNavCnt);
+      }
+    },
+
+    _addPaginationAfterEvent: function(){
+      var self = this;
+      query(".showPg").forEach(function(aNode,index){
+        var pgNum = parseInt(aNode.text);
+        // init first page num and page cursor num 
+        if(index === 0){
+          self.firstPgNum = pgNum;
+          self.pgCursor = pgNum + self.pgleftShowCt;
+        }
+        if(pgNum > self.pgCursor){
+          // show after pages
+          var afterLastPgNum = self.pgShowCt + pgNum - self.pgCursor;
+          for(i=self.pgShowCt; i<=afterLastPgNum;i++){
+            aspect.after(aNode,"click",function(deferred){
+              return deferred.then(function(){
+                var pgId = "pg" + i;
+                domClass.add(pgId,"showPg");
+                domStyle.set(dom.byId(pgId),"display","inline-block");
+              });
+            });
+          }
+
+          // hidden before pages
+          var beforeFirstPgNum = pgNum - self.pgCursor;
+          for(i=1; i<=beforeFirstPgNum;i++){
+            aspect.after(aNode,"click",function(deferred){
+              return deferred.then(function(){
+                var pgId = "pg" + i;
+                domClass.remove(pgId,"showPg");
+                domStyle.set(dom.byId(pgId),"display","none");
+              });
+            });
+          }
+        }
+      });
+    },
+    // _createPageNavItem: function(){
+    //   var self = this;
+    //   var showPageNum = self.pageSize > self.pgShowCt ? self.pgShowCt : self.pageSize;
+    //   for(var i=1;i<=showPageNum;i++){
+    //     var className = i === 1 ? "cntPg pg" : "pg"; 
+    //     domConstruct.create("a",{
+    //       "class": className,
+    //       id:"pg" + i,
+    //       innerHTML: i,
+    //       href:"javascript:void(0);",
+    //       onclick: function(){
+    //         query(".cntPg").removeClass("cntPg");
+    //         domClass.add(this,"cntPg");
+
+    //         self.goToPage(parseInt(this.text));
+    //         self.currentPgNum = parseInt(this.text);
+   
+    //         var prevShowStyle = self.currentPgNum === 1 ? "none" : "inline";
+    //         dom.byId("prevPg").style.display = prevShowStyle;
+
+    //         var nextShowStyle = self.currentPgNum === self.pageSize ? "none" : "inline";
+    //         dom.byId("nextPg").style.display = nextShowStyle;
+
+    //         if(parseInt(this.text) > self.pgCursor){
+    //           var lastPgNum = self.pgShowCt + parseInt(this.text) - self.pgCursor;
+    //           // click this node should delete first num and add last num
+    //           if(lastPgNum < self.pageSize){
+    //             var deletedId = parseInt(this.text) - self.pgCursor;
+    //             self.pageANodes[deletedId] = dom.byId("pg" + deletedId);
+    //             domConstruct.destroy("pg" + deletedId);
+    //             if(self.pageANodes[lastPgNum]){
+    //               var lastNumA = self.pageANodes[lastPgNum];
+    //             } else {
+    //               var lastNumA = domConstruct.create("a",{
+    //                 "class":"pg",
+    //                 id: "pg" + lastPgNum,
+    //                 innerHTML: lastPgNum,
+    //                 href:"javascript:void(0);",
+    //                 onclick: function(){
+    //                   query(".cntPg").removeClass("cntPg");
+    //                   domClass.add(this,"cntPg");
+    //                   self.goToPage(parseInt(this.text));
+    //                   sef.currentPgNum = parseInt(this.text); 
+
+    //                   var nextShowStyle = self.currentPgNum === self.pageSize ? "none" : "inline";
+    //                   dom.byId("nextPg").style.display = nextShowStyle;
+
+    //                   var sublastNum = parseInt(this.text) + self.pgShowCt - self.pgCursor;
+    //                   // click this node should delete last num and add first num
+    //                   if(sublastNum < self.pageSize){
+    //                     self.pageANodes[sublastNum + 1] = dom.byId("pg" + (sublastNum + 1));
+    //                     domConstruct.destroy("pg" + (sublastNum + 1));
+
+    //                     var firstNum = parseInt(this.text) - self.pgShowCt - 1;
+    //                     domConstruct.place(self.pageANodes[firstNum],"prevPg","after");
+    //                   }
+    //                 } 
+    //               });
+    //             }
+    //             domConstruct.place(lastNumA,"nextPg","before");
+    //           }
+    //         } 
+    //       }
+    //     },this.pageNavCnt);
+    //   }
+    // },
+
+    _gotPageItems: function(){
+      var pageData = this.doSort();
+      var pages = this.pages = [];
+      var length = pageData.length;
+      var leaveCount = length % this.perPage;
+      var pageSize = this.pageSize = Math.ceil(length / this.perPage);
+
+      array.forEach(pageData,lang.hitch(this,function(data,index){
+        if((index +1) % 3 === 0 ){
+          pages.push([pageData[index-2],pageData[index-1],pageData[index]]);
+        }
+      }));
+
+      if(leaveCount > 0){
+        var lastPage = [];
+        for(var i = (pageSize-1) * this.perPage; i < length; i++){
+          lastPage.push(store.data[i]);
+        }
+        pages.push(lastPage);
+      }
+    },
+
+    nextPage: function(){
+      var page = this.pages[currentPgNum - 2];
+      this._createPageCnt(page);
+    },
+
+    previousPage: function(){
+      var page = this.pages[currentPgNum];
+      this._createPageCnt(page);
+    },
+
+    goToPage: function(pageNum){
+      var page = this.pages[pageNum-1];
+      this._createPageCnt(page);
+    },
+
+    doSort: function(){
+      var store = new Memory({data:this.baseData});
+      store.query({sort:[lang.mixin({attribute:this.sortName},this.sortCons)]});
+      return store.data;
+    }
+  });
+
+})
