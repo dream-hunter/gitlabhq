@@ -11,7 +11,6 @@ define([
 	"qface/system/desktop/scene/_MultiSceneContainer",
 	"qface/lang/Enum",
 	"qface/windows/_patches"
-
 ],function(require,declare,lang,array,domClass,Deferred,DeferredList,on,BorderContainer,_MultiSceneContainer,Enum) {
 	
 	var _Desktop = declare(null,{

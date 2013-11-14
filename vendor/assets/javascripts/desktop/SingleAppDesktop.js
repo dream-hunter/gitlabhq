@@ -11,6 +11,7 @@ define([
 	"require",
 	"dojo/_base/lang", 
 	"dojo/_base/declare", 
+	"dojo/topic",
 	"dojo/dom-style",
 	"dojo/dom-construct", // domConstruct.create
 	"dojo/dom-geometry",
@@ -26,7 +27,7 @@ define([
 	"qface/system/desktop/_Desktop",
 	"qfacex/widgets/layout/BorderContainer",
 	"qface/system/desktop/scene/impl/singleap/Scene",
-], function(dojo,require,lang,declare,domStyle,domConstruct,domGeom,domClass,Deferred,dojoFx,dndSource,has,on,topic,JSON,jsonRef,_Desktop,BorderContainer,SingleScene){
+], function(dojo,require,lang,declare,topic,domStyle,domConstruct,domGeom,domClass,Deferred,dojoFx,dndSource,has,on,topic,JSON,jsonRef,_Desktop,BorderContainer,SingleScene){
 	// module:
 	//		openstar
 	// summary:
@@ -39,7 +40,7 @@ define([
 				"class":"UtilhubHomePage",
 				gutters: false,
 				liveSplitters: false,
-				style:"width:100%;height:100%"
+				style:"width:98%;height:92%;margin:0 auto;;"
 			});
 
 			//domClass.add(mbc.domNode,"dijit soria tundra tsunami");		
@@ -75,6 +76,7 @@ define([
 			}
 			this.addScene(scene);
 			scene.init(config);
+			topic.publish("appStore/do","full");
 	    	return deferred;
 
 		}

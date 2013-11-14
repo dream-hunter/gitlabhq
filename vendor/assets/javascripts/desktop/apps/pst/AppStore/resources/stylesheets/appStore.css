@@ -1,70 +1,68 @@
 body {
     overflow: auto !important;
 }
+/* mixin */
+.win .win-bmw{
+    top:0 !important;
+}
 
 /* top view app */
 
-.appMainContainer{
+.storeMainContainer{
     min-height: 700px;
     min-width: 1300px;
     margin:0 auto;
     overflow: auto !important;
     border:1px solid #E0E0E0;
-}
-
-/* top */
-.appMainContainer .header{
-    width:99%;
-    height:30px;
-    line-height: 30px;
-    overflow: hidden;
-    text-align: center;
-    border-bottom:1px solid #E0E0E0;
-}
-
-.appMainContainer .header .topLogo{
-    border-right:1px solid #E0E0E0;
-    width:150px;
-    margin: 0 auto;
-}
-
-.appMainContainer .header .topCenter{
-    border-right:1px solid #E0E0E0;
-}
-
-.appMainContainer .header .topSort{
-    margin: 7px 0 0 20px;
-    width:60px;
-    float:left;
-}
-
-.appMainContainer .header .search{
-    margin:0 auto;
-}
-
-.appMainContainer .header .login{
-    margin: 0 auto;
+    position: relative !important;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
 }
 
 /* left */
-.appMainContainer .leftContainer{
+.storeMainContainer .leftContainer{
     border-right:1px solid #E0E0E0;
 }
 /* left end */
 
 /* center */
-.appMainContainer .centerContainer {
+.storeMainContainer .centerContainer {
     border-bottom:1px solid #E0E0E0;    
+    border-right:1px solid #E0E0E0;
     min-width:630px;
     overflow: hidden;
 }
 
-.appMainContainer .centerContent{
-    border-right:1px solid #E0E0E0;
+.storeMainContainer .centerTop{
+    border-bottom:1px solid #E0E0E0;
+}
+.storeMainContainer .sort{
+    margin: 2px 20px;
+    width:60px;
+    float:left;
+}
+
+.storeMainContainer .search{
+    height:25px !important;
+    width: 300px;
+    margin:3px auto;
+    display:block;
+}
+
+.storeMainContainer .centerTop input[type="text"]{
+    margin-bottom: 0 !important;
+}
+
+.storeMainContainer .search input{
+    width:200px;
+}
+
+.storeMainContainer .centerContent{
 }
 
    /* app page */
-.appMainContainer .centerContainer ol{
+.storeMainContainer .centerContainer ol{
     display:block;
     padding:10px;
     list-style: none;
@@ -74,7 +72,7 @@ body {
     max-width: 650px;
 }
 
-.appMainContainer .centerContainer li {
+.storeMainContainer .centerContainer li {
     position:relative;
     padding:6px;
     float:left;
@@ -84,7 +82,7 @@ body {
     text-align:-webkit-match-parent;
 }
 
-.appMainContainer .centerContainer li a{
+.storeMainContainer .centerContainer li a{
     text-align: center;
     width:100px;
     height:100px;
@@ -100,25 +98,25 @@ body {
     text-decoration: none;
 }
 
-.appMainContainer .centerContainer li a:hover{
+.storeMainContainer .centerContainer li a:hover{
     background-color: #F2F8F7;
     background: -moz-linear-gradient(top,#F2F8F7,#8F9999);
     background: -webkit-gradient(linear,left top,left bottom,from(#F2F8F7),to(#8F9999));
 }
 
-.appMainContainer .centerContainer li a:active{
+.storeMainContainer .centerContainer li a:active{
     background-color: red;
     /*background: -moz-linear-gradient(top,#F2F8F7,#8F9999);
     background: -webkit-gradient(linear,left top,left bottom,from(#F2F8F7),to(#8F9999));*/
 }
 
 
-.appMainContainer .centerContainer li a img {
+.storeMainContainer .centerContainer li a img {
     border: 0;
     padding: 10px 0 10px 0;
 }
 
-.appMainContainer .centerContainer .appTitle {
+.storeMainContainer .centerContainer .appTitle {
     color: #383d43;
     text-align:center;
     font-size: 0.5em;
@@ -129,21 +127,21 @@ body {
 /* center end */
 
 /* right */
-.appMainContainer .rightContainer{
+.storeMainContainer .rightContainer{
     
 }
 
-.appMainContainer .desc{
+.storeMainContainer .desc{
     border-bottom:1px solid #E0E0E0;
     background: #ededed;
 }
 
-.appMainContainer .run{
+.storeMainContainer .run{
     background: #DBE2E4;
 }
 
 /* bottom */
-.appMainContainer .bottom{
+.storeMainContainer .bottom{
     text-align:center;
 }
 

@@ -67,29 +67,30 @@ define([
 				width: "200px",
 				height: "270px",
 				iconClass: "icon-16-apps-accessories-calculator",
-				onClose: dojo.hitch(this, "kill")
+				onClose: lang.hitch(this, "kill")
 			});
 
-			var appLayout = this.appLayout = new BorderContainer({class:"appMainContainer",style:"width: 99%; height: 97%;margin:10px auto;"},args.w3termContainerId);
+			var appLayout = this.appLayout = new BorderContainer({class:"storeMainContainer",style:"width:99%;height:97%;"});
 
 			/////////
-			// top
-			/////////			
-			var topContainer = new BorderContainer({class: "header", region:"top",style:"width:100%;height:30px;"})
-			var logoItem = new ContentPane({
-				content:"web App",
-				class:"topLogo",
-				style:"width:150px",
-				region:"left"
-			});
-			topContainer.addChild(logoItem);
-			var topCenterItem = new ContentPane({
-				region:"center",
-				class:"topCenter"
+			// left
+			/////////
+
+			var leftContainer = this.appItem = new BorderContainer({region:"leading",class:"leftContainer",style:"width:200px;"});
+
+			/////////
+			// center
+			/////////
+			var centerContainer = new BorderContainer({region:"center", class:"centerContainer"});
+
+			var centerTopItem = new ContentPane({
+				region:"top",
+				class:"centerTop",
+				style:"width:100%;height:35px;"
 			});
 			var sortItem = this.sortItem = new Select({
 		        name: "sort",
-		        class: "topSort",
+		        class: "sort",
 		        style:"width:60px;",
 		        options: [
 		            { label: "最新", value: "updated_at" },
@@ -106,49 +107,16 @@ define([
 				self._createAppPage(self.filterApps,sortValue);
 			});
 
-			topCenterItem.addChild(sortItem);
+			centerTopItem.addChild(sortItem);
 
 			var searchItem = new SearchWidget({
 				mainObj: this,
 				class: "search"
 			});
-			topCenterItem.addChild(searchItem);
-			topContainer.addChild(topCenterItem);
 
-			var loginItem = new ContentPane({
-				region:"right",
-				class:"login",
-				style:"width:60px"
-			});
+			centerTopItem.addChild(searchItem);
 
-			var loginA = domConstruct.create("a",{
-				label:"login",
-				title:"login",
-				innerHTML:"Login",
-				href:"javascript:void(0);",
-				onclick: function(){
-				    var loginDialog = new LoginDialog();
-				    loginDialog.startup();
-				    loginDialog.show();
-				}
-			});
-			loginItem.domNode.appendChild(loginA);
-			topContainer.addChild(loginItem);
-
-
-			/////////
-			// left
-			/////////
-
-			var leftContainer = this.appItem = new BorderContainer({region:"leading",class:"leftContainer",style:"width:200px;"});
-			// var leftItem = this.appItem = new ContentPane({});
-
-			// leftContainer.addChild(leftItem);
-
-			/////////
-			// center
-			/////////
-			var centerContainer = new BorderContainer({region:"center", class:"centerContainer"});
+			centerContainer.addChild(centerTopItem);
 
 			var contentContainer = this.appListItem = new ContentPane({
 				class:"centerContent",
@@ -162,21 +130,19 @@ define([
   	        // right
       	    /////////
 			
-			var rightItem = new BorderContainer({class:"rightContainer", region:"trailing",style:"width:480px;"});
+			var rightContainer = new BorderContainer({class:"rightContainer", region:"trailing",style:"width:480px;"});
 			var descItem = this.descItem = new ContentPane({
 				region:"top",
 				style:"height:240px;",
 				class: "desc",
-				title:"user info",
-				content:"amazing future!"
+				title:"user info"
 			});
 			var runItem = this.runItem = new ContentPane({
 				region:"center",
-				class: "run",
-				content:"give a try!"
+				class: "run"
 			});
-			rightItem.addChild(descItem);
-			rightItem.addChild(runItem);
+			rightContainer.addChild(descItem);
+			rightContainer.addChild(runItem);
 
 			var bottomContainer = new BorderContainer({region:"bottom",class:"bottom",style:"height:30px;background-color:rgb(161, 174, 189);"})
 			var footer = new ContentPane({
@@ -187,23 +153,20 @@ define([
 			});
 			bottomContainer.addChild(footer);
 
-			// appLayout.addChild(topContainer);
 			appLayout.addChild(leftContainer)
 			appLayout.addChild(centerContainer);
-			appLayout.addChild(rightItem);	
+			appLayout.addChild(rightContainer);	
 			appLayout.addChild(bottomContainer);
 			
-
-
-				
-			// appLayout.startup();
-
 			win.addChild(appLayout);
 			win.show();
 			win.startup();
-			win.full();
-			this.__addCss("apps/pst/AppStore/resources/stylesheets/AppWidget.css");
-			this.__addCss("apps/pst/AppStore/resources/stylesheets/appStore.css");
+			topic.subscribe("appStore/do",function(fName){
+				lang.hitch(win,fName);
+			});
+			// topic.subscribe("appStore/",win.full());
+			// this.__addCss("apps/pst/AppStore/resources/stylesheets/AppWidget.css");
+			// this.__addCss("apps/pst/AppStore/resources/stylesheets/appStore.css");
 			this._readyForTreeData();
 			this.addHashEvent();
 		},

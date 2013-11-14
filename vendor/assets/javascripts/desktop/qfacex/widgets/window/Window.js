@@ -595,21 +595,21 @@ define([
 				domStyle.set(this.titleBarNode,"display","none");
 
 				var winNode = query(".win-bmw",this.domNode)[0];
-				this._oldWinStyle = {
+				/*this._oldWinStyle = {
 					"top": winNode.style.top,
 					"bottom": winNode.style.bottom,
 					"background-color": winNode.style.backgroundColor,
 					"border": winNode.style.border,
 					"border-radius": winNode.style.borderRadius
-				};
-				query(".win-bl",this.domNode).style("display","none");
-				query(".win-bmw",this.domNode).style({
+				};*/
+				// query(".win-bl",this.domNode).style("display","none");
+				/*query(".win-bmw",this.domNode).style({
 					"top": "2px",
 					"bottom": "2px",
 					"background-color": "rgba(242, 242, 243, 0.81)",
 					"border": "1px solid #E7F3E7",
 					"border-radius": "3px 3px / 3px 3px"
-				});
+				});*/
 	
 			   this._oldMarginBottom = query('.win-mc',this.domNode).style("marginBottom");
    		       query('.win-mc',this.domNode).style("marginBottom",0);
