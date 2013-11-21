@@ -18,7 +18,9 @@ define([
 	"dojo/_base/html",
 	"dojo/on",
 	"dojo/dnd/Source",
+	"dojo/Deferred",
 	"dojo/has",
+	"dojo/topic",
 	"dijit/form/Form",
 	"dijit/form/Select",
 	"dijit/Dialog",
@@ -27,14 +29,14 @@ define([
 	"qfacex/widgets/layout/BorderContainer",
 	"dijit/layout/TabContainer",
 	"dijit/layout/ContentPane",
-  	"dijit/_TemplatedMixin",
-  	"dijit/_WidgetsInTemplateMixin",
+  "dijit/_TemplatedMixin",
+  "dijit/_WidgetsInTemplateMixin",
 	"qfacex/widgets/complex/applet/Applet",
 	"qfacex/widgets/window/Window",
-	"dojo/text!qface/system/desktop/scene/templates/addSceneForm.html",
+	"qface/system/tools/AddScene/App",
 	"dojo/i18n!qface/system/desktop/scene/nls/Scene"
-], function(declare,lang,array,domClass,domStyle,domConstruct,domGeom,dojoFx,domHtml,on,dndSource,has,Form,Select,Dialog,
-	Button,TextBox,BorderContainer,TabContainer,ContentPane,_TemplatedMixin,_WidgetsInTemplateMixin,QApplet,Window,template,nlsScene){
+], function(declare,lang,array,domClass,domStyle,domConstruct,domGeom,dojoFx,domHtml,on,dndSource,Deferred,has,topic,Form,Select,Dialog,
+	Button,TextBox,BorderContainer,TabContainer,ContentPane,_TemplatedMixin,_WidgetsInTemplateMixin,QApplet,Window,AddScene,nlsScene){
 	// module:
 	//		openstar
 	// summary:
@@ -44,16 +46,13 @@ define([
 		sceneContainer : null,
 		_sceneIconsMap : null,
 		_currentSceneName : "",
-		
+
 		constructor : function(params) {
 			this._sceneIconsMap = new Array();
 		},
 		
 		postCreate: function(){
 			domClass.add(this.containerNode, "navBar");
-
-
-			
 			var ulNode = this.ulNode = domConstruct.create("ul");
 			domClass.add(ulNode,"scene-list");
 			this.containerNode.appendChild(ulNode);
@@ -70,21 +69,10 @@ define([
 				title:"add",
 				"class":"addScene",
 				onclick: function(){
-					var form = new SceneForm({sceneObj:self});
-					var win = new Window({
-						app  : this,
-						width: "450px",
-						height: "350px",
-						title: nlsScene.add,
-						scene: self.desktop.currentScene
-					});
-					dojo.connect(form, "onCancel", win, "close");
-					dojo.connect(form, "onSubmit", win, "close");
-					dojo.connect(win, "onResize", form.borderContainer, "resize");
-					dojo.connect(win, "onResize", form.tabContainer, "resize");
-					win.addChild(form);
-					form.startup();
-					win.show();
+					var currentScene = self.currentScene();
+					var add = new AddScene({scene:currentScene,sceneContainer:self.sceneContainer});
+					add.init();
+					topic.publish("qface/system/tools/addScene",{sceneNaviBar:self,desktop:currentScene.desktop});
 				}
 			},addLiNode);
 		},
@@ -146,67 +134,6 @@ define([
 		currentScene : function() {
 			return this._sceneIconsMap[this._currentSceneName].scene;
 		}
-	});
-
-	var SceneForm = declare([Form,_TemplatedMixin,_WidgetsInTemplateMixin],{
-		sceneObj:null,
-		templateString:template,
-
-		postCreate: function(){
- 			
-			domConstruct.create("label",{innerHTML:"Type"},this.sceneType);
-		 	var select = this.select = new Select({name: "sceneType",
-	      options: [
-	        { label: "MultiApp", value: "qface/system/desktop/scene/impl/explorer/MultiAppScene"},
-	        { label: "MultiTab", value: "qface/system/desktop/scene/impl/explorer/MultiTabScene"},
-	        { label: "SingleApp", value: "qface/system/desktop/scene/impl/explorer/SingleAppScene"},
-	        { label: "icons", value: "qface/system/desktop/scene/impl/icons/Scene" }
-	      ]
-		 	}).placeAt(this.sceneType);
-
-		//  	new Button({
-		//  		label:nlsScene.cancel,
-		//  		onClick: lang.hitch(this,function(){
-		//  			// this.dialog.hide();
-		//  		})
-		//  	}).placeAt(this.submitNode);
-		//  	new Button({
-		//  		label:nlsScene.save,
-		//  		onClick: function(){
-		// 			var name = self.sceneName.value;
-		// 			var type = self.select.get("value");
-		// 			require([type],function(sceneClass) {
-		// 				var scene = new sceneClass({name:name,desktop:self.sceneObj.desktop});
-		// 				self.sceneObj.addScene(name,scene)
-		// 				// self.dialog.hide();
-		// 			});	
-		//  		}
-		//  	}).placeAt(this.submitNode);
-		},
-
-		 onSubmit: function(){
-		 	var self = this;
-      var name = self.sceneName.getValue();
-			var type = self.select.getValue();
-			require([type],function(sceneClass) {
-				var scene = new sceneClass({name:name,theme:"soria",desktop:self.sceneObj.desktop});
-				var config = {
-					"type"  : type,
-					"theme" : "soria",
-					"wallpaper": {
-						"image": "./wallpaper1.png",
-						"color": "#696969",
-						"style": "centered",
-						"storedList": []
-					},
-					"apps":[]
-				}
-				scene.init(config);
-				self.sceneObj.addScene(name,scene)
-			})
-    },
-    onCancel: function(){
-    }
 	});
 
 	return MultiSceneNaviBar;
