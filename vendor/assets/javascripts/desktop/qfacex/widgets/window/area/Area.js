@@ -39,7 +39,10 @@ define([
 		updateWallpaper: function(wallpaper){
 			//	summary:
 			//		Updates the wallpaper based on what's in scene.config. Called when the configuration is applied.
-			var image = wallpaper.image;
+			// dojo.moduleUrl("res.qfacex.themes."+theme, e+".css");
+			var image = dojo.moduleUrl(wallpaper.image);
+			var matcher = image.match(/(.*)(\/(png|jpg|gif)\/$)/);
+			image = matcher[1] + "." + matcher[3];
 			var color = wallpaper.color;
 			var style = wallpaper.style;
 			

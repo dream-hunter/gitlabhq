@@ -20,13 +20,10 @@ define([
 		dispName: "Full Screen",
 
 		postCreate: function(){
-			domStyle.set(this.containerNode,"padding","3px");
+			// domStyle.set(this.containerNode,"padding","px");
 			
-			var div = this.div = domConstruct.create('div',{
-				title : this.dispName
-			}, this.containerNode);
-			
-			domClass.add(div, "icon-16-actions-view-fullscreen");
+			var div = domConstruct.create('div',{class:"nav appletContent",title : this.dispName}, this.containerNode);
+			var i = domConstruct.create("i",{class:"icon-16-actions-view-fullscreen"},div);
 			
 			on(div,"click",lang.hitch(this,function(){
 				this.fullScreen();
@@ -37,12 +34,12 @@ define([
 				}
 			}));
 
-			on(div,"mouseover",function(){
-				domClass.add(div,"actived");
+			on(i,"mouseover",function(){
+				domClass.add(i,"actived");
 			});
 		    
-			on(div,"mouseout",function(){
-				domClass.remove(div,"actived");
+			on(i,"mouseout",function(){
+				domClass.remove(i,"actived");
 			});
 
 		    this.inherited(arguments);

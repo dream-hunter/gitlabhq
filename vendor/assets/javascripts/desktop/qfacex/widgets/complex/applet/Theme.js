@@ -9,10 +9,10 @@
 define([
 	"dojo/_base/lang", 
 	"dojo/_base/declare", 
-	 "dojo/data/ItemFileReadStore",
-	 "dijit/form/Button",
-	 "dijit/form/FilteringSelect",
-	 "qface/Runtime",
+	"dojo/data/ItemFileReadStore",
+	"dijit/form/Button",
+	"dijit/form/FilteringSelect",
+	"qface/Runtime",
 	"qfacex/widgets/complex/applet/Applet",
 ],function(lang,declare,ItemFileReadStore,Button,FilteringSelect,Runtime,Applet) {
 
@@ -21,20 +21,21 @@ define([
 		//		A clock applet with a drop-down calendar
 		dispName: "Theme",
 		postCreate: function(){
-	        dojo.attr(this.containerNode, "aria-live", "off");
-	        dojo.style(this.domNode,"width","150px");
+	    dojo.attr(this.containerNode, "aria-live", "off");
+	    dojo.style(this.domNode,"width","150px");
 
 			var button = this.button = new Button({
 				label: "theme",
 				onClick: lang.hitch(this, function(){
-							this._themeChanged(this._theme);
-						})
+					this._themeChanged(this._theme);
+				})
 			}) ;
 			this.addChild(button );
 			
 			var dropdown = this.dropdown = new FilteringSelect({
 				autoComplete: true,
 				searchAttr: "label",
+				value:"soria",
 				style: "width: 80px; font-size: small",
 				store: new ItemFileReadStore({
 					data: {
@@ -51,6 +52,9 @@ define([
 			});
 			
 			this.addChild( dropdown );
+
+			//first reload soria theme
+			this._themeChanged("soria");
 			//dropdown.set("value",Runtime.getTheme());
 
 			this.inherited("postCreate", arguments);

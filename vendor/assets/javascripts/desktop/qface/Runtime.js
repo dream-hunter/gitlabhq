@@ -113,14 +113,12 @@ define([
  		run : function(Desktop,config,callback) {
  			desktop = new Desktop();
  			
- 			desktop.init(config).then(
- 				function() {
- 					desktop.start();
- 					if (callback) {
- 						callback();
- 					}	
- 				}
- 			);		
+ 			desktop.init(config).then(function() {
+ 				desktop.start();
+ 				if (callback) {
+ 					callback();
+ 				}	
+ 			});		
  			
  		},
  	

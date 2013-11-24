@@ -27,8 +27,13 @@ html, body {
 /*systemPanel */
 
 .systemPanel {
-  background-color : #E4E6E6; /*#f1f1f1#2d2d2d*/
-  border: 2px solid #E1E6E6;
+	width:100%;
+	height:40px;
+	padding:3px;
+	background: #474D57;
+	border-bottom: 1px solid #373D47;
+  	/*background-color : #E4E6E6; /*#f1f1f1#2d2d2d*/*/
+  	/*border: 2px solid #E1E6E6;*/
 }
 
 .systemPanel .dijit button {
@@ -52,7 +57,7 @@ html, body {
 
 .systemPanel {
 	font-size: 10pt;
-	height: inherit;
+	/*height: inherit;*/
 }
 .systemPanel * {
 	font-size: 10pt;
@@ -352,38 +357,225 @@ div.mainFileArea {
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 12px;
 	border-radius: 12px;
-	height: 80%;
-	margin-top: 3px;
-	padding-right: 10px;
-	/*background:url(./images/navBg0.png) no-repeat center center;*/
-	text-align:center;
+	margin-top: 6px;
+	height:36px;
+	position: fixed;
+	/*background-color:rgb(133, 136, 136);*/
+	/*position: fixed;
+	z-index: 400;*/
 }
+.sceneAppletContent .appletContent{
+	padding-top: 8px;
+}
+
+.nav.appletContent {
+	padding-top:15px;
+}
+
+.sceneAppletContent .appLogo a{
+	float:left;
+	padding: 0px;
+	margin: 0 6px;
+}
+
+.sceneAppletContent .separator {
+	float: left;
+	height: 46px;
+	width: 1px;
+	/*background: white;*/
+	/*border-left: 1px solid #DDD;*/
+	margin-left: 10px;
+	margin-right: 10px;
+	background: #31363E;
+	border-left: 1px solid #666;
+}
+
+.appletSearch{
+	float:right;
+	/*padding: 3px;*/
+	height:100%;
+	border-left:1px solid #595C5C;
+}
+
+.navBar .appletSearch a{
+	height:100%;
+	width:32px;
+	padding-right: 10px;
+}
+.appletSearchImg{
+	display: block;
+	margin: 5px 0 0 6px;
+	width: 24px;
+	height: 24px;
+	background: url("./images/search.png") no-repeat left top;
+}
+
+.searchForm{
+	display: none;
+	margin-top: 10px;
+	padding: 4px 0;
+	position: absolute;
+	right: -1px;
+	top: 100%;
+	z-index: 1;
+	background: #F0F4F8;
+	width:290px;
+	height: 38px;
+
+}
+
+.searchForm .search{
+	padding:6px;
+	margin:3px; 
+	width: 208px;
+}
+
+.searchForm input[type=text]{
+
+}
+
+.searchForm input[type=button], input[type=button]:hover {
+	position:relative; 
+	left:-6px;
+	height: 32px;
+	padding: 0 10px;
+	border:1px solid #adc5cf;
+	background: #e4f1f9 !important; /* Old browsers */
+	background: -moz-linear-gradient(top, #e4f1f9 0%, #d5e7f3 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e4f1f9), color-stop(100%,#d5e7f3)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #e4f1f9 0%,#d5e7f3 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #e4f1f9 0%,#d5e7f3 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #e4f1f9 0%,#d5e7f3 100%); /* IE10+ */
+	background: linear-gradient(top, #e4f1f9 0%,#d5e7f3 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e4f1f9', endColorstr='#d5e7f3',GradientType=0 ); /* IE6-9 */
+	color:#7da2aa;
+	cursor: pointer;
+}
+
+.appletContent li{
+	float:left;
+	display:inline;
+	padding:0 8px 0 8px;
+}
+
+.sceneApplet .accountContent{
+	width:46px;
+	height: 46px;
+	position: fixed;
+	background:#808385; 
+	border-left:1px solid #666;
+	border-right:1px solid #666;
+}
+
+
+.accountContent:hover{
+	background: #F0F4F8;
+}
+
+.accountActive{
+	background: #F0F4F8 !important;
+}
+
+.searchArrowUp{
+	/*float: left;*/
+	display:none;
+	width:0; 
+    height:0; 
+    margin: 1px 12px;
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-bottom:10px solid #F0F4F8;
+}
+
+.arrowUp{
+	float: left;
+	display:none;
+	width:0; 
+    height:0; 
+    margin: 1px 12px;
+    border-left:10px solid transparent;
+    border-right:10px solid transparent;
+    border-bottom:10px solid #F0F4F8;
+    /*border-top:10px solid #0066cc;*/
+}
+.accountContent .avatar{
+	height:32px;
+	width:32px;
+	margin: 6px;
+	background: url("./images/defaultAvatar.png") no-repeat left top;
+}
+
+ul.accountList {
+	display: none;
+	margin-top: 10px;
+	padding: 4px 0;
+	position: absolute;
+	right: -1px;
+	top: 100%;
+	z-index: 1;
+	max-width: 300px;
+	min-width: 200px;
+	background: #F0F4F8;
+}
+
+ul.accountList:first-child{
+	border:0 !important;
+}
+
+ul.accountList li a{
+	/*border-top: 1px solid #6b727c;*/
+	padding: 10px;
+	/*border-bottom: 1px solid #575f6a;*/
+	position: relative;
+}
+
+ul.accountList li.menuDivider{
+	background: #ddd;
+	font-size: 0;
+	height: 1px;
+	line-height: 0;
+	margin: 6px 7px;
+}
+
+ul.accountList li:hover{
+	background: #4b545f;
+	background: linear-gradient(top, #4f5964 0%, #5f6975 40%);
+	background: -moz-linear-gradient(top, #4f5964 0%, #5f6975 40%);
+	background: -webkit-linear-gradient(top, #4f5964 0%,#5f6975 40%);
+}
+
+
 .navBar a{
 	display:inline-block;
 	width:24px;
 	height:24px;
 	outline:none
 }
-ul.scene-list{
+
+ul.sceneList{
 	float:left;
 	display:inline;
   	list-style: none;
-  	padding: 0;
+  	padding: 6px 10px 0 0;
     margin: 0;
 }
 
-.scene-list li {
+.sceneList li{
 	float:left;
 	display:inline;
 	padding:0 3px 0 3px;
 }
 
-.scene-list a{
+.sceneList a{
 	background:url("./images/navbg.png") no-repeat left top;
 } 
 
-.scene-list a:hover{
+.sceneList a:hover{
 	background-position: -48px top;
+}
+
+.sceneList .sceneAction{
+
 }
 
 a.addScene{
@@ -396,14 +588,9 @@ a.addScene:hover{
 	margin-top: 3px;
 }
 
-.scene-list a.currTab{
+.sceneList a.currTab{
 	background-position:-24px top;
 }	
-
-.action-list {
-	float:right;
-	margin: 4px 8px 0 0;
-}
 
 .navScreen{
 	width:73px;

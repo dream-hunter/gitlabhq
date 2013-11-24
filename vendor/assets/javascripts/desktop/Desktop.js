@@ -22,6 +22,7 @@ define([
 	"dojo/json",
 	"dojox/json/ref",
 	"qface/system/desktop/_Desktop",
+	"qfacex/widgets/layout/BorderContainer",
 	"qface/system/desktop/scene/_MuliSceneNaviApplet",
 	"qface/system/desktop/scene/_MultiSceneContainer",
 	"qface/system/desktop/scene/impl/icons/Scene",
@@ -35,10 +36,13 @@ define([
 	"qfacex/widgets/complex/applet/Clock",
 	"qfacex/widgets/complex/applet/UnFullDesk",
 	"qfacex/widgets/complex/applet/Theme",
+	"qfacex/widgets/complex/applet/Search",
+	"qfacex/widgets/complex/applet/LinkArea",
+	"qfacex/widgets/complex/applet/Account",
 	"qfacex/widgets/complex/applet/Applet"
-], function(dojo,require,lang,declare,domStyle,domConstruct,domGeom,dojoFx,dndSource,has,on,topic,JSON,jsonRef,_Desktop,
+], function(dojo,require,lang,declare,domStyle,domConstruct,domGeom,dojoFx,dndSource,has,on,topic,JSON,jsonRef,_Desktop,BorderContainer,
 	_MuliSceneNaviApplet,_MultiSceneContainer,IconsScene,MultiTabScene,MultiAppScene,SingleAppScene,SingleScene,QPanel,
-	AppletNetmonitor,AppletFullScreen,AppletClock,AppletUnFullDesk,AppletTheme,Applet){
+	AppletNetmonitor,AppletFullScreen,AppletClock,AppletUnFullDesk,AppletTheme,AppletSearch,AppletLinkArea,AppletAccount,Applet){
 	// module:
 	//		openstar
 	// summary:
@@ -49,22 +53,26 @@ define([
  	var	sysApplets = [
 		{"settings": {}, "pos": 0.00, "declaredClass": SceneNaviBar},
 		{"settings": {}, "pos": 0.78, "declaredClass": AppletFullScreen},
-		{"settings": {}, "pos": 0.85, "declaredClass": AppletNetmonitor},
-		{"settings": {}, "pos": 0.88, "declaredClass": AppletClock}
+		{"settings": {}, "pos": 0.85, "declaredClass": AppletLinkArea},
+		{"settings": {}, "pos": 0.96, "declaredClass": AppletAccount}
 	];
 
 	var SystemLogoApplet =  declare([Applet], {
 			postCreate: function(){
-				domStyle.set(this.containerNode,"padding","3px");
-				this.containerNode.innerHTML ="<span style=\"font-size:12pt\">Your Web Page</span>";
+				// domStyle.set(this.containerNode,"padding","3px");
+				var div = domConstruct.create("div",{class:"appLogo"},this.containerNode);
+				domConstruct.create("span",{class:"separator"},div);
+				var a = domConstruct.create("a",{href:"/",class:"home has_bottom_tooltip","data-original-title":"Dashboard"},div);
+				domConstruct.create("h1",{innerHTML:"UTILHUB"},a);
+				domConstruct.create("span",{class:"separator"},div);
+				// this.containerNode.innerHTML ="<span style=\"font-size:12pt\">Your Web Page</span>";
 			}
-
 	});
 
 	var SystemToolBar = declare([QPanel],{
 		//	summary:
 		//		A customizable toolbar that you can reposition and add/remove/reposition applets on
-		templateString: "<div class=\"systemPanel\" dojoAttachEvent=\"onmousedown:_onClick, oncontextmenu:_onRightClick\" style=\"width:100%;height:28px\"><div class=\"systemPanel systemPanelContainer\" style=\"width:100%;height:100%\" data-dojo-attach-point=\"containerNode\"></div></div>",
+		templateString: "<div class=\"systemPanel\" dojoAttachEvent=\"onmousedown:_onClick, oncontextmenu:_onRightClick\"><div class=\"systemPanelContainer\" style=\"width:100%;height:100%\" data-dojo-attach-point=\"containerNode\"></div></div>",
 	
 		opacity: 0.95,
 				
@@ -76,7 +84,7 @@ define([
 		
 	});	
 	
-	var _DemoDesktop = declare([_Desktop],{
+	var utilhubDesktop = declare([_Desktop],{
 	
 		aplUnFull : null,
 		
@@ -93,34 +101,54 @@ define([
 			}
 		},
 
+		_createHost : function(){
+			var mbc = this.mbc = new BorderContainer({
+				design: "headline",
+				gutters: false,
+				liveSplitters: false,
+				style:"width:100%;height:100%;margin-top:-13px;"
+			});
+
+
+
+			//domClass.add(mbc.domNode,"dijit soria tundra tsunami");		
+
+			document.body.appendChild(mbc.domNode);
+			
+			mbc.startup();
+
+		},
+
 		_createSystemToolBar : function() {
 			var stb  = this.stb = new SystemToolBar({
 				region: "top",
 				layoutPriority:1
 			});
+
+			var systemlogo = this.systemlogo = new SystemLogoApplet({settings:{},pos:0.05});
+			stb.addChild(systemlogo);
 			
 			var sceneNaviBar = this.sceneNaviBar = new SceneNaviBar({settings:{},pos:0.40,sceneContainer:this.dsc});
 			stb.addChild(sceneNaviBar);
 
-			var systemlogo = this.systemlogo = new SystemLogoApplet({settings:{},pos:0});
-			stb.addChild(systemlogo);
+			// var search = this.search = new AppletSearch({settings:{},pos:0.40});
+			// stb.addChild(search);
 
-			// var netmonitor = this.netmonitor = new AppletNetmonitor({settings:{},pos:0.8});
-			// stb.addChild(netmonitor);
-
-			var fullScreen = this.fullScreen = new AppletFullScreen({settings:{"domNodeId":this._config.parentNodeId},pos:0.82});
+			var fullScreen = this.fullScreen = new AppletFullScreen({settings:{"domNodeId":this._config.parentNodeId},pos:0.70});
 			stb.addChild(fullScreen);
+
+			var linkArea = this.linkArea = new AppletLinkArea({settings:{},pos:0.80});
+			stb.addChild(linkArea);
 			
 			
-			var clock = this.clock = new AppletClock({settings:{},pos:0.88});
-			stb.addChild(clock);
+			var account = this.account = new AppletAccount({settings:{},pos:0.95});
+			stb.addChild(account);
 					
 			var theme = this.theme = new AppletTheme({settings:{},pos:0.65});
-			stb.addChild(theme);
+			// stb.addChild(theme);
 
 			this.mbc.addChild(stb);
-			
-			
+
 			on(theme,"ChangeTheme",lang.hitch(this,function(theme){
 					var scene = this.dsc.selectedChildWidget;
 					this.changeTheme(scene,theme);
@@ -155,12 +183,12 @@ define([
 		
 		start : function() {
 			this.inherited(arguments);
-
 			this.sceneNaviBar.selectScene(0);
-			
+			// need change just ajust for utilhub
+			domStyle.set(this.mbc.domNode,{"margin-top":"-10px !important"});
 		}
 	});
 
 
-	return _DemoDesktop;
+	return utilhubDesktop;
 });

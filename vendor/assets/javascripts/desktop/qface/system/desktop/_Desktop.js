@@ -32,8 +32,10 @@ define([
 				design: "headline",
 				gutters: false,
 				liveSplitters: false,
-				style:"width:100%;height:100%"
+				style:"width:100%;height:100%;"
 			});
+
+
 
 			//domClass.add(mbc.domNode,"dijit soria tundra tsunami");		
 
@@ -141,7 +143,7 @@ define([
 			} else {
 				setTimeout(f, 100);
 			}
-		
+			
 			return deferred;
 		},
 		

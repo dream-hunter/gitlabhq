@@ -52,14 +52,47 @@ define([
 		},
 		
 		postCreate: function(){
+			var self = this;
 			domClass.add(this.containerNode, "navBar");
-			var ulNode = this.ulNode = domConstruct.create("ul");
-			domClass.add(ulNode,"scene-list");
-			this.containerNode.appendChild(ulNode);
+			// var div = domConstruct.create("div",{class:"appletContent"},this.containerNode)
+			var ulNode = this.ulNode = domConstruct.create("ul",{class:"sceneList"},this.containerNode);
+			var searchDiv = domConstruct.create("div",{class:"appletSearch"},this.containerNode);
+			var a = domConstruct.create("a",{
+				onclick: function(){
+					var displayValue = domStyle.get(self.search,"display");
+					domStyle.set(self.search,"display",displayValue === "none" ? "block" : "none");
+					domStyle.set(self.arrow,"display",displayValue === "none" ? "block" : "none");
+				}
+			},searchDiv);
+
+	    var arrow = this.arrow = domConstruct.create("span",{class:"searchArrowUp"},searchDiv);
+
+			domConstruct.create("i",{class:"appletSearchImg"},a);
+
 			this._createAddNode();
+			this._createSearchNode(searchDiv);
 			this.inherited(arguments);
 		},
 		
+		_createSearchNode: function(node){
+			var self = this;
+			var search = this.search = domConstruct.create("form",{class:"searchForm"},node);
+			var span = domConstruct.create("span",{},search);
+			var inputNode = this.inputNode = domConstruct.create("input",{type:"text",class:"search",placeholder:"Search..."},span);
+			domConstruct.create("input",{
+				type:"button",
+				value: "Search",
+				onclick: function(){
+					if(self.inputNode.value){
+						alert(self.inputNode.value);
+					}
+				}
+			},span);
+			on(search,"submit",function(){
+				alert("find something");
+			});
+		},
+
 		_createAddNode: function(){
 			var self = this;
 			// var addtr = domConstruct.create("tr",{"class":"scene-action"});
