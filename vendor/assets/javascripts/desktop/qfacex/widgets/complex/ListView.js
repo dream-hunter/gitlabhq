@@ -16,6 +16,7 @@ define([
 	"dojo/dom-construct",
 	"dojo/on", 
 	"dojo/dom",
+	"dojo/topic",
     "dojo/query",
     "dijit/_Widget",
 	"dijit/_TemplatedMixin",
@@ -30,7 +31,7 @@ define([
     "qfacex/widgets/window/Window",
  	"qface/utils/html"
 	
-],function(require,lang,declare,array,domStyle,domClass,domConstruct,on,dom,query,_Widget,_TemplatedMixin,
+],function(require,lang,declare,array,domStyle,domClass,domConstruct,on,dom,topic,query,_Widget,_TemplatedMixin,
 	_Container,_Contained,TextBox,Button,Menu,_LayoutWidget,ContentPane,FilteringSelect,Window,utilHtml) {
 
 	var ListView = declare([_LayoutWidget], {
@@ -155,6 +156,7 @@ define([
 			this._loadStart();
 			array.forEach(items, function(item){
 				var name = item.name;
+				var sysname = item.sysname;
 				var p = name.lastIndexOf(".");
 				var ext = name.substring(p+1, name.length);
 				//var icon = //srvConfig.filesystem.icons[ext.toLowerCase()];
@@ -166,6 +168,11 @@ define([
 //					iconClass: (item.type=="text/directory" ? "icon-32-places-folder" : (icon || "icon-32-mimetypes-text-x-generic"))
 				});
 				this.addChild(wid);
+				topic.subscribe("qfacex/widgets/complex/listView/click",function(scene){
+					on(wid.domNode,"click",function(){
+						scene.launch(sysname,name);
+					});
+				});
 				// wid.startup();
 			}, this);
 			

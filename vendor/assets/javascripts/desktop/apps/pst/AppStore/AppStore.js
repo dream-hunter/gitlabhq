@@ -161,12 +161,10 @@ define([
 			win.addChild(appLayout);
 			win.show();
 			win.startup();
-			topic.subscribe("appStore/do",function(fName){
+			
+			topic.subscribe("appStore/showForHome",function(fName){
 				lang.hitch(win,fName);
 			});
-			// topic.subscribe("appStore/",win.full());
-			// this.__addCss("apps/pst/AppStore/resources/stylesheets/AppWidget.css");
-			// this.__addCss("apps/pst/AppStore/resources/stylesheets/appStore.css");
 			this._readyForTreeData();
 			this.addHashEvent();
 		},

@@ -106,6 +106,10 @@ define([
 					});
 					try {
 						instance.init(args||{});
+
+						// customize app css
+						if(args && args["loadCssPath"]) this.desktop.addDojoCss(dojo.moduleUrl(path,args["loadCssPath"]));
+					
 					}
 					catch(e){
 			        	topic.publish("/qface/system/desktop/scene/launchAppEnd", [this,sysname,name,false]);
@@ -125,6 +129,18 @@ define([
 				}
 				d.callback(instance);
 		        topic.publish("/qface/system/desktop/scene/launchAppEnd", [this,sysname,name,true]);
+			}));
+		},
+
+		launchSystemApp: function(/*string*/appName,/*obj*/args){
+			var path = "tools/" + appName + "/App";
+	      	require([path],dojo.hitch(this,function(Application){
+	      		var app = new Application({
+	      			args: args,
+	      			scene: this
+	      		});
+	      		app.init(args||{});
+				if(args && args["loadCss"]) this.desktop.addDojoCss(dojo.moduleUrl(path,"../resources/app.css"));
 			}));
 		},
 

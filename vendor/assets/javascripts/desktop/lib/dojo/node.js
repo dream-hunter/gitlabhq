@@ -1,5 +1,6 @@
 define("dojo/node", ["dojo/has"], function(has){
-	if(! 0 ){
+	// if(! 0 ){
+	if(has("host-node")){
 		throw new Error("node plugin failed to load because environment is not Node.js");
 	}
 

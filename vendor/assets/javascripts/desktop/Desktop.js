@@ -3,8 +3,8 @@
  * Copyright (c) 2013 psteam Inc.(http://www.psteam.co.jp)
  * http://www.psteam.co.jp/qface/license
  * 
- * @Author: liwenfeng
- * @Date: 2013/02/28
+ * @Author: lihongwang
+ * @Date: 2013/10/28
  */
 define([
 	"dojo",
@@ -43,29 +43,16 @@ define([
 ], function(dojo,require,lang,declare,domStyle,domConstruct,domGeom,dojoFx,dndSource,has,on,topic,JSON,jsonRef,_Desktop,BorderContainer,
 	_MuliSceneNaviApplet,_MultiSceneContainer,IconsScene,MultiTabScene,MultiAppScene,SingleAppScene,SingleScene,QPanel,
 	AppletNetmonitor,AppletFullScreen,AppletClock,AppletUnFullDesk,AppletTheme,AppletSearch,AppletLinkArea,AppletAccount,Applet){
-	// module:
-	//		openstar
-	// summary:
-	//		The openstar package main module
 
 	var SceneNaviBar = _MuliSceneNaviApplet;
 
- 	var	sysApplets = [
-		{"settings": {}, "pos": 0.00, "declaredClass": SceneNaviBar},
-		{"settings": {}, "pos": 0.78, "declaredClass": AppletFullScreen},
-		{"settings": {}, "pos": 0.85, "declaredClass": AppletLinkArea},
-		{"settings": {}, "pos": 0.96, "declaredClass": AppletAccount}
-	];
-
 	var SystemLogoApplet =  declare([Applet], {
 			postCreate: function(){
-				// domStyle.set(this.containerNode,"padding","3px");
 				var div = domConstruct.create("div",{class:"appLogo"},this.containerNode);
 				domConstruct.create("span",{class:"separator"},div);
 				var a = domConstruct.create("a",{href:"/",class:"home has_bottom_tooltip","data-original-title":"Dashboard"},div);
 				domConstruct.create("h1",{innerHTML:"UTILHUB"},a);
 				domConstruct.create("span",{class:"separator"},div);
-				// this.containerNode.innerHTML ="<span style=\"font-size:12pt\">Your Web Page</span>";
 			}
 	});
 
@@ -84,12 +71,12 @@ define([
 		
 	});	
 	
-	var utilhubDesktop = declare([_Desktop],{
+	var utilhubUserDesktop = declare([_Desktop],{
 	
 		aplUnFull : null,
 		
 		fullSceneed : function (win) {
-			var aplUnFull = this.aplUnFull = new AppletUnFullDesk({settings:{},pos:0.78,appWindow:win});
+			var aplUnFull = this.aplUnFull = new AppletUnFullDesk({settings:{},pos:0.80,appWindow:win});
 			this.stb.addChild(aplUnFull);
 			this.stb.resize();
 		},
@@ -109,10 +96,6 @@ define([
 				style:"width:100%;height:100%;margin-top:-13px;"
 			});
 
-
-
-			//domClass.add(mbc.domNode,"dijit soria tundra tsunami");		
-
 			document.body.appendChild(mbc.domNode);
 			
 			mbc.startup();
@@ -131,13 +114,10 @@ define([
 			var sceneNaviBar = this.sceneNaviBar = new SceneNaviBar({settings:{},pos:0.40,sceneContainer:this.dsc});
 			stb.addChild(sceneNaviBar);
 
-			// var search = this.search = new AppletSearch({settings:{},pos:0.40});
-			// stb.addChild(search);
-
-			var fullScreen = this.fullScreen = new AppletFullScreen({settings:{"domNodeId":this._config.parentNodeId},pos:0.70});
+			var fullScreen = this.fullScreen = new AppletFullScreen({settings:{},pos:0.75});
 			stb.addChild(fullScreen);
 
-			var linkArea = this.linkArea = new AppletLinkArea({settings:{},pos:0.80});
+			var linkArea = this.linkArea = new AppletLinkArea({settings:{},pos:0.85});
 			stb.addChild(linkArea);
 			
 			
@@ -150,22 +130,19 @@ define([
 			this.mbc.addChild(stb);
 
 			on(theme,"ChangeTheme",lang.hitch(this,function(theme){
-					var scene = this.dsc.selectedChildWidget;
-					this.changeTheme(scene,theme);
-					this.applyTheme(theme);
-					this.resize();
-				})
-			);	
-			
+				var scene = this.dsc.selectedChildWidget;
+				this.changeTheme(scene,theme);
+				this.applyTheme(theme);
+				this.resize();
+			}));	
 
-			topic.subscribe("/qface/ui/window/Window/full",lang.hitch(this,function(win,isFull){
-					if (isFull) {
-						this.fullSceneed(win);
-					} else {
-						this.unFullSceneed(win);
-					}	
-				})
-			);
+			topic.subscribe("/qfacex/widgets/window/Window/full",lang.hitch(this,function(win,isFull){
+				if (isFull) {
+					this.fullSceneed(win);
+				} else {
+					this.unFullSceneed(win);
+				}	
+			}));
 
 			topic.subscribe("/qface/scene/show",lang.hitch(this,function(scene){
 					var theme = scene.get("theme");
@@ -184,11 +161,8 @@ define([
 		start : function() {
 			this.inherited(arguments);
 			this.sceneNaviBar.selectScene(0);
-			// need change just ajust for utilhub
-			domStyle.set(this.mbc.domNode,{"margin-top":"-10px !important"});
 		}
 	});
 
-
-	return utilhubDesktop;
+	return utilhubUserDesktop;
 });

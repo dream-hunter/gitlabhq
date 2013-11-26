@@ -50,7 +50,6 @@ define([
 		},
 
 		launch: function(/*String*/sysname, /*String*/name,/*Object?*/args, /*Function?*/onComplete, /*Function?*/onError){
-	        
 	        var path = "apps/"+sysname.replace(/[.]/g, "/");
 	      	require([path],dojo.hitch(this,function(Application){
 				var pid = false;
@@ -63,6 +62,7 @@ define([
 					scene: this
 				});
 				instance.init(args||{});
+				if(args && args["loadCssPath"]) this.desktop.addDojoCss(dojo.moduleUrl(path,args["loadCssPath"]));
 			}));
 		},
 		

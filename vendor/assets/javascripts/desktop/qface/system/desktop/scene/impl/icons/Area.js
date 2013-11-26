@@ -13,12 +13,13 @@ define([
 	"dojo/_base/html",
 	"dojo/dom-style",
     "dojo/query",
-    "dijit",
+    "dojo/on",
+    "dojo/topic",
 	"dijit/MenuItem",
 	"dijit/MenuSeparator",
 	"qfacex/widgets/window/area/Area",
 	"qfacex/widgets/complex/ListView"
-],function(require,lang,declare,html,domStyle,query,dijit,MenuItem,MenuSeparator,WindowArea,ListView) {
+],function(require,lang,declare,html,domStyle,query,on,topic,MenuItem,MenuSeparator,WindowArea,ListView) {
 
 
 	return declare( [WindowArea], {
@@ -32,12 +33,11 @@ define([
 				overflow: "hidden",
 				scene : this.scene,
 				onItem  : lang.hitch(this,function(sysname,name) {
-					this.scene.launch(sysname,name);
+					// this.scene.launch(sysname,name);
 				})
 			});
-		
-			this.addChild(listarea);
-			
+
+			this.addChild(listarea);		
 			
 		},
 		
@@ -48,6 +48,7 @@ define([
 			
 			this.inherited(arguments);
 			this.listarea.updateItems(this.items);
+			topic.publish("qfacex/widgets/complex/listView/click",this.scene);
 		},
 		
 		resize: function(e){

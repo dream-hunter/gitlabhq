@@ -36,6 +36,10 @@ dojoConfig = {
 	{
 		name:"res",
 		location:"resources"
+	},
+	{
+		name:"tools",
+		location:"qface/system/tools"
 	}									
 	]
 };

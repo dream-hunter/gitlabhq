@@ -9,44 +9,54 @@
 define([
 	"dojo/_base/lang", 
 	"dojo/_base/declare", 
-  "dojo/dom-style",
-  "dojo/dom-class",
+	"dojo/dom-style",
+	"dojo/dom-class",
 	"dojo/dom-construct", 
-  "dojo/on",
-  "dojo/request",
-  "dojo/request/iframe",
+	"dojo/on",
+	"dojo/dom-attr",
+	"dojo/request",
+	"dojo/request/iframe",
 	"dojo/_base/array",
-  "dijit/form/DropDownButton",
-  "dijit/DropDownMenu",
-  "dijit/MenuItem",
 	"qfacex/widgets/complex/applet/Applet"
-],function(lang,declare,domStyle,domClass,domConstruct,on,request,iframe,array,DropDownButton,DropDownMenu,MenuItem,Applet) {
+],function(lang,declare,domStyle,domClass,domConstruct,on,domAttr,request,iframe,array,Applet) {
 
 	return declare([Applet], {
+		constructor: function(args){
+			this.links = args && args.links ? args.links : ["public-globe#Public Area","admin-cogs#Admin Area","projects/new-plus#Create New Project","profile-user#My Profile"];
+		},
 
 		dispName: "linkArea",
 		
 		postCreate: function(){
 			var self = this;
 			var baseUrl = "./";
-			var links = ["public-globe#Public Area","admin-cogs#Admin Area","projects/new-plus#Create New Project","profile-user#My Profile"];
-	    var ul = domConstruct.create("ul",{class:"nav appletContent"},this.containerNode);
-	    array.forEach(links,function(link){
-	    	var matcher = link.match(/(\w*)(\/\w*)?-(\w*)#(.*)/);
-	    	var url = matcher[1];
-	    	if(matcher[2]) url += matcher[2];
-	    	var iconClass = matcher[3];
-	    	var title = matcher[4];
-		    var li = domConstruct.create("li",{},ul);
-		    var a = domConstruct.create("a",{
-		    	class:"has_bottom_tooltip",
-		    	"data-original-title":title,
-		    	onclick: function(){
-		    		self.getLinkContent(baseUrl+url);
+	    	var ul = domConstruct.create("ul",{class:"nav appletContent"},this.containerNode);
+	    	array.forEach(this.links,function(link){
+	    		// \w+(_|\b)?\w+      title         matcher[1]
+	    		// \/\w+              action        matcher[3]
+	    		// -(\w+(_|\b)?\w+)   class name    matcher[5]
+	    		// #(.*)+             detail title  matcher[8]
+	    		var matcher = link.match(/(\w+(_|\b)?\w+)(\/\w+)?(-(\w+(_|\b)?\w+)+)?(#(.*)+)?/);
+	    		var url = matcher[1];
+	    		var title = matcher[1];
+	    		if(matcher[3]) url += matcher[3];
+	    		var iconClass = matcher[5];
+	    		var ditailTitle = matcher[8];
+		    	var li = domConstruct.create("li",{},ul);
+		    	var a = domConstruct.create("a",{
+		    		class:"has_bottom_tooltip",
+		    		"data-original-title":ditailTitle,
+		    		onclick: function(){
+		    			self.getLinkContent(baseUrl+url);
+		    		}
+		    	},li);
+		    	if(iconClass){
+		    		domConstruct.create("i",{class:"icon-" + iconClass},a);
+		    	} else {
+		    		domAttr.set(a,"title",ditailTitle);
+		    		domConstruct.create("span",{innerHTML:title},a);
 		    	}
-		    },li);
-		    domConstruct.create("i",{class:"icon-" + iconClass},a);
-	    });
+	    	});
 		},
 
 		getLinkContent: function(url){

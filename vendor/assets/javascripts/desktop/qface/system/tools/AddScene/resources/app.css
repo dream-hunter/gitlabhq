@@ -1,0 +1,43 @@
+.addSceneForm{
+	text-align: left;
+	display: block;
+	width: 90% !important;
+	height: 90% !important;
+	padding: 10px;
+}
+
+.addSceneForm label{
+	text-align: left;
+	width:100%;
+	margin:0 3px;
+}
+
+.addSceneForm .formText {
+margin-left: 3px;
+}
+
+.addSceneForm .formSelect{
+	margin-left: 3px;
+}
+
+.addSceneForm label>span{
+	background:#ddd;
+}
+
+.addSceneForm .emptyLine{
+	width: 100%;
+	display: block;
+	padding: 1px;
+	margin: 5px 0 5px 0;
+	border-bottom: 1px solid #ccc;
+}
+
+.addSceneForm .formCancel{
+	float: left;
+	margin-left: 10px;
+}
+
+.addSceneForm .formSave{
+	float: right;
+	margin-right: 10px;
+}

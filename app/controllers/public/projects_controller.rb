@@ -3,8 +3,8 @@ class Public::ProjectsController < ApplicationController
                      :reject_blocked, :set_current_user_for_observers,
                      :add_abilities
 
-  layout 'public'
-
+  # layout 'public'
+  layout false
   def index
     @projects = Project.public_only
     @projects = @projects.search(params[:search]) if params[:search].present?

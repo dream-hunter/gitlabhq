@@ -22,14 +22,15 @@ define([
 		
 		postCreate: function(){
 			// var search = domConstruct.create("div",{class:"nav appletContent"},this.containerNode);
-			domConstruct.create("input",{},this.containerNode);
+			var form = domConstruct.create("form",{class:"nav appletContent"},this.containerNode);
+			domConstruct.create("input",{},form);
 			domConstruct.create("button",{
 				label: "Search",
 				innerHTML:"Search",
 				"click": lang.hitch(this,function(){
 
 				})
-			},this.containerNode);
+			},form);
 		}
 	});
 

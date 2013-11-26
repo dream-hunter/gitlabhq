@@ -103,8 +103,9 @@ define([
 				"class":"addScene",
 				onclick: function(){
 					var currentScene = self.currentScene();
-					var add = new AddScene({scene:currentScene,sceneContainer:self.sceneContainer});
-					add.init();
+					currentScene.launchSystemApp("AddScene",{"loadCss":true});
+					// var add = new AddScene({scene:currentScene,sceneContainer:self.sceneContainer});
+					// add.init();
 					topic.publish("qface/system/tools/addScene",{sceneNaviBar:self,desktop:currentScene.desktop});
 				}
 			},addLiNode);

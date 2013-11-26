@@ -20,12 +20,10 @@ define([
 		dispName: "Full Screen",
 
 		postCreate: function(){
-			// domStyle.set(this.containerNode,"padding","px");
-			
 			var div = domConstruct.create('div',{class:"nav appletContent",title : this.dispName}, this.containerNode);
 			var i = domConstruct.create("i",{class:"icon-16-actions-view-fullscreen"},div);
 			
-			on(div,"click",lang.hitch(this,function(){
+			on(i,"click",lang.hitch(this,function(){
 				this.fullScreen();
 				if(domClass.contains(this.div,"icon-16-actions-view-fullscreen")){
 					domClass.replace(this.div,"icon-16-actions-view-unfullscreen","icon-16-actions-view-fullscreen");

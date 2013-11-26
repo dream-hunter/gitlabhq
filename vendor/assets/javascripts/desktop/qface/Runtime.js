@@ -144,7 +144,7 @@ define([
 		},
     
 		addDojoJs : function(/*String*/path){
-	     	desktop.addDojoCss(path);
+	     	desktop.addDojoJs(path);
 	    },
 
 		getTheme : function(scene) {
