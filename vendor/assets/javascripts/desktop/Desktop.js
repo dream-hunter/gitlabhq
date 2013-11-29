@@ -76,7 +76,7 @@ define([
 		aplUnFull : null,
 		
 		fullSceneed : function (win) {
-			var aplUnFull = this.aplUnFull = new AppletUnFullDesk({settings:{},pos:0.80,appWindow:win});
+			var aplUnFull = this.aplUnFull = new AppletUnFullDesk({settings:{},pos:0.70,appWindow:win});
 			this.stb.addChild(aplUnFull);
 			this.stb.resize();
 		},
@@ -114,10 +114,10 @@ define([
 			var sceneNaviBar = this.sceneNaviBar = new SceneNaviBar({settings:{},pos:0.40,sceneContainer:this.dsc});
 			stb.addChild(sceneNaviBar);
 
-			var fullScreen = this.fullScreen = new AppletFullScreen({settings:{},pos:0.75});
+			var fullScreen = this.fullScreen = new AppletFullScreen({settings:{},pos:0.65});
 			stb.addChild(fullScreen);
 
-			var linkArea = this.linkArea = new AppletLinkArea({settings:{},pos:0.85});
+			var linkArea = this.linkArea = new AppletLinkArea({settings:{},pos:0.75});
 			stb.addChild(linkArea);
 			
 			

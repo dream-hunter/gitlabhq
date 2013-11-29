@@ -99,21 +99,15 @@ define([
 		        ]
 		    });
 		    var self = this;
-			this.sortItem.on("change",function(){
-				var sortValue = this.get("value");
-				self.__updateHash("sort",sortValue);
-				self.__deleteHash("app");
-				self.filterApps = self.filterApps.length === 0 ? self.apps : self.filterApps;
-				self._createAppPage(self.filterApps,sortValue);
-			});
-
+			this.sortItem.on("change",function(){self._sortApp(this.get("value"));});
+			domConstruct.create("span",{innerHTML:"sort:",class:"sortLabel"},centerTopItem.domNode);
 			centerTopItem.addChild(sortItem);
 
 			var searchItem = new SearchWidget({
 				mainObj: this,
 				class: "search"
 			});
-
+			topic.publish("qface/search",this,"_searchApp");
 			centerTopItem.addChild(searchItem);
 
 			centerContainer.addChild(centerTopItem);
@@ -127,8 +121,8 @@ define([
 			centerContainer.addChild(contentContainer);
 
 			/////////
-  	        // right
-      	    /////////
+  	  // right
+      /////////
 			
 			var rightContainer = new BorderContainer({class:"rightContainer", region:"trailing",style:"width:480px;"});
 			var descItem = this.descItem = new ContentPane({
@@ -144,19 +138,19 @@ define([
 			rightContainer.addChild(descItem);
 			rightContainer.addChild(runItem);
 
-			var bottomContainer = new BorderContainer({region:"bottom",class:"bottom",style:"height:30px;background-color:rgb(161, 174, 189);"})
-			var footer = new ContentPane({
-				region:"bottom",
-				class: "bottom",
-				style:"height:30px;backgound-color:gray;",
-				content:"copyright@PST"
-			});
-			bottomContainer.addChild(footer);
+			// var bottomContainer = new BorderContainer({region:"bottom",class:"bottom",style:"height:30px;background-color:rgb(161, 174, 189);"})
+			// var footer = new ContentPane({
+			// 	region:"bottom",
+			// 	class: "bottom",
+			// 	style:"height:30px;backgound-color:gray;",
+			// 	content:"copyright@PST"
+			// });
+			// bottomContainer.addChild(footer);
 
 			appLayout.addChild(leftContainer)
 			appLayout.addChild(centerContainer);
 			appLayout.addChild(rightContainer);	
-			appLayout.addChild(bottomContainer);
+			// appLayout.addChild(bottomContainer);
 			
 			win.addChild(appLayout);
 			win.show();
@@ -192,22 +186,22 @@ define([
 			var categoryUniqList = this.categoryUniqList = this.__uniqueArray(categoryList);
 
 			array.forEach(appType, function(name, index){
-    		var oData = {};
-    		oData.label = name;
-    		oData.id =  index + 1;
-    		oData.type =  'folder';
-    		oData.icon = 'category';
-    		oData.folders = [];
-    		if(name =="app"){
-		    	array.forEach(categoryUniqList, function(category, sindex){
-					  oItem = {};
-					  oItem.id = (index + 1) * 1000 + sindex;
-					  oItem.label = category;
-					  oItem.iconClass = "icon-16-categories-applications-"+category.toLowerCase();
-					  oItem.icon = "icon-16-categories-applications-"+category.toLowerCase();
-					  oData.folders.push(oItem);
-					});
-    		}
+	    		var oData = {};
+	    		oData.label = name;
+	    		oData.id =  index + 1;
+	    		oData.type =  'folder';
+	    		oData.icon = 'category';
+	    		oData.folders = [];
+	    		if(name =="app"){
+			    	array.forEach(categoryUniqList, function(category, sindex){
+							oItem = {};
+							oItem.id = (index + 1) * 1000 + sindex;
+							oItem.label = category;
+							oItem.iconClass = "icon-16-categories-applications-"+category.toLowerCase();
+							oItem.icon = "icon-16-categories-applications-"+category.toLowerCase();
+							oData.folders.push(oItem);
+						});
+	    		}
 				formatData.push(oData);
 			});
 
@@ -235,6 +229,7 @@ define([
 					self._selectTreeRootNode(item,apps);
 					self.__updateHash("cat",item.label[0]);
 					self.__deleteHash("app");
+					self.__deleteHash("q");
 
 					domConstruct.empty(self.descItem.id);
 					domConstruct.empty(self.runItem.id);
@@ -286,8 +281,17 @@ define([
 
 		// method for searchWidget
 		_searchApp: function(appName){
-      		var filterApps = this.filterApps = array.filter(this.apps,function(app){return app.name === appName});
-			this._createAppPage(filterApps);
+			this.__updateHash("q",appName);
+			var filterApps = this.filterApps.length === 0 ? this.apps : this.filterApps;
+      		this.filterApps = array.filter(filterApps,function(app){return app.name === appName});
+			this._createAppPage(this.filterApps);
+		},
+
+		_sortApp: function(sortValue){
+			this.__updateHash("sort",sortValue);
+			this.__deleteHash("app");
+			this.filterApps = this.filterApps.length === 0 ? this.apps : this.filterApps;
+			this._createAppPage(this.filterApps,sortValue);
 		},
 
 		_createAppPage: function(apps,sortValue){
@@ -372,7 +376,8 @@ define([
 
 	        if(obj.sort){
 				this.sortItem.set('value',obj.sort);
-	            this._createAppPage(this.filterApps,obj.sort);
+				var filterApps = this.filterApps.length === 0 ? this.apps : this.filterApps;
+	            this._createAppPage(filterApps,obj.sort);
 	        } else{
 	        	if(!obj.cat && !obj.app){
 		            this._createAppPage(this.apps);

@@ -7,14 +7,14 @@
  * @Date: 2013/02/28
  */
 define([
-    "require",
+  "require",
 	"dojo/_base/lang", 
 	"dojo/_base/declare", 
 	"dojo/_base/html",
 	"dojo/dom-style",
-    "dojo/query",
-    "dojo/on",
-    "dojo/topic",
+  "dojo/query",
+  "dojo/on",
+  "dojo/topic",
 	"dijit/MenuItem",
 	"dijit/MenuSeparator",
 	"qfacex/widgets/window/area/Area",
@@ -60,7 +60,6 @@ define([
 				w.resize();
 			});
 			var max = this.getBox();
-			//var viewport = dijit.getViewport();
 			domStyle.set(this.listarea.domNode, "top", max.t+"px");
 			domStyle.set(this.listarea.domNode, "left", max.l+"px");
 			domStyle.set(this.listarea.domNode, "width", (max.w)+"px");

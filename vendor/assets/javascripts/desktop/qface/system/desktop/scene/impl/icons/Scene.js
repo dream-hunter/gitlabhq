@@ -8,26 +8,32 @@
  * @Date: 2013/02/28
  */
 define([
-    "dojo",
   "dojo/dom-style",
+  "dojo/query",
+	"dojo/_base/declare",
+	"dojo/_base/lang",
 	"dojo/_base/array",
 	"dojo/data/ItemFileWriteStore",
+	"dojox/layout/FloatingPane",
 	"qfacex/widgets/window/Window",
 	"qface/system/desktop/scene/_SceneBase",
 	"qface/Runtime",
 	"qface/system/desktop/scene/impl/icons/Area",
 	"qface/system/desktop/scene/impl/icons/Panel",
-],function(dojo,domStyle,array,ItemFileWriteStore,Window,_SceneBase,qface,Area,Panel) {
-	var Scene = dojo.declare([_SceneBase],{
+],function(domStyle,query,declare,lang,array,ItemFileWriteStore,FloatingPane,Window,_SceneBase,qface,Area,Panel) {
+	var Scene = declare([_SceneBase],{
 		//	_windowList: dojo.data.ItemFileWriteStore
 		//		A dojo.data.ItemFileWriteStore containing a list of windows
 		_windowList: null,
 		//	_drawn: Boolean
 		//		true after the UI has been drawn
+
+		// multiple areas
+		_areaList: [],
 		
 		constructor : function() {
 			this._windowList = new ItemFileWriteStore({
-						data: {identifer: "id", items: []}
+				data: {identifer: "id", items: []}
 			});
 				
 		},
@@ -35,13 +41,11 @@ define([
 		_drawn: false,
 		
 		init: function(config){
-			//	summary:
-			//		creates a openstar.scene.Area widget and places it on the screen
-			//		waits for the config to load so we can get the locale set right
 			if(this._drawn === true) return;
 			this._drawn = true;
 			this._config = config;
 			this.makeArea();
+			// this.makeAreaContainer();
 			this.makePanels();
 		},
 		
@@ -54,7 +58,21 @@ define([
 			});
 			this.addChild(this._area);
 			this._area.updateWallpaper(this._config.wallpaper);
-		
+		},
+
+		makeAreaContainer: function(){
+			qface.addDojoCss(dojo.moduleUrl("dojox/layout/resources/","FloatingPane.css"));
+			qface.addDojoCss(dojo.moduleUrl("dojox/layout/resources/","ResizeHandle.css"));
+
+			var areaVistualZone = this.areaVistualZone = new FloatingPane({
+				title: "A floating pane",
+     		resizable: true, 
+     		dockable: true,
+     		style: "position:absolute;top:0 !important;z-index:11;left:0;min-width:100px;width:10%;max-width:200px;height:90%;background:#666;",
+			});
+			this.addChild(areaVistualZone);
+			areaVistualZone.startup();
+			areaVistualZone.show();
 		},
 		
 		//	drawn: Boolean
@@ -63,29 +81,32 @@ define([
 			//	summary:
 			//		the first time it is called it draws each panel based on what's stored in the configuration,
 			//		after that it cycles through each panel and calls it's _place(); method
-	        if(this.drawn){
-		        dojo.query(".scenePanel",this._area.domNode).forEach(function(panel){
-			       var p = dijit.byNode(panel);
-			       p._place();
-		        }, this);
-	            return;
-	        }
-	        this.drawn = true;
-	        var panels = this._config.panels;
-			dojo.forEach(panels, dojo.hitch(this,function(panel){
+	    if(this.drawn){
+		    query(".scenePanel",this._area.domNode).forEach(function(panel){
+			    var p = dijit.byNode(panel);
+			    p._place();
+		    }, this);
+	      return;
+	    }
+	    this.drawn = true;
+	    var panels = this._config.panels;
+			array.forEach(panels,lang.hitch(this,function(panel){
 				var args = {
 					thickness: panel.thickness,
 					span: panel.span,
 					placement: panel.placement,
 					opacity: panel.opacity,
 					scene: this
-				}
+				};
 				var p = new Panel(args);
-				if(panel.locked) p.lock();
-				else p.unlock();
+				if(panel.locked){
+					p.lock();
+				}else{
+					p.unlock();
+				} 
+
 				p.restore(panel.applets);
 				this._area.addChild(p);
-				// p.startup();
 			}));
 			this._area.resize();
 			// domStyle.set(this._area.containerNode,"overflow","auto"); // new panel
@@ -96,7 +117,7 @@ define([
 			//		Cylces through each panel and stores each panel's information in srvConfig
 			//		so it can be restored during the next login
 			var panels = this._config.panels = [];
-			dojo.query(".scenePanel",this._area.domNode).forEach(function(panel, i){
+			query(".scenePanel",this._area.domNode).forEach(function(panel, i){
 				var wid = dijit.byNode(panel);
 				panels[i] = {
 					thickness: wid.thickness,
@@ -117,12 +138,13 @@ define([
 		
 		addWindow : function(win,args){
 			this._area.addChild(win);
+			qface.addDojoCss(dojo.moduleUrl("dojox/widget/FisheyeList/","FisheyeList.css"));
 			return this._windowList.newItem(args);
 		},
 		
 		removeWindow : function(win,item){
-      this._area.removeChild(win);
-      this._windowList.deleteItem(item)
+  		this._area.removeChild(win);
+  		this._windowList.deleteItem(item)
 		},
 		
 		updateWindowTitle : function(item,title){

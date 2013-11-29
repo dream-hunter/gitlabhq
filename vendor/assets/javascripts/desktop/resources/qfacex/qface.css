@@ -141,6 +141,18 @@ html, body {
 	width: 100%;
 	height: 100%;
 }
+
+.sceneApplet .sceneTaskbarApplet{
+	margin: 0 120px;
+	bottom: 3px;
+	position: fixed;
+}
+
+.dojoxFisheyeListItem .dojoxFisheyeListItemLabel {
+	background:#0A0A0A;
+	border: 1px solid #666;
+}
+
 .uiArea {
 	position: absolute;
 	top: 0px;
@@ -150,9 +162,11 @@ html, body {
 	z-index: 10;
 	background: none;
 }
+
 .uiAreaContainer {
 	z-index: 90;
 }
+
 .uiAreaWidget {
 	display: none;
 	z-index: 100;
@@ -187,6 +201,11 @@ div.mainFileArea {
 	margin-left: 5px;	
 	height: 16px;
 	width: 16px;
+}
+
+/*fisheye*/
+.dojoxFisheyeListItem{
+	height:32px;
 }
 
 /*statusbar.css*/
@@ -513,8 +532,8 @@ ul.accountList {
 	right: -1px;
 	top: 100%;
 	z-index: 1;
-	max-width: 300px;
-	min-width: 200px;
+	max-width: 200px;
+	min-width: 180px;
 	background: #F0F4F8;
 }
 
@@ -543,7 +562,9 @@ ul.accountList li:hover{
 	background: -moz-linear-gradient(top, #4f5964 0%, #5f6975 40%);
 	background: -webkit-linear-gradient(top, #4f5964 0%,#5f6975 40%);
 }
-
+ul.accountList .actionIcon, ul.accountList .actionTitle{
+	margin-left:12px;
+}
 
 .navBar a{
 	display:inline-block;
@@ -642,71 +663,84 @@ html[dir='rtl'] .findbar {
 }
 
 /*ListView*/
-.listItem {
-	cursor : pointer;
-	width: 80px;
-	text-align: center;
+.uiAreaContainer .itemsContainer{
+	width: 99% !important;
+	height: 90% !important;
+	margin: 6px auto;
 }
 
-.listItemIcon {
+.itemsContainer .listItem,.itemsContainer  .actived {
+	cursor : pointer;
+	text-align: center;
+	width: 90px; 
+	height: 70px; 
+	padding: 3px;
+	margin: 3px;
+}
+
+.itemsContainer .listItemIcon {
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.listItemIconSelected, .listItemIconHover {
+.itemsContainer .listItemIconSelected, .itemsContainer .listItemIconHover {
 	opacity: 0.8;
 	filter: Opacity(80);
 }
 
-.iconLabel, .shadowHidden, .shadowFront, .shadowBack {
+.itemsContainer .iconLabel, .itemsContainer .shadowHidden, .itemsContainer .shadowFront, .itemsContainer .shadowBack {
 	width: 80px;
+	margin: 0 auto;
 	position: relative;
 	text-align: center;
 	word-wrap: break-word;
 }
 
-.shadowFront, .shadowBack {
+.itemsContainer .shadowFront, .itemsContainer .shadowBack {
 	position: absolute;
 	top: 0px;
 	left: 0px;
 	width: 100%;
 }
-.shadowFront {
-	z-index: 10;
+.itemsContainer .shadowFront {
+	z-index: rgb(223, 219, 217);
 	color: white;
-	margin-right: 1px;
-	margin-bottom: 1px;
+	margin-top: 10px;
+	font-size: 8px !important;
+
 }
-.shadowBack {
+.itemsContainer .shadowBack {
 	z-index: 1;
-	color: black;
-	margin-left: 1px;
-	margin-top: 1px;
+	color: rgb(63, 2, 2);
+	margin-top:11px;
+	font-style: italic;
+	font-size: 8px !important;
 }
-.shadowHidden {
+.itemsContainer .shadowHidden {
 	visibility: hidden;
 }
 
-.ghost {
+.itemsContainer .ghost {
 	opacity: 0.7;
 	filter: Opacity(70);
 }
 
-.actived {
-  border-width:1px;
-  border-style:solid;
-  border-bottom-color:#aaa;
-  border-right-color:#aaa;
-  border-top-color:#ddd;
-  border-left-color:#ddd;
-  border-radius:3px;
-  -moz-border-radius:3px;
-  -webkit-border-radius:3px;
-  box-shadow: 1px 1px 2px #615E5E;
-  -moz-box-shadow: 1px 1px 2px #000;
-  -webkit-box-shadow: 1px 1px 2px #C9C6C6;
-  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
-  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+.itemsContainer .actived {
+	border-width:1px;
+	background:#666;
+	border-style:solid;
+	border-bottom-color:#aaa;
+	border-right-color:#aaa;
+	border-top-color:#ddd;
+	border-left-color:#ddd;
+	border-radius:3px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	box-shadow: 1px 1px 2px #615E5E;
+	-moz-box-shadow: 1px 1px 2px #000;
+	-webkit-box-shadow: 1px 1px 2px #C9C6C6;
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
 }
 
 .loading{

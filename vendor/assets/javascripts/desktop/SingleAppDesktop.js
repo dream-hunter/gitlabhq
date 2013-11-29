@@ -125,7 +125,7 @@ define([
 			// var fullScreen = this.fullScreen = new AppletFullScreen({settings:{},pos:0.75});
 			// stb.addChild(fullScreen);
 
-			var linkArea = this.linkArea = new AppletLinkArea({settings:{},pos:0.85,links:["sign_in#Sign in"]});
+			var linkArea = this.linkArea = new AppletLinkArea({settings:{},pos:0.85,configName:"signIn"});
 			stb.addChild(linkArea);
 
 			this.mbc.addChild(stb);	

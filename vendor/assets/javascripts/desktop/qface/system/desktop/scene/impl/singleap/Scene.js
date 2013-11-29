@@ -30,11 +30,10 @@ define([
 		
 		constructor : function() {
 			this._windowList = new ItemFileWriteStore({
-						data: {identifer: "id", items: []}
+				data: {identifer: "id", items: []}
 			});
 			
-			this._winLists = [];
-				
+			this._winLists = [];				
 		},
 		
 
@@ -44,9 +43,9 @@ define([
 			
 			this.addChild(area);
 
-		    var app = config.app;
+		  var app = config.app;
 		    
-		    this.launch(app.sysname,app.name,app.args||{});
+		  this.launch(app.sysname,app.name,app.args||{});
 		},
 
 		launch: function(/*String*/sysname, /*String*/name,/*Object?*/args, /*Function?*/onComplete, /*Function?*/onError){

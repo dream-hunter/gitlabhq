@@ -56,12 +56,13 @@ define([
 			var sNode = this.scrollNode = document.createElement("div");
 			domStyle.set(sNode, "position", "relative");
 			this.domNode.appendChild(sNode);
-			domStyle.set(this.domNode, "overflow", "auto");
+			domClass.add(this.domNode,"itemsContainer");
+			// domStyle.set(this.domNode, "overflow", "auto");
 
 			// need change
-			domStyle.set(this.domNode,"width","90%");
-			domStyle.set(this.domNode,"height","90%");
-			domStyle.set(this.domNode, "margin","10px");
+			// domStyle.set(this.domNode,"width","80%");
+			// domStyle.set(this.domNode,"height","80%");
+			// domStyle.set(this.domNode, "margin","10px");
 		},		
 		
 		_loadStart: function(){
@@ -201,7 +202,7 @@ define([
 			var width = this.domNode.offsetWidth;
 			var height = this.domNode.offsetHeight;
 			var hspacing = 100;
-			var vspacing = 70;
+			var vspacing = 100;
 			var wc = 0; //width counter
 			var hc = 0; //height counter
 			var children = this.getChildren();
@@ -254,7 +255,7 @@ define([
 
 
 	var ListViewItem  = declare([_Widget, _TemplatedMixin, _Contained], {
-		templateString:"<div class='listItem' style='width: 80px; height: 50px; padding: 10px;' data-dojo-attach-point='focusNode'>\n\t<div class='listItemIcon ${iconClass}' data-dojo-attach-point='iconNode'></div>\n\t<div class='iconLabel' data-dojo-attach-point='labelNode'>\n\t\t<div data-dojo-attach-point='textFront' class='shadowFront'>${label}</div>\n\t\t<div data-dojo-attach-point='textBack' class='shadowBack'>${label}</div>\n\t\t<div data-dojo-attach-point='textHidden' class='shadowHidden'>${label}</div>\n\t</div>\n</div>\n",
+		templateString:"<div class='listItem' data-dojo-attach-point='focusNode'>\n\t<div class='listItemIcon ${iconClass}' data-dojo-attach-point='iconNode'></div>\n\t<div class='iconLabel' data-dojo-attach-point='labelNode'>\n\t\t<div data-dojo-attach-point='textFront' class='shadowFront'>${label}</div>\n\t\t<div data-dojo-attach-point='textBack' class='shadowBack'>${label}</div>\n\t\t<div data-dojo-attach-point='textHidden' class='shadowHidden'>${label}</div>\n\t</div>\n</div>\n",
 
 		//	label: string
 		//		The label shown underneath the icon

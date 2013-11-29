@@ -21,14 +21,14 @@
 		                        "placement": "BC",
 		                        "opacity": 0.95,
 		                        "applets": [
-		                                {"settings": {}, "pos": 0.00, "declaredClass": "qface/system/desktop/scene/impl/icons/Taskbar"}
+		                                {"settings": {}, "pos": 0.00, "declaredClass": "qface/system/desktop/scene/impl/icons/Fisheye"}
 		                        ]
 		                }
 			],
 			"apps"  : [
 				{
 					"sysname":"pst.sample.tool.Calculator.App",
-					"name":"A计算器",
+					"name":"Calculator",
 					"category":"Accessories",
 					"icon":"icon-32-apps-accessories-calculator",
 					"version":"1.0",
@@ -37,7 +37,7 @@
 				},
 				{
 					"sysname":"pst.sample.game.Checkers.App",
-					"name":"Cチェッカーズ",
+					"name":"Checkers",
 					"category":"Games",
 					"icon":"icon-32-apps-preferences-desktop-sound",
 					"version":"1.0",
@@ -46,7 +46,7 @@
 				},
 				{
 					"sysname":"pst.sample.game.MineSweep.App",
-					"name":"Bマインスイーバー",
+					"name":"Mine Sweeping ",
 					"category":"Games",
 					"icon":"icon-32-apps-preferences-desktop-screensaver",
 					"version":"1.0",
@@ -55,7 +55,7 @@
 				},
 				{
 					"sysname":"pst.sample.system.TaskManager.App",
-					"name":"Aタスクマネジャー",
+					"name":"Task Manager",
 					"category":"System",
 					"icon":"icon-32-apps-utilities-system-monitor",
 					"version":"1.0",
@@ -64,7 +64,7 @@
 				},
 				{
 					"sysname":"pst.sample.tool.WebBrowser.App",
-					"name":"Eウエブブラウザ",
+					"name":"Web Browser",
 					"category":"Internet",
 					"icon":"icon-32-apps-internet-web-browser",
 					"version":"1.0",
@@ -73,7 +73,7 @@
 				},
 				{
 					"sysname":"pst.sample.effect.3DVideo.App",
-					"name":"3Dプレーヤー",
+					"name":"3D Video",
 					"category":"Multimedia",
 					"icon":"icon-32-apps-internet-web-browser",
 					"version":"1.0",
@@ -82,7 +82,7 @@
 				},
 				{
 					"sysname":"pst.sample.office.WordProcessor.App",
-					"name":"Fワードプロセッサー",
+					"name":"Word Processor",
 					"category":"Office",
 					"icon":"icon-32-mimetypes-x-office-document",
 					"version":"1.0",
@@ -91,7 +91,7 @@
 				},
 				{
 					"sysname":"pst.sample.mobile.JamlAppDemo.App",
-					"name":"JAMLモバイルアプリ",
+					"name":"Jaml App Demo",
 					"category":"mobile",
 					"icon":"icon-32-apps-preferences-desktop-theme",
 					"version":"1.0",

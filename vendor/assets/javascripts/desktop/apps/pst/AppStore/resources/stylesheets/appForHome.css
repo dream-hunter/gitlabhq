@@ -42,6 +42,10 @@ body {
     width:60px;
     float:left;
 }
+.storeMainContainer  .sortLabel{
+    padding: 10px;
+    float:left;
+}
 
 .storeMainContainer .search{
     height:25px !important;
