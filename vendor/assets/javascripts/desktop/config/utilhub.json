@@ -1,0 +1,82 @@
+{
+	"actionZone"	: [
+		{
+			"name":"Projects",
+			"href":"/dashboard/projects",
+			"iconClass":"",
+			"title":"Projects",
+			"count":"",
+			"class":"has_bottom_tooltip"
+		},
+		{
+			"name":"Issues",
+			"href":"/dashboard/issues",
+			"iconClass":"",
+			"title":"Issues",
+			"count":"",
+			"class":"has_bottom_tooltip"
+		},
+		{
+			"name":"Requests",
+			"href":"/dashboard/merge_requests",
+			"iconClass":"",
+			"title":"Merge Requests",
+			"count":"",
+			"class":"has_bottom_tooltip"
+		},
+		{
+			"name":"Help",
+			"href":"/help",
+			"iconClass":"",
+			"title":"Help",
+			"class":"has_bottom_tooltip"
+		}
+	],
+	"accountZone" : [
+		{
+			"name":"Public",
+			"iconClass":"icon-globe",
+			"title":"Public Area",
+			"href":"/public"
+		},
+		{
+			"name":"My Snippets",
+			"iconClass":"icon-paste",
+			"title":"My snippets",
+			"href":"/s/dream-hunter"
+		},
+		{
+			"name":"Admin",
+			"iconClass":"icon-cogs",
+			"title":"Admin Area",
+			"href":"/admin"
+		},
+		{
+			"name":"New Project",
+			"iconClass":"icon-plus",
+			"title":"Create New Project",
+			"href":"/projects/new"
+		},
+		{
+			"name":"My Profile",
+			"iconClass":"icon-user",
+			"title":"My Profile",
+			"href":"/profile"
+		},
+		{
+			"name":"Logout",
+			"iconClass":"icon-signout",
+			"title":"Logout",
+			"href":"/users/sign_out"
+		}
+	],
+	"signIn":[
+		{
+			"name":"Sign in",
+			"href":"/users/sign_in",
+			"iconClass":"",
+			"title":"Sign in",
+			"class":"has_bottom_tooltip"
+		}
+	]
+}
