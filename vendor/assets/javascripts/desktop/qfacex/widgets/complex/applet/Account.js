@@ -13,10 +13,11 @@ define([
   "dojo/dom-class",
 	"dojo/dom-construct", 
  	"dojo/on",
+ 	"dojo/mouse",
 	"dojo/_base/array",
   "dojo/text!config/utilhub.json", 
 	"qfacex/widgets/complex/applet/Applet"
-],function(lang,declare,domStyle,domClass,domConstruct,on,array,utilhubConfig,Applet) {
+],function(lang,declare,domStyle,domClass,domConstruct,on,mouse,array,utilhubConfig,Applet) {
 
 	return declare([Applet], {
 
@@ -31,12 +32,15 @@ define([
 					domClass.contains(this,"accountActive") ? domClass.remove(this,"accountActive") : domClass.add(this,"accountActive");
 					var displayValue = domStyle.get(self.ul,"display");
 					domStyle.set(self.ul,"display",displayValue === "none" ? "block" : "none");
-					domStyle.set(self.arrow,"display",displayValue === "none" ? "block" : "none");
+					domStyle.set(arrowContainer,"display",displayValue === "none" ? "block" : "none");
 	    	}
 	    },this.containerNode);
+			
 	    domConstruct.create("i",{class:"avatar"},div);
-	    var arrow = this.arrow = domConstruct.create("span",{class:"arrowUp"},div);
     	
+			// var arrowContainer = domConstruct.create("div",{class:"arrowContainer"},div);
+	    // domConstruct.create("span",{class:"arrowUp"},arrowContainer);
+
     	var ul = this.ul = domConstruct.create("ul",{class:"accountList"},div);
     	for(var i = 0,length = aConfig.length; i<length; i++){
 				var li = domConstruct.create("li",{},ul);
@@ -47,6 +51,19 @@ define([
 		    	domConstruct.create("li",{class:"menuDivider"},ul);
 		    }    		
     	}
+
+	    on(div,mouse.enter,function(){
+	    	domClass.add(this,"accountActive");
+	    	domStyle.set(ul,"display","block");
+	    	// domStyle.set(arrowContainer,"display","block");
+	    });
+
+	    on(div,mouse.leave,function(){
+	    	domClass.remove(this,"accountActive");
+	    	domStyle.set(ul,"display","none");
+	    	// domStyle.set(arrowContainer,"display","none");
+	    });
+
 		}
 	});
 

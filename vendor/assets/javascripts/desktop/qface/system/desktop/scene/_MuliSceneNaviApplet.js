@@ -16,6 +16,7 @@ define([
 	"dojo/dom-geometry",
 	"dojo/_base/fx", // fx.Animation
 	"dojo/_base/html",
+ 	"dojo/mouse",
 	"dojo/on",
 	"dojo/dnd/Source",
 	"dojo/Deferred",
@@ -35,7 +36,7 @@ define([
 	"qfacex/widgets/window/Window",
 	"qface/system/tools/AddScene/App",
 	"dojo/i18n!qface/system/desktop/scene/nls/Scene"
-], function(declare,lang,array,domClass,domStyle,domConstruct,domGeom,dojoFx,domHtml,on,dndSource,Deferred,has,topic,Form,Select,Dialog,
+], function(declare,lang,array,domClass,domStyle,domConstruct,domGeom,dojoFx,domHtml,mouse,on,dndSource,Deferred,has,topic,Form,Select,Dialog,
 	Button,TextBox,BorderContainer,TabContainer,ContentPane,_TemplatedMixin,_WidgetsInTemplateMixin,QApplet,Window,AddScene,nlsScene){
 	// module:
 	//		openstar
@@ -59,13 +60,24 @@ define([
 			var searchDiv = domConstruct.create("div",{class:"appletSearch"},this.containerNode);
 			var a = domConstruct.create("a",{
 				onclick: function(){
-					var displayValue = domStyle.get(self.search,"display");
-					domStyle.set(self.search,"display",displayValue === "none" ? "block" : "none");
-					domStyle.set(self.arrow,"display",displayValue === "none" ? "block" : "none");
+					// var displayValue = domStyle.get(self.search,"display");
+					// domStyle.set(self.search,"display",displayValue === "none" ? "block" : "none");
+					// domStyle.set(arrowContainer,"display",displayValue === "none" ? "block" : "none");
 				}
 			},searchDiv);
+			var arrowContainer = domConstruct.create("div",{class:"seachArrowContainer"},searchDiv);
+	  		domConstruct.create("span",{class:"searchArrowUp"},arrowContainer);
 
-	    var arrow = this.arrow = domConstruct.create("span",{class:"searchArrowUp"},searchDiv);
+			on(searchDiv,mouse.enter,function(){
+	    		domStyle.set(arrowContainer,"display","block");
+	    		domStyle.set(self.search,"display","block");
+	    	});
+
+	    	on(searchDiv,mouse.leave,function(){
+	    		domStyle.set(arrowContainer,"display","none");
+	    		domStyle.set(self.search,"display","none");
+	    	});
+
 
 			domConstruct.create("i",{class:"appletSearchImg"},a);
 

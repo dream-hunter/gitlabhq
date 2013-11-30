@@ -131,6 +131,7 @@ Gitlab::Application.routes.draw do
   #
   # Dashboard Area
   #
+  match "/desktop/:username" => "dashboard#show"
   resource :dashboard, controller: "dashboard", only: [:show,:events] do
     member do
       get :projects
@@ -309,6 +310,18 @@ Gitlab::Application.routes.draw do
       end
     end
   end
+
+  # qface
+  namespace :qface do
+    resources :dashboard do 
+      collection do
+        get :judge
+      end
+    end
+  end 
+
+  # get "qface/judge" => "qface/dashboard#judge"
+
 
   # root to: "dashboard#show"
   root to: "public::projects#index"

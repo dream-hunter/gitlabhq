@@ -488,35 +488,48 @@ div.mainFileArea {
 
 
 .accountContent:hover{
+	border-right:1px solid #F0F4F8;
 	background: #F0F4F8;
 }
 
 .accountActive{
+	border-right:1px solid #F0F4F8;
 	background: #F0F4F8 !important;
 }
 
-.searchArrowUp{
-	/*float: left;*/
+.seachArrowContainer{
 	display:none;
+	width:32px;
+	height:10px;
+    margin: 1px 12px;
+}
+
+.searchArrowUp{
+	float: left;
 	width:0; 
     height:0; 
-    margin: 1px 12px;
     border-left:10px solid transparent;
     border-right:10px solid transparent;
     border-bottom:10px solid #F0F4F8;
 }
 
-.arrowUp{
+/*.arrowContainer{
+    display:none;
+    width:32px;
+    height:10px;
+	margin: 1px 12px;
 	float: left;
-	display:none;
+}
+
+.arrowUp{
 	width:0; 
     height:0; 
-    margin: 1px 12px;
     border-left:10px solid transparent;
     border-right:10px solid transparent;
     border-bottom:10px solid #F0F4F8;
-    /*border-top:10px solid #0066cc;*/
-}
+    border-top:10px solid #0066cc;
+}*/
+
 .accountContent .avatar{
 	height:32px;
 	width:32px;
@@ -526,7 +539,7 @@ div.mainFileArea {
 
 ul.accountList {
 	display: none;
-	margin-top: 10px;
+	margin-top: -1px;
 	padding: 4px 0;
 	position: absolute;
 	right: -1px;

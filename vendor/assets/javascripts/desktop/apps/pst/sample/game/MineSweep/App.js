@@ -14,7 +14,8 @@ define([
 	 "qfacex/widgets/window/StatusBar",
 	 "qface/windows/media/Surface", 
 	 "dojo/i18n!./nls/app"	 
-],function(dojo,ItemFileReadStore,_FormValueWidget,Button,TextBox,Form,FilteringSelect,Toolbar,ContentPane,DataGrid,_App,Window,StatusBar,Surface,nlsApp) {
+],function(dojo,ItemFileReadStore,_FormValueWidget,Button,TextBox,Form,FilteringSelect,Toolbar,ContentPane,DataGrid,_App,
+	Window,StatusBar,Surface,nlsApp) {
 
 	return dojo.declare([_App], {
 		// TO DO:
