@@ -18,28 +18,32 @@
   %link{:href => "/assets/desktop/resources/qfacex/qface.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
   = javascript_include_tag "desktop/config/config"
   = javascript_include_tag "desktop/lib/dojo/dojo"
-  :javascript
-    require([
-      "dojo/json",
-      "dijit/dijit-all",
-      "qface/Runtime",
-      "/assets/desktop/Desktop",
-      "dojo/text!config/config.json",              
-      "dojo/domReady!"
-    ], function(JSON,dijit,Runtime,Desktop,txtConfig) {
-      var config;
-      try {
-         config = JSON.parse(txtConfig);
-      } catch(e) {
-        throw e;
-      }
-      
-      function hideLoadingPane() {
-        var loading = dojo.query('.loading');
-        if (loading[0]){ // remove the loading div
-          loading[0].parentNode.removeChild(loading[0]);
+  %body
+    .loading
+    :javascript
+      require([
+        "dojo/json",
+        "dijit/dijit-all",
+        "qface/Runtime",
+        "/assets/desktop/Desktop",
+        "dojo/request",             
+        "dojo/domReady!"
+      ], function(JSON,dijit,Runtime,Desktop,request) {
+        var config;
+        function hideLoadingPane() {
+          var loading = dojo.query('.loading');
+          if (loading[0]){ // remove the loading div
+            loading[0].parentNode.removeChild(loading[0]);
+          }
         }
-      }
-      Runtime.run(Desktop,config,hideLoadingPane);
-      
-    });
+        try {
+          request("/qface/dashboard/desktop").then(function(text){
+            config = JSON.parse(text);
+            Runtime.run(Desktop,config,hideLoadingPane);
+          })
+        } catch(e) {
+          throw e;
+        }
+        
+        
+      });

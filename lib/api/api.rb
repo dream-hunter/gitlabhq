@@ -40,5 +40,7 @@ module API
     mount ProjectHooks
     mount Services
     mount Files
+    mount WebApps
+    mount Scenes
   end
 end

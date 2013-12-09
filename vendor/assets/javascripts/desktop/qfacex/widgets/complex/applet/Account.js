@@ -22,6 +22,9 @@ define([
 	return declare([Applet], {
 
 		dispName: "account",
+		constructor: function(args){
+			this.config = args.config || {};
+		},
 		
 		postCreate: function(){
 			var self = this;
@@ -36,7 +39,11 @@ define([
 	    	}
 	    },this.containerNode);
 			
-	    domConstruct.create("i",{class:"avatar"},div);
+			if(this.config.userAvatar){
+				domConstruct.create("img",{class: "desktopAvatar",src:this.config.userAvatar,title:this.config.username},div);
+			} else {
+		    domConstruct.create("i",{class:"defaultAvatar",title:this.config.username},div);
+			}
     	
 			// var arrowContainer = domConstruct.create("div",{class:"arrowContainer"},div);
 	    // domConstruct.create("span",{class:"arrowUp"},arrowContainer);
@@ -44,7 +51,7 @@ define([
     	var ul = this.ul = domConstruct.create("ul",{class:"accountList"},div);
     	for(var i = 0,length = aConfig.length; i<length; i++){
 				var li = domConstruct.create("li",{},ul);
-	    	var a = domConstruct.create("a",{href:aConfig[i]["href"],title:aConfig[i]["title"]},li);
+	    	var a = domConstruct.create("a",{href:aConfig[i]["href"],title:aConfig[i]["title"],target: "_blank"},li);
 		    domConstruct.create("i",{class:aConfig[i]["iconClass"] + " actionIcon"},a);
 		    domConstruct.create("i",{innerHTML:aConfig[i]["name"],class:"actionTitle"},a);
 		    if(i < length - 1){

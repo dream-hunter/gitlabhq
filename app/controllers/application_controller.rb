@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
+  before_filter :auth_user
   before_filter :reject_blocked!
   before_filter :check_password_expiration
   around_filter :set_current_user_for_thread
@@ -173,5 +174,13 @@ class ApplicationController < ActionController::Base
   def event_filter
     filters = cookies['event_filter'].split(',') if cookies['event_filter'].present?
     @event_filter ||= EventFilter.new(filters)
+  end
+
+  def auth_user
+    if user_signed_in? 
+      if session["user_return_to"].nil? || session["user_return_to"] = root_path
+        session["user_return_to"] = "/" + current_user.username + "/desktop"
+      end
+    end
   end
 end

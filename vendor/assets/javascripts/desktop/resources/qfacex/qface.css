@@ -482,8 +482,8 @@ div.mainFileArea {
 	height: 46px;
 	position: fixed;
 	background:#808385; 
-	border-left:1px solid #666;
-	border-right:1px solid #666;
+	/*border-left:1px solid #666;*/
+	/*border-right:1px solid #666;*/
 }
 
 
@@ -493,7 +493,8 @@ div.mainFileArea {
 }
 
 .accountActive{
-	border-right:1px solid #F0F4F8;
+	border:1px solid #F0F4F8;
+	border-bottom:0;
 	background: #F0F4F8 !important;
 }
 
@@ -530,7 +531,13 @@ div.mainFileArea {
     border-top:10px solid #0066cc;
 }*/
 
-.accountContent .avatar{
+.desktopAvatar{
+	height:46px;
+	width:46px;
+	padding: 0;
+}
+
+.accountContent .defaultAvatar{
 	height:32px;
 	width:32px;
 	margin: 6px;

@@ -17,9 +17,8 @@ define([
 	"dojo/request",
 	"dojo/request/iframe",
 	"dojo/_base/array",
-    "dojo/text!config/utilhub.json", 
 	"qfacex/widgets/complex/applet/Applet"
-],function(lang,declare,domStyle,domClass,domConstruct,on,domAttr,request,iframe,array,utilhubConfig,Applet) {
+],function(lang,declare,domStyle,domClass,domConstruct,on,domAttr,request,iframe,array,Applet) {
 
 	return declare([Applet], {
 		constructor: function(args){
@@ -28,22 +27,29 @@ define([
 		dispName: "linkArea",
 		
 		postCreate: function(){
-	    	var ul = domConstruct.create("ul",{class:"nav appletContent"},this.containerNode);
-			var config = JSON.parse(utilhubConfig);
+			request("/qface/dashboard/link").then(lang.hitch(this,function(text){
+        var config = JSON.parse(text);
+		    var ul = domConstruct.create("ul",{class:"nav appletContent"},this.containerNode);
 	    	array.forEach(config[this.configName],function(item){
 		    	var li = domConstruct.create("li",{},ul);
 		    	var a = domConstruct.create("a",{
 		    		class:item.class,
 		    		title:item.title,
+		    		target: "_blank",
 		    		"data-original-title":item.title,
 		    		href:item.href
 		    	},li);
 		    	if(item.iconClass){
 		    		domConstruct.create("i",{class:item.iconClass},a);
 		    	} else {
-		    		domConstruct.create("span",{innerHTML:item.name},a);
+		    		if(item.userAvatar){
+							domConstruct.create("img",{class: "avatar",src:item.userAvatar,title:item.name},a);
+		    		} else {
+			    		domConstruct.create("span",{innerHTML:item.name},a);
+		    		}
 		    	}
 	    	});
+      }));
 		}
 		
 	});

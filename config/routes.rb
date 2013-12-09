@@ -131,7 +131,7 @@ Gitlab::Application.routes.draw do
   #
   # Dashboard Area
   #
-  match "/desktop/:username" => "dashboard#show"
+  match "/:username/desktop" => "dashboard#show"
   resource :dashboard, controller: "dashboard", only: [:show,:events] do
     member do
       get :projects
@@ -316,11 +316,12 @@ Gitlab::Application.routes.draw do
     resources :dashboard do 
       collection do
         get :judge
+        get :desktop
+        get :home
+        get :link
       end
     end
   end 
-
-  # get "qface/judge" => "qface/dashboard#judge"
 
 
   # root to: "dashboard#show"

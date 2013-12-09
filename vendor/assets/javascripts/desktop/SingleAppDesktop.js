@@ -40,13 +40,16 @@ define([
 	var SceneNaviBar = _MuliSceneNaviApplet;
 
 	var SystemLogoApplet =  declare([Applet], {
-			postCreate: function(){
-				var div = domConstruct.create("div",{class:"appLogo"},this.containerNode);
-				domConstruct.create("span",{class:"separator"},div);
-				var a = domConstruct.create("a",{href:"/",class:"home has_bottom_tooltip","data-original-title":"Dashboard"},div);
-				domConstruct.create("h1",{innerHTML:"UTILHUB"},a);
-				domConstruct.create("span",{class:"separator"},div);
-			}
+		constructor: function(args){
+			this.logoname = args.logoname || "UTILHUB";
+		},
+		postCreate: function(){
+			var div = domConstruct.create("div",{class:"appLogo"},this.containerNode);
+			domConstruct.create("span",{class:"separator"},div);
+			var a = domConstruct.create("a",{href:"/",class:"home has_bottom_tooltip","data-original-title":"Dashboard"},div);
+			domConstruct.create("h1",{innerHTML:this.logoname},a);
+			domConstruct.create("span",{class:"separator"},div);
+		}
 	});
 
 	var SystemToolBar = declare([QPanel],{
@@ -64,7 +67,8 @@ define([
 	
 	var utilhubHomeDesktop = declare([_Desktop],{
 
-		init: function(){
+		init: function(config){
+			this._config = config;
 			var deferred = new Deferred();
 			this._createHost();
 			dojo.dnd.autoScroll = function(e){} //in order to prevent autoscrolling of the window
@@ -77,21 +81,9 @@ define([
 			var dsc  = this._createSceneContainer();
 			this._createSystemToolBar();
 
-			var scene =	SingleScene({name:"appStore",desktop:this});
-			config = {
-				app: {
-					"sysname":"pst.AppStore.AppStore",
-					"name":"AppStore",
-					"category":"System",
-					"icon":"icon-32-apps-preferences-desktop-theme",
-					"version":"1.0",
-					"updated_at":"2013-10-11",
-					"fav_count":"22",
-					"args":{loadCssPath:"../resources/stylesheets/appForHome.css"}
-				}
-			}
+			var scene =	SingleScene({name:"appStore",desktop:this}); 
 			this.addScene(scene);
-			scene.init(config);
+			scene.init(this._config);
 			topic.publish("appStore/showForHome","full");
 	    return deferred;
 		},
@@ -116,7 +108,7 @@ define([
 				layoutPriority:1
 			});
 
-			var systemlogo = this.systemlogo = new SystemLogoApplet({settings:{},pos:0.05});
+			var systemlogo = this.systemlogo = new SystemLogoApplet({settings:{},pos:0.05,logoname:this._config.logoname});
 			stb.addChild(systemlogo);
 
 			// var search = this.search = new AppletSearch({settings:{},pos:0.40});

@@ -121,7 +121,7 @@ define([
 			stb.addChild(linkArea);
 			
 			
-			var account = this.account = new AppletAccount({settings:{},pos:0.95});
+			var account = this.account = new AppletAccount({settings:{},pos:0.95,config:this._config});
 			stb.addChild(account);
 					
 			var theme = this.theme = new AppletTheme({settings:{},pos:0.65});

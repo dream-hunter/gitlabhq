@@ -1,7 +1,7 @@
 module API
   # Projects API
   class Projects < Grape::API
-    before { authenticate! }
+    # before { authenticate! }
 
     resource :projects do
       helpers do
@@ -18,7 +18,8 @@ module API
       # Example Request:
       #   GET /projects
       get do
-        @projects = paginate current_user.authorized_projects
+        # @projects = paginate current_user.authorized_projects
+        @projects = Project.all
         present @projects, with: Entities::Project
       end
 

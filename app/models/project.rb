@@ -112,6 +112,8 @@ class Project < ActiveRecord::Base
 
   enumerize :issues_tracker, in: (Gitlab.config.issues_tracker.keys).append(:gitlab), default: :gitlab
 
+  after_create :create_web_app
+
   class << self
     def abandoned
       where('projects.last_activity_at < ?', 6.months.ago)
@@ -450,5 +452,18 @@ class Project < ActiveRecord::Base
 
   def default_branch
     @default_branch ||= repository.root_ref if repository.exists?
+  end
+
+  private
+  def create_web_app
+    p "@@@@@@@@@@@@@@"
+    p is_app
+    if(is_app)
+      WebApp.create({
+        project_id: id,
+        user_id: user,
+        description: description
+      })
+    end
   end
 end

@@ -54,6 +54,12 @@
           = f.check_box :public, { checked: gitlab_config.default_projects_features.public }, true, false
           %span.help-inline Make project visible to everyone
 
+      .control-group
+        = f.label :is_app do
+          Is An Application?
+        .controls
+          = f.check_box :is_app, {checked:false},true,false
+          %span.help-inline Make project to be an application
       .form-actions
         = f.submit 'Create project', class: "btn btn-create project-submit", tabindex: 4
 

@@ -136,5 +136,17 @@ module API
       expose :target_id, :target_type, :author_id
       expose :data, :target_title
     end
+
+    class WebApp < Grape::Entity
+      expose :name,:category,:version
+      expose :fav_count,:points
+      expose :scene_id
+    end
+
+    class Scene < Grape::Entity
+      expose :name,:wallpaper,:theme
+      expose :panels,:type
+      expose :apps,using: Entities::WebApp
+    end
   end
 end

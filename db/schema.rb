@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131112114325) do
+ActiveRecord::Schema.define(:version => 20131205063805) do
 
   create_table "broadcast_messages", :force => true do |t|
     t.text     "message",    :null => false
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(:version => 20131112114325) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.string   "usage"
+    t.string   "icon"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "categories", ["name"], :name => "index_categories_on_name"
 
   create_table "deploy_keys_projects", :force => true do |t|
     t.integer  "deploy_key_id", :null => false
@@ -192,9 +202,11 @@ ActiveRecord::Schema.define(:version => 20131112114325) do
     t.datetime "last_activity_at"
     t.boolean  "imported",               :default => false,    :null => false
     t.string   "import_url"
+    t.boolean  "is_app"
   end
 
   add_index "projects", ["creator_id"], :name => "index_projects_on_owner_id"
+  add_index "projects", ["is_app"], :name => "index_projects_on_is_app"
   add_index "projects", ["last_activity_at"], :name => "index_projects_on_last_activity_at"
   add_index "projects", ["namespace_id"], :name => "index_projects_on_namespace_id"
 
@@ -206,6 +218,23 @@ ActiveRecord::Schema.define(:version => 20131112114325) do
   end
 
   add_index "protected_branches", ["project_id"], :name => "index_protected_branches_on_project_id"
+
+  create_table "scenes", :force => true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.string   "theme"
+    t.string   "wallpaper"
+    t.text     "panels"
+    t.integer  "owner_id"
+    t.integer  "group_id"
+    t.integer  "usage"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "scenes", ["name"], :name => "index_scenes_on_name"
+  add_index "scenes", ["owner_id"], :name => "index_scenes_on_owner_id"
+  add_index "scenes", ["usage"], :name => "index_scenes_on_usage"
 
   create_table "services", :force => true do |t|
     t.string   "type"
@@ -330,6 +359,36 @@ ActiveRecord::Schema.define(:version => 20131112114325) do
   add_index "users_projects", ["project_access"], :name => "index_users_projects_on_project_access"
   add_index "users_projects", ["project_id"], :name => "index_users_projects_on_project_id"
   add_index "users_projects", ["user_id"], :name => "index_users_projects_on_user_id"
+
+  create_table "web_apps", :force => true do |t|
+    t.string   "name",                           :null => false
+    t.string   "status"
+    t.string   "version"
+    t.string   "icon_path"
+    t.string   "publish_path"
+    t.integer  "fav_count"
+    t.integer  "points"
+    t.integer  "add_count"
+    t.integer  "usage"
+    t.integer  "category_id"
+    t.integer  "scene_id"
+    t.integer  "project_id"
+    t.integer  "parent_id"
+    t.boolean  "is_active",    :default => true
+    t.text     "author_ids"
+    t.text     "description"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
+  add_index "web_apps", ["add_count"], :name => "index_web_apps_on_add_count"
+  add_index "web_apps", ["category_id"], :name => "index_web_apps_on_category_id"
+  add_index "web_apps", ["fav_count"], :name => "index_web_apps_on_fav_count"
+  add_index "web_apps", ["is_active"], :name => "index_web_apps_on_is_active"
+  add_index "web_apps", ["name"], :name => "index_web_apps_on_name"
+  add_index "web_apps", ["points"], :name => "index_web_apps_on_points"
+  add_index "web_apps", ["scene_id"], :name => "index_web_apps_on_scene_id"
+  add_index "web_apps", ["usage"], :name => "index_web_apps_on_usage"
 
   create_table "web_hooks", :force => true do |t|
     t.string   "url"
