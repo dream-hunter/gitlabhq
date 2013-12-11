@@ -440,7 +440,6 @@ div.mainFileArea {
 	background: #F0F4F8;
 	width:290px;
 	height: 38px;
-
 }
 
 .searchForm .search{
@@ -481,7 +480,7 @@ div.mainFileArea {
 	width:46px;
 	height: 46px;
 	position: fixed;
-	background:#808385; 
+	/*background:#808385; */
 	/*border-left:1px solid #666;*/
 	/*border-right:1px solid #666;*/
 }
@@ -508,10 +507,10 @@ div.mainFileArea {
 .searchArrowUp{
 	float: left;
 	width:0; 
-    height:0; 
-    border-left:10px solid transparent;
-    border-right:10px solid transparent;
-    border-bottom:10px solid #F0F4F8;
+  height:0; 
+  border-left:10px solid transparent;
+  border-right:10px solid transparent;
+  border-bottom:10px solid #F0F4F8;
 }
 
 /*.arrowContainer{
@@ -532,9 +531,9 @@ div.mainFileArea {
 }*/
 
 .desktopAvatar{
-	height:46px;
-	width:46px;
-	padding: 0;
+	height: 40px;
+	width: 40px;
+	padding: 3px;
 }
 
 .accountContent .defaultAvatar{
@@ -714,6 +713,7 @@ html[dir='rtl'] .findbar {
 	position: relative;
 	text-align: center;
 	word-wrap: break-word;
+	line-height: 14px;
 }
 
 .itemsContainer .shadowFront, .itemsContainer .shadowBack {

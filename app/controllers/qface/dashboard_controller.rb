@@ -1,6 +1,25 @@
 class Qface::DashboardController < ApplicationController
 	layout false
 	skip_before_filter :authenticate_user!
+	
+	def single_app
+		# project = Project.find(params[:project_id]);
+		# app = WebApp.where(:project_id => params[:project_id]).first
+		render :json => {
+			:username => current_user ? current_user.username : "guest",
+			:logoname => "UTILHUB",
+			:app => {
+				:sysname => "pst.sample.tool.Calculator.App",
+				:name => "Calculator",
+				:category => "Accessories",
+				:icon => "icon-32-apps-accessories-calculator",
+				:version => "1.0",
+				:updated_at => "2013-09-01",
+				:fav_count => "9"
+			}
+		}
+	end
+	
 	def home
 		render :json => {
 			:username => current_user ? current_user.username : "guest",
@@ -143,14 +162,6 @@ class Qface::DashboardController < ApplicationController
 		json_data = current_user ? get_link_json_data : {}
 		get_sign_in_content(json_data)
 		render :json => json_data
-	end
-
-	def judge
-		if current_user
-			render :json => {:login => true, :username => current_user.username, :avatar => current_user.avatar}
-		else
-			render :json => {:login => false}
-		end
 	end
 
 	private 

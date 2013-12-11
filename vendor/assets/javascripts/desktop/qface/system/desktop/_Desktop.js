@@ -24,7 +24,6 @@ define([
 			this._config = config;
 			this._loadedThemes = [];
 			this._termMode = _Desktop.TermMode.PC;
-
 		},
 		
 		_createHost : function(){
@@ -34,8 +33,6 @@ define([
 				liveSplitters: false,
 				style:"width:100%;height:100%;"
 			});
-
-
 
 			//domClass.add(mbc.domNode,"dijit soria tundra tsunami");		
 
@@ -51,7 +48,8 @@ define([
 		_createSceneContainer : function() {
 			var dsc = this.dsc = new _MultiSceneContainer({
 					region:'center',
-					controllerWidget: "dijit.layout.StackController"
+					controllerWidget: "dijit.layout.StackController",
+					style:"width:100%"
 			});
 			
 			this.mbc.addChild(dsc);
@@ -81,8 +79,7 @@ define([
 				this._createSystemToolBar();
 				
 				var config = this._config;
-				
-	
+		
 				var defs=[];
 				if (config.scene) {
 					var dcfg = config.scene
@@ -121,12 +118,13 @@ define([
 					deferred.resolve();
 				});
 			}));
+			deferredHost.resolve();
 			
-			var themes = [];
+			/*var themes = [];
 			themes.push(config.theme ? config.theme : "soria");
 			
 			for (var dname in config.scenes){
-		        if(dname.charAt(0)!=="_"){//skip the private properties
+		    if(dname.charAt(0)!=="_"){//skip the private properties
 					var dcfg = config.scenes[dname];
 					if (dcfg.theme && themes.indexOf(dcfg.theme)<0) {
 						themes.push(dcfg.theme);
@@ -139,10 +137,10 @@ define([
 			};
 			
 			if (themes.length>0) {
-				this.enableTheme(themes).then(f);
+				// this.enableTheme(themes).then(f);
 			} else {
 				setTimeout(f, 100);
-			}
+			}*/
 			
 			return deferred;
 		},
@@ -198,32 +196,32 @@ define([
 			}	
 		},
 		
-	     addDojoCss : function(/*String*/path){
-				//	summary:
-				//		Adds an additional dojo CSS file (useful for the dojox modules)
-				//
-				//	path:
-				//		the path to the css file (the path to dojo is placed in front)
-				//	
-				//	example:
-				//	|	api.addDojoCss("/dojox/widget/somewidget/foo.css");
-				var cssUrl =  require.toUrl(path);
-				
-				var element = document.createElement("link");
-				element.rel = "stylesheet";
-				element.type = "text/css";
-				element.media = "screen";
-				element.href = cssUrl;
-				document.getElementsByTagName("head")[0].appendChild(element);
-	    },
+	  addDojoCss : function(/*String*/path){
+			//	summary:
+			//		Adds an additional dojo CSS file (useful for the dojox modules)
+			//
+			//	path:
+			//		the path to the css file (the path to dojo is placed in front)
+			//	
+			//	example:
+			//	|	api.addDojoCss("/dojox/widget/somewidget/foo.css");
+			var cssUrl =  require.toUrl(path);
+			
+			var element = document.createElement("link");
+			element.rel = "stylesheet";
+			element.type = "text/css";
+			element.media = "screen";
+			element.href = cssUrl;
+			document.getElementsByTagName("head")[0].appendChild(element);
+    },
     
 		addDojoJs : function(/*String*/path){
-				var jsUrl =  require.toUrl(path);
+			var jsUrl =  require.toUrl(path);
 			var jsElement = document.createElement("script");
 			jsElement.type =  "text/javascript";
 			jsElement.src = jsUrl;
 			document.getElementsByTagName("head")[0].appendChild(jsElement);
-	    },
+	   },
 
 		getTheme   : function(scene) {
 			return scene.get("theme");
@@ -313,10 +311,10 @@ define([
 
 		listThemes : function() {
  			var themes =[
-							{ label: "soria", value : "soria" },
-							{ label: "tsunami", value: "tsunami" },
-							{ label: "tundra", value: "tundra" }
-						];
+				{ label: "soria", value : "soria" },
+				{ label: "tsunami", value: "tsunami" },
+				{ label: "tundra", value: "tundra" }
+			];
 						
 			return themes;
 		}

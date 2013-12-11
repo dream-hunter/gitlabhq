@@ -65,7 +65,7 @@ define([
 		
 	});	
 	
-	var utilhubHomeDesktop = declare([_Desktop],{
+	var HomeDesktop = declare([_Desktop],{
 
 		init: function(config){
 			this._config = config;
@@ -93,7 +93,7 @@ define([
 				design: "headline",
 				gutters: false,
 				liveSplitters: false,
-				style:"width:100%;height:100%;margin-top:-13px;"
+				style:"width:100%;height:100%;margin-top:-20px;"
 			});
 
 			document.body.appendChild(mbc.domNode);
@@ -126,5 +126,5 @@ define([
 	});
 
 
-	return utilhubHomeDesktop;
+	return HomeDesktop;
 });

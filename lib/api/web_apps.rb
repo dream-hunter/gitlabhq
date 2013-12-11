@@ -9,9 +9,6 @@ module API
       # Example Request:
       #  GET /apps
       get do
-        p "@@@@@@@@@@@@@@@@@@@@"
-        p current_user
-
         @apps = WebApp.all
         present @apps, with: Entities::WebApp
       end

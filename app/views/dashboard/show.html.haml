@@ -18,17 +18,18 @@
   %link{:href => "/assets/desktop/resources/qfacex/qface.css", :media => "screen", :rel => "stylesheet", :type => "text/css"}/
   = javascript_include_tag "desktop/config/config"
   = javascript_include_tag "desktop/lib/dojo/dojo"
-  %body
+  %body.dbootstrap
     .loading
     :javascript
       require([
+        "dbootstrap",
         "dojo/json",
         "dijit/dijit-all",
         "qface/Runtime",
         "/assets/desktop/Desktop",
         "dojo/request",             
         "dojo/domReady!"
-      ], function(JSON,dijit,Runtime,Desktop,request) {
+      ], function(dbootstrap,JSON,dijit,Runtime,Desktop,request) {
         var config;
         function hideLoadingPane() {
           var loading = dojo.query('.loading');

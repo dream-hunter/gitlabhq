@@ -60,7 +60,7 @@ define([
 		init: function(args){
 			var appNls = this.appNls = nlsApp;
 			var win = this.win = new Window({
-      	app: this,
+	      app  : this,
 				title: "app store",
 				width: "200px",
 				height: "270px",
@@ -84,8 +84,7 @@ define([
 			var centerTopItem = new ContentPane({
 				region:"top",
 				class:"centerTop",
-				style:"width:100%;height:42px;",
-				splitter:"true"
+				style:"width:100%;height:40px;"
 			});
 			var sortItem = this.sortItem = new Select({
         name: "sort",

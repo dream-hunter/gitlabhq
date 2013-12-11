@@ -55,7 +55,7 @@ class ProjectsController < Projects::ApplicationController
 
   def run 
     # render :layout => false
-    @containerID = "runContainer" + create_container_uniq_id(@project.name) + create_container_uniq_id(current_user.username)
+    @containerID = "runContainer" + "#-#" + @project.id.to_s + "#-#" + current_user.id.to_s
   end
 
   def show
@@ -67,7 +67,7 @@ class ProjectsController < Projects::ApplicationController
 
     # Ensure project default branch is set if it possible
     # Normally it defined on push or during creation
-    @project.discover_default_branch
+    # @project.discover_default_branch
 
     respond_to do |format|
       format.html do
@@ -128,6 +128,6 @@ class ProjectsController < Projects::ApplicationController
   end
 
   def create_container_uniq_id(item)
-    item.nil? ? "" : item.split(" ").collect{|i| i.capitalize}.join()
+    # item.nil? ? "" : item.split(" ").collect{|i| i.capitalize}.join()
   end
 end

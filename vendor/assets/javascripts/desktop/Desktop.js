@@ -93,7 +93,7 @@ define([
 				design: "headline",
 				gutters: false,
 				liveSplitters: false,
-				style:"width:100%;height:100%;margin-top:-13px;"
+				style:"width:100%;height:100%;margin-top:-20px;"
 			});
 
 			document.body.appendChild(mbc.domNode);

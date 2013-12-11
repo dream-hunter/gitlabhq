@@ -165,6 +165,7 @@ Gitlab::Application.routes.draw do
       put :transfer
       post :fork
       get :autocomplete_sources
+      get :run
     end
 
     scope module: :projects do
@@ -315,7 +316,7 @@ Gitlab::Application.routes.draw do
   namespace :qface do
     resources :dashboard do 
       collection do
-        get :judge
+        get :single_app
         get :desktop
         get :home
         get :link

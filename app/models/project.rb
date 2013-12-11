@@ -32,7 +32,7 @@ class Project < ActiveRecord::Base
 
   attr_accessible :name, :path, :description, :issues_tracker, :label_list,
     :issues_enabled, :wall_enabled, :merge_requests_enabled, :snippets_enabled, :issues_tracker_id,
-    :wiki_enabled, :public, :import_url, :last_activity_at, as: [:default, :admin]
+    :wiki_enabled, :public, :import_url, :last_activity_at, :is_app, as: [:default, :admin]
 
   attr_accessible :namespace_id, :creator_id, as: :admin
 
@@ -456,12 +456,11 @@ class Project < ActiveRecord::Base
 
   private
   def create_web_app
-    p "@@@@@@@@@@@@@@"
-    p is_app
     if(is_app)
       WebApp.create({
+        name: name,
         project_id: id,
-        user_id: user,
+        author_ids: creator_id,
         description: description
       })
     end
