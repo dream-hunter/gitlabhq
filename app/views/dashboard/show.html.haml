@@ -40,10 +40,10 @@
         }
         try {
 
-          config = JSON.parse(txtConfig);
+          // config = JSON.parse(txtConfig);
           request("/qface/dashboard/desktop").then(function(text){
 
-            // config = JSON.parse(text);
+            config = JSON.parse(text);
             Runtime.run(Desktop,config,hideLoadingPane);
           })
         } catch(e) {
