@@ -34,3 +34,4 @@ doc/code/*
 .secret
 *.log
 public/uploads.*
+vendor/assets/javascripts/desktop/lib/*
