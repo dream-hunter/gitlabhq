@@ -71,11 +71,12 @@ define([
 		},
 		
 		_themeChanged : function(theme) {
-			 setTimeout(lang.hitch(this,function(){
+			setTimeout(lang.hitch(this,function(){
 			 	this.onChangeTheme(theme);
-			 }));
+			}));
 		},
 		
+		// for desktop on method (setTimeout)  
 		onChangeTheme: function(theme){
 			
 		}

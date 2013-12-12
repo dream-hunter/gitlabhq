@@ -105,20 +105,20 @@ define([
 					
 					}
 					catch(e){
-			        	topic.publish("/qface/system/desktop/scene/launchAppEnd", [this,sysname,name,false]);
+			      topic.publish("/qface/system/desktop/scene/launchAppEnd", [this,sysname,name,false]);
 						console.error(e);
-				        d.errback(e);
-		            	throw e;
-		            	return;
+		        d.errback(e);
+          	throw e;
+          	return;
 					}
 					instance.status = "active";
 				}
 				catch(e){
-		      		topic.publish("/qface/system/desktop/scene/launchAppEnd", [this,sysname,name,false]);
+		      topic.publish("/qface/system/desktop/scene/launchAppEnd", [this,sysname,name,false]);
 					console.error(e.stack || e);
-		        	d.errback(e);
-		        	return;
-		      		throw e;
+        	d.errback(e);
+        	return;
+      		throw e;
 				}
 				d.callback(instance);
 		        topic.publish("/qface/system/desktop/scene/launchAppEnd", [this,sysname,name,true]);

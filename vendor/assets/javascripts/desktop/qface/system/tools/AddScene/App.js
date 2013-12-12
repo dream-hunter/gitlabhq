@@ -2,7 +2,6 @@ define([
 	"dojo/_base/array", // array.forEach
 	"dojo/_base/declare", // declare
 	"dojo/_base/lang", // lang.extend lang.isArray
-	"dojo/i18n", // i18n.getLocalization
 	"dojo/topic",
 	"dojo/dom-construct", // domConstruct.create
 	"dojo/dom-style",
@@ -14,19 +13,19 @@ define([
 	"qface/system/app/Application",
 	"qfacex/widgets/window/Window",
 	"dojo/i18n!./nls/addScene",
-],function(array,declare,lang,i18nA,topic,domConstruct,domStyle,TabContainer,Form,Select,ValidationTextBox,Button,_App,
+],function(array,declare,lang,topic,domConstruct,domStyle,TabContainer,Form,Select,ValidationTextBox,Button,_App,
 	Window,nlsApp) {
 	return declare([_App], {
 		init: function(){
 			var win = this.win = new Window({
-	        app: this,
+	      app: this,
 				title: nlsApp.title,
 				width: "300px",
 				height: "270px",
 				iconClass: "icon-16-apps-accessories-calculator",
 				onClose: lang.hitch(this, "kill")
 			});
-			var tab = new TabContainer({style:"height:100%;width:100%;"});
+			var tab = new TabContainer({style:"height:100%;width:100%;",title:""});
 
 			tab.addChild(this._createAddSceneForm(nlsApp));
 			win.addChild(tab);
