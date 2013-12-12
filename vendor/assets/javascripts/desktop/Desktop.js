@@ -143,14 +143,6 @@ define([
 					this.unFullSceneed(win);
 				}	
 			}));
-
-			topic.subscribe("/qface/scene/show",lang.hitch(this,function(scene){
-					var theme = scene.get("theme");
-				 	this.theme.updateTheme(theme);
-					this.applyTheme(theme);
-					
-				})
-			);
 		},
 		
 		addScene : function(scene) {

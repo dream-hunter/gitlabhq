@@ -36,7 +36,7 @@
   	
   	try{
       var content = container.id.split("#-#");
-      var url = "/qface/dashboard/desktop?project_id=" + content[1] + "&author_id=" + content[2]; 
+      var url = "/qface/dashboard/single_app?project_id=" + content[1] + "&author_id=" + content[2]; 
       request(url).then(function(text){
         config = JSON.parse(text);
     		config.parentNodeId = container.id;

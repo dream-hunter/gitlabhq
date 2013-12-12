@@ -8,14 +8,24 @@ class Qface::DashboardController < ApplicationController
 		render :json => {
 			:username => current_user ? current_user.username : "guest",
 			:logoname => "UTILHUB",
-			:app => {
-				:sysname => "pst.sample.tool.Calculator.App",
-				:name => "Calculator",
-				:category => "Accessories",
-				:icon => "icon-32-apps-accessories-calculator",
-				:version => "1.0",
-				:updated_at => "2013-09-01",
-				:fav_count => "9"
+			:icons => {
+				:type => "qface/system/desktop/scene/impl/icons/Scene",
+				:theme => "Soria",
+				:wallpaper => {
+					:image => "res/wallpaper1.png",
+					:color => "#696969",
+					:style => "centered",
+					:storedList => []
+				},
+				:apps => [{
+					:sysname => "pst.sample.tool.Calculator.App",
+					:name => "Calculator",
+					:category => "Accessories",
+					:icon => "icon-32-apps-accessories-calculator",
+					:version => "1.0",
+					:updated_at => "2013-09-01",
+					:fav_count => "9"
+				}]
 			}
 		}
 	end
@@ -25,7 +35,7 @@ class Qface::DashboardController < ApplicationController
 			:username => current_user ? current_user.username : "guest",
 			:logoname => "UTILHUB",
 			:app => {
-				:sysname => "pst.AppStore.AppStore",
+				:sysname => "pst.AppStore.AppStoreForHome",
 				:name => "AppStore",
 				:category => "System",
 				:icon => "icon-32-apps-preferences-desktop-theme",

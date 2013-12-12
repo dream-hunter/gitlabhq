@@ -55,6 +55,7 @@ define([
 		hasLogo:true,
 		hasPagination: true,
 		hasCategory: true,
+		needHash: false,
 		lastItemName:null, // check if this app tree item visited,if so do noting.
 
 		init: function(args){
@@ -68,13 +69,13 @@ define([
 				onClose: lang.hitch(this, "kill")
 			});
 
-			var appLayout = this.appLayout = new BorderContainer({region:"center",class:"storeMainContainer",style:"width:99%;height:97%;",region:"center"});
+			var appLayout = this.appLayout = new BorderContainer({class:"storeMainContainer",style:"width:99%;height:97%;",region:"leading"});
 
 			/////////
 			// left
 			/////////
 
-			var leftContainer = this.appItem = new BorderContainer({region:"leading",class:"leftContainer",style:"width:200px;",splitter:"true"});
+			var leftContainer = this.appItem = new BorderContainer({region:"left",class:"leftContainer",style:"width:200px;"});
 
 			/////////
 			// center
@@ -124,7 +125,7 @@ define([
   	  // right
       /////////
 			
-			var rightContainer = new BorderContainer({class:"rightContainer", region:"trailing",style:"width:480px;",splitter:"true"});
+			var rightContainer = new BorderContainer({class:"rightContainer", region:"right",style:"width:480px;"});
 			var descItem = this.descItem = new ContentPane({
 				region:"top",
 				style:"height:268px;",
@@ -140,10 +141,9 @@ define([
 			rightContainer.addChild(descItem);
 			rightContainer.addChild(runItem);
 
-			appLayout.addChild(leftContainer);
+			appLayout.addChild(leftContainer)
 			appLayout.addChild(centerContainer);
-			appLayout.addChild(rightContainer);
-
+			appLayout.addChild(rightContainer);	
 			win.addChild(appLayout);
 			win.show();
 			win.startup();
@@ -157,7 +157,8 @@ define([
 			this.__addCss("apps/pst/AppStore/resources/stylesheets/paginateWidget.css"); 
 
 			this._readyForTreeData();
-			this.addHashEvent();
+			if(this.needHash) this.addHashEvent();
+			this._addChildCssLink();
 		},
 
 		kill: function(){
@@ -222,19 +223,24 @@ define([
 
 			var appTree = new Tree({
 				model: treeModel,
+				region: "center",
 				showRoot: false,
 				region:"leading",
 				openOnClick: true,
 				onClick: function(item){
 					self._selectTreeRootNode(item,apps);
-					self.__updateHash("cat",item.label[0]);
-					self.__deleteHash("app");
-					self.__deleteHash("q");
+					if(self.needHash) {
+						self.__updateHash("cat",item.label[0]);
+						self.__deleteHash("app");
+						self.__deleteHash("q");
+					}
 
 					domConstruct.empty(self.descItem.id);
 					domConstruct.empty(self.runItem.id);
+				}
 
-				},
+			});
+				/*,
 				getIconClass: function(item,opened){
 					if(!item.root){
 						if(!item.folders){
@@ -256,8 +262,7 @@ define([
 							}
 						}
 					}
-				}
-			});
+				}*/
 
 			this.appItem.addChild(appTree);
 			this._createAppContainerPage(apps);
@@ -281,15 +286,18 @@ define([
 
 		// method for searchWidget
 		_searchApp: function(appName){
-			this.__updateHash("q",appName);
+			if(this.needHash) this.__updateHash("q",appName);
 			var filterApps = this.filterApps.length === 0 ? this.apps : this.filterApps;
       this.filterApps = array.filter(filterApps,function(app){return app.name === appName});
 			this._createAppContainerPage(this.filterApps);
 		},
 
 		_sortApp: function(sortValue){
-			this.__updateHash("sort",sortValue);
-			this.__deleteHash("app");
+			if(this.needHash) {
+				this.__updateHash("sort",sortValue);
+				this.__deleteHash("app");
+			}
+				
 			this.filterApps = this.filterApps.length === 0 ? this.apps : this.filterApps;
 			this._createAppContainerPage(this.filterApps,sortValue);
 		},
@@ -308,7 +316,7 @@ define([
 					title:app.name,
 					href:"javascript:void(0);",
 					onclick: function(){
-						self.__updateHash("app",app.name);
+						if(self.needHash) self.__updateHash("app",app.name);
 						// descItem
 						self.__createDescContent(app);
 						
@@ -325,6 +333,11 @@ define([
 			var appPage = new PaginateWidget({baseData:appViewItems});
 			this.appListItem.domNode.appendChild(appPage.domNode);
 
+		},
+
+		_addChildCssLink: function(){
+			this.__addCss("apps/pst/AppStore/resources/stylesheets/AppWidget.css");
+      this.__addCss("apps/pst/AppStore/resources/stylesheets/app.css");
 		},
 
 		__addCss: function(path){

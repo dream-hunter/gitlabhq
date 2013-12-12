@@ -28,7 +28,6 @@ body {
 
 /* center */
 .storeMainContainer .centerContainer {
-    border-bottom:1px solid #E0E0E0;    
     border-right:1px solid #E0E0E0;
     min-width:630px;
     overflow: hidden;

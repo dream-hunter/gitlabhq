@@ -41,21 +41,25 @@ define([
 			// create by _Desktop
 			var dsc  = this._createSceneContainer();
 
-			var scene =	Scene({desktop:this}); 
+			var scene = Scene({desktop:this}); 
 			this.addScene(scene);
-			scene.init(this._config.scenes.icons);
+			scene.init(this._config.icons);
+
+			this.changeTheme(scene,"soria")
+			
 	    return deferred;
 		},
 
 		_createHost : function(){
-			var mainBc = this.mbc = new BorderContainer({
+			var mbc = this.mbc = new BorderContainer({
 				design: "headline",
 				gutters: false,
 				liveSplitters: false,
 				style:"width:100%;height:100%;"
 			},this._config.parentNodeId);
 
-			mainBc.startup();
+			// domClass.add(mbc.domNode,"soria");		
+			mbc.startup();
 		}
 	});
 
