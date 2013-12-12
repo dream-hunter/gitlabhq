@@ -1,9 +1,11 @@
 dojoConfig = {
 	async:true,
 	isDebug:true,
+	parseOnLoad: true,
 	extraLocale: ["en","en-us"],
 	baseUrl:"/assets/desktop/",
 	gfxRenderer:'canvas',
+	has: { 'dojo-bidi': true },
 	packages:[
 		{
 			name:"dojo",

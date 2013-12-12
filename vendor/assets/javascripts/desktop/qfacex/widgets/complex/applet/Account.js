@@ -35,7 +35,7 @@ define([
 					domClass.contains(this,"accountActive") ? domClass.remove(this,"accountActive") : domClass.add(this,"accountActive");
 					var displayValue = domStyle.get(self.ul,"display");
 					domStyle.set(self.ul,"display",displayValue === "none" ? "block" : "none");
-					domStyle.set(arrowContainer,"display",displayValue === "none" ? "block" : "none");
+					// domStyle.set(arrowContainer,"display",displayValue === "none" ? "block" : "none");
 	    	}
 	    },this.containerNode);
 			
