@@ -76,7 +76,6 @@ define([
 			}));
 		},
 		
-		// for desktop on method (setTimeout)  
 		onChangeTheme: function(theme){
 			
 		}

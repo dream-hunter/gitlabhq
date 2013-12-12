@@ -25,7 +25,7 @@ define([
 				iconClass: "icon-16-apps-accessories-calculator",
 				onClose: lang.hitch(this, "kill")
 			});
-			var tab = new TabContainer({style:"height:100%;width:100%;",title:""});
+			var tab = new TabContainer({style:"height:100%;width:100%;"});
 
 			tab.addChild(this._createAddSceneForm(nlsApp));
 			win.addChild(tab);

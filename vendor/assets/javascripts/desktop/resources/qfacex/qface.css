@@ -726,17 +726,16 @@ html[dir='rtl'] .findbar {
 	z-index: rgb(223, 219, 217);
 	color: white;
 	margin-top: 10px;
-	font-size: 12px !important;
+	font-size: 8px !important;
 
 }
 .itemsContainer .shadowBack {
 	z-index: 1;
-	color: rgb(2, 2, 2);
+	color: rgb(63, 2, 2);
 	margin-top:11px;
-	font-style: initial;
-	font-size: 12px !important;
+	font-style: italic;
+	font-size: 8px !important;
 }
-
 .itemsContainer .shadowHidden {
 	visibility: hidden;
 }
