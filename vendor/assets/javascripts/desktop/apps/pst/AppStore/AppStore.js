@@ -36,17 +36,15 @@ define([
 	"dojo/text!config/config.json",
 	"./widgets/SearchWidget",
 	"./widgets/PaginateWidget",
-	"./widgets/AppWidget",
+	"./widgets/AppInfoWidget",
 	"./widgets/LoginDialog",
 	"qface/system/desktop/scene/impl/singleap/Scene",
-	 "dojo/i18n!./nls/AppStore"
-	],function(on,JSON,domConstruct,declare,array,lang,connect,event,domStyle,domClass,query,hash,ioQuery,topic,Memory,_App,Window,Select,
-		ItemFileWriteStore,Tree,ForestStoreModel,Button,Form,TextBox,BorderContainer,ContentPane,AccordionContainer,AccordionPane,
-		TabContainer,ToggleSplitter,qface,AutoRotator,RotatorSlide,RotatorController,txtConfig,SearchWidget,PaginateWidget,AppWidget,
-		LoginDialog,Scene,nlsApp){
-	// "openstar/ui/widget/AppStoreWidget",
-	// "apps/AppStoreWidget/widgets/SimpleAppWidget",
-	// "apps/AppStore/widgets/TopAppWidget",
+	"dojo/i18n!./nls/AppStore"
+	],function(on,JSON,domConstruct,declare,array,lang,connect,event,domStyle,domClass,query,hash,ioQuery,topic,Memory,_App,
+		Window,Select,ItemFileWriteStore,Tree,ForestStoreModel,Button,Form,TextBox,BorderContainer,ContentPane,AccordionContainer,
+		AccordionPane,TabContainer,ToggleSplitter,qface,AutoRotator,RotatorSlide,RotatorController,txtConfig,SearchWidget,
+		PaginateWidget,AppInfoWidget,LoginDialog,Scene,nlsApp){
+	
 	return declare(_App, {
 		apps: [],
 		filterApps: [],
@@ -59,10 +57,9 @@ define([
 		lastItemName:null, // check if this app tree item visited,if so do noting.
 
 		init: function(args){
-
-			var appNls = nlsApp;
+			var appNls = this.appNls = nlsApp;
 			var win = this.win = new Window({
-	        	app  : this,
+      	app: this,
 				title: "app store",
 				width: "200px",
 				height: "270px",
@@ -76,29 +73,30 @@ define([
 			// left
 			/////////
 
-			var leftContainer = this.appItem = new BorderContainer({region:"leading",class:"leftContainer",style:"width:200px;"});
+			var leftContainer = this.appItem = new BorderContainer({region:"leading",class:"leftContainer",style:"width:200px;",splitter:"true"});
 
 			/////////
 			// center
 			/////////
-			var centerContainer = new BorderContainer({region:"center", class:"centerContainer"});
+			var centerContainer = new BorderContainer({region:"center", class:"centerContainer",splitter:"true"});
 
 			var centerTopItem = new ContentPane({
 				region:"top",
 				class:"centerTop",
-				style:"width:100%;height:35px;"
+				style:"width:100%;height:25px;",
+				splitter:"true"
 			});
 			var sortItem = this.sortItem = new Select({
-		        name: "sort",
-		        class: "sort",
-		        style:"width:60px;",
-		        options: [
-		            { label: "最新", value: "updated_at" },
-		            { label: "最热", value: "fav_count"},
-		            { label: "名称", value: "name", selected: true }
-		        ]
-		    });
-		    var self = this;
+        name: "sort",
+        class: "sort",
+        style:"width:60px;",
+        options: [
+            { label: "最新", value: "updated_at" },
+            { label: "最热", value: "fav_count"},
+            { label: "名称", value: "name", selected: true }
+        ]
+		  });
+		  var self = this;
 			this.sortItem.on("change",function(){self._sortApp(this.get("value"));});
 			domConstruct.create("span",{innerHTML:"sort:",class:"sortLabel"},centerTopItem.domNode);
 			centerTopItem.addChild(sortItem);
@@ -115,7 +113,8 @@ define([
 			var contentContainer = this.appListItem = new ContentPane({
 				class:"centerContent",
 				region:"center",
-				height:"400px"
+				height:"400px",
+				splitter:"true"
 			});
 
 			centerContainer.addChild(contentContainer);
@@ -124,16 +123,18 @@ define([
   	  // right
       /////////
 			
-			var rightContainer = new BorderContainer({class:"rightContainer", region:"trailing",style:"width:480px;"});
+			var rightContainer = new BorderContainer({class:"rightContainer", region:"trailing",style:"width:480px;",splitter:"true"});
 			var descItem = this.descItem = new ContentPane({
 				region:"top",
-				style:"height:240px;",
+				style:"height:268px;",
 				class: "desc",
-				title:"user info"
+				title:"user info",
+				splitter:"true"
 			});
 			var runItem = this.runItem = new ContentPane({
 				region:"center",
-				class: "run"
+				class: "run",
+				splitter:"true"
 			});
 			rightContainer.addChild(descItem);
 			rightContainer.addChild(runItem);
@@ -159,21 +160,25 @@ define([
 			topic.subscribe("appStore/showForHome",function(fName){
 				lang.hitch(win,fName);
 			});
+
+			this.__addCss("apps/pst/AppStore/resources/stylesheets/AppWidget.css");
+			this.__addCss("apps/pst/AppStore/resources/stylesheets/app.css"); 
+
 			this._readyForTreeData();
 			this.addHashEvent();
 		},
 
 		kill: function(){
-      		if(!this.win.closed)
-          		this.win.close();
-    	},
+  		if(!this.win.closed)
+      	this.win.close();
+  	},
 
-    	addHashEvent: function(){
+    addHashEvent: function(){
 			topic.subscribe("/dojo/hashchange", lang.hitch(this,"__hashCallback"));
 			this.__hashCallback();
-    	},
+    },
 
-   		_readyForTreeData: function(configFile){
+   	_readyForTreeData: function(configFile){
 			config = JSON.parse(txtConfig);
 			apps = this.apps = config.scenes["icons"].apps;
 			var appType = ["app","theme","applet"];
@@ -283,7 +288,7 @@ define([
 		_searchApp: function(appName){
 			this.__updateHash("q",appName);
 			var filterApps = this.filterApps.length === 0 ? this.apps : this.filterApps;
-      		this.filterApps = array.filter(filterApps,function(app){return app.name === appName});
+      this.filterApps = array.filter(filterApps,function(app){return app.name === appName});
 			this._createAppPage(this.filterApps);
 		},
 
@@ -346,7 +351,7 @@ define([
 					check[item] = true;
 					result.push(item);
 				}
-			})
+			});
 			return result;
 		},
 
@@ -358,13 +363,13 @@ define([
 			// var value = hash() === "" ? "sort=name" : hash();
 			var obj = ioQuery.queryToObject(hash());
 			obj[key] = value;
-        	hash(decodeURIComponent(ioQuery.objectToQuery(obj)));
+        hash(decodeURIComponent(ioQuery.objectToQuery(obj)));
 		},
 
 		__deleteHash: function(key){
 			var obj = ioQuery.queryToObject(hash());
 			delete(obj[key]);
-        	hash(decodeURIComponent(ioQuery.objectToQuery(obj)));
+      hash(decodeURIComponent(ioQuery.objectToQuery(obj)));
 		},
 
 		__hashCallback: function(){
@@ -401,16 +406,54 @@ define([
 		},
 
 		__createDescContent: function(app){
+			var self = this;
 			domConstruct.empty(this.descItem.id);
-			app.width = "540px";
-			app.height ="8px";
-			app.appClass = app.category;
-			app.appStore = this;
-			app.appIcon = "/assets/desktop/resources/qfacex/images/default.png";
-			if(!app.icon)
-				app.icon = "icon-16-apps-default";
-			var appWidget = new AppWidget(app);
-			this.descItem.addChild(appWidget);
+
+			var descCnts = {appInfo:this.appNls.project,authorInfo:this.appNls.author,
+			versionsInfo:this.appNls.versions,utilsInfo:this.appNls.utils};
+
+			var nav = domConstruct.create("nav",{class:"navInfo"},this.descItem.domNode);
+			var ul = domConstruct.create("ul",{class:"infoUl"},nav);
+			for(var i = 0,keys=Object.keys(descCnts),length = keys.length; i<length; i++){
+			// var i = 0;
+			// var length = Object.keys(descCnts).length;
+
+			// for(key in descCnts){
+				(function(j){
+					var actionName = keys[j];
+					var li = domConstruct.create("li",{},ul);
+		    	var a = domConstruct.create("a",{
+		    		href:"javascript:void(0);",
+		    		innerHTML:descCnts[actionName],
+		    		onclick: function(){
+							query(".itemActive",ul).forEach(function(item){domClass.remove(item,"itemActive")});
+							domClass.add(this,"itemActive");
+							query(".itemCntActive",self.descItem.domNode).forEach(function(item){domClass.remove(item,"itemCntActive")});
+							domClass.add(self[actionName].domNode,"itemCntActive");						
+		    		}
+		    	},li);
+	    	})(i)
+		    if(i < length - 1){
+		    	domConstruct.create("li",{class:"divider"},ul);
+		    }
+		    // i += 1;
+    	}
+
+    	app.appClass = app.category;
+			var appInfo = this.appInfo = new AppInfoWidget(app);
+			this.descItem.addChild(appInfo);
+			app.likeCount = 200;
+			var authorInfo = this.authorInfo = new AppInfoWidget(app);
+			this.descItem.addChild(authorInfo);
+			app.likeCount = 300;
+			var versionsInfo = this.versionsInfo = new AppInfoWidget(app);
+			this.descItem.addChild(versionsInfo);
+			app.likeCount = 400;
+			var utilsInfo = this.utilsInfo = new AppInfoWidget(app);
+			this.descItem.addChild(utilsInfo);
+			domClass.add(appInfo.domNode,"itemCntActive");						
+
+
 		},
 
 		__createRunContent: function(app){

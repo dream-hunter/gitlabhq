@@ -1,111 +1,293 @@
-/* AppListWidget.css */
-.appWidget {
-  /*min-width: 568px;
-  min-height:90px;*/
-  /*border: 1px solid #F1EDED;*/
-  overflow: hidden; 
+.appInfoWidget a:hover, .appInfoWidget a:active {
+    outline: 0 none;
+}
+.appInfoWidget a {
+    color: #209966;
+    text-decoration: none;
+}
+.appInfoWidget a:hover {
+    color: #20CC66;
+    text-decoration: underline;
+}
+.appInfoWidget {
+    margin-right: 30px;
+    width: 100%;
+    color: #333333;
+    font: 13px/1.5 "Microsoft YaHei","Heiti SC","Heiti TC","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.appInfoWidget .profile {
+    background: none repeat scroll 0 0 #F2F2F2;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px;
 }
 
-.appWidget .appIcon {
-  float: left;
-  width:50px;
-  padding:5px;
-  height:90px;
+.appInfoWidget .actions {
+    padding: 5px;
+    text-align: right;
 }
 
-.appWidget .titleSpan{
-  text-align: left;
-  margin-left:3px;
-  font-size: 1em;
-  font-weight: bolder;
+.appInfoWidget .baseInfo {
+    height: 108px;
 }
 
-.appWidget .contentNode{
-  float:left;
-  width:65%;
-  padding-top: 10px;
+.appInfoWidget .btn {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F2F2F2;
+    background-image: -moz-linear-gradient(center top , #F2F2F2 0%, #E6E6E6 100%);
+    border-color: #CCCCCC #CCCCCC #BBBBBB;
+    border-image: none;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    color: #808080;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 22px;
+    margin-bottom: 0;
+    padding: 0 6px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
 }
 
-.appWidget .description{
-  min-height: 35px;
+.appInfoWidget .btn i {
+    margin-right: 5px;
+    vertical-align: text-bottom;
+}
+.appInfoWidget .iconright-edit {
+    background-position: -112px 0;
 }
 
-.appWidget .timeNode{
-  text-align: right;
+.appInfoWidget .iconright, [class^="iconright-"], [class*=" iconright-"] {
+    background-image: url("../images/icons.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 16px;
+    line-height: 16px;
+    margin-right: 5px;
+    vertical-align: text-top;
+    width: 16px;
 }
 
-.appWidget ul{
-  display:inline;
-  list-style: none;
+.appInfoWidget .profile .info, .baseInfoContainer {
+    background: none repeat scroll 0 0 #F9F9F9;
+    border-top: 1px solid #CCCCCC;
 }
 
-.appWidget .timeNode li{
-  display:inline;
-  padding:3px;
+.appInfoWidget h1 {
+    line-height: 1.2;
+    font-size: 2em;
 }
 
-.appWidget .actionNode{
-  width:80px;
-  float:right;
-  margin-right: 10px
+.appInfoWidget h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+    margin: 0;
+    text-rendering: optimizelegibility;
 }
 
-.appWidget .actionNode li{
-  margin-bottom: 3px;
+.appInfoWidget h1 a {
+    float: left;
 }
 
-.appWidget .actionNode a, .paneAction a {
-  display: block;
-  width:80px;
-  border:1px solid #7d99ca; 
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  font-size:9px !important; 
-  text-align: center; 
-  color: #FFFFFF; 
-  text-decoration: none;
-  background-color: #a5b8da;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #a5b8da), color-stop(100%, #7089b3));
-  background-image: -webkit-linear-gradient(top, #a5b8da, #7089b3);
-  background-image: -moz-linear-gradient(top, #a5b8da, #7089b3);
-  background-image: -ms-linear-gradient(top, #a5b8da, #7089b3);
-  background-image: -o-linear-gradient(top, #a5b8da, #7089b3);
-  background-image: linear-gradient(top, #a5b8da, #7089b3);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#a5b8da, endColorstr=#7089b3);
+.appInfoWidget .socialAction{
+    overflow: auto;
+    border-bottom: 1px dashed #ccc;
+    border-top: 1px solid #ccc;
+    padding: 5px 0;
 }
 
-.appWidget .actionNode a:hover,.paneAction a:hover {
-  text-decoration: none;
-  border:1px solid #5d7fbc; background-color: #819bcb;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#819bcb), color-stop(100%, #536f9d));
-  background-image: -webkit-linear-gradient(top, #819bcb, #536f9d);
-  background-image: -moz-linear-gradient(top, #819bcb, #536f9d);
-  background-image: -ms-linear-gradient(top, #819bcb, #536f9d);
-  background-image: -o-linear-gradient(top, #819bcb, #536f9d);
-  background-image: linear-gradient(top, #819bcb, #536f9d);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#819bcb, endColorstr=#536f9d);
+.appInfoWidget .icon {
+    margin: -24px 12px 10px;
+    vertical-align: middle;
 }
 
-/* simple app css */
-
-.simpleAppWidget{
-  border: 1px solid #F1EDED;
-  overflow: hidden; 
+.appInfoWidget img {
+    border: 0 none;
 }
 
-.simpleAppWidget .appIcon {
-  float: left;
-  max-width: 45px;
-  max-height: 45px;
+.appInfoWidget .profile h1 span {
+    font-size: 22px;
 }
 
-.simpleAppWidget .contentNode{
-  float:left;
-  margin-top:8px;
-  margin-left:6px;
+.appInfoWidget  dl {
+    margin: 8px;
+    padding: 0;
 }
 
-/* topAppWidget css */
-.topAppWidget{
-  /*background-color: blue;*/
+.appInfoWidget dt {
+    color: #B3B3B3;
+    float: left;
+    width: 5em;
 }
 
+.appInfoWidget  dd {
+    margin-bottom: 2px;
+    margin-left: 4em;
+    /*width: 212px;*/
+    word-wrap: break-word;
+}
+
+.appInfoWidget .cf:before, .cf:after {
+    content: "";
+    display: table;
+}
+.appInfoWidget .cf:after {
+    clear: both;
+}
+.appInfoWidget .cf:before, .cf:after {
+    content: "";
+    display: table;
+}
+
+.appInfoWidget .stats {
+    border-top: 1px solid #E6E6E6;
+    margin: 0;
+    padding: 0;
+}
+
+.appInfoWidget .stats li:first-child {
+    border: medium none;
+}
+.appInfoWidget .stats li {
+    border-left: 1px solid #E6E6E6;
+    float: left;
+    width: 112px;
+}
+
+.appInfoWidget li {
+    list-style-type: none;
+}
+
+.appInfoWidget .stats a {
+    color: #808080;
+    display: block;
+    line-height: 1.3;
+    margin-bottom: 0.4em;
+    margin-left: 1em;
+}
+
+.appInfoWidget .stats a:hover {
+    color: #20CC66;
+    text-decoration: none;
+}
+
+.appInfoWidget .stats a:hover strong {
+    color: #20CC66;
+}
+
+.appInfoWidget .stats strong {
+    color: #333333;
+    display: block;
+    font-size: 24px;
+}
+.appInfoWidget b, strong {
+    font-weight: bold;
+}
+
+.appInfoWidget .fr {
+    float: right;
+}
+
+.appInfoWidget .get {
+    margin-right: 5px;
+}
+
+.appInfoWidget .project-info {
+    min-height: 163px;
+}
+
+.appInfoWidget .project-info,.appInfoWidget .author-info {
+    border-top: 1px solid #E6E6E6;
+    padding: 8px 12px 2px;
+}
+
+.appInfoWidget .project-info,.appInfoWidget .author-info {
+    border-top: 1px solid #E6E6E6;
+    padding: 8px 12px 2px;
+}
+
+.appInfoWidget .project-info .iconright-new-org,
+.appInfoWidget .author-info .iconright-new-org {
+    background-position: -256px 0;
+}
+
+.appInfoWidget .project-info h4,
+ .appInfoWidget .author-info h4{
+    color: #808080;
+    font-size: 1.2em;
+    font-weight: 500;
+    margin-bottom: 5px;
+    padding-right: 3px;
+    text-align: right;
+}
+
+.appInfoWidget .project-info p,
+.appInfoWidget .author-info p {
+    margin-bottom: 2px;
+    color: #808080;
+    text-indent: 1.5em;
+    padding-top:4px;
+    clear: both;
+    max-height: 59px;
+    overflow: hidden;
+    margin-top: 0;
+}
+
+/* items */
+.appInfoWidget .page-nav, .navInfo {
+    background-image: -moz-linear-gradient(center top , #F2F2F2 0%, #E6E6E6 100%);
+    border: 1px solid #CCCCCC;
+    border-radius: 3px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1px;
+}
+.page-nav li, .navInfo li {
+    -moz-box-sizing: border-box;
+    float: left;
+    padding: 5px 0;
+    width: 24.5%;
+}
+
+.page-nav li a , .navInfo li a {
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 3px;
+    color: #666666;
+    display: block;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+.page-nav .divider, .navInfo .divider {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-left: 1px solid #CCCCCC;
+    height: 25px;
+    margin-top: 5px;
+    padding: 0;
+    width: 2px;
+}
+
+.page-nav ul, .navInfo ul{
+    margin: 0;
+    padding: 0;
+    overflow:auto;
+}
+
+.page-nav li a:hover , .navInfo li a:hover{
+    background-color: #E1E1E1;
+    text-decoration: none;
+}
+.page-nav .active a, .navInfo a.itemActive{
+    background-color: #F2F2F2 !important;
+    border-color: #E6E6E6;
+    color: #1A1A1A;
+}
+
+.itemCntActive{
+    display: block !important;
+}

@@ -2,9 +2,9 @@ body {
     overflow: auto !important;
 }
 /* mixin */
-.win .win-bmw{
+/*.win .win-bmw{
     top:0 !important;
-}
+}*/
 
 /* top view app */
 
@@ -37,21 +37,26 @@ body {
 .storeMainContainer .centerTop{
     border-bottom:1px solid #E0E0E0;
 }
+
+.sortLabel{
+    float: left;
+    margin: 5px 10px 5px 20px;
+}
+
 .storeMainContainer .sort{
-    margin: 2px 20px;
-    width:60px;
-    float:left;
+    float: left;
+    margin: 3px;
 }
 
 .storeMainContainer .search{
-    height:25px !important;
+    float: right;
+    height: 25px !important;
     width: 300px;
-    margin:3px auto;
-    display:block;
 }
 
 .storeMainContainer .centerTop input[type="text"]{
     margin-bottom: 0 !important;
+    cursor: pointer;
 }
 
 .storeMainContainer .search input{
@@ -119,7 +124,7 @@ body {
 .storeMainContainer .centerContainer .appTitle {
     color: #383d43;
     text-align:center;
-    font-size: 0.5em;
+    font-size: 0.8em;
     display: block;
     padding: 0px 20px;
 }

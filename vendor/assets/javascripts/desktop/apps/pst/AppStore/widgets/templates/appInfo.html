@@ -1,0 +1,38 @@
+<div class="${baseClass}" data-dojo-attach-point="baseNode">
+  <div class="actions">
+    <a href="javascript:void(0);" class="btn">
+      <i class="iconEdit"></i>
+      ${nls.edit}
+    </a>
+  </div>
+  <div class="baseInfoContainer">
+    <h1>
+      <img class="icon" alt="${name}" data-dojo-attach-point="iconNode">
+      <span>${name}</span>
+    </h1>               
+    <div class="socialAction">
+      <a href="javascript:void(0);" class="btn fr get" title="${nls.get}" data-dojo-attach-point="getNode">
+        <i class="iconGet"></i>
+        <span data-dojo-attach-point="getCountNode">${getCount}</span>
+      </a>
+      <a href="javascript:void(0);" class="btn fr like" title="${nls.like}" data-dojo-attach-point="likeNode">
+        <i class="iconLike"></i>
+        <span data-dojo-attach-point="likeCountNode">${likeCount}</span>
+      </a>
+    </div>
+    <div class="baseInfo" data-dojo-attach-point="descriptionNode">
+      <dl class="descText">
+        <dt>${nls.descriptionLabel}:</dt>
+        <dd>${description}</dd>
+      </dl>
+      <dl class="version">
+        <dt>${nls.versionLabel}:</dt>
+        <dd>${version}</dd>
+      </dl>
+      <dl class="date">
+        <dt>${nls.updatedLabel}:</dt>
+        <dd>${updatedAt}</dd>
+      </dl>
+    </div>
+  </div>
+</div>
