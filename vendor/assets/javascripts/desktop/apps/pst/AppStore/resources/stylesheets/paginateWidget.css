@@ -32,7 +32,8 @@
 }
 
 .pageCnt{
-
+	overflow: auto;
+	height: 500px;
 }
 
 .pageCnt .evenItem{
@@ -73,7 +74,7 @@ a.nextPg, a.prevPg{
 }
 
 .firstPg, .lastPg{
-	width:40px;
+	/*width:40px;*/
 	display: inline-block;
 }
 

@@ -23,13 +23,10 @@ define([
 
   return declare([WidgetBase, TemplatedMixin,_WidgetsInTemplateMixin], {
     templateString: template,
-    sortObj:{}, //{"download_count":"热门","updated_at":"最新","fav_count":"推荐","view_count":"免费","version":"限免","app_id":"收费"}
-    sortName: 'name',
-    sortCons: {descending:false},
     baseData: [],
     perPage: 3,
     pgCursor: 4, // when to change page nav num
-    pgLeftShowCt: 3, 
+    pgLeftShowCt: 3,
     pgRightShowCt: 3,
     pgShowCt: 7, // the size of nav bar page item
     pageSize: 0,
@@ -42,35 +39,11 @@ define([
     baseClass: "pagination",
 
     postCreate: function(){
-      this._createSortCnt();
-      this._gotPageItems();
+      this._getPageItems();
       this._createPageCnt(this.pages[0]);
       this._createPageNavCnt();
       // this._addPaginationAfterEvent();
       this.inherited(arguments);
-    },
-
-    _createSortCnt: function(){
-      var self = this;
-      var UlNode = domConstruct.create("ul",{},this.sortCnt);
-      var sortObj = this.sortObj;
-      for(var key in sortObj){
-        var className = key === "download_count" ? (key + " currentSort") : key;
-        var liNode = domConstruct.create("li",{},UlNode);
-        var aNode = domConstruct.create("a",{
-          href:"javascript:void(0);",
-          "class": className,
-          innerHTML:sortObj[key],
-          onclick: function(){
-            query(".currentSort").removeClass("currentSort");
-            // domConstruct.empty(self.id);
-            self._gotPageItems(this.className);
-            self._createPageCnt(self.pages[0]);
-            query("." + this.className).addClass("currentSort");
-            // self._createPageNavCnt();
-          }
-        },liNode);
-      }
     },
 
     _createPageCnt: function(page){
@@ -78,7 +51,7 @@ define([
       array.forEach(page,lang.hitch(this,function(p,index){
         var colorClass = index % 2 === 0 ? "evenItem" : "oddItem";
         var itemDiv = domConstruct.create("div",{"class": colorClass},this.pageCnt);
-        itemDiv.appendChild(p.domNode);
+        itemDiv.appendChild(p);
       }));
     },
 
@@ -94,7 +67,7 @@ define([
         href:"javascript:void(0);",
         onclick: function(){
           if(self.currentPgNum > 1){
-            query(".cntPg").removeClass("cntPg");
+            query(".cntPg",self.pageNavCnt).removeClass("cntPg");
             domClass.add("pg" + (self.currentPgNum - 1),"cntPg");
             self.currentPgNum -= 1; 
             self.goToPage(self.currentPgNum);
@@ -116,9 +89,9 @@ define([
         href:"javascript:void(0);",
         onclick: function(){
           if(self.currentPgNum < self.pageSize){
-            query(".cntPg").removeClass("cntPg");
+            query(".cntPg",self.pageNavCnt).removeClass("cntPg");
             domClass.add(dom.byId("pg" + (self.currentPgNum + 1)),"cntPg");
-            self.currentPgNum += 1; 
+            self.currentPgNum += 1;
             self.goToPage(self.currentPgNum);
           }
         }
@@ -135,23 +108,23 @@ define([
         innerHTML: 1,
         href:"javascript:void(0);",
         onclick: function(){
-          query(".cntPg").removeClass("cntPg");
+          query(".cntPg",self.pageNavCnt).removeClass("cntPg");
           domClass.add(dom.byId("pg1"),"cntPg");
-          query(".showPg").forEach(function(aNode){
+          query(".showPg",self.pageNavCnt).forEach(function(aNode){
             var pgId = "pg" + parseInt(aNode.text);
             domStyle.set(dom.byId(pgId),"display","none");
             domClass.remove(pgId,"showPg");
-          })
+          });
           for(i=1;i<=self.pgShowCt;i++){
             var pgId = "pg" + i;
             domClass.add(pgId,"showPg");
             domStyle.set(dom.byId(pgId),"display","inline-block");
           }
-          self.currentPgNum = 1; 
+          self.currentPgNum = 1;
           self.goToPage(1);
-          query(".firstPg").style("display","none");
+          query(".firstPg",self.pageNavCnt).style("display","none");
           if(self.pageSize > self.pgShowCt)
-            query(".lastPg").style("display","inline-block");
+            query(".lastPg",self.pageNavCnt).style("display","inline-block");
         }
       },firstPgDiv);
       domConstruct.create("span",{"class":"otherPg",innerHTML:"..."},firstPgDiv);
@@ -169,26 +142,28 @@ define([
         innerHTML: self.pageSize,
         href:"javascript:void(0);",
         onclick: function(){
-          query(".cntPg").removeClass("cntPg");
+          query(".cntPg",self.pageNavCnt).removeClass("cntPg");
           domClass.add(dom.byId("pg" + self.pageSize),"cntPg");
-          query(".showPg").forEach(function(aNode){
+          query(".showPg",self.pageNavCnt).forEach(function(aNode){
             var pgId = "pg" + parseInt(aNode.text);
             domStyle.set(dom.byId(pgId),"display","none");
             domClass.remove(pgId,"showPg");
-          })
-          for(i=self.pageSize - self.pgShowCt +1;i<=self.pageSize;i++){
+          });
+          var leavePageCounts = self.pageSize - self.pgShowCt + 1;
+          if(leavePageCounts < 1) leavePageCounts = 1;
+          for(i=leavePageCounts;i<=self.pageSize;i++){
             var pgId = "pg" + i;
             domClass.add(pgId,"showPg");
             domStyle.set(dom.byId(pgId),"display","inline-block");
           }
-          query(".lastPg").style("display","none");
-          if(self.pageSize > self.pgShowCt)
-            query(".firstPg").style("display","inline-block");
-          self.currentPgNum = self.pageSize; 
+          query(".lastPg",self.pageNavCnt).style("display","none");
+          if(self.pageSize > self.pgShowCt){
+            query(".firstPg",self.pageNavCnt).style("display","inline-block");
+          }
+          self.currentPgNum = self.pageSize;
           self.goToPage(self.pageSize);
         }
       },lastPgDiv);
-     
     },
 
     _createPageNavItem: function(){
@@ -196,7 +171,7 @@ define([
       for(var i=1; i<=self.pageSize;i++){
         if(i<=self.pgShowCt){
           var className = i === 1 ? "cntPg pg" : "pg";
-          var aShowStyle = "display:inline-block" 
+          var aShowStyle = "display:inline-block";
           className += " showPg";
         } else{
           var className = "pg";
@@ -209,7 +184,7 @@ define([
           style:aShowStyle,
           href:"javascript:void(0);",
           onclick: function(){
-            query(".cntPg").removeClass("cntPg");
+            query(".cntPg",self.pageNavCnt).removeClass("cntPg");
             domClass.add(this,"cntPg");
             var pgNum = parseInt(this.text);
             self.goToPage(pgNum);
@@ -233,7 +208,7 @@ define([
       //   });
       // });
       var self = this;
-      query(".showPg").forEach(function(aNode,index){
+      query(".showPg",self.pageNavCnt).forEach(function(aNode,index){
         var pgNum = parseInt(aNode.text);
         // init first page num and page cursor num 
         if(index === 0){
@@ -251,13 +226,14 @@ define([
 
         //show first page
         if(self.pgShowCt < self.pageSize)
-          query(".firstPg").style("display","inline-block");
+          query(".firstPg",self.pageNavCnt).style("display","inline-block");
 
         //show last page
-        if(afterLastPgNum < self.pageSize) //eg: 8 - 2 = 6; 4,5 show 
-          query(".lastPg").style("display","inline-block");
-        else 
-          query(".lastPg").style("display","none");
+        if(afterLastPgNum < self.pageSize){ //eg: 8 - 2 = 6; 4,5 show 
+          query(".lastPg",self.pageNavCnt).style("display","inline-block");
+        }else{
+          query(".lastPg",self.pageNavCnt).style("display","none");
+        }
 
         // show after pages
         for(i=self.pgCursor+self.pgRightShowCt + 1; i<=afterLastPgNum;i++){ // 3 + 2 + 1 begin in 6
@@ -276,7 +252,7 @@ define([
       } else {
         // show last page
         if(self.pgShowCt < self.pageSize)
-          query(".lastPg").style("display","inline-block");
+          query(".lastPg",self.pageNavCnt).style("display","inline-block");
         if(self.firstPgNum > 1){
           // hidden after pages
           var afterLastPgNum = currentPg + self.pgRightShowCt + 1;
@@ -290,9 +266,9 @@ define([
           var beforeFirstPgNum = currentPg - self.pgLeftShowCt;
           // show first page
           if(beforeFirstPgNum > 1)
-            query(".firstPg").style("display","inline-block");
+            query(".firstPg",self.pageNavCnt).style("display","inline-block");
           else
-            query(".firstPg").style("display","none");
+            query(".firstPg",self.pageNavCnt).style("display","none");
           
           for(i=beforeFirstPgNum; i<self.firstPgNum; i++){
             var pgId = "pg" + i;
@@ -300,13 +276,13 @@ define([
             domStyle.set(dom.byId(pgId),"display","inline-block");
           }
         } else {
-          query(".firstPg").style("display","none");
+          query(".firstPg",self.pageNavCnt).style("display","none");
         }
       }
     },
 
-    _gotPageItems: function(sortName){
-      var pageData = this.doSort(sortName);
+    _getPageItems: function(){
+      var pageData = this.baseData;
       var pages = this.pages = [];
       var length = pageData.length;
       var leaveCount = length % this.perPage;
@@ -345,12 +321,6 @@ define([
     goToPage: function(pageNum){
       var page = this.pages[pageNum-1];
       this._createPageCnt(page);
-    },
-
-    doSort: function(sortName){
-      sortName = sortName || this.sortName
-      var store = new Memory({data:this.baseData});
-      return store.query({},{sort:[lang.mixin({attribute:sortName},this.sortCons)]});
     }
   });
 

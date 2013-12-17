@@ -96,6 +96,7 @@ define([
             { label: "名称", value: "name", selected: true }
         ]
 		  });
+
 		  var self = this;
 			this.sortItem.on("change",function(){self._sortApp(this.get("value"));});
 			domConstruct.create("span",{innerHTML:"sort:",class:"sortLabel"},centerTopItem.domNode);
@@ -163,14 +164,16 @@ define([
 
 			this.__addCss("apps/pst/AppStore/resources/stylesheets/AppWidget.css");
 			this.__addCss("apps/pst/AppStore/resources/stylesheets/app.css"); 
+			this.__addCss("apps/pst/AppStore/resources/stylesheets/paginateWidget.css"); 
 
 			this._readyForTreeData();
 			this.addHashEvent();
 		},
 
 		kill: function(){
-  		if(!this.win.closed)
+  		if(!this.win.closed){
       	this.win.close();
+  		}
   	},
 
     addHashEvent: function(){
@@ -191,22 +194,22 @@ define([
 			var categoryUniqList = this.categoryUniqList = this.__uniqueArray(categoryList);
 
 			array.forEach(appType, function(name, index){
-	    		var oData = {};
-	    		oData.label = name;
-	    		oData.id =  index + 1;
-	    		oData.type =  'folder';
-	    		oData.icon = 'category';
-	    		oData.folders = [];
-	    		if(name =="app"){
-			    	array.forEach(categoryUniqList, function(category, sindex){
-							oItem = {};
-							oItem.id = (index + 1) * 1000 + sindex;
-							oItem.label = category;
-							oItem.iconClass = "icon-16-categories-applications-"+category.toLowerCase();
-							oItem.icon = "icon-16-categories-applications-"+category.toLowerCase();
-							oData.folders.push(oItem);
-						});
-	    		}
+    		var oData = {};
+    		oData.label = name;
+    		oData.id =  index + 1;
+    		oData.type =  'folder';
+    		oData.icon = 'category';
+    		oData.folders = [];
+    		if(name =="app"){
+		    	array.forEach(categoryUniqList, function(category, sindex){
+						oItem = {};
+						oItem.id = (index + 1) * 1000 + sindex;
+						oItem.label = category;
+						oItem.iconClass = "icon-16-categories-applications-"+category.toLowerCase();
+						oItem.icon = "icon-16-categories-applications-"+category.toLowerCase();
+						oData.folders.push(oItem);
+					});
+    		}
 				formatData.push(oData);
 			});
 
@@ -265,7 +268,7 @@ define([
 			});
 
 			this.appItem.addChild(appTree);
-			this._createAppPage(apps);
+			this._createAppContainerPage(apps);
 
 		},
 
@@ -275,13 +278,13 @@ define([
 			// disable double click
 			if(this.lastItemName === label) return;
 			this.lastItemName = label;
-      		this.filterApps = label === "全部" ? apps : array.filter(apps,function(app){return app.category === label});				
-      		this._createAppPage(this.filterApps);
+  		this.filterApps = label === "全部" ? apps : array.filter(apps,function(app){return app.category === label});				
+  		this._createAppContainerPage(this.filterApps);
 		},
 
 		_selectTreeRootNodeByLabel: function(label,apps){
 			this.filterApps = label === "全部" ? apps : array.filter(apps,function(app){return app.category === label});				
-      		this._createAppPage(this.filterApps);
+      this._createAppContainerPage(this.filterApps);
 		},
 
 		// method for searchWidget
@@ -289,26 +292,26 @@ define([
 			this.__updateHash("q",appName);
 			var filterApps = this.filterApps.length === 0 ? this.apps : this.filterApps;
       this.filterApps = array.filter(filterApps,function(app){return app.name === appName});
-			this._createAppPage(this.filterApps);
+			this._createAppContainerPage(this.filterApps);
 		},
 
 		_sortApp: function(sortValue){
 			this.__updateHash("sort",sortValue);
 			this.__deleteHash("app");
 			this.filterApps = this.filterApps.length === 0 ? this.apps : this.filterApps;
-			this._createAppPage(this.filterApps,sortValue);
+			this._createAppContainerPage(this.filterApps,sortValue);
 		},
 
-		_createAppPage: function(apps,sortValue){
+		_createAppContainerPage: function(apps,sortValue){
 			sortValue = sortValue || "name";
 			store = new Memory({data: apps}); 
 			apps = store.query({},{sort:[{attribute:sortValue,descending:false}]});
 			domConstruct.empty(this.appListItem.id);
 			var self = this;
-			var appWidgets = [];
+			var appViewItems = [];
 			var olNode = domConstruct.create("ol",{},this.appListItem.domNode);
 			array.forEach(apps,function(app){
-				var liNode = domConstruct.create("li",{},olNode);
+				var liNode = domConstruct.create("li",{});
 				var aNode = domConstruct.create("a",{
 					title:app.name,
 					href:"javascript:void(0);",
@@ -325,11 +328,11 @@ define([
 				var image = domConstruct.create("img",{src:imageUrl},aNode);
 				var title = domConstruct.create("span",{innerHTML:app.name,class:"appTitle"},aNode);
 				
-				
+				appViewItems.push(liNode);
 				// var imgNode = domConstruct.create("img",{src:app.appIcon},aNode);
 			});
-			// var appPage = new PaginateWidget({baseData:appWidgets,sortObj:sortObj});
-			// this.appListItem.addChild(appPage);
+			var appPage = new PaginateWidget({baseData:appViewItems});
+			olNode.appendChild(appPage.domNode);
 
 		},
 
@@ -382,10 +385,10 @@ define([
 	        if(obj.sort){
 				this.sortItem.set('value',obj.sort);
 				var filterApps = this.filterApps.length === 0 ? this.apps : this.filterApps;
-	            this._createAppPage(filterApps,obj.sort);
+	            this._createAppContainerPage(filterApps,obj.sort);
 	        } else{
 	        	if(!obj.cat && !obj.app){
-		            this._createAppPage(this.apps);
+		            this._createAppContainerPage(this.apps);
 	        	}
 
 	        }
@@ -396,7 +399,7 @@ define([
 		        	this.__createDescContent(apps[0]);
 		        	this.__createRunContent(apps[0]);
 		        	if(!obj.cat && !obj.sort){
-	        			this._createAppPage(this.apps);
+	        			this._createAppContainerPage(this.apps);
 		        	}
 	        	}
 	        } else {
