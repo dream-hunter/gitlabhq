@@ -24,12 +24,13 @@ define([
   return declare([WidgetBase, TemplatedMixin,_WidgetsInTemplateMixin], {
     templateString: template,
     baseData: [],
+    needEvenClass: false, // add odd or even class for each item
     perPage: 3,
     pgCursor: 4, // when to change page nav num
-    pgLeftShowCt: 3,
-    pgRightShowCt: 3,
+    pgLeftShowCt: 3, // the count of left pages
+    pgRightShowCt: 3, // the count of right pages
     pgShowCt: 7, // the size of nav bar page item
-    pageSize: 0,
+    pageSize: 0, //
     firstPgNum: 1,
     lastPgNum: 7,
     currentPgNum: 1,
@@ -38,20 +39,29 @@ define([
     pageANodes: {},
     baseClass: "pagination",
 
+    constructor: function(){
+
+    },
+
     postCreate: function(){
       this._getPageItems();
       this._createPageCnt(this.pages[0]);
       this._createPageNavCnt();
-      // this._addPaginationAfterEvent();
       this.inherited(arguments);
     },
 
-    _createPageCnt: function(page){
+    _createPageCnt: function(/*array*/ page){
+      // first empty page items container
       domConstruct.empty(this.pageCnt);
-      array.forEach(page,lang.hitch(this,function(p,index){
-        var colorClass = index % 2 === 0 ? "evenItem" : "oddItem";
-        var itemDiv = domConstruct.create("div",{"class": colorClass},this.pageCnt);
-        itemDiv.appendChild(p);
+      // add page content to this container
+      var ul = domConstruct.create("ul",{},this.pageCnt);
+      array.forEach(page,lang.hitch(this,function(item,index){
+        var li = domConstruct.create("li",{class: "pageItem"},ul);
+        if(this.needEvenClass){
+          var colorClass = index % 2 === 0 ? "even" : "odd";
+          domClass.add(li,colorClass);
+        }
+        li.appendChild(item);
       }));
     },
 
@@ -60,17 +70,15 @@ define([
       var self = this;
       // previous page
       domConstruct.create("a",{
-        "class":"prevPg pg",
-        "id":"prevPg",
+        class:"prevPg pg",
+        id:"prevPg",
+        href:"javascript:void(0);",
         innerHTML: "Previous",
         style:"display:none",
-        href:"javascript:void(0);",
         onclick: function(){
           if(self.currentPgNum > 1){
-            query(".cntPg",self.pageNavCnt).removeClass("cntPg");
-            domClass.add("pg" + (self.currentPgNum - 1),"cntPg");
-            self.currentPgNum -= 1; 
-            self.goToPage(self.currentPgNum);
+            var numPlaceObj = self.__getShowPagesBeginAndEndNum(self.currentPgNum - 1);
+            self.__modifyShowPg(numPlaceObj["beginPgNum"],numPlaceObj["endPgNum"],self.currentPgNum - 1);
           }
         }
       },self.pageNavCnt);
@@ -83,16 +91,14 @@ define([
 
       // next page
       domConstruct.create("a",{
-        "class":"nextPg pg",
-        "id":"nextPg",
+        class:"nextPg pg",
+        id:"nextPg",
         innerHTML: "Next",
         href:"javascript:void(0);",
         onclick: function(){
           if(self.currentPgNum < self.pageSize){
-            query(".cntPg",self.pageNavCnt).removeClass("cntPg");
-            domClass.add(dom.byId("pg" + (self.currentPgNum + 1)),"cntPg");
-            self.currentPgNum += 1;
-            self.goToPage(self.currentPgNum);
+            var numPlaceObj = self.__getShowPagesBeginAndEndNum(self.currentPgNum + 1);
+            self.__modifyShowPg(numPlaceObj["beginPgNum"],numPlaceObj["endPgNum"],self.currentPgNum + 1);
           }
         }
       },self.pageNavCnt);
@@ -104,35 +110,21 @@ define([
       var firstPgDiv = domConstruct.create("div",{style:"display:none","class":"firstPg"},self.pageNavCnt);
       domConstruct.create("a",{
         id:"firstPg",
-        "class":"pg",
+        class:"pg",
         innerHTML: 1,
         href:"javascript:void(0);",
         onclick: function(){
-          query(".cntPg",self.pageNavCnt).removeClass("cntPg");
-          domClass.add(dom.byId("pg1"),"cntPg");
-          query(".showPg",self.pageNavCnt).forEach(function(aNode){
-            var pgId = "pg" + parseInt(aNode.text);
-            domStyle.set(dom.byId(pgId),"display","none");
-            domClass.remove(pgId,"showPg");
-          });
-          for(i=1;i<=self.pgShowCt;i++){
-            var pgId = "pg" + i;
-            domClass.add(pgId,"showPg");
-            domStyle.set(dom.byId(pgId),"display","inline-block");
-          }
-          self.currentPgNum = 1;
-          self.goToPage(1);
-          query(".firstPg",self.pageNavCnt).style("display","none");
+          self.__modifyShowPg(1,self.pgShowCt,1);
+          // show last page div
           if(self.pageSize > self.pgShowCt)
-            query(".lastPg",self.pageNavCnt).style("display","inline-block");
+            query(".lastPg").set("display","inline-block");
         }
       },firstPgDiv);
       domConstruct.create("span",{"class":"otherPg",innerHTML:"..."},firstPgDiv);
-      
     },
 
     _createLastPage: function(){
-       // lastPage
+      // lastPage
       var self = this;
       var lastPgDiv = domConstruct.create("div",{style:"display:inline-block","class":"lastPg"},self.pageNavCnt);
       domConstruct.create("span",{"class":"otherPg",innerHTML:"..."},lastPgDiv);
@@ -142,71 +134,105 @@ define([
         innerHTML: self.pageSize,
         href:"javascript:void(0);",
         onclick: function(){
-          query(".cntPg",self.pageNavCnt).removeClass("cntPg");
-          domClass.add(dom.byId("pg" + self.pageSize),"cntPg");
-          query(".showPg",self.pageNavCnt).forEach(function(aNode){
-            var pgId = "pg" + parseInt(aNode.text);
-            domStyle.set(dom.byId(pgId),"display","none");
-            domClass.remove(pgId,"showPg");
-          });
-          var leavePageCounts = self.pageSize - self.pgShowCt + 1;
-          if(leavePageCounts < 1) leavePageCounts = 1;
-          for(i=leavePageCounts;i<=self.pageSize;i++){
-            var pgId = "pg" + i;
-            domClass.add(pgId,"showPg");
-            domStyle.set(dom.byId(pgId),"display","inline-block");
-          }
-          query(".lastPg",self.pageNavCnt).style("display","none");
-          if(self.pageSize > self.pgShowCt){
-            query(".firstPg",self.pageNavCnt).style("display","inline-block");
-          }
-          self.currentPgNum = self.pageSize;
-          self.goToPage(self.pageSize);
+          var beginPgNum = self.pageSize - self.pgShowCt + 1;
+          if(beginPgNum < 1) beginPgNum = 1;
+          self.__modifyShowPg(beginPgNum,self.pageSize,self.pageSize);
+          domStyle.set(dom.byId("lastPg"),"display","none");
+          if(self.pageSize > self.pgShowCt)
+            query(".firstPg").style("display","inline-block");
         }
       },lastPgDiv);
+      if(self.pageSize <= 1) domStyle.set(lastPgDiv,"display","none");
     },
 
     _createPageNavItem: function(){
-      var self = this;
+      var self = this,className,aShowStyle;
+      // loop and create each page's nav div
       for(var i=1; i<=self.pageSize;i++){
         if(i<=self.pgShowCt){
-          var className = i === 1 ? "cntPg pg" : "pg";
-          var aShowStyle = "display:inline-block";
+          // first load page, show those pages [1..pgShowCt]
+          className = i === 1 ? "cntPg pg" : "pg";
+          aShowStyle = "display:inline-block";
           className += " showPg";
         } else{
-          var className = "pg";
-          var aShowStyle = "display:none";
+          // hidden the other pages
+          className = "pg";
+          aShowStyle = "display:none";
         }
+        // add this item to pageAnodes[]
         self.pageANodes[i] = domConstruct.create("a",{
-          "class": className,
+          class: className,
           id:"pg" + i,
           innerHTML: i,
           style:aShowStyle,
           href:"javascript:void(0);",
           onclick: function(){
+            // remve class cntPg add this class to current node
             query(".cntPg",self.pageNavCnt).removeClass("cntPg");
             domClass.add(this,"cntPg");
             var pgNum = parseInt(this.text);
             self.goToPage(pgNum);
             self.currentPgNum = pgNum;
    
-            var prevShowStyle = self.currentPgNum === 1 ? "none" : "inline";
+            var prevShowStyle = pgNum === 1 ? "none" : "inline";
             domStyle.set(dom.byId("prevPg"),"display",prevShowStyle);
 
-            var nextShowStyle = self.currentPgNum === self.pageSize ? "none" : "inline";
+            var nextShowStyle = pgNum === self.pageSize ? "none" : "inline";
             domStyle.set(dom.byId("nextPg"),"display",nextShowStyle);
-            self._addPaginationAfterEvent(pgNum);
+
+            var numPlaceObj = self.__getShowPagesBeginAndEndNum(pgNum);
+            self.__modifyShowPg(numPlaceObj["beginPgNum"],numPlaceObj["endPgNum"],pgNum);
           }
         },self.pageNavCnt);
       }
     },
 
-    _addPaginationAfterEvent: function(currentPg){
-      // query("a.pg").forEach(function(paNode){
-      //   aspect.after(paNode,"onclick",function(){
-      //     alert(11);
-      //   });
-      // });
+    // split data 
+    _getPageItems: function(){
+      var pageData = this.baseData;
+      var pages = this.pages = [];
+      var length = pageData.length;
+
+      var leaveCount = length % this.perPage; // the last page's item size
+
+      var pageSize = this.pageSize = Math.ceil(length / this.perPage);
+
+      array.forEach(pageData,lang.hitch(this,function(data,index){
+        // this is a page (index start from 0)
+        if((index +1) % this.perPage === 0 ){
+          var siglePg = [];
+          // each item push in to new array singlePg
+          for(i=0;i<this.perPage;i++){
+            // the index is last item's num in this page
+            siglePg.push(pageData[index-i]);
+          }
+          // pages.push([pageData[index-2],pageData[index-1],pageData[index]]);
+          pages.push(siglePg);
+        }
+      }));
+
+      // when data split with per_page,there have remaining items, 
+      // so put those items in a new page
+      if(leaveCount > 0){
+        var lastPage = [];
+        for(var i = (pageSize-1) * this.perPage; i < length; i++){
+          lastPage.push(pageData[i]);
+        }
+        pages.push(lastPage);
+      }
+    },
+
+    __getShowPagesBeginAndEndNum: function(currentPgNum){
+      var self = this;
+      var pgHalfShowCt = (self.pgShowCt - 1) / 2;
+      var beginPgNum = currentPgNum - pgHalfShowCt;
+      if(beginPgNum < 1) beginPgNum = 1;
+      var endPgNum = currentPgNum + pgHalfShowCt;
+      if(endPgNum > self.pageSize) endPgNum = self.pageSize;
+      return {beginPgNum:beginPgNum,endPgNum:endPgNum};
+    },
+
+    __addPaginationAfterEvent: function(currentPg){
       var self = this;
       query(".showPg",self.pageNavCnt).forEach(function(aNode,index){
         var pgNum = parseInt(aNode.text);
@@ -281,33 +307,53 @@ define([
       }
     },
 
-    _getPageItems: function(){
-      var pageData = this.baseData;
-      var pages = this.pages = [];
-      var length = pageData.length;
-      var leaveCount = length % this.perPage;
-      var pageSize = this.pageSize = Math.ceil(length / this.perPage);
+    __modifyShowPg: function(/*integer*/ beginPgNum,/*integer*/ endPgNum, /*integer*/ currentPgNum){
+      // remove all current page class
+      query(".cntPg",this.pageNavCnt).removeClass("cntPg");
+      // add current page to this 
+      domClass.add(dom.byId("pg" + currentPgNum),"cntPg");
 
-      array.forEach(pageData,lang.hitch(this,function(data,index){
-        if((index +1) % this.perPage === 0 ){
-          var siglePg = [];
-          for(i=0;i<this.perPage;i++){
-            siglePg.push(pageData[index-i]);
-          }
-          // pages.push([pageData[index-2],pageData[index-1],pageData[index]]);
-          pages.push(siglePg);
-        }
-      }));
+      // find old show pages and hidden them,
+      // then remve the class of showPg from those pages
+      query(".showPg",this.pageNavCnt).forEach(function(aNode){
+        var pgId = "pg" + parseInt(aNode.text);
+        domStyle.set(dom.byId(pgId),"display","none");
+        domClass.remove(pgId,"showPg");
+      });
 
-      if(leaveCount > 0){
-        var lastPage = [];
-        for(var i = (pageSize-1) * this.perPage; i < length; i++){
-          lastPage.push(pageData[i]);
-        }
-        pages.push(lastPage);
+      // show new pages and set class of showPg for those pages 
+      for(i=beginPgNum;i<=endPgNum;i++){
+        var pgId = "pg" + i;
+        domClass.add(pgId,"showPg");
+        domStyle.set(dom.byId(pgId),"display","inline-block");
+      }
+
+      // go to current page and set current page value
+      this.currentPgNum = currentPgNum;
+      this.goToPage(currentPgNum);
+
+      if(beginPgNum > 2){
+        query(".firstPg").style("display","inline-block");
+        query(".firstPg > span").style("display","inline-block");
+      } else if (beginPgNum === 2){
+        query(".firstPg").style("display","inline-block");
+        query(".firstPg > span").style("display","none");
+      } else {
+        query(".firstPg").style("display","none");
+      }
+
+      if(endPgNum < this.pageSize-1){
+        query(".lastPg").style("display","inline-block");
+        query(".lastPg > span").style("display","inline-block");
+      } else if(endPgNum === this.pageSize-1){
+        query(".lastPg").style("display","inline-block");
+        query(".lastPg > span").style("display","none");
+      } else {
+        query(".lastPg").style("display","none");
       }
     },
 
+    // array start from 0 so need to subtract 2
     nextPage: function(){
       var page = this.pages[currentPgNum - 2];
       this._createPageCnt(page);

@@ -1,84 +1,94 @@
 .pagination{
 	height:96%;
 	width:99%;
-	border: 1px solid #ccc;
-	padding:3px 3px 10px 3px;
+	margin: 0 auto;
+	border:1px solid #ccc;
 }
 
-.sortCnt{
-	height:20px;
-	padding:3px;	
-	text-align:center;
+.pagination .pageCnt{
+	height: 90%;
 }
 
-.sortCnt ul{
-	display:inline;
-	list-style: none;
+.pagination .pageCnt ul{
+	display:block;
+  padding:10px;
+  list-style: none;
+  margin: 0 auto 80px;
+  overflow: hidden;
+  max-width: 650px;
 }
 
-.sortCnt li{
-	float:left;
-	width:16%;
-	display:inline;
-	margin-left:3px;
+.pagination .pageCnt li.pageItem{
+	position:relative;
+  padding:6px;
+  float:left;
+  display: list-item;
+  margin:6px;
+  width:100px;
+  text-align:-webkit-match-parent;
 }
 
-.sortCnt a{
-	padding-left:20px;
-	padding-right:20px;
-	color:#968E8E;
-	text-decoration: none;
-	background:#EFEFEF;
+.pagination .pageCnt li.pageItem a {
+	text-align: center;
+  width:100px;
+  height:100px;
+  display: block;
+  border: solid 1px #D6DDC4;
+  border-radius: 14px;
+  box-shadow: 3px 1px 6px rgba(102,102,102,.25);
+  background: #8cc300;
+  background: -moz-linear-gradient(top,#D6DDC4,rgba(198, 200, 201, 1));
+  background: -webkit-gradient(linear,left top,left bottom,from(#D6DDC4),to(rgba(198, 200, 201, 1)));
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D6DDC4',endColorstr='rgba(198, 200, 201, 1)');
+  color: #fff;
+  text-decoration: none;
+  padding: 0;
 }
 
-.pageCnt{
-	overflow: auto;
-	height: 500px;
+.pagination .pageCnt li.pageItem a:hover {
+	background-color: #F2F8F7;
+  background: -moz-linear-gradient(top,#F2F8F7,#8F9999);
+  background: -webkit-gradient(linear,left top,left bottom,from(#F2F8F7),to(#8F9999));
 }
 
-.pageCnt .evenItem{
+.pagination .pageCnt .evenItem{
 	background-color: #ccc;
 }
 
-.pageCnt .oddItem{
+.pagination .pageCnt .oddItem{
 	background-color: rgb(240, 240, 240);
 }
 
-.pageNavCnt{
+.pagination .pageNavCnt{
 	height: 25px;
 	text-align: center;
 	margin-top:5px;
 }
 
-.pageNavCnt a{
+.pagination .pageNavCnt a{
 	display: inline-block;
 	width: 22px;
 	height: 22px;
 	text-decoration: none;
-	border: 1px solid #e7ecf0;
+	border: 1px solid #ccc;
 	margin-right: 5px;
 	line-height: 24px;
 }
 
-.pageNavCnt a:hover{
+.pagination .pageNavCnt a:hover{
 	background: #ebebeb;
 }
 
-a.cntPg{
+.pagination .pageNavCnt a.cntPg{
 	border: 0;
 	font-style: bolder;
 }
 
-a.nextPg, a.prevPg{
+.pagination .pageNavCnt a.nextPg, a.prevPg{
 	width:40px;
 }
 
-.firstPg, .lastPg{
+.pagination .pageNavCnt .firstPg, .pagination .pageNavCnt .lastPg{
 	/*width:40px;*/
 	display: inline-block;
-}
-
-a.currentSort {
-	border: 1px solid #ccc;
-	background-color: #fff;
 }

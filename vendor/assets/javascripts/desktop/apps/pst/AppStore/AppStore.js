@@ -83,7 +83,7 @@ define([
 			var centerTopItem = new ContentPane({
 				region:"top",
 				class:"centerTop",
-				style:"width:100%;height:25px;",
+				style:"width:100%;height:42px;",
 				splitter:"true"
 			});
 			var sortItem = this.sortItem = new Select({
@@ -95,9 +95,9 @@ define([
             { label: "最热", value: "fav_count"},
             { label: "名称", value: "name", selected: true }
         ]
-		  });
+  		});
 
-		  var self = this;
+  		var self = this;
 			this.sortItem.on("change",function(){self._sortApp(this.get("value"));});
 			domConstruct.create("span",{innerHTML:"sort:",class:"sortLabel"},centerTopItem.domNode);
 			centerTopItem.addChild(sortItem);
@@ -140,20 +140,10 @@ define([
 			rightContainer.addChild(descItem);
 			rightContainer.addChild(runItem);
 
-			// var bottomContainer = new BorderContainer({region:"bottom",class:"bottom",style:"height:30px;background-color:rgb(161, 174, 189);"})
-			// var footer = new ContentPane({
-			// 	region:"bottom",
-			// 	class: "bottom",
-			// 	style:"height:30px;backgound-color:gray;",
-			// 	content:"copyright@PST"
-			// });
-			// bottomContainer.addChild(footer);
-
-			appLayout.addChild(leftContainer)
+			appLayout.addChild(leftContainer);
 			appLayout.addChild(centerContainer);
-			appLayout.addChild(rightContainer);	
-			// appLayout.addChild(bottomContainer);
-			
+			appLayout.addChild(rightContainer);
+
 			win.addChild(appLayout);
 			win.show();
 			win.startup();
@@ -171,10 +161,10 @@ define([
 		},
 
 		kill: function(){
-  		if(!this.win.closed){
-      	this.win.close();
-  		}
-  	},
+			if(!this.win.closed){
+				this.win.close();
+			}
+		},
 
     addHashEvent: function(){
 			topic.subscribe("/dojo/hashchange", lang.hitch(this,"__hashCallback"));
@@ -309,9 +299,9 @@ define([
 			domConstruct.empty(this.appListItem.id);
 			var self = this;
 			var appViewItems = [];
-			var olNode = domConstruct.create("ol",{},this.appListItem.domNode);
+			// var olNode = domConstruct.create("ol",{},this.appListItem.domNode);
 			array.forEach(apps,function(app){
-				var liNode = domConstruct.create("li",{});
+				// var liNode = domConstruct.create("li",{});
 				var aNode = domConstruct.create("a",{
 					title:app.name,
 					href:"javascript:void(0);",
@@ -323,16 +313,15 @@ define([
 						// runItem
 						self.__createRunContent(app);
 					}
-				},liNode);
+				});
 				var imageUrl = self.__getAppImage(app);
 				var image = domConstruct.create("img",{src:imageUrl},aNode);
 				var title = domConstruct.create("span",{innerHTML:app.name,class:"appTitle"},aNode);
 				
-				appViewItems.push(liNode);
-				// var imgNode = domConstruct.create("img",{src:app.appIcon},aNode);
+				appViewItems.push(aNode);
 			});
 			var appPage = new PaginateWidget({baseData:appViewItems});
-			olNode.appendChild(appPage.domNode);
+			this.appListItem.domNode.appendChild(appPage.domNode);
 
 		},
 
@@ -378,34 +367,32 @@ define([
 		__hashCallback: function(){
 			// var hashValue = hash() === "" ? "sort=name" : hash();
 			var obj = ioQuery.queryToObject(hash());
-	        if(obj.cat){
-	        	this._selectTreeRootNodeByLabel(obj.cat,this.apps); 
-	        }
+      if(obj.cat){
+      	this._selectTreeRootNodeByLabel(obj.cat,this.apps); 
+      }
 
-	        if(obj.sort){
+      if(obj.sort){
 				this.sortItem.set('value',obj.sort);
 				var filterApps = this.filterApps.length === 0 ? this.apps : this.filterApps;
-	            this._createAppContainerPage(filterApps,obj.sort);
-	        } else{
-	        	if(!obj.cat && !obj.app){
-		            this._createAppContainerPage(this.apps);
-	        	}
-
-	        }
-
-	        if(obj.app){
-	        	var apps = array.filter(this.apps,function(app){return app.name === obj.app});
-	        	if(apps){
-		        	this.__createDescContent(apps[0]);
-		        	this.__createRunContent(apps[0]);
-		        	if(!obj.cat && !obj.sort){
-	        			this._createAppContainerPage(this.apps);
-		        	}
-	        	}
-	        } else {
-	        	domConstruct.empty(this.descItem.id);
+	      this._createAppContainerPage(filterApps,obj.sort);
+	    } else{
+      	if(!obj.cat && !obj.app){
+          this._createAppContainerPage(this.apps);
+      	}
+      }
+      if(obj.app){
+      	var apps = array.filter(this.apps,function(app){return app.name === obj.app});
+      	if(apps){
+        	this.__createDescContent(apps[0]);
+        	this.__createRunContent(apps[0]);
+        	if(!obj.cat && !obj.sort){
+      			this._createAppContainerPage(this.apps);
+        	}
+      	}
+      } else {
+      	domConstruct.empty(this.descItem.id);
 				domConstruct.empty(this.runItem.id);
-	        }
+      }
 		},
 
 		__createDescContent: function(app){
@@ -418,10 +405,6 @@ define([
 			var nav = domConstruct.create("nav",{class:"navInfo"},this.descItem.domNode);
 			var ul = domConstruct.create("ul",{class:"infoUl"},nav);
 			for(var i = 0,keys=Object.keys(descCnts),length = keys.length; i<length; i++){
-			// var i = 0;
-			// var length = Object.keys(descCnts).length;
-
-			// for(key in descCnts){
 				(function(j){
 					var actionName = keys[j];
 					var li = domConstruct.create("li",{},ul);
@@ -439,7 +422,6 @@ define([
 		    if(i < length - 1){
 		    	domConstruct.create("li",{class:"divider"},ul);
 		    }
-		    // i += 1;
     	}
 
     	app.appClass = app.category;
@@ -454,8 +436,7 @@ define([
 			app.likeCount = 400;
 			var utilsInfo = this.utilsInfo = new AppInfoWidget(app);
 			this.descItem.addChild(utilsInfo);
-			domClass.add(appInfo.domNode,"itemCntActive");						
-
+			domClass.add(appInfo.domNode,"itemCntActive");
 
 		},
 
