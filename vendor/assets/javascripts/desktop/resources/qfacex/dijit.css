@@ -35,8 +35,8 @@ table.dijitInline {
 }
 .dijitVisible {
 	
-	display: block !important;	
-	position: relative;			
+	/*display: block !important;	*/
+	/*position: relative;			*/
 }
 .dj_ie6 .dijitComboBox .dijitInputContainer,
 .dijitInputContainer {

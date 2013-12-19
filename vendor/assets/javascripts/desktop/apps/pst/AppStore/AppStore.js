@@ -67,7 +67,7 @@ define([
 				onClose: lang.hitch(this, "kill")
 			});
 
-			var appLayout = this.appLayout = new BorderContainer({class:"storeMainContainer",style:"width:99%;height:97%;"});
+			var appLayout = this.appLayout = new BorderContainer({region:"center",class:"storeMainContainer",style:"width:99%;height:97%;",region:"center"});
 
 			/////////
 			// left
@@ -213,6 +213,7 @@ define([
 			var treeStore = this.treeStore = new ItemFileWriteStore({data: treeData});
 			var treeModel = new ForestStoreModel({
 				store: treeStore,
+				region:"leading",
 				query: {type:'folder'},
 				labelAttr:"label" ,
 				label:"application",
@@ -222,6 +223,7 @@ define([
 			var appTree = new Tree({
 				model: treeModel,
 				showRoot: false,
+				region:"leading",
 				openOnClick: true,
 				onClick: function(item){
 					self._selectTreeRootNode(item,apps);
