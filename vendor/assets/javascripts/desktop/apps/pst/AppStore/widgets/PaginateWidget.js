@@ -142,7 +142,7 @@ define([
             query(".firstPg").style("display","inline-block");
         }
       },lastPgDiv);
-      if(self.pageSize <= 1) domStyle.set(lastPgDiv,"display","none");
+      if(self.pageSize <= self.pgShowCt) domStyle.set(lastPgDiv,"display","none");
     },
 
     _createPageNavItem: function(){
