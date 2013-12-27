@@ -9,16 +9,16 @@
 define([
 	"dojo/_base/declare",
 	"dojo/_base/lang",
-	"dojo/_base/array", 
+	"dojo/_base/array",
 	"dojo/dom-style",
 	"dojo/dom-class",
-    "dijit/_Widget",
-  	"dijit/_TemplatedMixin",
-  	"dijit/_Container",
-  	"dijit/_Contained",
-  	"dijit/Menu",
-  	"dijit/MenuItem",
-  	"qfacex/widgets/complex/applet/AppletMoveable"
+  "dijit/_Widget",
+	"dijit/_TemplatedMixin",
+	"dijit/_Container",
+	"dijit/_Contained",
+	"dijit/Menu",
+	"dijit/MenuItem",
+	"qfacex/widgets/complex/applet/AppletMoveable"
 ],function(declare,lang,array,domStyle,domClass,_Widget,_TemplatedMixin,_Container,_Contained,Menu,MenuItem,AppletMoveable) {
     return declare([_Widget, _TemplatedMixin, _Container,_Contained], {
 		//	summary:

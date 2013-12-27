@@ -30,6 +30,9 @@ define([
 
 		// multiple areas
 		_areaList: [],
+
+		// multiple panels
+		_panels: [],
 		
 		constructor : function() {
 			this._windowList = new ItemFileWriteStore({
@@ -60,15 +63,16 @@ define([
 			this._area.updateWallpaper(this._config.wallpaper);
 		},
 
+    // float contents not used
 		makeAreaContainer: function(){
 			qface.addDojoCss(dojo.moduleUrl("dojox/layout/resources/","FloatingPane.css"));
 			qface.addDojoCss(dojo.moduleUrl("dojox/layout/resources/","ResizeHandle.css"));
 
 			var areaVistualZone = this.areaVistualZone = new FloatingPane({
 				title: "A floating pane",
-     		resizable: true, 
-     		dockable: true,
-     		style: "position:absolute;top:0 !important;z-index:11;left:0;min-width:100px;width:10%;max-width:200px;height:90%;background:#666;",
+				resizable: true,
+				dockable: true,
+				style: "position:absolute;top:0 !important;z-index:11;left:0;min-width:100px;width:10%;max-width:200px;height:90%;background:#666;",
 			});
 			this.addChild(areaVistualZone);
 			areaVistualZone.startup();
@@ -81,15 +85,15 @@ define([
 			//	summary:
 			//		the first time it is called it draws each panel based on what's stored in the configuration,
 			//		after that it cycles through each panel and calls it's _place(); method
-	    if(this.drawn){
-		    query(".scenePanel",this._area.domNode).forEach(function(panel){
-			    var p = dijit.byNode(panel);
-			    p._place();
-		    }, this);
-	      return;
-	    }
-	    this.drawn = true;
-	    var panels = this._config.panels;
+			if(this.drawn){
+				query(".scenePanel",this._area.domNode).forEach(function(panel){
+					var p = dijit.byNode(panel);
+					p._place();
+				}, this);
+				return;
+			}
+			this.drawn = true;
+			var panels = this._config.panels;
 			array.forEach(panels,lang.hitch(this,function(panel){
 				var args = {
 					thickness: panel.thickness,
@@ -103,9 +107,9 @@ define([
 					p.lock();
 				}else{
 					p.unlock();
-				} 
-
+				}
 				p.restore(panel.applets);
+				this._panels.push(p);
 				this._area.addChild(p);
 			}));
 			this._area.resize();
@@ -133,7 +137,7 @@ define([
 		resize : function() {
 			if (this._area) {
 				this._area.resize();
-			}	
+			}
 		},
 		
 		addWindow : function(win,args){
@@ -143,8 +147,8 @@ define([
 		},
 		
 		removeWindow : function(win,item){
-  		this._area.removeChild(win);
-  		this._windowList.deleteItem(item)
+			this._area.removeChild(win);
+			this._windowList.deleteItem(item);
 		},
 		
 		updateWindowTitle : function(item,title){
@@ -241,32 +245,62 @@ define([
 		},
 
 		addApp: function(app,appConfig){
-			var apps = appConfig.scenes[this.name].apps		
+			var apps = appConfig.scenes[this.name].apps;
 			this.appList = apps;
 			var item = array.filter(apps,function(item){return item.sysname === app.sysname});
-			if(item.length>0) return; 
+			if(item.length>0) return;
 			var item = {
 				"sysname":app.sysname,
 				"name":app.name,
 				"category":app.category,
 				"icon":app.icon.replace(/-16-/,"-32-"),
 				"version":app.version
-			}
-			this._area.listarea.addItem(item)
+			};
+			this._area.listarea.addItem(item);
 
 			this.appList.push(item);
 			return appConfig;
 		},
 
 		removeApp: function(app,appConfig){
-			var apps = appConfig.scenes[this.name].apps		
+			var apps = appConfig.scenes[this.name].apps;
 			var app = array.filter(apps,function(item){return item.sysname === app.sysname})[0];
 			if(item){
 				var index = array.indexOf(apps,item);
-				apps.splice(index,1)
+				apps.splice(index,1);
 				this.appList = apps;
 			}
 			return appConfig;
+		},
+
+		//////////////////////////////////////////////////////////////////////////////////
+		// delegate methods
+		// form qfacex widgets Area.js
+		updateWallpaperBgColor: function(color){
+			this._area.updateWallpaperBgColor(color);
+		},
+
+		updateWallpaperImage: function(/*string*/image,/*string*/style){
+			this._area.updateWallpaperImage(image,style);
+		},
+
+		updateWallpaper: function(){
+			this._area.updateWallpaper(this._config.wallpaper);
+		},
+
+		// from qfacex widgets applet Panel.js
+		updatePanelBgcolor: function(color){
+			array.forEach(this._panels,function(panel){panel.updateBgColor(color);});
+		},
+
+		// from desktop 
+		updateSystemPanelColor: function(color){
+			this.desktop.updateSystemPanelColor(color);
+		},
+
+		// from desktop
+		changeTheme: function(theme){
+			this.desktop.changeTheme(this,theme);	
 		}
 		
 	});

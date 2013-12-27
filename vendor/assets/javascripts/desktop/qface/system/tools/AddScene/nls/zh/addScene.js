@@ -9,16 +9,8 @@ define({
 		"formNamePlaceHolder":"-请输入名称-",
 		"formType":"类型",
 		"formTheme":"主题",
-		"formScene":"场景",
 		"changeTheme":"更改主题",
-		"wallpaper":"壁纸",
-		"background":"背景",
-		"addApp":"添加应用",
-		"default":"默认",
-		"classic":"经典",
-		"modern":"时尚",
-		"gray":"灰色",
-		"violet":"紫色"
-	}),
-	"zh": true
+		"changeWallpaper":"更改壁纸",
+		"addApp":"添加应用"
+	})
 });

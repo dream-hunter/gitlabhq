@@ -70,7 +70,7 @@ define([
 		}
 		
 	});	
-	
+
 	var utilhubUserDesktop = declare([_Desktop],{
 	
 		aplUnFull : null,
@@ -93,7 +93,7 @@ define([
 				design: "headline",
 				gutters: false,
 				liveSplitters: false,
-				style:"width:100%;height:100%;margin-top:-20px;"
+				style:"width:100%;height:100%;margin-top:-13px;"
 			});
 
 			document.body.appendChild(mbc.domNode);
@@ -143,6 +143,11 @@ define([
 					this.unFullSceneed(win);
 				}	
 			}));
+		},
+
+		// need change
+		updateSystemPanelColor: function(color){
+			this.stb.updateBgColor(color)
 		},
 		
 		addScene : function(scene) {

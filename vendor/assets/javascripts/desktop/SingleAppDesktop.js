@@ -9,8 +9,8 @@
 define([
 	"dojo",
 	"require",
-	"dojo/_base/lang", 
-	"dojo/_base/declare", 
+	"dojo/_base/lang",
+	"dojo/_base/declare",
 	"dojo/dom-style",
 	"dojo/dom-construct", // domConstruct.create
 	"dojo/dom-class",
@@ -57,16 +57,15 @@ define([
 		//		A customizable toolbar that you can reposition and add/remove/reposition applets on
 		templateString: "<div class=\"systemPanel\" dojoAttachEvent=\"onmousedown:_onClick, oncontextmenu:_onRightClick\"><div class=\"systemPanelContainer\" style=\"width:100%;height:100%\" data-dojo-attach-point=\"containerNode\"></div></div>",
 	
-		opacity: 0.95,	
+		opacity: 0.95,
 		_onClick : function() {
 		},
 		_onRightClick : function() {
 		}
 		
 	});	
-	
-	var HomeDesktop = declare([_Desktop],{
 
+	var HomeDesktop = declare([_Desktop],{
 		init: function(config){
 			this._config = config;
 			var deferred = new Deferred();
@@ -76,16 +75,15 @@ define([
 			var html =  dojo.doc.documentElement;
 			var tmClass = this._termMode == _Desktop.TermMode.PC?"pc":"mobile";
 		
-			domClass.add(html,tmClass);		
-			
-			var dsc  = this._createSceneContainer();
+			domClass.add(html,tmClass);	
+			var dsc = this._createSceneContainer();
 			this._createSystemToolBar();
 
 			var scene =	SingleScene({name:"appStore",desktop:this}); 
 			this.addScene(scene);
 			scene.init(this._config);
 			topic.publish("appStore/showForHome","full");
-	    return deferred;
+			return deferred;
 		},
 
 		_createHost : function(){

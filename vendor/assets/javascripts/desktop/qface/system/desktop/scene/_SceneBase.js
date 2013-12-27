@@ -18,11 +18,9 @@ define([
 	"dijit/layout/StackContainer",
 	"qface/utils/logger",
  	"dojo/text!./templates/_sceneBase.html"
-],function(dojo,domClass,topic,lang,_Widget,_TemplatedMixin,_Container,_LayoutWidget,StackContainer,logger,template) {
-
+	],function(dojo,domClass,topic,lang,_Widget,_TemplatedMixin,_Container,_LayoutWidget,StackContainer,logger,template) {
 	var _SceneBase = dojo.declare([_LayoutWidget,_TemplatedMixin],{
  		templateString:template,
-
 		//	summary:
 		//		Contains all the app functions of the scene
 		//	appList: Array,
@@ -35,17 +33,16 @@ define([
 		//		A counter for making new instances of apps
 		instanceCount: 0,
 		//  currentApp: String
-	  //      the current application that is running
-	  currentApp: "",
-	    
-	  // isScene : Boolean
-	  isScene : true,
-	  // scene name
-	  name:null,
-	  // current desktop
-	  desktop:null,  
+		//      the current application that is running
+		currentApp: "",
+		// isScene : Boolean
+		isScene : true,
+		// scene name
+		name:null,
+		// current desktop
+		desktop:null,
 
-	  _getThemeAttr : function() {
+		_getThemeAttr : function() {
 			return this._theme;
 		},
 
@@ -67,7 +64,7 @@ define([
     init: function(){
 
     },
-	    
+
 		launch: function(/*String*/sysname, /*String*/name,/*Object?*/args, /*Function?*/onComplete, /*Function?*/onError){
 			//	summary:
 			//		Fetches an app if it's not in the cache, then launches it. Returns the process ID of the application.
@@ -77,8 +74,8 @@ define([
 			//		the arguments to be passed to the app
 			//	onComplete:
 			//		a callback once the app has initiated
-	    //	onError:
-	    //	    if there was a problem launching the app, this will be called
+			//	onError:
+			//    if there was a problem launching the app, this will be called
 			topic.publish("/qface/system/desktop/scene/launchApp", [this,sysname,name]);
 			logger.log("launching app "+name);
         var d = new dojo.Deferred();
@@ -86,7 +83,7 @@ define([
         if(onError) d.addErrback(onError);
         
         var path = "apps/"+sysname.replace(/[.]/g, "/");
-      	require([path],lang.hitch(this,function(Application){
+				require([path],lang.hitch(this,function(Application){
 				var pid = false;
 				try {
 					pid = this.instances.length;
@@ -105,11 +102,11 @@ define([
 					
 					}
 					catch(e){
-			        	topic.publish("/qface/system/desktop/scene/launchAppEnd", [this,sysname,name,false]);
+						topic.publish("/qface/system/desktop/scene/launchAppEnd", [this,sysname,name,false]);
 						console.error(e);
-				        d.errback(e);
-		            	throw e;
-		            	return;
+						d.errback(e);
+						throw e;
+						return;
 					}
 					instance.status = "active";
 				}

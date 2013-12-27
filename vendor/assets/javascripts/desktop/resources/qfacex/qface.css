@@ -1,10 +1,10 @@
 /*scene.css*/
 html, body {
 	overflow: hidden;
-	margin: 0px;
+	margin: 0;
 	width: 100%;
 	height: 100%;
-	font-family: sans-serif  !important;
+	font-family: sans-serif !important;
 	font-size: 10pt !important;
 }
 
@@ -19,9 +19,9 @@ html, body {
 #dojoIoIframe {
 	display: none;
 	opacity: 0;
-	width: 0px;
-	height: 0px;
-	border: 0px;
+	width: 0;
+	height: 0;
+	border: 0;
 }
 
 /*systemPanel */
@@ -32,12 +32,12 @@ html, body {
 	padding:3px;
 	background: #474D57;
 	border-bottom: 1px solid #373D47;
-  	/*background-color : #E4E6E6; /*#f1f1f1#2d2d2d*/*/
+  	/*background-color : #E4E6E6; /*#f1f1f1#2d2d2d*/
   	/*border: 2px solid #E1E6E6;*/
 }
 
 .systemPanel .dijit button {
-	border: 0px none;
+	border: 0 none;
 }
 .dijit .systemPanel .sceneApplet {
 	cursor : pointer;
@@ -46,13 +46,13 @@ html, body {
 .dijit .systemPanel .sceneApplet .dijitButtonNode button,
 .dijit .systemPanel .sceneApplet .dijitButtonNode,
 .dijit .systemPanel .sceneApplet .dijitToolbar {
-	background: transparent none repeat scroll 0%;
-	border: 0px none;
-	padding: 0px;
+	background: transparent none repeat scroll 0;
+	border: 0 none;
+	padding: 0;
 	padding-bottom: 1px;
 }
 .dijit .systemPanel .sceneApplet .dijitToolbar {
-	border: 0px none;
+	border: 0 none;
 }
 
 .systemPanel {
@@ -75,18 +75,18 @@ html, body {
 
 /*panel.css*/
 .sceneApplet .dijit button {
-	border: 0px none;
+	border: 0 none;
 }
 .dijit .scenePanel .sceneApplet .dijitButtonNode button,
 .dijit .scenePanel .sceneApplet .dijitButtonNode,
 .dijit .scenePanel .sceneApplet .dijitToolbar {
-	background: transparent none repeat scroll 0%;
-	border: 0px none;
-	padding: 0px;
+	background: transparent none repeat scroll 0;
+	border: 0 none;
+	padding: 0;
 	padding-bottom: 1px;
 }
 .dijit .scenePanel .sceneApplet .dijitToolbar {
-	border: 0px none;
+	border: 0 none;
 }
 
 .scenePanel {
@@ -114,8 +114,8 @@ html, body {
 }
 .sceneAppletHandle {
 	position: absolute;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	background-color: #666;
 	display: none;
 	z-index: 1000;
@@ -155,8 +155,8 @@ html, body {
 
 .uiArea {
 	position: absolute;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	width: 100%;
 	height: 100%;
 	z-index: 10;
@@ -211,8 +211,8 @@ div.mainFileArea {
 /*statusbar.css*/
 .sceneStatusBar .dijitProgressBar {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 0;
+    right: 0;
     width: 120px;
 }
 .sceneStatusBar {
@@ -253,7 +253,7 @@ div.mainFileArea {
 	white-space: nowrap;
 	width: auto;
 	position: absolute;
-	left: 0px;
+	left: 0;
 	width: 100%;
 	z-index: 1;
 	cursor: default;
@@ -261,10 +261,10 @@ div.mainFileArea {
 .win-buttons {
 	background-repeat: no-repeat;
 	position: absolute;
-	margin: 0px;
-	padding: 0px;
-	border: 0px;
-	right: 0px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	right: 0;
 	z-index: 10;
 }
 
@@ -338,19 +338,19 @@ div.mainFileArea {
 .win-ml > .win-mr,
 .win-mr > .win-mc {
 	position: absolute;
-	top: 0px;
-	left: 0px;
-	right: 0px;
-	bottom: 0px;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 	height: auto;
 	width: auto;
 }
 
 .win-bmw > .win-bl {
 	position: absolute;
-	bottom: 0px;
-	left: 0px;
-	right: 0px;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 
 .dojoxResizeHandleClone {
@@ -367,7 +367,7 @@ div.mainFileArea {
 
 /* nabibar */
 
-#navBar ol, ul,li {
+.navBar ol, .navBar ul, .navBar li {
 	list-style:none;
 }
 
@@ -384,16 +384,22 @@ div.mainFileArea {
 	z-index: 400;*/
 }
 .sceneAppletContent .appletContent{
-	padding-top: 8px;
+	padding-top: 16px;
 }
 
-.nav.appletContent {
+.nav .appletContent {
 	padding-top:15px;
+}
+
+.sceneAppletContent .appletImage {
+	padding:0;
+	width: 32px;
+	height: 32px;
 }
 
 .sceneAppletContent .appLogo a{
 	float:left;
-	padding: 0px;
+	padding: 0;
 	margin: 0 6px;
 }
 
@@ -485,7 +491,6 @@ div.mainFileArea {
 	/*border-right:1px solid #666;*/
 }
 
-
 .accountContent:hover{
 	border-right:1px solid #F0F4F8;
 	background: #F0F4F8;
@@ -501,7 +506,7 @@ div.mainFileArea {
 	display:none;
 	width:32px;
 	height:10px;
-    margin: 1px 12px;
+  margin: 1px 12px;
 }
 
 .searchArrowUp{
@@ -530,13 +535,15 @@ div.mainFileArea {
     border-top:10px solid #0066cc;
 }*/
 
-.desktopAvatar{
-	height: 40px;
-	width: 40px;
-	padding: 3px;
+.sceneApplet .accountContent .desktopAvatar{
+	height: 32px;
+	width: 32px;
+	margin: 6px auto;
+	float: none;
+	display: block;
 }
 
-.accountContent .defaultAvatar{
+.sceneApplet .accountContent .defaultAvatar{
 	height:32px;
 	width:32px;
 	margin: 6px;
@@ -545,6 +552,7 @@ div.mainFileArea {
 
 ul.accountList {
 	display: none;
+	list-style:none;
 	margin-top: -1px;
 	padding: 4px 0;
 	position: absolute;
@@ -636,8 +644,8 @@ a.addScene:hover{
 	width:73px;
 	/*height:auto;*/
 	background:url(./images/dock_top.png) repeat-y left top;
-	-moz-box-shadow: 0px 3px 15px #444;
-	-webkit-box-shadow: 0px 3px 15px #444;
+	-moz-box-shadow: 0 3px 15px #444;
+	-webkit-box-shadow: 0 3px 15px #444;
 	box-shadow:0px 3px 15px #444;
 }
 
@@ -718,8 +726,8 @@ html[dir='rtl'] .findbar {
 
 .itemsContainer .shadowFront, .itemsContainer .shadowBack {
 	position: absolute;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	width: 100%;
 }
 .itemsContainer .shadowFront {

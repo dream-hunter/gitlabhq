@@ -45,6 +45,7 @@ define([
 				item.lock();
 			});
 		},
+
 		unlock: function(){
 			//	summary:
 			//		Unlocks the panel
@@ -53,6 +54,7 @@ define([
 				item.unlock();
 			});
 		},
+
 		dump: function(){
 			//	summary:
 			//		Returns a javascript object that can be used to restore the panel using the restore method
@@ -71,13 +73,17 @@ define([
 			}));
 			return applets;
 		},
+
 		resize: function(){
 			array.forEach(this.getChildren(), function(item){
 				item.resize();
 			});
-		}		
-		
-		
+		},
+
+		updateBgColor: function(color){
+			domStyle.set(this.domNode,"background","none");
+			domStyle.set(this.domNode, "backgroundColor", color);
+		}
 	});
 
 });

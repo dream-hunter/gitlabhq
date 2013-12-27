@@ -1,30 +1,36 @@
-.addSceneForm{
+.configuration .form{
 	text-align: left;
 	display: block;
-	width: 90% !important;
-	height: 90% !important;
 	padding: 10px;
+	border: 1px solid #ccc !important;
+	margin: 10px auto;
+	height: 90% !important;
+	width: 90% !important;
+	min-width: 490px;
+	min-height: 460px;
+	max-width: 550px;
+	max-height: 550px;
 }
 
-.addSceneForm label{
+.configuration .form label{
 	text-align: left;
 	width:100%;
 	margin:0 3px;
 }
 
-.addSceneForm .formText {
+.configuration .form .formText {
 margin-left: 3px;
 }
 
-.addSceneForm .formSelect{
+.configuration .form .formSelect{
 	margin-left: 3px;
 }
 
-.addSceneForm label>span{
+.configuration .form label>span{
 	background:#ddd;
 }
 
-.addSceneForm .emptyLine{
+.configuration .form .emptyLine{
 	width: 100%;
 	display: block;
 	padding: 1px;
@@ -32,12 +38,59 @@ margin-left: 3px;
 	border-bottom: 1px solid #ccc;
 }
 
-.addSceneForm .formCancel{
+.configuration .form .formCancel{
 	float: left;
-	margin-left: 10px;
+	margin: 10px;
 }
 
-.addSceneForm .formSave{
+.configuration .form .formSave{
 	float: right;
+	margin: 10px;
+}
+
+.configuration .form .bgColorOpts {
+	width: 100%;
+	height: 140px;
+	margin: 10px 0;
+}
+
+.configuration .form .wallpaperOpts {
+	width: 100%;
+	height: 150px;
+	margin: 10px 0;
+}
+
+.configuration .form .bgColorOpts label{
+	float: left;
+	text-align: center;
 	margin-right: 10px;
+	width: 76px;
+}
+.configuration .form .bgColorOpts label.bgType{
+	width: 128px;
+}
+
+.configuration .form .wallpaperOpts label{
+	float: left;
+	text-align: center;
+	margin-right: 10px;
+	width: 98px;
+}
+.configuration .form .wallpaperOpts label.wallpaperStyle{
+	width: 138px;
+}
+.configuration .form input[type="radio"]{
+	margin:0 3px;
+}
+
+.configuration .form  .bgColorOpts .prev{
+	height: 70px;
+	width: 76px;
+	margin-bottom: 10px;
+}
+
+.configuration .form  .wallpaperOpts .prev{
+	height: 80px;
+	width: 98px;
+	margin-bottom: 10px;
 }
