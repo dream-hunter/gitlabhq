@@ -55,8 +55,8 @@ body {
 }
 
 .storeMainContainer .centerTop input[type="text"]{
-    margin-bottom: 0 !important;
     cursor: pointer;
+    margin-bottom: 0 !important;
 }
 
 .storeMainContainer .search input{

@@ -14,7 +14,8 @@ define({
 			"project":"项目",
 			"author":"作者",
 			"versions":"版本",
-			"utils":"组件"
+			"utils":"组件",
+			"authorDescriptionLabel":"简介"
 		}),
 	"ja": true
 });

@@ -37,13 +37,14 @@ define([
 	"./widgets/SearchWidget",
 	"./widgets/PaginateWidget",
 	"./widgets/AppInfoWidget",
+	"./widgets/AuthorInfoWidget",
 	"./widgets/LoginDialog",
 	"qface/system/desktop/scene/impl/singleap/Scene",
 	"dojo/i18n!./nls/AppStore"
 	],function(on,JSON,domConstruct,declare,array,lang,connect,event,domStyle,domClass,query,hash,ioQuery,topic,Memory,_App,
 		Window,Select,ItemFileWriteStore,Tree,ForestStoreModel,Button,Form,TextBox,BorderContainer,ContentPane,AccordionContainer,
 		AccordionPane,TabContainer,ToggleSplitter,qface,AutoRotator,RotatorSlide,RotatorController,txtConfig,SearchWidget,
-		PaginateWidget,AppInfoWidget,LoginDialog,Scene,nlsApp){
+		PaginateWidget,AppInfoWidget,AuthorInfoWidget,LoginDialog,Scene,nlsApp){
 	
 	return declare(_App, {
 		apps: [],
@@ -420,6 +421,9 @@ define([
 							domClass.add(self[actionName].domNode,"itemCntActive");						
 		    		}
 		    	},li);
+		    	if(i==0){
+		    		domClass.add(a,"itemActive");
+		    	}
 	    	})(i)
 		    if(i < length - 1){
 		    	domConstruct.create("li",{class:"divider"},ul);
@@ -430,7 +434,7 @@ define([
 			var appInfo = this.appInfo = new AppInfoWidget(app);
 			this.descItem.addChild(appInfo);
 			app.likeCount = 200;
-			var authorInfo = this.authorInfo = new AppInfoWidget(app);
+			var authorInfo = this.authorInfo = new AuthorInfoWidget(app);
 			this.descItem.addChild(authorInfo);
 			app.likeCount = 300;
 			var versionsInfo = this.versionsInfo = new AppInfoWidget(app);
@@ -439,7 +443,6 @@ define([
 			var utilsInfo = this.utilsInfo = new AppInfoWidget(app);
 			this.descItem.addChild(utilsInfo);
 			domClass.add(appInfo.domNode,"itemCntActive");
-
 		},
 
 		__createRunContent: function(app){

@@ -1,15 +1,68 @@
-.appInfoWidget a:hover, .appInfoWidget a:active {
-    outline: 0 none;
+/* Nav on the top */
+.navInfo {
+    background-image: -moz-linear-gradient(center top , #F2F2F2 0%, #E6E6E6 100%);
+    border: 1px solid #CCCCCC;
+    border-radius: 3px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1px;
 }
-.appInfoWidget a {
-    color: #209966;
+
+.navInfo a:hover,.appInfoWidget a:hover{
+    color: #20cc66;
     text-decoration: none;
 }
-.appInfoWidget a:hover {
-    color: #20CC66;
+
+.navInfo li {
+    -moz-box-sizing: border-box;
+    float: left;
+    padding: 5px 0;
+    width: 24.5%;
+}
+
+.navInfo li a {
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 3px;
+    color: #666666;
+    display: block;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+.navInfo .divider {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-left: 1px solid #CCCCCC;
+    height: 25px;
+    margin-top: 5px;
+    padding: 0;
+    width: 2px;
+}
+
+.navInfo ul{
+    margin: 0;
+    padding: 0;
+    overflow:auto;
+}
+
+.navInfo li a:hover {
+    background-color: #E1E1E1;
+    text-decoration: none;
+}
+.navInfo .itemActive{
+    background-color: #F2F2F2 !important;
+    border-color: #E6E6E6;
+    color: #1A1A1A;
+    text-decoration: none;
+}
+
+/* App info */
+.appInfoWidget a:hover, .appInfoWidget a:active {
+    outline: 0 none;
     text-decoration: underline;
 }
-.appInfoWidget {
+
+.appInfoWidget,.authorInfoWidget{
     margin-right: 30px;
     width: 100%;
     color: #333333;
@@ -58,11 +111,11 @@
     margin-right: 5px;
     vertical-align: text-bottom;
 }
-.appInfoWidget .iconright-edit {
+.appInfoWidget .iconEdit {
     background-position: -112px 0;
 }
 
-.appInfoWidget .iconright, [class^="iconright-"], [class*=" iconright-"] {
+.appInfoWidget .iconEdit, [class^="icon"], [class*="icon"] {
     background-image: url("../images/icons.png");
     background-repeat: no-repeat;
     display: inline-block;
@@ -98,9 +151,10 @@
     border-bottom: 1px dashed #ccc;
     border-top: 1px solid #ccc;
     padding: 5px 0;
+    margin-top: 8px;
 }
 
-.appInfoWidget .icon {
+.appInfoWidget .imageItem,.authorInfoWidget .imageItem {
     margin: -24px 12px 10px;
     vertical-align: middle;
 }
@@ -113,18 +167,18 @@
     font-size: 22px;
 }
 
-.appInfoWidget  dl {
+.appInfoWidget .baseInfo dl {
     margin: 8px;
     padding: 0;
 }
 
-.appInfoWidget dt {
+.appInfoWidget .baseInfo dt {
     color: #B3B3B3;
     float: left;
     width: 5em;
 }
 
-.appInfoWidget  dd {
+.appInfoWidget .baseInfo  dd {
     margin-bottom: 2px;
     margin-left: 4em;
     /*width: 212px;*/
@@ -170,11 +224,6 @@
     margin-left: 1em;
 }
 
-.appInfoWidget .stats a:hover {
-    color: #20CC66;
-    text-decoration: none;
-}
-
 .appInfoWidget .stats a:hover strong {
     color: #20CC66;
 }
@@ -190,104 +239,217 @@
 
 .appInfoWidget .fr {
     float: right;
+    margin-right: 5px;
 }
 
 .appInfoWidget .get {
     margin-right: 5px;
 }
 
-.appInfoWidget .project-info {
-    min-height: 163px;
-}
-
-.appInfoWidget .project-info,.appInfoWidget .author-info {
-    border-top: 1px solid #E6E6E6;
-    padding: 8px 12px 2px;
-}
-
-.appInfoWidget .project-info,.appInfoWidget .author-info {
-    border-top: 1px solid #E6E6E6;
-    padding: 8px 12px 2px;
-}
-
-.appInfoWidget .project-info .iconright-new-org,
-.appInfoWidget .author-info .iconright-new-org {
+.appInfoWidget .iconGet {
     background-position: -256px 0;
 }
 
-.appInfoWidget .project-info h4,
- .appInfoWidget .author-info h4{
-    color: #808080;
-    font-size: 1.2em;
-    font-weight: 500;
-    margin-bottom: 5px;
-    padding-right: 3px;
+.appInfoWidget .iconLike {
+    background-position: -256px 0;
+}
+
+/* Author info */
+.authorInfoWidget .profile {
+    background: none repeat scroll 0 0 #F2F2F2;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px;
+}
+
+.authorInfoWidget .actions {
+    padding: 5px;
     text-align: right;
 }
 
-.appInfoWidget .project-info p,
-.appInfoWidget .author-info p {
-    margin-bottom: 2px;
-    color: #808080;
-    text-indent: 1.5em;
-    padding-top:4px;
-    clear: both;
-    max-height: 59px;
-    overflow: hidden;
-    margin-top: 0;
+.authorInfoWidget .isyou {
+            margin-right: 1em;
+            vertical-align: middle;
 }
 
-/* items */
-.appInfoWidget .page-nav, .navInfo {
-    background-image: -moz-linear-gradient(center top , #F2F2F2 0%, #E6E6E6 100%);
-    border: 1px solid #CCCCCC;
-    border-radius: 3px;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1px;
-}
-.page-nav li, .navInfo li {
-    -moz-box-sizing: border-box;
-    float: left;
-    padding: 5px 0;
-    width: 24.5%;
-}
-
-.page-nav li a , .navInfo li a {
-    border: 1px solid rgba(0, 0, 0, 0);
-    border-radius: 3px;
-    color: #666666;
-    display: block;
-    font-size: 14px;
-    line-height: 24px;
-    text-align: center;
-    text-shadow: 0 1px 0 #FFFFFF;
-}
-
-.page-nav .divider, .navInfo .divider {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border-left: 1px solid #CCCCCC;
-    height: 25px;
+.authorInfoWidget .baseInfo {
+    border-top: 1px dashed #CCCCCC;
+    height: 48px;
     margin-top: 5px;
-    padding: 0;
-    width: 2px;
+    overflow: hidden;
 }
 
-.page-nav ul, .navInfo ul{
+.authorInfoWidget .btn {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F2F2F2;
+    background-image: -moz-linear-gradient(center top , #F2F2F2 0%, #E6E6E6 100%);
+    border-color: #CCCCCC #CCCCCC #BBBBBB;
+    border-image: none;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    color: #808080;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 22px;
+    margin-bottom: 0;
+    padding: 0 6px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+}
+
+.authorInfoWidget .btn i {
+    margin-right: 5px;
+    vertical-align: text-bottom;
+}
+.authorInfoWidget .iconEdit {
+    background-position: -112px 0;
+}
+
+.authorInfoWidget .iconEdit, [class^="icon"], [class*=" icon"] {
+    background-image: url("../images/icons.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 16px;
+    line-height: 16px;
+    margin-right: 5px;
+    vertical-align: text-top;
+    width: 16px;
+}
+
+.authorInfoWidget .profile .info, .baseInfoContainer {
+    background: none repeat scroll 0 0 #F9F9F9;
+    border-top: 1px solid #CCCCCC;
+}
+
+.authorInfoWidget h1 {
+    line-height: 1.2;
+    font-size: 2em;
+}
+
+.authorInfoWidget h1, h2, h3, h4, h5, h6 {
+    font-weight: 400;
+    margin: 0;
+    text-rendering: optimizelegibility;
+}
+
+.authorInfoWidget h1 a {
+    float: left;
+}
+
+.authorInfoWidget .socialAction{
+    overflow: auto;
+    border-bottom: 1px dashed #ccc;
+    border-top: 1px solid #ccc;
+    padding: 5px 0;
+}
+
+.authorInfoWidget img {
+    border: 0 none;
+}
+
+.authorInfoWidget .profile h1 span {
+    font-size: 22px;
+}
+
+.authorInfoWidget .joinTime {
+    border-top: 1px dashed #CCCCCC;
+    clear: both;
+    margin-top: 8px;
+}
+
+ .authorInfoWidget .joinTime dl {
+    margin: 1em;
+    padding: 0;
+}
+
+.authorInfoWidget .joinTime dt {
+    color: #B3B3B3;
+    float: left;
+    width: 8em;
+}
+
+.authorInfoWidget .joinTime dd {
+    margin-bottom: 2px;
+    margin-left: 8em;
+    word-wrap: break-word;
+}
+
+.authorInfoWidget .cf:before, .cf:after {
+    content: "";
+    display: table;
+}
+.authorInfoWidget .cf:after {
+    clear: both;
+}
+.authorInfoWidget .cf:before, .cf:after {
+    content: "";
+    display: table;
+}
+
+.authorInfoWidget .stats {
+    border-top: 1px solid #E6E6E6;
     margin: 0;
     padding: 0;
-    overflow:auto;
 }
 
-.page-nav li a:hover , .navInfo li a:hover{
-    background-color: #E1E1E1;
-    text-decoration: none;
+.authorInfoWidget .stats li:first-child {
+    border: medium none;
 }
-.page-nav .active a, .navInfo a.itemActive{
-    background-color: #F2F2F2 !important;
-    border-color: #E6E6E6;
-    color: #1A1A1A;
+.authorInfoWidget .stats li {
+    border-left: 1px solid #E6E6E6;
+    float: left;
+    width: 112px;
+}
+
+.authorInfoWidget li {
+    list-style-type: none;
+}
+
+.authorInfoWidget .stats a {
+    color: #808080;
+    display: block;
+    line-height: 1.3;
+    margin-bottom: 0.4em;
+    margin-left: 1em;
+}
+
+.authorInfoWidget .stats a:hover strong {
+    color: #20CC66;
+}
+
+.authorInfoWidget .stats strong {
+    color: #333333;
+    display: block;
+    font-size: 24px;
+}
+.authorInfoWidget b, strong {
+    font-weight: bold;
+}
+
+.authorInfoWidget .baseInfo dl {
+    margin: 8px;
+    padding: 0;
+}
+
+.authorInfoWidget .baseInfo dt {
+    color: #B3B3B3;
+    float: left;
+    width: 5em;
+}
+
+.authorInfoWidget .baseInfo  dd {
+    margin-bottom: 2px;
+    margin-left: 4em;
+    /*width: 212px;*/
+    word-wrap: break-word;
 }
 
 .itemCntActive{
     display: block !important;
 }
+
