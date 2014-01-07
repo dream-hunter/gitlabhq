@@ -120,7 +120,7 @@ define([
 					type: "checkbox",
 					value: i,
 					onclick: function(){
-						query(".bgType > input").forEach(function(input){input.checked = false});
+						query(".bgType > input").forEach(function(input){input.checked = false;});
 						this.checked = true;
 						var colorNode = query(".bgColor > input:checked")[0];
 						var color = colorNode ? colorNode.value : "#f1f1f1";
@@ -142,7 +142,7 @@ define([
 					name:"bgColor",
 					value: value,
 					onclick: function(){
-						query(".bgColor > input").forEach(function(input){input.checked = false});
+						query(".bgColor > input").forEach(function(input){input.checked = false;});
 						this.checked = true;
 						var typeNode = query(".bgType > input:checked")[0];
 						var typeObj = bgTypes[typeNode.value];
@@ -169,7 +169,7 @@ define([
 					type: "checkbox",
 					value: item,
 					onclick: function(){
-						query(".wallpaperStyle > input").forEach(function(input){input.checked = false});
+						query(".wallpaperStyle > input").forEach(function(input){input.checked = false;});
 						this.checked = true;
 						var imageNode = query(".wallpaperImage > input:checked")[0];
 						var image = imageNode ? baseUrl + imageNode.value + ".png" : "";
@@ -190,7 +190,7 @@ define([
 					name:"wallpaper",
 					value: item,
 					onclick: function(){
-						query(".wallpaperImage > input").forEach(function(input){input.checked = false});
+						query(".wallpaperImage > input").forEach(function(input){input.checked = false;});
 						this.checked = true;
 						var styleNode = query(".wallpaperStyle > input:checked")[0];
 						var style = styleNode ? styleNode.value : "fillscreen";
@@ -245,7 +245,7 @@ define([
 				class:"formSave",
 			});
 				// onClick: function(){
-				// 	lang.hitch(self,callBack,form);
+				//lang.hitch(self,callBack,form);
 				// }
 			form.domNode.appendChild(save.domNode);
 			on(save,"click",lang.hitch(self,callBack,form));
