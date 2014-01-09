@@ -55,7 +55,7 @@ define([
 			win.startup();
 
 			// subscribed by FormWidget
-			topic.publish("qface/system/tools/addScene",{win:win});
+			topic.publish("qface/addScene",{win:win});
 		},
 
 		kill: function(){

@@ -35,22 +35,27 @@ body {
 
 .storeMainContainer .centerTop{
     border-bottom:1px solid #E0E0E0;
+    text-align: center;
 }
 
 .sortLabel{
     float: left;
-    margin: 5px 10px 5px 20px;
+    margin-top: 4px;
+}
+
+.sortOpts{
+    text-align: right;
 }
 
 .storeMainContainer .sort{
     float: left;
-    margin: 3px;
+    margin: 9px;
+    width: 90px
 }
 
 .storeMainContainer .search{
-    float: right;
     height: 25px !important;
-    width: 300px;
+    margin:6px auto;
 }
 
 .storeMainContainer .centerTop input[type="text"]{

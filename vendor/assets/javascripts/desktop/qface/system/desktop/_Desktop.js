@@ -1,5 +1,4 @@
 define([
-	"require",
 	"dojo/_base/declare", // lang.trim
 	"dojo/_base/lang", // lang.trim
 	"dojo/_base/array", // lang.trim
@@ -7,17 +6,16 @@ define([
 	"dojo/Deferred",
 	"dojo/DeferredList",
 	"dojo/on",
+	"dojo/query",
 	"qfacex/widgets/layout/BorderContainer",
 	"qface/system/desktop/scene/_MultiSceneContainer",
 	"qface/lang/Enum",
 	"qface/windows/_patches"
-],function(require,declare,lang,array,domClass,Deferred,DeferredList,on,BorderContainer,_MultiSceneContainer,Enum) {
-	
+],function(declare,lang,array,domClass,Deferred,DeferredList,on,query,BorderContainer,_MultiSceneContainer,Enum){
 	var _Desktop = declare(null,{
 		sceneList: [],
 		fileList: ["dijit", "dojox","theme", "window", "icons"],
-		_config 	: null,
-		
+		_config	: null,
 		_loadedThemes : null,
 		
 		constructor : function(config) {
@@ -27,121 +25,72 @@ define([
 		},
 		
 		_createHost : function(){
-			var mbc = this.mbc = new BorderContainer({
+			var mainBorder = this.mainBorder = new BorderContainer({
 				design: "headline",
 				gutters: false,
 				liveSplitters: false,
 				style:"width:100%;height:100%;"
 			});
-
-			//domClass.add(mbc.domNode,"dijit soria tundra tsunami");		
-
-			document.body.appendChild(mbc.domNode);
-			
-			mbc.startup();
-
+			//domClass.add(mainBorder.domNode,"dijit soria tundra tsunami");		
+			document.body.appendChild(mainBorder.domNode);
+			mainBorder.startup();
 		},
 		
 		_createSystemToolBar : function() {
 		},
 		
 		_createSceneContainer : function() {
-			var dsc = this.dsc = new _MultiSceneContainer({
-					region:'center',
-					controllerWidget: "dijit.layout.StackController",
-					style:"width:100%"
+			var sceneContainer = this.sceneContainer = new _MultiSceneContainer({
+				region:'center',
+				controllerWidget: "dijit.layout.StackController",
+				style:"width:100%"
 			});
-			
-			this.mbc.addChild(dsc);
-			
-			return dsc;
-
+			this.mainBorder.addChild(sceneContainer);
+			return sceneContainer;
 		},
 		
 		init : function(config) {
 			this._config = config;
 			var deferred = new Deferred();
-			
 			var deferredHost = new Deferred();
-			
 			this._createHost();
-			
 			dojo.dnd.autoScroll = function(e){} //in order to prevent autoscrolling of the window
 			on(window,"resize",lang.hitch(this,this.resize));
-
-			var html =  dojo.doc.documentElement;
-			var tmClass = this._termMode == _Desktop.TermMode.PC?"pc":"mobile";
 			
-			domClass.add(html,tmClass);		
-		
+			var html =  dojo.doc.documentElement;
+			var termClass = this._termMode == _Desktop.TermMode.PC?"pc":"mobile";
+			domClass.add(html,termClass);
+			
 			deferredHost.then(lang.hitch(this,function(){
-				var dsc  = this._createSceneContainer();
+				var sceneContainer  = this._createSceneContainer();
 				this._createSystemToolBar();
 				
 				var config = this._config;
-		
-				var defs=[];
-				if (config.scene) {
-					var dcfg = config.scene
-					var deferredScene = new Deferred();
-					defs.push(deferredScene);
-					var dClass = require(dcfg.type);
-					require([dcfg.type],function(dClass) {
-						var pd = new dClass({name:dname,desktop:this});
-						this.addScene(pd);
-						pd.init(dcfg);
-						deferredScene.resolve();
-					});	
-				
-				} else if (config.scenes) {
-					for (var dname in config.scenes){
-				        if(dname.charAt(0)!=="_"){//skip the private properties
-							var dcfg = config.scenes[dname];
-							var deferredScene = new Deferred();
-							defs.push(deferredScene);
-							var self = this;
-							var dTheme = dcfg.theme;
-							
-							require([dcfg.type],function(dClass) {
-								var pd = new dClass({name:dname,theme:dTheme,desktop:self});
-								self.addScene(pd);
-								pd.init(dcfg);
-								deferredScene.resolve();
-							});	
-						}	
-					}
+				var defers = [];
+
+				if (config.scenes) {
+					var self = this;
+					Object.keys(config.scenes).forEach(function(sceneName){
+						var deferredScene = new Deferred();
+						var sceneConfig = config.scenes[sceneName];
+						defers.push(deferredScene);
+						var sceneTheme = sceneConfig.theme;
+						require([sceneConfig.type],function(Scene){
+							var scene = new Scene({name:sceneName,theme:sceneTheme,desktop:self});
+							self.addScene(scene);
+							scene.init(sceneConfig);
+							deferredScene.resolve();
+						});
+					});
 				} else {
 					throw new Error("invalid config!");
-				}	
-				var sceneDeferredList = new DeferredList(defs);
+				}
+				var sceneDeferredList = new DeferredList(defers);
 				sceneDeferredList.then(function() {
 					deferred.resolve();
 				});
 			}));
 			deferredHost.resolve();
-			
-			/*var themes = [];
-			themes.push(config.theme ? config.theme : "soria");
-			
-			for (var dname in config.scenes){
-		    if(dname.charAt(0)!=="_"){//skip the private properties
-					var dcfg = config.scenes[dname];
-					if (dcfg.theme && themes.indexOf(dcfg.theme)<0) {
-						themes.push(dcfg.theme);
-					}
-				}
-			}		
-					
-			var f = function(){
-				deferredHost.resolve();
-			};
-			
-			if (themes.length>0) {
-				// this.enableTheme(themes).then(f);
-			} else {
-				setTimeout(f, 100);
-			}*/
-			
 			return deferred;
 		},
 		
@@ -151,21 +100,18 @@ define([
 		},
 		
 		addScene : function(scene) {
-			this.dsc.addChild(scene);
+			this.sceneContainer.addChild(scene);
 			this.sceneList.push(scene);
 		},
 		
 		findScene: function(name){
-			return array.filter(this.sceneList,function(item){return item.name === name})[0];
+			return array.filter(this.sceneList,function(item){return item.name === name;})[0];
 		},
 		
 		resize : function () {
-			if (this.mbc) {
-				this.mbc.resize();
-			}	
+			if(this.mainBorder){this.mainBorder.resize();}
 		},
-		
-		
+
 		log : function(/*String*/str){
 			//	summary:
 			//		logs a string onto any console that is open
@@ -173,7 +119,7 @@ define([
 			//	str:
 			//		the string to log onto the consoles
 			str = dojo.toJson(str);
-			dojo.query(".consoleoutput").forEach(function(elem){
+			query(".consoleoutput").forEach(function(elem){
 				elem.innerHTML += "<div>"+str+"</div>";
 			});
 			console.log(str);
@@ -186,17 +132,14 @@ define([
 		changeTermMode : function(termMode) {
 			if (termMode && termMode.isInstanceOf(_Desktop.TermMode) && termMode != this._termMode) {
 				this._termMode = termMode;
-				
 				var oldtmClass = termMode == _Desktop.TermMode.PC ? "mobile":"pc";
 				var newtmClass = termMode == _Desktop.TermMode.PC ? "pc":"mobile";
-				
 				var html =  dojo.doc.documentElement;
-				
-				domClass.replace(html,newtmClass,oldtmClass);		
-			}	
+				domClass.replace(html,newtmClass,oldtmClass);
+			}
 		},
 		
-	  addDojoCss : function(/*String*/path){
+		addDojoCss : function(/*String*/path){
 			//	summary:
 			//		Adds an additional dojo CSS file (useful for the dojox modules)
 			//
@@ -206,7 +149,6 @@ define([
 			//	example:
 			//	|	api.addDojoCss("/dojox/widget/somewidget/foo.css");
 			var cssUrl =  require.toUrl(path);
-			
 			var element = document.createElement("link");
 			element.rel = "stylesheet";
 			element.type = "text/css";
@@ -221,16 +163,16 @@ define([
 			jsElement.type =  "text/javascript";
 			jsElement.src = jsUrl;
 			document.getElementsByTagName("head")[0].appendChild(jsElement);
-	   },
+		},
 
-		getTheme   : function(scene) {
+		getTheme: function(scene) {
 			return scene.get("theme");
 		},
 			
 		changeTheme: function(scene,/*String*/theme)	{
 			this.enableTheme(theme).then(function(){
 				scene.set("theme",theme);
-			});	
+			});
 		},
 		
 		enableTheme: function(/*String|Array*/theme)	{
@@ -243,26 +185,23 @@ define([
 			var deferred = new Deferred();
 			
 			if (!themes) {
-				themes = array.filter(themes,function(item,index,array) {
-						return (this._loadedThemes.indexOf(theme)<0) ;
-					},this);
+				themes = array.filter(themes,function(item,index,array){
+					return (this._loadedThemes.indexOf(theme)<0);
+				},this);
 			}
-			
-			if (!themes || themes.length==0) {
+			if (!themes || themes.length===0) {
 				deferred.resolve();
 				return deferred;
 			}
 			
-			var defs=[];
-			
+			var defers=[];
+
 			array.forEach(themes,function(theme) {
-				array.forEach(this.fileList, function(e)	{
+				array.forEach(this.fileList, function(e){
 					var linkId = "qface_theme_"+theme+"_"+e;
-					if (document.getElementById(linkId)) {
-						return;
-					}	
+					if (document.getElementById(linkId)) {return;}
 					var deferredCss = new Deferred();
-					defs.push(deferredCss);
+					defers.push(deferredCss);
 
 					var element = document.createElement("link");
 					element.rel = "stylesheet";
@@ -279,16 +218,14 @@ define([
 					};
 				});
 				this._loadedThemes.push(theme);
-			},this);	
+			},this);
 				
-			
-			var cssDeferredList = new DeferredList(defs);
+			var cssDeferredList = new DeferredList(defers);
 			cssDeferredList.then(function() {
 				deferred.resolve();
 			},function(){
 				deferred.cancel();
 			});
-			
 			return deferred;
 		},
 
@@ -297,9 +234,7 @@ define([
 		},
 		
 		applyTheme : function(theme) {
-			if (this._theme == theme) {
-				return;
-			}	
+			if (this._theme == theme) {return;}
 			if (this._theme) {
 				domClass.replace(document.body,theme,this._theme);
 			} else {
@@ -308,21 +243,15 @@ define([
 			this._theme = theme;
 		},
 
-
 		listThemes : function() {
- 			var themes =[
+			var themes = [
 				{ label: "soria", value : "soria" },
 				{ label: "tsunami", value: "tsunami" },
 				{ label: "tundra", value: "tundra" }
 			];
-						
 			return themes;
 		}
-		
 	});
-			
 	_Desktop.TermMode = Enum.declare(["PC","MOBILE"]);
-
-	
 	return _Desktop;
-});	
+});

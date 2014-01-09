@@ -7,34 +7,15 @@
  * @Date: 2013/02/28
  */
 define([
-	"dojo/_base/lang", 
-	"dojo/_base/declare", 
-  "dojo",
-  "dojo/_base/array",
-	"dojo/dom-construct",
-	"dojo/query",
-	"dojo/data/ItemFileWriteStore",
-	"dijit/Tree",
-	"dijit/tree/ForestStoreModel",
-	"qfacex/widgets/layout/BorderContainer",
+	"dojo/_base/lang",
+	"dojo/_base/declare",
 	"dijit/layout/ContentPane",
-	"dijit/layout/SplitContainer",
-	"dijit/layout/AccordionContainer",
-	"dijit/layout/AccordionPane",
-	"dijit/layout/TabContainer",
-	"dojox/layout/ToggleSplitter",
-	"dojox/layout/ExpandoPane",
-	"qfacex/widgets/window/Window",
-	"qface/system/desktop/scene/impl/explorer/_ExplorerBase",
-	"qfacex/widgets/window/area/Area"
-],function(lang,declare,dojo,arrayUtil,domConstruct,query,ItemFileWriteStore,Tree,ForestStoreModel,BorderContainer,ContentPane,
-	SplitContainer,AccordionContainer,AccordionPane,TabContainer,ToggleSplitter,ExpandoPane,Window,_ExplorerBase,Area) {
+	"qface/system/desktop/scene/impl/explorer/_ExplorerBase"
+],function(lang,declare,ContentPane,_ExplorerBase) {
 
 	var Scene = declare([_ExplorerBase],{
 		_makeTabContent: function(){
-
 			this._multipleAC = new ContentPane({region:'center',style:"overflow:hidden;"});
-	
 			this._mainBorder.addChild(this._multipleAC);
 		},
 
@@ -42,10 +23,10 @@ define([
 			this.inherited(arguments);
 			if (this._area) {
 				this._area.resize();
-			}	
+			}
 		},
-		addWindow : function(win,args){
 
+		addWindow : function(win,args){
 			this._winLists.push(win);
 			this._addWindowToMultipleStyle(win);
 			return this._windowList.newItem(args);
@@ -58,8 +39,8 @@ define([
 		},
 
 		removeWindow : function(win,item){
-	      this._area.removeChild(win);
-	      this._windowList.deleteItem(item)
+			this._area.removeChild(win);
+			this._windowList.deleteItem(item);
 		},
 
 		updateWindowTitle : function(item,title){
@@ -73,7 +54,7 @@ define([
 		restrictWindow : function(win){
 			win.showMinimize = false;
 			win.showFull = false;
-		}		
+		}
 	});
 	
 	

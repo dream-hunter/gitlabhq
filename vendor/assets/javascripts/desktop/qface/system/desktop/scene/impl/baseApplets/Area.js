@@ -15,11 +15,12 @@ define([
   "dojo/query",
   "dojo/on",
   "dojo/topic",
+  "dijit/registry",
 	"dijit/MenuItem",
 	"dijit/MenuSeparator",
 	"qfacex/widgets/window/area/Area",
 	"qfacex/widgets/complex/ListView"
-],function(require,lang,declare,html,domStyle,query,on,topic,MenuItem,MenuSeparator,WindowArea,ListView) {
+],function(require,lang,declare,html,domStyle,query,on,topic,registry,MenuItem,MenuSeparator,WindowArea,ListView) {
 	return declare( [WindowArea], {
 		postCreate: function(){
 			this.inherited(arguments);
@@ -30,7 +31,6 @@ define([
 				overflow: "hidden",
 				scene : this.scene,
 				onItem  : lang.hitch(this,function(sysname,name) {
-					// this.scene.launch(sysname,name);
 				})
 			});
 			this.addChild(listarea);

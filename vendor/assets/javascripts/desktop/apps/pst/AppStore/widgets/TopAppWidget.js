@@ -5,10 +5,10 @@ define([
   "dojo/dom-construct",
   "dojo/_base/declare",
   "dojo/_base/array",
-  "dijit/_WidgetBase", 
+  "dijit/_WidgetBase",
   "dijit/_TemplatedMixin",
-  "dojo/dom-style", 
-  "dojo/_base/fx", 
+  "dojo/dom-style",
+  "dojo/_base/fx",
   "dojo/_base/lang",
   "./AppWidget"
   ],function(on,mouse,domClass,domConstruct,declare,array,WidgetBase,TemplatedMixin, domStyle, baseFx, lang,AppWidget){

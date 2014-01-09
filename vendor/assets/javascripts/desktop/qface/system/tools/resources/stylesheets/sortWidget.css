@@ -1,0 +1,14 @@
+.sortLabel{
+  float: left;
+  margin-top: 4px;
+}
+
+.sortOpts{
+  text-align: right;
+}
+
+.storeMainContainer .sort{
+  float: left;
+  margin: 9px;
+  width: 90px
+}

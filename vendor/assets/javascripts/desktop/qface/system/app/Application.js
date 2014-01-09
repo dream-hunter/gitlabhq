@@ -24,14 +24,13 @@ define([
 			this.status = "init";
 			this.name = info.name;
 			aspect.after(this, "kill", lang.hitch(this, function(){
-		            this.status = "killed";
-					var pid = this.instance;
-					//allow the garbage collector to free up memory
-					setTimeout(lang.hitch(this,function(){
-						this.scene.instances[pid]=undefined;
-					}),10000);
-	        	})
-	        );
+        this.status = "killed";
+				var pid = this.instance;
+				//allow the garbage collector to free up memory
+				setTimeout(lang.hitch(this,function(){
+					this.scene.instances[pid]=undefined;
+				}),10000);
+			}));
 			this.instance = info.instance;
 			this.compatible = info.compatible;
 			this.scene = info.scene;

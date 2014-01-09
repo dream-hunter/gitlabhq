@@ -11,27 +11,27 @@ define([
 	"dojo/_base/lang",
 	"dojo/_base/declare",
 	"dojo/_base/array",
+	"dojo/_base/event",
 	"dojo/dom-style",
 	"dojo/dom-class",
 	"dojo/dom-construct",
-	"dojo/on", 
+	"dojo/on",
 	"dojo/dom",
 	"dojo/topic",
-    "dojo/query",
-    "dijit/_Widget",
+  "dojo/query",
+  "dijit/_Widget",
 	"dijit/_TemplatedMixin",
 	"dijit/_Container",
 	"dijit/_Contained",
 	"dijit/form/TextBox",
 	"dijit/form/Button",
 	"dijit/Menu",
-	"dijit/layout/_LayoutWidget", 
-    "dijit/layout/ContentPane",
-    "dijit/form/FilteringSelect",
-    "qfacex/widgets/window/Window",
- 	"qface/utils/html"
-	
-],function(require,lang,declare,array,domStyle,domClass,domConstruct,on,dom,topic,query,_Widget,_TemplatedMixin,
+	"dijit/layout/_LayoutWidget",
+  "dijit/layout/ContentPane",
+  "dijit/form/FilteringSelect",
+  "qfacex/widgets/window/Window",
+	"qface/utils/html"
+],function(require,lang,declare,array,event,domStyle,domClass,domConstruct,on,dom,topic,query,_Widget,_TemplatedMixin,
 	_Container,_Contained,TextBox,Button,Menu,_LayoutWidget,ContentPane,FilteringSelect,Window,utilHtml) {
 
 	var ListView = declare([_LayoutWidget], {
@@ -51,7 +51,7 @@ define([
 		
 		postCreate: function(){
 			this.connect(this.domNode, "onmousedown", "_onClick");
-			this.connect(this.domNode, "oncontextmenu", "_onRightClick");	
+			this.connect(this.domNode, "oncontextmenu", "_onRightClick");
 			
 			var sNode = this.scrollNode = document.createElement("div");
 			domStyle.set(sNode, "position", "relative");
@@ -63,7 +63,7 @@ define([
 			// domStyle.set(this.domNode,"width","80%");
 			// domStyle.set(this.domNode,"height","80%");
 			// domStyle.set(this.domNode, "margin","10px");
-		},		
+		},
 		
 		_loadStart: function(){
 			//	summary:
@@ -103,6 +103,7 @@ define([
 		},
 		
 		_onClick: function(e){
+			event.stop(e);
 			var w = dijit.getEnclosingWidget(e.target);
 			if (w.isInstanceOf(ListViewItem)){
 				w._dragStart(e);
@@ -111,9 +112,9 @@ define([
 				} else {
 					if (!(domClass.contains(e.target, "shadowFront") ||
 					domClass.contains(e.target, "shadowBack") ||
-					domClass.contains(e.target, "iconLabel"))) 
+					domClass.contains(e.target, "iconLabel")))
 						w._onIconClick(e);
-				}		
+				}
 			} else {
 				//we could put a dragbox selection hook here
 				array.forEach(this.getChildren(), function(item){
@@ -127,46 +128,45 @@ define([
 			//		Event Handler
 			//		passes click event to the appropriate child widget
 			//		if a widget wasn't clicked on, we open our own menu
+			event.stop(e);
+			if(this.menu) this.menu.destroy();
+			this.menu = new Menu({});
 			var w = dijit.getEnclosingWidget(e.target);
-	        if(!w) return;
+      if(!w) return;
 			if (w.isInstanceOf(ListViewItem)){
 				// w.menu._contextMouse();
 				this.menu._openMyself({"target":e.target, "coords":{x: e.pageX, y: e.pageY}});
-			}
-			else
-			{
+			} else {
 				// this.menu._contextMouse();
 				this.menu._openMyself({"target":e.target, "coords":{x: e.pageX, y: e.pageY}});
 			}
 		},
-		
 
 		updateItems: function(/*Array*/items){
-			
 			//clear the area
 			array.forEach(this.getChildren(), function(item){
-	            if(item){
-	                this.removeChild(item);
-	    			item.destroy();
-	            }
+        if(item){
+          this.removeChild(item);
+					item.destroy();
+        }
 			}, this);
 			
-			//cancel the current xhr if there is one
+			// cancel the current xhr if there is one
 			if(this._lsHandle) this._lsHandle.cancel();
-			//list the path
+			// list the path
 			this._loadStart();
 			array.forEach(items, function(item){
 				var name = item.name;
 				var sysname = item.sysname;
 				var p = name.lastIndexOf(".");
 				var ext = name.substring(p+1, name.length);
-				//var icon = //srvConfig.filesystem.icons[ext.toLowerCase()];
+				// var icon = //srvConfig.filesystem.icons[ext.toLowerCase()];
 				var wid = new ListViewItem({
 					sysname:item.sysname,
 					label: name,
 					name: name,
 					iconClass: item.icon
-//					iconClass: (item.type=="text/directory" ? "icon-32-places-folder" : (icon || "icon-32-mimetypes-text-x-generic"))
+					// iconClass: (item.type=="text/directory" ? "icon-32-places-folder" : (icon || "icon-32-mimetypes-text-x-generic"))
 				});
 				this.addChild(wid);
 				topic.subscribe("qfacex/widgets/complex/listView/click",function(scene){
@@ -177,7 +177,7 @@ define([
 				// wid.startup();
 			}, this);
 			
-			//invoke a layout so that everything is positioned correctly
+			// invoke a layout so that everything is positioned correctly
 			this.layout();
 			this._loadEnd();
 		},
@@ -228,7 +228,7 @@ define([
 						hc += vspacing;
 					}
 				}
-			};
+			}
 			domStyle.set(this.scrollNode, (this.vertical ? "height" : "width"), hc+"px");
 		},
 		
@@ -256,75 +256,60 @@ define([
 
 	var ListViewItem  = declare([_Widget, _TemplatedMixin, _Contained], {
 		templateString:"<div class='listItem' data-dojo-attach-point='focusNode'>\n\t<div class='listItemIcon ${iconClass}' data-dojo-attach-point='iconNode'></div>\n\t<div class='iconLabel' data-dojo-attach-point='labelNode'>\n\t\t<div data-dojo-attach-point='textFront' class='shadowFront'>${label}</div>\n\t\t<div data-dojo-attach-point='textBack' class='shadowBack'>${label}</div>\n\t\t<div data-dojo-attach-point='textHidden' class='shadowHidden'>${label}</div>\n\t</div>\n</div>\n",
-
 		//	label: string
 		//		The label shown underneath the icon
 		label: "File",
-
 		//	type: string
 		//		the mimetype of this file
 		type: "text/directory",
-
 		//	iconClass: string
 		//		the CSS class of the icon displayed
 		iconClass: "icon-32-places-folder",
-
 		//	highlighted: boolean
 		//		is the file currently highlighted? (read-only)
 		highlighted: false,
-		
 		//	name: string
 		//		the file's full name
 		name: "",
-		
 		//	_clickOrigin: object
 		//		the origin of the mouse when we are clicked. Used for DnD.
 		_clickOrigin: {x: 0, y: 0},
-		
 		//	_docNode: domNode
 		//		the domNode that is on the document. Used for DnD.
 		_docNode: null,
-
 		//	_dragTopicPublished: Boolean
 		//		set to true when the icon has been dragged more then five pixels
 		//		and the drag start topic has been published
 		_dragTopicPublished: false,
 		
 		postCreate: function(){
-			
 			on(this.iconNode, "click", lang.hitch(this,this._onClick));
 			on(this.labelNode, "dblclick", lang.hitch(this,this.rename));
-			
 			on(this.domNode,"mouseover",lang.hitch(this,function(){
-					domClass.add(this.domNode,"actived");
-				})
-			);
-		    
+				domClass.add(this.domNode,"actived");
+			}));
 			on(this.domNode,"mouseout",lang.hitch(this,function(){
-					domClass.remove(this.domNode,"actived");
-				})
-			);
-			
+				domClass.remove(this.domNode,"actived");
+			}));
 			
 			query("*", this.labelNode).forEach(function(node){
 				dom.setSelectable(node, false);
-			})
-			
+			});
 			var con = {};
-			
 		},
 		
 		uninitialize: function(){
 			array.forEach(this._subscriptions, dojo.unsubscribe);
-	        if(typeof this._win != "undefined" && !this._win.closed)
-	            this._win.close();
+      if(typeof this._win != "undefined" && !this._win.closed) this._win.close();
 		},
 		
 		_dragStart: function(e){
-			dojo.stopEvent(e);
+			event.stop(e);
 		},
+
 		_onMove: function(e){
 		},
+
 		_onRelease: function(e){
 		},
 
@@ -335,21 +320,24 @@ define([
 		_onClick: function(e){
 			this.getParent().onItem(this.sysname,this.name);
 		},
+
 		highlight: function(){
 			//	summary:
 			//		highlights the icon
 			this.highlighted = true;
-//			domClass.add(this.labelNode, "selectedItem");
-//			domClass.add(this.iconNode, "listItemIconSelected");
+			// domClass.add(this.labelNode, "selectedItem");
+			// domClass.add(this.iconNode, "listItemIconSelected");
 			var p = this.getParent();
 			p.onHighlight(this.name);
 		},
+
 		_onIconClick: function(){
 			array.forEach(this.getParent().getChildren(), function(item){
 				item.unhighlight();
 			});
 			this.highlight();
 		},
+
 		rename: function(){
 		},
 
@@ -388,10 +376,7 @@ define([
 			}, this);
 		}
 	});
-
-
 	return ListView;
-
 });
 
 

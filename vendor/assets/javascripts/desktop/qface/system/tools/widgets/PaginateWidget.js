@@ -17,15 +17,16 @@ define([
   "dijit/_WidgetBase",
   "dijit/_TemplatedMixin",
   "dijit/_WidgetsInTemplateMixin",
-  "dojo/text!./templates/paginate.html"
+  "dojo/i18n!../nls/widgets",
+  "dojo/text!./templates/paginateWidget.html"
 ],function(dom,on,request,html,domConstruct,domAttr,array,dJson,lang,declare,domStyle,domClass,query,aspect,Memory,WidgetBase,TemplatedMixin,
-  _WidgetsInTemplateMixin,template){
+  _WidgetsInTemplateMixin,nls,template){
 
   return declare([WidgetBase, TemplatedMixin,_WidgetsInTemplateMixin], {
     templateString: template,
     baseData: [],
     needEvenClass: false, // add odd or even class for each item
-    perPage: 3,
+    perPage: 30,
     pgCursor: 4, // when to change page nav num
     pgLeftShowCt: 3, // the count of left pages
     pgRightShowCt: 3, // the count of right pages
@@ -40,7 +41,6 @@ define([
     baseClass: "pagination",
 
     constructor: function(){
-
     },
 
     postCreate: function(){
@@ -73,7 +73,7 @@ define([
         class:"prevPg pg",
         id:"prevPg",
         href:"javascript:void(0);",
-        innerHTML: "Previous",
+        innerHTML: nls["previousPage"],
         style:"display:none",
         onclick: function(){
           if(self.currentPgNum > 1){
@@ -93,7 +93,7 @@ define([
       domConstruct.create("a",{
         class:"nextPg pg",
         id:"nextPg",
-        innerHTML: "Next",
+        innerHTML: nls["nextPage"],
         href:"javascript:void(0);",
         onclick: function(){
           if(self.currentPgNum < self.pageSize){

@@ -62,64 +62,50 @@ define([
 		},
 		_onRightClick : function() {
 		}
-		
-	});	
+	});
 
 	var HomeDesktop = declare([_Desktop],{
 		init: function(config){
 			this._config = config;
 			var deferred = new Deferred();
 			this._createHost();
-			dojo.dnd.autoScroll = function(e){} //in order to prevent autoscrolling of the window
+			dojo.dnd.autoScroll = function(e){}//in order to prevent autoscrolling of the window
 			on(window,"resize",lang.hitch(this,this.resize));
 			var html =  dojo.doc.documentElement;
 			var tmClass = this._termMode == _Desktop.TermMode.PC?"pc":"mobile";
-		
-			domClass.add(html,tmClass);	
-			var dsc = this._createSceneContainer();
+			domClass.add(html,tmClass);
+			this._createSceneContainer();
 			this._createSystemToolBar();
 
-			var scene =	SingleScene({name:"appStore",desktop:this}); 
+			var scene =	SingleScene({name:"appStore",desktop:this});
 			this.addScene(scene);
 			scene.init(this._config);
-			topic.publish("appStore/showForHome","full");
 			return deferred;
 		},
 
 		_createHost : function(){
-			var mbc = this.mbc = new BorderContainer({
-				design: "headline",
-				gutters: false,
-				liveSplitters: false,
-				style:"width:100%;height:100%;margin-top:-20px;"
-			});
-
-			document.body.appendChild(mbc.domNode);
-			
-			mbc.startup();
-
+			// need change
+			this.inherited(arguments);
+			domStyle.set(this.mainBorder.domNode,"margin-top","-20px");
 		},
 
 		_createSystemToolBar : function() {
-			var stb  = this.stb = new SystemToolBar({
+			var toolBar  = this.toolBar = new SystemToolBar({
 				region: "top",
 				layoutPriority:1
 			});
-
-			var systemlogo = this.systemlogo = new SystemLogoApplet({settings:{},pos:0.05,logoname:this._config.logoname});
-			stb.addChild(systemlogo);
+			var systemLogo = this.systemLogo = new SystemLogoApplet({settings:{},pos:0.05,logoname:this._config.logoname});
+			toolBar.addChild(systemLogo);
 
 			// var search = this.search = new AppletSearch({settings:{},pos:0.40});
-			// stb.addChild(search);
+			// toolBar.addChild(search);
 
 			// var fullScreen = this.fullScreen = new AppletFullScreen({settings:{},pos:0.75});
-			// stb.addChild(fullScreen);
+			// toolBar.addChild(fullScreen);
 
 			var linkArea = this.linkArea = new AppletLinkArea({settings:{},pos:0.85,configName:"signIn"});
-			stb.addChild(linkArea);
-
-			this.mbc.addChild(stb);	
-
+			toolBar.addChild(linkArea);
+			this.mainBorder.addChild(toolBar);
 		}
 	});
 

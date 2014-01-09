@@ -1,7 +1,8 @@
-define({ 
+define({
 	root:
 		({
 			"search":"查找",
+			"sort":"排序",
 			"like":"赞",
 			"view":"查看",
 			"edit":"编辑",

@@ -9,8 +9,8 @@
 define([
 	"dojo",
 	"require",
-	"dojo/_base/lang", 
-	"dojo/_base/declare", 
+	"dojo/_base/lang",
+	"dojo/_base/declare",
 	"dojo/dom-style",
 	"dojo/dom-construct", // domConstruct.create
 	"dojo/dom-class",
@@ -36,22 +36,22 @@ define([
 			var html =  dojo.doc.documentElement;
 			var tmClass = this._termMode == _Desktop.TermMode.PC?"pc":"mobile";
 		
-			domClass.add(html,tmClass);		
+			domClass.add(html,tmClass);
 			
 			// create by _Desktop
-			var dsc  = this._createSceneContainer();
+			this._createSceneContainer();
 
-			var scene = Scene({desktop:this}); 
+			var scene = Scene({desktop:this});
 			this.addScene(scene);
 			scene.init(this._config.icons);
 
-			this.changeTheme(scene,"soria")
+			this.changeTheme(scene,"soria");
 			
-	    return deferred;
+			return deferred;
 		},
 
 		_createHost : function(){
-			var mbc = this.mbc = new BorderContainer({
+			var mainBorder = this.mainBorder = new BorderContainer({
 				design: "headline",
 				gutters: false,
 				liveSplitters: false,
@@ -59,7 +59,7 @@ define([
 			},this._config.parentNodeId);
 
 			// domClass.add(mbc.domNode,"soria");		
-			mbc.startup();
+			mainBorder.startup();
 		}
 	});
 

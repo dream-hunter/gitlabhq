@@ -9,12 +9,13 @@
 define([
 	"dojo",
 	"require",
-	"dojo/_base/lang", 
-	"dojo/_base/declare", 
+	"dojo/_base/lang",
+	"dojo/_base/declare",
 	"dojo/dom-style",
 	"dojo/dom-construct", // domConstruct.create
 	"dojo/dom-geometry",
 	"dojo/_base/fx", // fx.Animation
+	"dojo/_base/event",
 	"dojo/dnd/Source",
 	"dojo/has",
 	"dojo/on",
@@ -40,9 +41,10 @@ define([
 	"qfacex/widgets/complex/applet/LinkArea",
 	"qfacex/widgets/complex/applet/Account",
 	"qfacex/widgets/complex/applet/Applet"
-], function(dojo,require,lang,declare,domStyle,domConstruct,domGeom,dojoFx,dndSource,has,on,topic,JSON,jsonRef,_Desktop,BorderContainer,
-	_MuliSceneNaviApplet,_MultiSceneContainer,IconsScene,MultiTabScene,MultiAppScene,SingleAppScene,SingleScene,QPanel,
-	AppletNetmonitor,AppletFullScreen,AppletClock,AppletUnFullDesk,AppletTheme,AppletSearch,AppletLinkArea,AppletAccount,Applet){
+], function(dojo,require,lang,declare,domStyle,domConstruct,domGeom,dojoFx,event,dndSource,has,on,topic,JSON,jsonRef,
+	_Desktop,BorderContainer,_MuliSceneNaviApplet,_MultiSceneContainer,IconsScene,MultiTabScene,MultiAppScene,
+	SingleAppScene,SingleScene,QPanel,AppletNetmonitor,AppletFullScreen,AppletClock,AppletUnFullDesk,AppletTheme,
+	AppletSearch,AppletLinkArea,AppletAccount,Applet){
 
 	var SceneNaviBar = _MuliSceneNaviApplet;
 
@@ -63,13 +65,15 @@ define([
 	
 		opacity: 0.95,
 				
-		_onClick : function() {
+		_onClick : function(e) {
+			event.stop(e);
 		},
 		
-		_onRightClick : function() {
+		_onRightClick : function(e) {
+			event.stop(e);
 		}
 		
-	});	
+	});
 
 	var utilhubUserDesktop = declare([_Desktop],{
 	
@@ -77,8 +81,8 @@ define([
 		
 		fullSceneed : function (win) {
 			var aplUnFull = this.aplUnFull = new AppletUnFullDesk({settings:{},pos:0.70,appWindow:win});
-			this.stb.addChild(aplUnFull);
-			this.stb.resize();
+			this.toolBar.addChild(aplUnFull);
+			this.toolBar.resize();
 		},
 
 		unFullSceneed : function (win) {
@@ -89,65 +93,57 @@ define([
 		},
 
 		_createHost : function(){
-			var mbc = this.mbc = new BorderContainer({
-				design: "headline",
-				gutters: false,
-				liveSplitters: false,
-				style:"width:100%;height:100%;margin-top:-13px;"
-			});
-
-			document.body.appendChild(mbc.domNode);
-			
-			mbc.startup();
-
+			// need change
+			this.inherited(arguments);
+			domStyle.set(this.mainBorder.domNode,"margin-top","-13px");
 		},
 
 		_createSystemToolBar : function() {
-			var stb  = this.stb = new SystemToolBar({
+			var toolBar  = this.toolBar = new SystemToolBar({
 				region: "top",
 				layoutPriority:1
 			});
 
 			var systemlogo = this.systemlogo = new SystemLogoApplet({settings:{},pos:0.05});
-			stb.addChild(systemlogo);
+			toolBar.addChild(systemlogo);
 			
-			var sceneNaviBar = this.sceneNaviBar = new SceneNaviBar({settings:{},pos:0.40,sceneContainer:this.dsc});
-			stb.addChild(sceneNaviBar);
+			var sceneNaviBar = this.sceneNaviBar = new SceneNaviBar({settings:{},pos:0.40,sceneContainer:this.sceneContainer});
+			toolBar.addChild(sceneNaviBar);
 
 			var fullScreen = this.fullScreen = new AppletFullScreen({settings:{},pos:0.65});
-			stb.addChild(fullScreen);
+			toolBar.addChild(fullScreen);
 
 			var linkArea = this.linkArea = new AppletLinkArea({settings:{},pos:0.75});
-			stb.addChild(linkArea);
+			toolBar.addChild(linkArea);
 			
 			
 			var account = this.account = new AppletAccount({settings:{},pos:0.95,config:this._config});
-			stb.addChild(account);
+			toolBar.addChild(account);
 					
 			var theme = this.theme = new AppletTheme({settings:{},pos:0.65});
-			// stb.addChild(theme);
+			// toolBar.addChild(theme);
 
-			this.mbc.addChild(stb);
+			this.mainBorder.addChild(toolBar);
 
 			on(theme,"ChangeTheme",lang.hitch(this,function(theme){
-				var scene = this.dsc.selectedChildWidget;
+				var scene = this.sceneContainer.selectedChildWidget;
 				this.changeTheme(scene,theme);
 				this.applyTheme(theme);
 				this.resize();
-			}));	
+			}));
 
 			topic.subscribe("/qfacex/widgets/window/Window/full",lang.hitch(this,function(win,isFull){
 				if (isFull) {
 					this.fullSceneed(win);
 				} else {
 					this.unFullSceneed(win);
-				}	
+				}
 			}));
 		},
 
 		// need change
 		updateSystemPanelColor: function(color){
-			this.stb.updateBgColor(color)
+			this.toolBar.updateBgColor(color);
 		},
 		
 		addScene : function(scene) {

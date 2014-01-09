@@ -16,7 +16,7 @@ define([
 	"dojo/dom-geometry",
 	"dojo/_base/fx", // fx.Animation
 	"dojo/_base/html",
- 	"dojo/mouse",
+	"dojo/mouse",
 	"dojo/on",
 	"dojo/dnd/Source",
 	"dojo/Deferred",
@@ -33,11 +33,13 @@ define([
   "dijit/_TemplatedMixin",
   "dijit/_WidgetsInTemplateMixin",
 	"qfacex/widgets/complex/applet/Applet",
+	"qfacex/widgets/complex/applet/Search",
 	"qfacex/widgets/window/Window",
-	"qface/system/tools/AddScene/App",
+	"qface/system/tools/apps/AddScene/App",
 	"dojo/i18n!qface/system/desktop/scene/nls/Scene"
-], function(declare,lang,array,domClass,domStyle,domConstruct,domGeom,dojoFx,domHtml,mouse,on,dndSource,Deferred,has,topic,Form,Select,Dialog,
-	Button,TextBox,BorderContainer,TabContainer,ContentPane,_TemplatedMixin,_WidgetsInTemplateMixin,QApplet,Window,AddScene,nlsScene){
+], function(declare,lang,array,domClass,domStyle,domConstruct,domGeom,dojoFx,domHtml,mouse,on,dndSource,
+	Deferred,has,topic,Form,Select,Dialog,Button,TextBox,BorderContainer,TabContainer,ContentPane,_TemplatedMixin,
+	_WidgetsInTemplateMixin,QApplet,Search,Window,AddScene,nlsScene){
 	// module:
 	//		openstar
 	// summary:
@@ -51,7 +53,7 @@ define([
 		constructor : function(params) {
 			this._sceneIconsMap = new Array();
 		},
-		
+
 		postCreate: function(){
 			var self = this;
 			domClass.add(this.containerNode, "navBar");
@@ -66,17 +68,17 @@ define([
 				}
 			},searchDiv);
 			var arrowContainer = domConstruct.create("div",{class:"seachArrowContainer"},searchDiv);
-	  		domConstruct.create("span",{class:"searchArrowUp"},arrowContainer);
+			domConstruct.create("span",{class:"searchArrowUp"},arrowContainer);
 
 			on(searchDiv,mouse.enter,function(){
-	    		domStyle.set(arrowContainer,"display","block");
-	    		domStyle.set(self.search,"display","block");
-	    	});
+				domStyle.set(arrowContainer,"display","block");
+				domStyle.set(self.search.domNode,"display","block");
+			});
 
-	    	on(searchDiv,mouse.leave,function(){
-	    		domStyle.set(arrowContainer,"display","none");
-	    		domStyle.set(self.search,"display","none");
-	    	});
+			on(searchDiv,mouse.leave,function(){
+				domStyle.set(arrowContainer,"display","none");
+				domStyle.set(self.search.domNode,"display","none");
+			});
 
 
 			domConstruct.create("i",{class:"appletSearchImg"},a);
@@ -87,7 +89,9 @@ define([
 		},
 		
 		_createSearchNode: function(node){
-			var self = this;
+			var search = this.search = new Search({class:"searchForm"});
+			node.appendChild(search.domNode);
+			/*var self = this;
 			var search = this.search = domConstruct.create("form",{class:"searchForm"},node);
 			var span = domConstruct.create("span",{},search);
 			var inputNode = this.inputNode = domConstruct.create("input",{type:"text",class:"search",placeholder:"Search..."},span);
@@ -102,7 +106,7 @@ define([
 			},span);
 			on(search,"submit",function(){
 				alert("find something");
-			});
+			});*/
 		},
 
 		_createAddNode: function(){
@@ -118,7 +122,7 @@ define([
 					currentScene.launchSystemApp("AddScene",{"loadCss":true});
 					// var add = new AddScene({scene:currentScene,sceneContainer:self.sceneContainer});
 					// add.init();
-					topic.publish("qface/system/tools/addScene",{sceneNaviBar:self,desktop:currentScene.desktop});
+					topic.publish("qface/addScene",{sceneNaviBar:self,desktop:currentScene.desktop});
 				}
 			},addLiNode);
 		},

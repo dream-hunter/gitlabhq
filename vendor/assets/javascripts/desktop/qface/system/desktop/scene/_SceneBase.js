@@ -17,10 +17,10 @@ define([
 	"dijit/layout/_LayoutWidget",
 	"dijit/layout/StackContainer",
 	"qface/utils/logger",
- 	"dojo/text!./templates/_sceneBase.html"
-	],function(dojo,domClass,topic,lang,_Widget,_TemplatedMixin,_Container,_LayoutWidget,StackContainer,logger,template) {
+	"dojo/text!./templates/_sceneBase.html"
+],function(dojo,domClass,topic,lang,_Widget,_TemplatedMixin,_Container,_LayoutWidget,StackContainer,logger,template) {
 	var _SceneBase = dojo.declare([_LayoutWidget,_TemplatedMixin],{
- 		templateString:template,
+		templateString:template,
 		//	summary:
 		//		Contains all the app functions of the scene
 		//	appList: Array,
@@ -96,12 +96,10 @@ define([
 					});
 					try {
 						instance.init(args||{});
-
 						// customize app css
 						if(args && args["loadCssPath"]) this.desktop.addDojoCss(dojo.moduleUrl(path,args["loadCssPath"]));
 					
-					}
-					catch(e){
+					}catch(e){
 						topic.publish("/qface/system/desktop/scene/launchAppEnd", [this,sysname,name,false]);
 						console.error(e);
 						d.errback(e);
@@ -109,28 +107,27 @@ define([
 						return;
 					}
 					instance.status = "active";
-				}
-				catch(e){
-		      		topic.publish("/qface/system/desktop/scene/launchAppEnd", [this,sysname,name,false]);
+				}catch(e){
+					topic.publish("/qface/system/desktop/scene/launchAppEnd", [this,sysname,name,false]);
 					console.error(e.stack || e);
-		        	d.errback(e);
-		        	return;
-		      		throw e;
+					d.errback(e);
+					throw e;
+					return;
 				}
 				d.callback(instance);
-		        topic.publish("/qface/system/desktop/scene/launchAppEnd", [this,sysname,name,true]);
+				topic.publish("/qface/system/desktop/scene/launchAppEnd", [this,sysname,name,true]);
 			}));
 		},
 
 		launchSystemApp: function(/*string*/appName,/*obj*/args){
-			var path = "tools/" + appName + "/App";
-	      	require([path],dojo.hitch(this,function(Application){
-	      		var app = new Application({
-	      			args: args,
-	      			scene: this
-	      		});
-	      		app.init(args||{});
-				if(args && args["loadCss"]) this.desktop.addDojoCss(dojo.moduleUrl(path,"../resources/app.css"));
+			var path = "tools/apps/" + appName + "/App";
+				require([path],dojo.hitch(this,function(Application){
+					var app = new Application({
+						args: args,
+						scene: this
+					});
+					app.init(args||{});
+			if(args && args["loadCss"]) this.desktop.addDojoCss(dojo.moduleUrl(path,"../resources/app.css"));
 			}));
 		},
 

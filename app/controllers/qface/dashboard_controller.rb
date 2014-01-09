@@ -1,3 +1,4 @@
+# encoding utf-8
 class Qface::DashboardController < ApplicationController
 	layout false
 	skip_before_filter :authenticate_user!
@@ -52,12 +53,12 @@ class Qface::DashboardController < ApplicationController
 			render :json => {
 				:username => current_user.username,
 				:userAvatar => current_user.avatar.url,
-				:theme => "Soria",
+				:theme => "soria",
 				:logoname => "UTILHUB",
 				:scenes => {
 					:icons => {
 						:type => "qface/system/desktop/scene/impl/icons/Scene",
-						:theme => "Soria",
+						:theme => "soria",
 						:wallpaper => {
 							:image => "res/wallpaper1.png",
 							:color => "#696969",
@@ -162,6 +163,143 @@ class Qface::DashboardController < ApplicationController
 								:fav_count => "22"
 							}
 						]
+					},
+					:explore_multiapp => {
+						:type => "qface/system/desktop/scene/impl/explorer/MultiAppScene",
+						:theme => "soria",
+						:wallpaper => {
+							:image => "res/wallpaper1.png",
+							:color => "#696969",
+							:style => "centered",
+							:storedList => []
+						},
+						:apps => {
+							:identifier => "id",
+							:label => "label",
+							:items =>	[					
+								{ 
+									:type => "folder",
+									:id => "003",
+									:sysname => "accessories",
+									:label => "Accessories",
+									:name => "Accessories",
+									:icon => "icon-16-categories-applications-accessories",
+									:folders => [{
+										:id => "004",
+										:sysname => "pst.sample.tool.Calculator.App",
+										:label => "Calculator",
+										:name => "Calculator",
+										:category => "Accessories",
+										:icon => "icon-32-apps-accessories-calculator",
+										:version => "1.0"
+									}]
+								},
+								{ 
+									:type => "folder",
+									:id => "005",
+									:sysname => "games",
+									:label => "games",
+									:name => "games",
+									:icon => "icon-16-categories-applications-games",
+									:folders => [
+										{
+											:id => "006",
+											:sysname => "pst.sample.game.MineSweep.App",
+											:label => "MineSweep",
+											:name => "MineSweep",
+											:category => "Games",
+											:icon => "icon-32-apps-preferences-desktop-screensaver",
+											:version => "1.0"
+										},
+										{
+											:id => "007",
+											:sysname => "pst.sample.game.Checkers.App",
+											:label => "Checkers",
+											:name => "Checkers",
+											:category => "Games",
+											:icon => "icon-32-apps-preferences-desktop-sound",
+											:version => "1.0"
+										}
+									]
+								},
+								{
+									:type => "folder",
+									:id => "008",
+									:sysname => "internet",
+									:label => "internet",
+									:name => "internet",
+									:icon => "icon-16-categories-applications-internet",
+									:folders => [
+										{
+											:id => "009",
+											:sysname => "pst.sample.tool.WebBrowser.App",
+											:label => "WebBrowser",
+											:name => "WebBrowser",
+											:category => "Internet",
+											:icon => "icon-32-apps-internet-web-browser",
+											:version => "1.0"
+										}
+									]
+								},
+								{
+									:type => "folder",
+								  :id => "011",
+								  :sysname => "system",
+								  :label => "system",
+								  :name => "system",
+								  :icon => "icon-16-categories-applications-system",
+								  :folders => [
+										{
+											:id => "012",
+											:sysname => "pst.sample.system.TaskManager.App",
+											:label => "TaskManager",
+											:name => "TaskManager",
+											:category => "System",
+											:icon => "icon-32-apps-utilities-system-monitor",
+											:version => "1.0"
+										}
+									]
+								},
+								{
+									:type => "folder",
+									:id => "013",
+									:sysname => "multimedia",
+									:label => "multimedia",
+									:name => "multimedia",
+									:icon => "icon-16-categories-applications-multimedia",
+									:folders => [
+										{
+											:id => "014",
+											:sysname => "pst.sample.effect.3DVideo.App",
+											:label => "3DVideo",
+											:name => "3DVideo",
+											:category => "Multimedia",
+											:icon => "icon-32-apps-internet-web-browser",
+											:version => "1.0"
+										}
+									]
+								},
+								{
+									:type => "folder",
+									:id => "015",
+									:sysname => "office",
+									:label => "office",
+									:name => "office",
+									:icon => "icon-16-categories-applications-office",
+									:folders => [
+										{
+											:id => "016",
+											:sysname => "pst.sample.office.WordProcessor.App",
+											:label => "WordProcessor",
+											:name => "WordProcessor",
+											:category => "Office",
+											:icon => "icon-32-mimetypes-x-office-document",
+											:version => "1.0"
+										}
+									]
+								}
+							]
+						}
 					}
 				}
 			}

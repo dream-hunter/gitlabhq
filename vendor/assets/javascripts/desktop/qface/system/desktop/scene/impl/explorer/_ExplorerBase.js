@@ -1,26 +1,18 @@
 define([
-	"dojo/_base/lang", 
-	"dojo/_base/declare", 
-	"dojo",
+	"dojo/_base/lang",
+	"dojo/_base/declare",
 	"dojo/_base/array",
-	"dojo/dom-construct",
-	"dojo/query",
 	"dojo/data/ItemFileWriteStore",
 	"dijit/Tree",
 	"dijit/tree/ForestStoreModel",
 	"qfacex/widgets/layout/BorderContainer",
 	"dijit/layout/ContentPane",
-	"dijit/layout/SplitContainer",
 	"dijit/layout/AccordionContainer",
-	"dijit/layout/AccordionPane",
-	"dijit/layout/TabContainer",
 	"dojox/layout/ToggleSplitter",
-	"dojox/layout/ExpandoPane",
-	"qfacex/widgets/window/Window",
 	"qface/system/desktop/scene/_SceneBase",
 	"qfacex/widgets/window/area/Area"
-],function(lang,declare,dojo,array,domConstruct,query,ItemFileWriteStore,Tree,ForestStoreModel,BorderContainer,ContentPane,
-	SplitContainer,AccordionContainer,AccordionPane,TabContainer,ToggleSplitter,ExpandoPane,Window,_SceneBase,Area) {
+],function(lang,declare,array,ItemFileWriteStore,Tree,ForestStoreModel,BorderContainer,ContentPane,
+	AccordionContainer,ToggleSplitter,_SceneBase,Area) {
 	var _ExplorerBase = declare([_SceneBase],{
 		//	_windowList: dojo.data.ItemFileWriteStore
 		//		A dojo.data.ItemFileWriteStore containing a list of windows
@@ -63,8 +55,7 @@ define([
 		},
 
 		_makeTree: function (){
-		  var config = this._config;
-			
+			var config = this._config;
 			var treeData = config.apps;
 			var treeStore = this.treeStore = new ItemFileWriteStore({data: treeData});
 			var treeModel = new ForestStoreModel({
@@ -84,7 +75,7 @@ define([
 				onClick: function(item){
 					var sysname = treeStore.getValue(item,"sysname");
 					if(sysname){
-						self.launch(sysname, {})
+						self.launch(sysname, {});
 					}
 				},
 				getIconClass: function(item,opened){
@@ -96,18 +87,18 @@ define([
 
 		addApp: function(app,appConfig){
 			var app = {
-					"id":app.app_id + "ADDAPP",
-					"sysname":app.sysname,
-					"label":app.name,
-					"name":app.name,
-					"type": "app",
-					"category":app.category,
-					"icon":app.icon.replace(/-16-/,"-32-"),
-					"version":app.version
-				};
+				"id":app.app_id + "ADDAPP",
+				"sysname":app.sysname,
+				"label":app.name,
+				"name":app.name,
+				"type": "app",
+				"category":app.category,
+				"icon":app.icon.replace(/-16-/,"-32-"),
+				"version":app.version
+			};
 			var items = appConfig.scenes[this.name].apps.items;
 			var categoryName = app.category.toLocaleLowerCase();
-			var cat = array.filter(items,function(item){return item.sysname === categoryName});
+			var cat = array.filter(items,function(item){return item.sysname === categoryName;});
 			var self = this;
 			
 			var addChild = function(item,app){
@@ -130,13 +121,13 @@ define([
 					}
 				});
 			} else {
-				var newCat = { 
-					"type": "folder", 
+				var newCat = {
+					"type": "folder",
 					"id":items.length +1 + "ADDCATEGORY",
-					"sysname": categoryName,  
+					"sysname": categoryName,
 					"label":categoryName,
 					"name":categoryName,
-					"icon":"icon-16-categories-applications-" + categoryName, 
+					"icon":"icon-16-categories-applications-" + categoryName,
 					"folders":[]
 				};
 				self.treeStore.newItem(newCat);
@@ -149,7 +140,7 @@ define([
 					onError: function(err){
 						console.error(err);
 					}
-				})
+				});
 				newCat.folders.push(app);
 				items.push(newCat);
 			}
@@ -165,7 +156,7 @@ define([
 				onError: function(err){
 					console.error(err);
 				}
-			})
+			});
 			return appConfig;
 		},
 
@@ -176,7 +167,7 @@ define([
 		restrictWindow : function(win){
 			win.showMinimize = false;
 			win.showFull = false;
-		}		
+		}
 	});
 	
 	return _ExplorerBase;

@@ -1,0 +1,10 @@
+.search{
+  height: 25px;
+  margin:6px auto;
+}
+
+input[type="text"]{
+    cursor: pointer;
+    margin-bottom: 0;
+    width:200px;
+}
