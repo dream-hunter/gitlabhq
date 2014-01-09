@@ -1,0 +1,80 @@
+/* Basic jQuery Slider essential styles */
+
+ul.bjqs{position:relative; list-style:none;padding:0;margin:0;overflow:hidden; display:none;}
+li.bjqs-slide{position:absolute; display:none;}
+ul.bjqs-controls{list-style:none;margin:0;padding:0;z-index:9999;}
+ul.bjqs-controls.v-centered li a{position:absolute;}
+ul.bjqs-controls.v-centered li.bjqs-next a{
+		right:5px;
+		background-position: 100% 0;
+	}
+
+ul.bjqs-controls.v-centered li.bjqs-next a:hover{
+		background-position: 100% 100%;
+	}
+
+ul.bjqs-controls.v-centered li.bjqs-prev a{
+		left:5px;
+		background-position: 0 0;
+	}
+
+ul.bjqs-controls.v-centered li.bjqs-prev a:hover{
+	background-position: 0 100%;
+}
+
+ol.bjqs-markers{
+	list-style: none; 
+	float: left;
+	margin: 0; 
+	bottom: 0;
+  left: 50%;
+  position: absolute;
+}
+ol.bjqs-markers.h-centered{text-align: center;}
+ol.bjqs-markers li{display:inline;}
+ol.bjqs-markers li a{display:inline-block;}
+p.bjqs-caption{
+	display:block;
+	margin:0;
+	padding:5px;
+	position:absolute;
+	bottom:0;
+	font-weight: bold;
+}
+
+#container{
+	max-width:620px;
+	margin:0 auto;
+	padding-bottom:80px;
+}
+
+ul.bjqs-controls.v-centered li a{
+	background-image: url("../images/sliderArrow.png");
+	text-decoration: none;
+	z-index: 60;
+	height: 50px;
+	width: 50px;
+}
+
+ol.bjqs-markers li a{
+		background: url("../images/sliderBullet.png") repeat scroll left top rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0);
+    float: left;
+    height: 20px;
+    margin-left: 7px;
+    position: relative;
+    text-indent: -4000px;
+    width: 20px;
+}
+
+ol.bjqs-markers li a:hover{
+	background-position: 0 50%;
+}
+
+ol.bjqs-markers li.active-marker a{
+	background-position: 0 100%;
+}
+
+p.bjqs-caption{
+	background: rgba(255,255,255,0.5);
+}

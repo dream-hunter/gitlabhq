@@ -1,0 +1,345 @@
+/*appStore stylesheet    */
+html, body, div, span, applet, object, iframe, 
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, 
+abbr, acronym, address, big, cite, code, del, dfn, 
+em, font, img, ins, kbd, q, s, samp, small, strike, 
+strong, sub, sup, tt, var, b, u, i, center, dl, dt,
+dd, ol, ul, li, fieldset, form, label, legend, table, caption, 
+tbody, tfoot, thead, tr, th, td {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 0 none;
+    font-size: 100%;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+body {
+    background: none repeat scroll 0 0 #FFFFFF;
+    color: #444444;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 62.5%;
+    text-rendering: optimizelegibility;
+}
+
+*::-moz-selection {
+    background: none repeat scroll 0 0 #EA4C89;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+
+.appStore a:link, a:visited {
+    color: #4083A9;
+    outline: medium none;
+    text-decoration: none;
+}
+
+.appStore .wrap{
+	background: url("../images/appStorebg.gif") repeat scroll -70% 0 #F0F0F0;
+}
+
+.appStore .wrap-inner {
+    padding: 20px 12px 30px;
+}
+
+.appStore div.full {
+    width: 700px;
+    margin: 0 0 20px 0;
+    padding: 0;
+}
+
+.appStore div.full-pitch {
+    width: auto;
+    margin-top: -20px;
+    padding: 5px 5px;
+    text-align: center;
+    background: rgba(0,0,0,0.07);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+#main.main-full, #main.full-800 {
+    float: none;
+    max-width: 970px;
+    width: auto;
+}
+
+#main {
+    float: left;
+    font-size: 1.2em;
+    width: 74.2268%;
+}
+
+.appStore .wrap .group:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.appStore .wrap .group {
+    position: relative;
+}
+
+.appStore .wrap ul.tabs {
+	background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border-bottom: 1px solid #DDDDDD;
+    margin-top: -2px;
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    margin: 0 0 15px 0;
+
+}
+
+.appStore .wrap ul.tabs:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+.appStore ol, ul {
+    list-style: none outside none;
+}
+
+.appStore .wrap ul.tabs li {
+    color: #BBBBBB;
+    float: left;
+    line-height: 1;
+    margin: 0 20px 0 0;
+    position: relative;
+}
+
+.appStore .wrap ul.tabs li a{
+    padding: 0 0 18px;
+}
+
+.appStore .wrap ul.tabs li a{
+    color: #999999;
+    display: block;
+    padding: 0 0 18px;
+    text-decoration: none;
+}
+
+.appStore .wrap ul.tabs li a:hover {
+    color: #777777;
+}
+
+.appStore .wrap ul.tabs li.active a{
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.appStore .wrap ul.tabs li.active a{
+    color: #444444;
+    font-weight: bold;
+}
+
+.appStore .wrap ol.apps{
+    padding: 0;
+    margin: 0;
+}
+
+.appStore .wrap ol.apps li.group {
+    margin:0 22.5px 30px 0;
+    width: 22.680412371134%;
+    float: left;
+    padding: 0;
+    position: relative;
+}
+
+.appStore .wrap ol.apps li div.app {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+    clear: left;
+    position: relative;
+
+    border: 0 none;
+    font-size: 100%;
+    margin: 0;
+    outline: 0 none;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+.appStore .wrap ol.apps li div.app div.appShot {
+    padding: 10px;
+}
+
+.appStore .wrap ol.apps li div.appImg {
+    height: 0;
+    max-width: 100%;
+    overflow: hidden;
+    padding-bottom: 75%;
+}
+
+.appStore .wrap ol.apps li div.appImg img {
+    max-height: 150px;
+    max-width: 100%;
+}
+.appStore a img {
+    border: medium none;
+}
+
+.appStore .wrap ol.apps li div.app a.appIntro {
+    opacity: 0;
+    filter: alpha(opacity=0);
+    position: absolute;
+    top: 0;
+    bottom: 30px;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    font-size: 12px;
+    line-height: 2;
+    text-decoration: none;
+    color: #888;
+    background: #fff;
+    background: rgba(255,255,255,0.96);
+    overflow: hidden;
+    z-index: 3;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.appStore .wrap ol.apps li div.app a.appIntro strong {
+    color: #444444;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.2;
+    margin: 0 0 4px;
+}
+
+.appStore .wrap ol.apps li div.app a.appIntro em {
+    bottom: 10px;
+    color: #999999;
+    display: block;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: bold;
+    left: 20px;
+    line-height: 1;
+    margin: 0 0 3px;
+    position: absolute;
+}
+
+.appStore .wrap ol.apps li div.app a.appIntro span.appComment{
+    color: #777777;
+    display: block;
+    font-size: 11px;
+    line-height: 1.4;
+    margin: 0 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.appStore .wrap ol.apps li ul.tools {
+    margin: 10px 0 0;
+    text-align: left;
+}
+
+.appStore .wrap ol.apps li ul.tools li {
+    float: right;
+    width: auto;
+    margin: 0 0 0 12px;
+    display: inline;
+    font-size: 11px;
+    line-height: 1;
+    color: #aaa;
+}
+
+.appStore .wrap ol.apps li ul.tools li a {
+    color: #AAAAAA;
+    text-decoration: none;
+}
+
+.appStore .wrap ol.apps li ul.tools li.fav a, 
+.appStore .wrap ol.apps li ul.tools li.fav span {
+    background-image: url("../images/appFavImg.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    padding-left: 15px;
+}
+
+.appStore .wrap ol.apps li ul.tools li.cmnt a, 
+.appStore .wrap ol.apps li ul.tools li.cmnt span {
+    background: url("../images/appCommentImg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    padding-left: 15px;
+}
+
+.appStore .wrap ol.apps li ul.tools li.views {
+    background-image: url("../images/appViewsImg.png");
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+    border-left: medium none;
+    margin-left: 0;
+    padding-left: 18px;
+}
+
+.appStore .wrap ol.apps li ul.tools li a:hover{
+    color: #777777;
+}
+
+.appStore .wrap ol.apps li ul.tools li.fav a:hover{
+    background-position: 0 -17px;
+}
+
+.appStore .wrap ol.apps li ul.tools li.cmnt a:hover{
+    background-position: 0 -16px;
+}
+
+.appStore .wrap ol.apps li div.app div.extras {
+    bottom: 2px;
+    left: 13px;
+    position: absolute;
+    z-index: 2;
+}
+
+.appStore .wrap ol.apps li div.app span.reboundMmark {
+    float: left;
+    margin: 0 5px 0 0;
+}
+
+.appStore .wrap ol.apps li div.app span.hasRebounds {
+    background-image: url("../images/hasReboundsImg.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    color: #8ABA56;
+    font-size: 0.78em;
+    line-height: 1.5;
+    padding: 0 0 0 9px;
+}
+
+.appStore .wrap ol.apps li div.app span.attachmentsMark {
+    float: left;
+}
+
+.appStore .wrap ol.apps li h2 {
+    color: #999999;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.4em;
+    margin: 10px 0 0;
+    max-height: 16px;
+    padding: 0 0 0 10px;
+    vertical-align: middle;
+}
+
+.appStore .wrap ol.apps li h2 a {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+
+
+

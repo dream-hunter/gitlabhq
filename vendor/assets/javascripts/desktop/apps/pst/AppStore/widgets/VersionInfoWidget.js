@@ -13,7 +13,7 @@ define([
   "dijit/form/Button",
   "dojo/text!./templates/authorInfo.html",
   "dojo/i18n!../nls/AppStore",
-  "dojo/dom-style",
+  "dojo/dom-style", 
   "dojo/_base/fx",
   "dojo/_base/lang",
   "qface/Runtime"

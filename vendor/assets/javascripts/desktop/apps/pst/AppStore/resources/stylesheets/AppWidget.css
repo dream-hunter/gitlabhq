@@ -115,7 +115,7 @@
     background-position: -112px 0;
 }
 
-.appInfoWidget .iconEdit, [class^="icon"], [class*="icon"] {
+.appInfoWidget .iconEdit {
     background-image: url("../images/icons.png");
     background-repeat: no-repeat;
     display: inline-block;
@@ -310,7 +310,7 @@
     background-position: -112px 0;
 }
 
-.authorInfoWidget .iconEdit, [class^="icon"], [class*=" icon"] {
+.authorInfoWidget .iconEdit {
     background-image: url("../images/icons.png");
     background-repeat: no-repeat;
     display: inline-block;
