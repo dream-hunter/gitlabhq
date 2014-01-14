@@ -1,14 +1,14 @@
 .sortLabel{
   float: left;
-  margin-top: 4px;
+  margin-top: 5px;
 }
 
 .sortOpts{
   text-align: right;
 }
 
-.storeMainContainer .sort{
+.sort{
   float: left;
-  margin: 9px;
-  width: 90px
+  margin-left: 30px;
+  width: 120px
 }

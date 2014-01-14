@@ -5,15 +5,15 @@ define([
   "dojo/dom-construct",
   "dojo/_base/declare",
   "dojo/_base/array",
-  "dijit/_WidgetBase", 
+  "dijit/_WidgetBase",
   "dijit/_TemplatedMixin",
   "dijit/Dialog",
   "dijit/form/MultiSelect",
   "dijit/form/Button",
-  "dojo/text!./templates/AppWidget.html",
+  "dojo/text!./templates/AppDescWidget.html",
   "dojo/i18n!../nls/AppStore",
-  "dojo/dom-style", 
-  "dojo/_base/fx", 
+  "dojo/dom-style",
+  "dojo/_base/fx",
   "dojo/_base/lang",
   "qface/Runtime"
   ],function(on,mouse,domClass,domConstruct,declare,array,WidgetBase,TemplatedMixin,Dialog,MultiSelect,Button,template,nlsAppStore,domStyle,baseFx,lang,
@@ -33,7 +33,7 @@ define([
       description: "",
       defaultDescription: "this is a default description\r\na good app\r\ndo you like it?\r\nxxxxx",
       templateString: template,
-      baseClass: "appWidget",
+      baseClass: "appDesc",
       mouseAnim: null,
       appClass: null,
       width: "500px",
@@ -49,32 +49,40 @@ define([
       postCreate: function(){
         // var domNode = this.domNode;
         var self = this;
-        var actionList = ["add"];
+        var actionList = ["get","like","share"];
         // var actionList = [nlsAppStore.like,nlsAppStore.view,nlsAppStore.download];
-        var ulNode = domConstruct.create("ul",{},this.actionNode);
+        // var ulNode = domConstruct.create("ul",{},this.actionNode);
         array.forEach(actionList,function(action){
-          var liNode = domConstruct.create("li",{},ulNode);
+          // var liNode = domConstruct.create("li",{},ulNode);
           var aNode = domConstruct.create("a",{
+            class:"actionBtn",
             href:"javascript:void(0);",
-            innerHTML:nlsAppStore[action],
             onclick: function(){
               self._selectDialog();
               // _SceneBase.addApp();
             }
-          },liNode);
+          },self.actionNode);
+          var iconSpan = domConstruct.create("span",{class:"actionIcon"},aNode);
+          var textSpan = domConstruct.create("span",{class:"actionText",innerHTML:nlsAppStore[action]},aNode);
         });
-        this._chooseBaseNode();
+        // this._chooseBaseNode();
         this.inherited(arguments);
+        on(this.domNode,mouse.enter,lang.hitch(this,function(){
+          domStyle.set(this.actionNode,"opacity","1.0");
+        }));
+        on(this.domNode,mouse.leave,lang.hitch(this,function(){
+          domStyle.set(this.actionNode,"opacity",".0");
+        }));
       },
 
-      _setIconAttr: function(icon) {
-        if(icon == null){
+      /*_setIconAttr: function(icon) {
+        if(icon === null){
           iconUrl = this.appIcon;
         } else{
           var matcher = icon.match(/icon-32-apps-(.*)/);
           // var theme = this.appStore.scene.get("theme");
-          var theme = "Soria"
-          iconUrl = matcher == null ? this.appIcon : ("assets/desktop/resources/qfacex/themes/" + theme + "/icons/32x32/apps/" + matcher[1] + ".png");
+          var theme = "Soria";
+          iconUrl = matcher === null ? this.appIcon : ("assets/desktop/resources/qfacex/themes/" + theme + "/icons/32x32/apps/" + matcher[1] + ".png");
         }
         if (icon != "") {
           this.appIconNode.lastChild.src = iconUrl;
@@ -146,6 +154,6 @@ define([
         // domConstruct.place(dialog.containerNode, loadingDiv, "first");
         dialog.containerNode.appendChild(buttonDiv);
         dialog.show();
-      }
+      }*/
     });
   });

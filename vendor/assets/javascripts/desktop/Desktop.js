@@ -2,13 +2,11 @@
  *
  * Copyright (c) 2013 psteam Inc.(http://www.psteam.co.jp)
  * http://www.psteam.co.jp/qface/license
- * 
+ *
  * @Author: lihongwang
  * @Date: 2013/10/28
  */
 define([
-	"dojo",
-	"require",
 	"dojo/_base/lang",
 	"dojo/_base/declare",
 	"dojo/dom-style",
@@ -41,7 +39,7 @@ define([
 	"qfacex/widgets/complex/applet/LinkArea",
 	"qfacex/widgets/complex/applet/Account",
 	"qfacex/widgets/complex/applet/Applet"
-], function(dojo,require,lang,declare,domStyle,domConstruct,domGeom,dojoFx,event,dndSource,has,on,topic,JSON,jsonRef,
+], function(lang,declare,domStyle,domConstruct,domGeom,dojoFx,event,dndSource,has,on,topic,JSON,jsonRef,
 	_Desktop,BorderContainer,_MuliSceneNaviApplet,_MultiSceneContainer,IconsScene,MultiTabScene,MultiAppScene,
 	SingleAppScene,SingleScene,QPanel,AppletNetmonitor,AppletFullScreen,AppletClock,AppletUnFullDesk,AppletTheme,
 	AppletSearch,AppletLinkArea,AppletAccount,Applet){
@@ -62,23 +60,18 @@ define([
 		//	summary:
 		//		A customizable toolbar that you can reposition and add/remove/reposition applets on
 		templateString: "<div class=\"systemPanel\" dojoAttachEvent=\"onmousedown:_onClick, oncontextmenu:_onRightClick\"><div class=\"systemPanelContainer\" style=\"width:100%;height:100%\" data-dojo-attach-point=\"containerNode\"></div></div>",
-	
 		opacity: 0.95,
-				
 		_onClick : function(e) {
 			event.stop(e);
 		},
-		
+
 		_onRightClick : function(e) {
 			event.stop(e);
 		}
-		
 	});
 
 	var utilhubUserDesktop = declare([_Desktop],{
-	
 		aplUnFull : null,
-		
 		fullSceneed : function (win) {
 			var aplUnFull = this.aplUnFull = new AppletUnFullDesk({settings:{},pos:0.70,appWindow:win});
 			this.toolBar.addChild(aplUnFull);
@@ -106,7 +99,7 @@ define([
 
 			var systemlogo = this.systemlogo = new SystemLogoApplet({settings:{},pos:0.05});
 			toolBar.addChild(systemlogo);
-			
+
 			var sceneNaviBar = this.sceneNaviBar = new SceneNaviBar({settings:{},pos:0.40,sceneContainer:this.sceneContainer});
 			toolBar.addChild(sceneNaviBar);
 
@@ -115,11 +108,11 @@ define([
 
 			var linkArea = this.linkArea = new AppletLinkArea({settings:{},pos:0.75});
 			toolBar.addChild(linkArea);
-			
-			
+
+
 			var account = this.account = new AppletAccount({settings:{},pos:0.95,config:this._config});
 			toolBar.addChild(account);
-					
+
 			var theme = this.theme = new AppletTheme({settings:{},pos:0.65});
 			// toolBar.addChild(theme);
 
@@ -145,12 +138,12 @@ define([
 		updateSystemPanelColor: function(color){
 			this.toolBar.updateBgColor(color);
 		},
-		
+
 		addScene : function(scene) {
 			this.inherited(arguments);
 			this.sceneNaviBar.addScene(scene.name,scene);
 		},
-		
+
 		start : function() {
 			this.inherited(arguments);
 			this.sceneNaviBar.selectScene(0);

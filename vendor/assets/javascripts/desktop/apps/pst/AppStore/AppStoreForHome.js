@@ -13,15 +13,34 @@ define([
 	"dojo/hash",
 	"dojo/io-query",
 	"dojo/topic",
-	"dojo/i18n!./nls/AppStore",
-	"dijit/layout/ContentPane",
-	"dojox/widget/AutoRotator",
-	"dojox/widget/rotator/Fade",
+	"dojo/store/Memory",
+	"qface/system/app/Application",
+	"qfacex/widgets/window/Window",
+	"dojo/data/ItemFileWriteStore",
+	"dijit/Tree",
+	"dijit/tree/ForestStoreModel",
 	"qfacex/widgets/layout/BorderContainer",
-	"./widgets/TopAppWidget",
+	"dijit/layout/ContentPane",
+	"dojox/layout/ToggleSplitter",
+	"qface/Runtime",
+	"dojox/widget/AutoRotator",
+	"dojox/widget/rotator/Slide",
+	"dojox/widget/rotator/Controller",
+	"dojo/text!config/config.json",
+	"qface/system/tools/widgets/SearchWidget",
+	"qface/system/tools/widgets/SortWidget",
+	"qface/system/tools/widgets/PaginateWidget",
+	"./widgets/AppInfoWidget",
+	"./widgets/AuthorInfoWidget",
+	"./widgets/LoginDialog",
+	"qface/system/desktop/scene/impl/singleap/Scene",
+	"dojo/i18n!./nls/AppStore",
+	"./widgets/AppDescWidget",
+	"./widgets/TopAppDescWidget",
 	"./AppStore"
-],function(on,JSON,domConstruct,declare,array,lang,connect,event,domStyle,domClass,query,hash,ioQuery,topic,nlsApp,
-	ContentPane,AutoRotator,RotatorFade,BorderContainer,TopAppWidget,AppStore){
+],function(on,JSON,domConstruct,declare,array,lang,connect,event,domStyle,domClass,query,hash,ioQuery,topic,Memory,_App,Window,
+	ItemFileWriteStore,Tree,ForestStoreModel,BorderContainer,ContentPane,ToggleSplitter,qface,AutoRotator,RotatorSlide,RotatorController,
+	txtConfig,SearchWidget,SortWidget,PaginateWidget,AppInfoWidget,AuthorInfoWidget,LoginDialog,Scene,nlsApp,AppDesc,TopAppDesc,AppStore){
 	return declare([AppStore], {
 		needHash: true,
 		init: function(args){
@@ -31,35 +50,51 @@ define([
 		_createBaseLayout: function(){
 			var appLayout = this.appLayout = new BorderContainer({
 				class:"storeMainContainer",
-				style:"width:99%;height:97%;",
 				region:"leading"
 			});
-			var centerContainer = new BorderContainer({
-				region:"center",
-				class:"centerContainer",
-			});
-			var centerTopItem = this.viewItem = new ContentPane({
-				region:"top",
-				class:"centerTop",
-				style:"width:100%;height:240px;background:#ccc"
-			});
-			this._getTopApps();
 
-			var contentContainer = this.appListItem = new ContentPane({
-				class:"centerContent",
-				region:"center",
-				height:"400px",
-				style:"height:400px;background:gray;"
+			var topContainer = new ContentPane({
+				region:"top",
+				class:"topContainer",
+				style:"height:180px;width:1000px;"
 			});
-			var leftContainer = this.appItem = new BorderContainer({
+			var descContainer = domConstruct.create("div",{class:"descContainer"},topContainer.domNode);
+			var viewContainer = domConstruct.create("div",{class:"viewContainer"},topContainer.domNode);
+
+			var leftContainer = this.treeContainer = new ContentPane({
 				region:"left",
-				class:"leftContainer",
-				style:"width:200px;background:green"
+				class:"treeContainer",
+				style:"width:230px;"
 			});
-			centerContainer.addChild(centerTopItem);
-			centerContainer.addChild(contentContainer);
+
+			// this._getTopApps();
+
+			var centerContainer = this.appItemsContainer = new ContentPane({
+				region:"center",
+				class:"itemContanier",
+				style:"width:750px;height:530px;"
+			});
+
+			// var actionContainer = domConstruct.create("div",{class:"actionContainer"},centerContainer.domNode);
+			var sortItem = this.sortItem = new SortWidget({
+        options: [
+          { label: "最新", value: "updated_at" },
+          { label: "最热", value: "fav_count"},
+          { label: "名称", value: "name", selected: true }
+        ]
+			});
+			topic.publish("qface/sort",this,"_sortApp");
+			centerContainer.addChild(sortItem);
+
+			var searchItem = new SearchWidget({class: "search"});
+			topic.publish("qface/search",this,"_searchApp");
+			centerContainer.addChild(searchItem);
+			searchItem.startup();
+
+			appLayout.addChild(topContainer);
 			appLayout.addChild(leftContainer);
 			appLayout.addChild(centerContainer);
+			return appLayout;
 		},
 
 		_getTopApps: function(){
@@ -102,9 +137,26 @@ define([
 			win.full();
     },
 
-		_addChildCssLink: function(){
-			this.__addCss("apps/pst/AppStore/resources/stylesheets/AppWidget.css");
-      this.__addCss("apps/pst/AppStore/resources/stylesheets/appForHome.css");
+		_createAppContainerPage: function(apps,sortValue){
+			sortValue = sortValue || "name";
+			store = new Memory({data: apps});
+			apps = store.query({},{sort:[{attribute:sortValue,descending:false}]});
+			query(".pagination",this.appItemsContainer.domNode).forEach(domConstruct.destroy);
+			// domConstruct.empty(this.appItemsContainer.id);
+			var self = this;
+			var appViewItems = [];
+			array.forEach(apps,function(app){
+				var appDesc = new AppDesc(app);
+				appViewItems.push(appDesc.domNode);
+			});
+			var appPage = new PaginateWidget({baseData:appViewItems,baseClass:"pagination"});
+			this.appItemsContainer.domNode.appendChild(appPage.domNode);
+		},
+
+		__addChildCssLink: function(){
+			this.__addCss("apps/pst/AppStore/resources/stylesheets/AppDescWidget.css");
+      this.__addCss("qface/system/tools/resources/stylesheets/baseWidgets.css");
+      // this.__addCss("apps/pst/AppStore/resources/stylesheets/appForHome.css");
 		},
 
 		__createBaseTree: function(treeModel){
@@ -122,8 +174,6 @@ define([
 						self.__deleteHash("app");
 						self.__deleteHash("q");
 					}
-					domConstruct.empty(self.descItem.id);
-					domConstruct.empty(self.runItem.id);
 				}
 			});
 		}

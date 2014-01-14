@@ -2,13 +2,11 @@
  *
  * Copyright (c) 2013 psteam Inc.(http://www.psteam.co.jp)
  * http://www.psteam.co.jp/qface/license
- * 
+ *
  * @Author: lihongwang
  * @Date: 2013/11/02
  */
 define([
-	"dojo",
-	"require",
 	"dojo/_base/lang",
 	"dojo/_base/declare",
 	"dojo/dom-style",
@@ -34,7 +32,7 @@ define([
 	"qfacex/widgets/complex/applet/LinkArea",
 	"qfacex/widgets/complex/applet/Account",
 	"qfacex/widgets/complex/applet/Applet"
-], function(dojo,require,lang,declare,domStyle,domConstruct,domClass,Deferred,has,on,topic,JSON,jsonRef,_Desktop,BorderContainer,
+], function(lang,declare,domStyle,domConstruct,domClass,Deferred,has,on,topic,JSON,jsonRef,_Desktop,BorderContainer,
 	_MuliSceneNaviApplet,_MultiSceneContainer,SingleScene,QPanel,AppletFullScreen,AppletClock,AppletUnFullDesk,AppletTheme,AppletSearch,AppletLinkArea,AppletAccount,Applet){
 
 	var SceneNaviBar = _MuliSceneNaviApplet;
@@ -56,7 +54,7 @@ define([
 		//	summary:
 		//		A customizable toolbar that you can reposition and add/remove/reposition applets on
 		templateString: "<div class=\"systemPanel\" dojoAttachEvent=\"onmousedown:_onClick, oncontextmenu:_onRightClick\"><div class=\"systemPanelContainer\" style=\"width:100%;height:100%\" data-dojo-attach-point=\"containerNode\"></div></div>",
-	
+
 		opacity: 0.95,
 		_onClick : function() {
 		},
@@ -106,6 +104,16 @@ define([
 			var linkArea = this.linkArea = new AppletLinkArea({settings:{},pos:0.85,configName:"signIn"});
 			toolBar.addChild(linkArea);
 			this.mainBorder.addChild(toolBar);
+		},
+
+		_createSceneContainer: function(){
+			var sceneContainer = this.sceneContainer = new _MultiSceneContainer({
+				region:'center',
+				controllerWidget: "dijit.layout.StackController",
+				style:"width:1100px;margin:0 auto;"
+			});
+			this.mainBorder.addChild(sceneContainer);
+			return sceneContainer;
 		}
 	});
 

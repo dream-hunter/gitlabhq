@@ -10,10 +10,10 @@ define([
   "dojo/dom-style",
   "dojo/_base/fx",
   "dojo/_base/lang",
-  "./AppWidget"
-  ],function(on,mouse,domClass,domConstruct,declare,array,WidgetBase,TemplatedMixin, domStyle, baseFx, lang,AppWidget){
-    return declare(AppWidget, {
-      baseClass:"topAppWidget",
+  "./AppDescWidget"
+  ],function(on,mouse,domClass,domConstruct,declare,array,WidgetBase,TemplatedMixin, domStyle, baseFx, lang,AppDescWidget){
+    return declare(AppDescWidget, {
+      baseClass:"topDescAppWidget",
       hasName: true,
       hasAuthor: false,
       hasAction: false,

@@ -57,20 +57,18 @@ define([
 				iconClass: "icon-16-apps-accessories-calculator",
 				onClose: lang.hitch(this, "kill")
 			});
-			this._createBaseLayout();
-			win.addChild(this.appLayout);
+			var appLayout = this._createBaseLayout();
+			win.addChild(appLayout);
 			win.show();
 			win.startup();
 			this._windowAction(win);
 			this._readyForTreeData();
 			if(this.needHash) this.addHashEvent();
-			this._addChildCssLink();
+			this.__addChildCssLink();
 		},
 
 		kill: function(){
-			if(!this.win.closed){
-				this.win.close();
-			}
+			if(!this.win.closed){this.win.close();}
 		},
 
     addHashEvent: function(){
@@ -84,14 +82,14 @@ define([
     },
 
 		_createBaseLayout: function(){
-			var appLayout = this.appLayout = new BorderContainer({
+			var appLayout = new BorderContainer({
 				class:"storeMainContainer",
 				style:"width:99%;height:97%;",
 				region:"leading"
 			});
 			appLayout._splitterClass = "dojox.layout.ToggleSplitter";
 			// left
-			var leftContainer = this.appItem = new BorderContainer({
+			var leftContainer = this.treeContainer = new BorderContainer({
 				region:"left",
 				class:"leftContainer",
 				style:"width:200px;",
@@ -111,9 +109,9 @@ define([
 			});
 			var sortItem = this.sortItem = new SortWidget({
         options: [
-            { label: "最新", value: "updated_at" },
-            { label: "最热", value: "fav_count"},
-            { label: "名称", value: "name", selected: true }
+          { label: "最新", value: "updated_at" },
+          { label: "最热", value: "fav_count"},
+          { label: "名称", value: "name", selected: true }
         ]
 			});
 			topic.publish("qface/sort",this,"_sortApp");
@@ -124,16 +122,13 @@ define([
 			centerTopItem.addChild(searchItem);
 			searchItem.startup();
 
-			centerContainer.addChild(centerTopItem);
-
-			var contentContainer = this.appListItem = new ContentPane({
+			var contentContainer = this.appItemsContainer = new ContentPane({
 				class:"centerContent",
 				region:"center",
 				height:"400px",
 				splitter:true
 			});
 
-			centerContainer.addChild(contentContainer);
 			// right
 			var rightContainer = new BorderContainer({
 				class:"rightContainer",
@@ -153,12 +148,17 @@ define([
 				class: "run",
 				splitter:true
 			});
+
+			centerContainer.addChild(centerTopItem);
+			centerContainer.addChild(contentContainer);
+
 			rightContainer.addChild(descItem);
 			rightContainer.addChild(runItem);
 
 			appLayout.addChild(leftContainer);
 			appLayout.addChild(centerContainer);
 			appLayout.addChild(rightContainer);
+			return appLayout;
 		},
 
 		_readyForTreeData: function(configFile){
@@ -210,7 +210,7 @@ define([
 			});
 
 			var appTree = this.__createBaseTree(treeModel);
-			this.appItem.addChild(appTree);
+			this.treeContainer.addChild(appTree);
 			this._createAppContainerPage(apps);
 		},
 
@@ -251,12 +251,10 @@ define([
 			sortValue = sortValue || "name";
 			store = new Memory({data: apps});
 			apps = store.query({},{sort:[{attribute:sortValue,descending:false}]});
-			domConstruct.empty(this.appListItem.id);
+			domConstruct.empty(this.appItemsContainer.id);
 			var self = this;
 			var appViewItems = [];
-			// var olNode = domConstruct.create("ol",{},this.appListItem.domNode);
 			array.forEach(apps,function(app){
-				// var liNode = domConstruct.create("li",{});
 				var aNode = domConstruct.create("a",{
 					title:app.name,
 					href: "javascript:void(0);",
@@ -264,7 +262,6 @@ define([
 						if(self.needHash) self.__updateHash("app",app.name);
 						// descItem
 						self.__createDescContent(app);
-
 						// runItem
 						self.__createRunContent(app);
 					}
@@ -272,15 +269,13 @@ define([
 				var imageUrl = self.__getAppImage(app);
 				var image = domConstruct.create("img",{src:imageUrl},aNode);
 				var title = domConstruct.create("span",{innerHTML:app.name,class:"appTitle"},aNode);
-
 				appViewItems.push(aNode);
 			});
 			var appPage = new PaginateWidget({baseData:appViewItems});
-			this.appListItem.domNode.appendChild(appPage.domNode);
-
+			this.appItemsContainer.domNode.appendChild(appPage.domNode);
 		},
 
-		_addChildCssLink: function(){
+		__addChildCssLink: function(){
 			this.__addCss("apps/pst/AppStore/resources/stylesheets/AppWidget.css");
       this.__addCss("apps/pst/AppStore/resources/stylesheets/app.css");
       this.__addCss("qface/system/tools/resources/stylesheets/baseWidgets.css");
@@ -301,7 +296,6 @@ define([
 						self.__deleteHash("app");
 						self.__deleteHash("q");
 					}
-
 					domConstruct.empty(self.descItem.id);
 					domConstruct.empty(self.runItem.id);
 				},
@@ -392,8 +386,8 @@ define([
 					}
 				}
       } else {
-				domConstruct.empty(this.descItem.id);
-				domConstruct.empty(this.runItem.id);
+				// domConstruct.empty(this.descItem.id);
+				// domConstruct.empty(this.runItem.id);
       }
 		},
 

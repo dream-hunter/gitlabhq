@@ -4,6 +4,7 @@ define({
 			"search":"查找",
 			"sort":"排序",
 			"like":"赞",
+			"share":"分享",
 			"view":"查看",
 			"edit":"编辑",
 			"get":"获取",

@@ -1,68 +1,17 @@
 .pagination{
-	height:96%;
-	width:99%;
-	margin: 0 auto;
-	border:1px solid #ccc;
+	/*margin: 10px auto;*/
+	text-align: center;
+	/*border:1px solid #ccc;*/
 }
 
 .pagination .pageCnt{
-	height: 90%;
-}
-
-.pagination .pageCnt ul{
-	display:block;
-  padding:10px;
-  list-style: none;
-  margin: 0 auto 80px;
-  overflow: hidden;
-  max-width: 650px;
-}
-
-.pagination .pageCnt li.pageItem{
-	position:relative;
-  padding:6px;
-  float:left;
-  display: list-item;
-  margin:6px;
-  width:100px;
-  text-align:-webkit-match-parent;
-}
-
-.pagination .pageCnt li.pageItem a {
-	text-align: center;
-  width:100px;
-  height:100px;
-  display: block;
-  border: solid 1px #D6DDC4;
-  border-radius: 14px;
-  box-shadow: 3px 1px 6px rgba(102,102,102,.25);
-  background: #8cc300;
-  background: -moz-linear-gradient(top,#D6DDC4,rgba(198, 200, 201, 1));
-  background: -webkit-gradient(linear,left top,left bottom,from(#D6DDC4),to(rgba(198, 200, 201, 1)));
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D6DDC4',endColorstr='rgba(198, 200, 201, 1)');
-  color: #fff;
-  text-decoration: none;
-  padding: 0;
-}
-
-.pagination .pageCnt li.pageItem a:hover {
-	background-color: #F2F8F7;
-  background: -moz-linear-gradient(top,#F2F8F7,#8F9999);
-  background: -webkit-gradient(linear,left top,left bottom,from(#F2F8F7),to(#8F9999));
-}
-
-.pagination .pageCnt .evenItem{
-	background-color: #ccc;
-}
-
-.pagination .pageCnt .oddItem{
-	background-color: rgb(240, 240, 240);
+  display: inline-block;
 }
 
 .pagination .pageNavCnt{
-	height: 25px;
+	height: 24px;
 	text-align: center;
-	margin-top:5px;
+	padding:3px;
 }
 
 .pagination .pageNavCnt a{

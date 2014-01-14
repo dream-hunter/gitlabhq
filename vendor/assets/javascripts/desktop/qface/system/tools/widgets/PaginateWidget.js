@@ -26,7 +26,7 @@ define([
     templateString: template,
     baseData: [],
     needEvenClass: false, // add odd or even class for each item
-    perPage: 30,
+    perPage: 6,
     pgCursor: 4, // when to change page nav num
     pgLeftShowCt: 3, // the count of left pages
     pgRightShowCt: 3, // the count of right pages
@@ -50,19 +50,22 @@ define([
       this.inherited(arguments);
     },
 
-    _createPageCnt: function(/*array*/ page){
+    _createPageCnt: function(/*array*/ pageItems){
       // first empty page items container
       domConstruct.empty(this.pageCnt);
       // add page content to this container
-      var ul = domConstruct.create("ul",{},this.pageCnt);
-      array.forEach(page,lang.hitch(this,function(item,index){
+      array.forEach(pageItems,lang.hitch(this,function(item){
+        this.pageCnt.appendChild(item);
+      }));
+      /*var ul = domConstruct.create("ul",{},this.pageCnt);
+      array.forEach(pageItems,lang.hitch(this,function(item,index){
         var li = domConstruct.create("li",{class: "pageItem"},ul);
         if(this.needEvenClass){
           var colorClass = index % 2 === 0 ? "even" : "odd";
           domClass.add(li,colorClass);
         }
         li.appendChild(item);
-      }));
+      }));*/
     },
 
     _createPageNavCnt: function(){
@@ -173,7 +176,7 @@ define([
             var pgNum = parseInt(this.text);
             self.goToPage(pgNum);
             self.currentPgNum = pgNum;
-   
+
             var prevShowStyle = pgNum === 1 ? "none" : "inline";
             domStyle.set(dom.byId("prevPg"),"display",prevShowStyle);
 
@@ -187,16 +190,13 @@ define([
       }
     },
 
-    // split data 
+    // split data to pages
     _getPageItems: function(){
       var pageData = this.baseData;
       var pages = this.pages = [];
       var length = pageData.length;
-
       var leaveCount = length % this.perPage; // the last page's item size
-
       var pageSize = this.pageSize = Math.ceil(length / this.perPage);
-
       array.forEach(pageData,lang.hitch(this,function(data,index){
         // this is a page (index start from 0)
         if((index +1) % this.perPage === 0 ){
@@ -206,12 +206,11 @@ define([
             // the index is last item's num in this page
             siglePg.push(pageData[index-i]);
           }
-          // pages.push([pageData[index-2],pageData[index-1],pageData[index]]);
           pages.push(siglePg);
         }
       }));
 
-      // when data split with per_page,there have remaining items, 
+      // when data split with per_page,there have remaining items,
       // so put those items in a new page
       if(leaveCount > 0){
         var lastPage = [];
@@ -236,7 +235,7 @@ define([
       var self = this;
       query(".showPg",self.pageNavCnt).forEach(function(aNode,index){
         var pgNum = parseInt(aNode.text);
-        // init first page num and page cursor num 
+        // init first page num and page cursor num
         if(index === 0){
           self.firstPgNum = pgNum;
           self.pgCursor = pgNum + self.pgLeftShowCt;
@@ -244,30 +243,25 @@ define([
         }
       });
 
-      // click cursor after node 
+      // click cursor after node
       if(currentPg > self.pgCursor){
-
         var afterLastPgNum = self.pgRightShowCt + currentPg; // 2 + 4 = 6
         if(afterLastPgNum >= self.pageSize) afterLastPgNum = self.pageSize;
-
         //show first page
         if(self.pgShowCt < self.pageSize)
           query(".firstPg",self.pageNavCnt).style("display","inline-block");
-
         //show last page
-        if(afterLastPgNum < self.pageSize){ //eg: 8 - 2 = 6; 4,5 show 
+        if(afterLastPgNum < self.pageSize){ //eg: 8 - 2 = 6; 4,5 show
           query(".lastPg",self.pageNavCnt).style("display","inline-block");
         }else{
           query(".lastPg",self.pageNavCnt).style("display","none");
         }
-
         // show after pages
         for(i=self.pgCursor+self.pgRightShowCt + 1; i<=afterLastPgNum;i++){ // 3 + 2 + 1 begin in 6
           var pgId = "pg" + i;
           domClass.add(pgId,"showPg");
           domStyle.set(dom.byId(pgId),"display","inline-block");
         }
-
         // hidden before pages
         var beforeFirstPgNum = afterLastPgNum - self.pgShowCt; // 7-5 =2
         for(i=1; i<=beforeFirstPgNum;i++){ // hidden 1 page
@@ -295,7 +289,7 @@ define([
             query(".firstPg",self.pageNavCnt).style("display","inline-block");
           else
             query(".firstPg",self.pageNavCnt).style("display","none");
-          
+
           for(i=beforeFirstPgNum; i<self.firstPgNum; i++){
             var pgId = "pg" + i;
             domClass.add(pgId,"showPg");
@@ -310,7 +304,7 @@ define([
     __modifyShowPg: function(/*integer*/ beginPgNum,/*integer*/ endPgNum, /*integer*/ currentPgNum){
       // remove all current page class
       query(".cntPg",this.pageNavCnt).removeClass("cntPg");
-      // add current page to this 
+      // add current page to this
       domClass.add(dom.byId("pg" + currentPgNum),"cntPg");
 
       // find old show pages and hidden them,
@@ -321,7 +315,7 @@ define([
         domClass.remove(pgId,"showPg");
       });
 
-      // show new pages and set class of showPg for those pages 
+      // show new pages and set class of showPg for those pages
       for(i=beginPgNum;i<=endPgNum;i++){
         var pgId = "pg" + i;
         domClass.add(pgId,"showPg");
@@ -369,5 +363,4 @@ define([
       this._createPageCnt(page);
     }
   });
-
-})
+});
