@@ -35,6 +35,152 @@ body {
     text-decoration: none;
 }
 
+.appStore .header {
+    width: 100%;
+    height: 50px;
+    background: #333;
+    background: rgba(47,47,47,0.98);
+    z-index: 9997;
+}
+
+.appStore .header .header-inner {
+    position: relative;
+    max-width: 970px;
+    margin: 0 auto;
+    padding: 0 12px;
+}
+
+.appStore .header .header-inner .logo {
+    float: left;
+    padding: 0 20px 0 0;
+}
+
+.appStore .header .header-inner .logo a, 
+.appStore .header .header-inner .logo span {
+    display: block;
+    width: 75px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+    background-image: url(../images/logo-small-a.png);
+    -webkit-transition: opacity 0.2s ease;
+    -moz-transition: opacity 0.2s ease;
+    -o-transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease;
+}
+
+.appStore .header .header-inner .nav>li {
+    float: left;
+    font-size: 1.25em;
+    line-height: 1;
+}
+
+.appStore .header .header-inner .nav li.t-search {
+    position: absolute;
+    top: 11px;
+    right: 10px;
+    margin: 0;
+}
+
+.appStore .search input {
+vertical-align: middle;
+}
+
+.appStore .search input.search-text {
+    width: 190px;
+    padding: 5px 5px 5px 25px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    vertical-align: middle;
+    color: #bbb;
+    border: none;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: 7px 50%;
+    background-image: url(../images/searchBgImage.png);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.appStore .header .header-inner .nav>li>a {
+    display: block;
+    height: 50px;
+    padding: 0 10px;
+    line-height: 50px;
+    text-decoration: none;
+    color: #999;
+}
+
+.appStore .header .header-inner .nav>li>a:hover {
+    color: #DDDDDD;
+}
+
+.appStore .header .header-inner .nav li.t-shots>a {
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.appStore .header .header-inner .nav li ul.tabs {
+    position: absolute;
+    float: left;
+    display: none;
+    width: 180px;
+    margin-left: -5px;
+    padding: 0 0 10px 0;
+    background: #333;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius-topleft: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    -webkit-box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    -moz-box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding-box;
+    background-clip: padding-box;
+    z-index: 999;
+}
+
+.appStore .header .header-inner .nav li:hover ul.tabs{
+    display: block;
+}
+
+.appStore .header .header-inner .nav li ul.tabs li {
+    clear: left;
+    margin: 0;
+    width: 100%;
+}
+
+.appStore .header .header-inner .nav li ul.tabs li a {
+    display: block;
+    padding: 5px 15px;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1;
+    color: #999;
+    background: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.appStore .header .header-inner .nav li ul.tabs li a:hover {
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    color: #DDDDDD;
+}
+
+.appStore .header .header-inner .nav .t-signup a span {
+    background-image: url("../images/signUpImg.png");
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+    padding-left: 26px;
+}
+
 .appStore .wrap{
 	background: url("../images/appStorebg.gif") repeat scroll -70% 0 #F0F0F0;
 }
@@ -66,6 +212,8 @@ body {
     float: none;
     max-width: 970px;
     width: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #main {
@@ -179,6 +327,8 @@ body {
     padding-bottom: 75%;
 }
 
+
+
 .appStore .wrap ol.apps li div.appImg img {
     max-height: 150px;
     max-width: 100%;
@@ -208,6 +358,10 @@ body {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+.appStore .wrap ol.apps li div.app a.appIntro:hover{
+    opacity: 1;
 }
 
 .appStore .wrap ol.apps li div.app a.appIntro strong {
