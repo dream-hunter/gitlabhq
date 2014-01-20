@@ -9,6 +9,7 @@ define({
 			"edit":"编辑",
 			"get":"获取",
 			"all":"全部",
+			"run":"运行",
 			"title":"应用仓库",
 			"descriptionLabel":"简介",
 			"versionLabel":"版本",

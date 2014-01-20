@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2013 psteam Inc.(http://www.psteam.co.jp)
  * http://www.psteam.co.jp/qface/license
- * 
+ *
  * @Author: liwenfeng
  * @Date: 2013/02/28
  */
@@ -33,16 +33,15 @@ define([
 
 		// multiple panels
 		_panels: [],
-		
+
 		constructor : function() {
 			this._windowList = new ItemFileWriteStore({
 				data: {identifer: "id", items: []}
 			});
-				
 		},
-		
+
 		_drawn: false,
-		
+
 		init: function(config){
 			if(this._drawn === true) return;
 			this._drawn = true;
@@ -51,7 +50,7 @@ define([
 			// this.makeAreaContainer();
 			this.makePanels();
 		},
-		
+
 		makeArea : function() {
 			this._area = new Area({
 				style:"width:100%;height:100%",
@@ -78,7 +77,7 @@ define([
 			areaVistualZone.startup();
 			areaVistualZone.show();
 		},
-		
+
 		//	drawn: Boolean
 		//		have the panels been drawn yet?
 		makePanels: function(){
@@ -133,32 +132,32 @@ define([
 				};
 			});
 		},
-		
+
 		resize : function() {
 			if (this._area) {
 				this._area.resize();
 			}
 		},
-		
+
 		addWindow : function(win,args){
 			this._area.addChild(win);
 			qface.addDojoCss(dojo.moduleUrl("dojox/widget/FisheyeList/","FisheyeList.css"));
 			return this._windowList.newItem(args);
 		},
-		
+
 		removeWindow : function(win,item){
 			this._area.removeChild(win);
 			this._windowList.deleteItem(item);
 		},
-		
+
 		updateWindowTitle : function(item,title){
 			this._windowList.setValue(item, "label", title);
 		},
-		
+
 		getBox : function(){
 			return this._area.getBox();
 		},
-		
+
 		launchHandler: function(/*String?*/file, /*Object?*/args, /*String?*/format){
 			//	summary:
 			//		Launches an app to open a certain file
@@ -247,7 +246,7 @@ define([
 		addApp: function(app,appConfig){
 			var apps = appConfig.scenes[this.name].apps;
 			this.appList = apps;
-			var item = array.filter(apps,function(item){return item.sysname === app.sysname});
+			var item = array.filter(apps,function(item){return item.sysname === app.sysname;});
 			if(item.length>0) return;
 			var item = {
 				"sysname":app.sysname,
@@ -264,7 +263,7 @@ define([
 
 		removeApp: function(app,appConfig){
 			var apps = appConfig.scenes[this.name].apps;
-			var app = array.filter(apps,function(item){return item.sysname === app.sysname})[0];
+			var app = array.filter(apps,function(item){return item.sysname === app.sysname;})[0];
 			if(item){
 				var index = array.indexOf(apps,item);
 				apps.splice(index,1);
@@ -293,16 +292,15 @@ define([
 			array.forEach(this._panels,function(panel){panel.updateBgColor(color);});
 		},
 
-		// from desktop 
+		// from desktop
 		updateSystemPanelColor: function(color){
 			this.desktop.updateSystemPanelColor(color);
 		},
 
 		// from desktop
 		changeTheme: function(theme){
-			this.desktop.changeTheme(this,theme);	
+			this.desktop.changeTheme(this,theme);
 		}
-		
 	});
 
 	return Scene;

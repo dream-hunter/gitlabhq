@@ -12,8 +12,8 @@ define([
 	 "qface/system/app/Application",
 	 "qfacex/widgets/window/Window",
 	 "qfacex/widgets/window/StatusBar",
-	 "qface/windows/media/Surface", 
-	 "dojo/i18n!./nls/app"	 
+	 "qface/windows/media/Surface",
+	 "dojo/i18n!./nls/app"
 ],function(dojo,ItemFileReadStore,_FormValueWidget,Button,TextBox,Form,FilteringSelect,Toolbar,ContentPane,DataGrid,_App,
 	Window,StatusBar,Surface,nlsApp) {
 
@@ -21,7 +21,7 @@ define([
 		// TO DO:
 		// * When revealing a numbered tile, all adjacent *clear* tiles should be revealed, which in turn reveal all other adjacent numbered tiles
 		// * When all tiles containing mines have been revealed, the player should see a 'you win' message
-		
+
 		difficulty: "Easy",		// current difficulty setting
 		board: 0,			// 2d array, holds all squares
 		xSize: 0,			// horiz size of board
@@ -31,7 +31,7 @@ define([
 		squaresToWin: 0,		// num of squares to reveal to win
 		resultShade: 0,			// 'shade' (alpha'ed rect) used to dim playing field when displaying result message
 		resultMessage: 0,		// text shape object, 'You Win!' or 'You Lose!'
-		
+
 		init: function(args){
 			this.win = new Window({
 	        	app  : this,
@@ -43,7 +43,7 @@ define([
 	            showMaximize: false,
 				onClose: dojo.hitch(this, this.kill)
 			});
-		
+
 			this.toolbar = new Toolbar({
 				region: "top"
 			});
@@ -52,7 +52,7 @@ define([
 				onClick: dojo.hitch(this, "startGame")
 			}) );
 			this.win.addChild( this.toolbar );
-			
+
 			var dropdown = new FilteringSelect({
 				autoComplete: true,
 				searchAttr: "label",
@@ -73,24 +73,24 @@ define([
 				})
 			});
 			this.toolbar.addChild( dropdown );
-		
+
 			this.surfacePane = new ContentPane({
 				region: "center",
 				style: "overflow: hidden"
 			});
-		
-		
+
+
 			this.win.addChild( this.surfacePane );
-		
+
 
 			this.win.show();
 			this.win.startup();
-			
+
 			dropdown.textbox.disabled = true;
 			dropdown.setValue("Easy");
-		
+
 			dojo.connect(this.surfacePane.containerNode, "oncontextmenu", dojo, "stopEvent");
-			
+
 			this.surface = Surface.fromWidget(this.surfacePane,600,600);
 	        this.makeBoard(10, 10);
 	        setTimeout(dojo.hitch(this, function(){
@@ -123,7 +123,7 @@ define([
 			this.ySize = ySize;
 			this.squaresRevealed = 0;
 			this.totalSquares = 0;
-			this.squaresToWin = 0;		
+			this.squaresToWin = 0;
 			var a = 0;
 			var b = 0;
 			this.board = new Array();
@@ -163,50 +163,50 @@ define([
 			for ( b = 0; b < this.xSize; b++ ){
 				for ( a = 0; a < this.ySize; a++ ){
 					numMines = 0;
-		
+
 					// Square to the north
 					if ( a > 0){
 						if ( this.board[b][a-1].hasMine == true ) numMines++;
 					}
-		
+
 					// Square to the north east
 					if ( a > 0 && b < (this.xSize-1) ){
 						if ( this.board[b+1][a-1].hasMine == true ) numMines++;
 					}
-		
+
 					// Square to east
 					if ( b < (this.xSize-1) ){
 						if ( this.board[b+1][a].hasMine == true ) numMines++;
 					}
 
-					
+
 					// Square to south east
 					if ( a < (this.ySize-1) && b < (this.xSize-1) ){
 						if ( this.board[b+1][a+1].hasMine == true ) numMines++;
 					}
-	                            
+
 					// Square to south
 					if ( a < (this.ySize-1) ){
 						if ( this.board[b][a+1].hasMine == true ) numMines++;
 					}
-	                            
+
 					// Square to south west
 					if ( b > 0 && a < (this.ySize-1) ){
 						if ( this.board[b-1][a+1].hasMine == true ) numMines++;
 					}
-	                            
+
 					// Square to west
 					if ( b > 0 ){
 						if ( this.board[b-1][a].hasMine == true ) numMines++;
 					}
-	                            
+
 					// Square to north west
 					if ( b > 0 && a > 0 ){
 						if ( this.board[b-1][a-1].hasMine == true ) numMines++;
 					}
 					this.board[b][a].numMines = numMines;
-				}                    
-			}	
+				}
+			}
 		},
 
 		makeSquare: function(xPos, yPos){
@@ -222,27 +222,27 @@ define([
 				//this.squareReveal(square);
 				return false;
 			});
-			square.mouseright = square.connect("oncontextmenu", this, function (e){ 
+			square.mouseright = square.connect("oncontextmenu", this, function (e){
 				dojo.stopEvent(e);
 				//this.squareFillMarked(square);
 			});
-	              
+
 			// Square is not yet revealed by default
 			square.revealed = false;
-	              
+
 			// Set a default numMines (number of mines surrounding square)
 			square.numMines = 0;
-	              
+
 			// Square does not have a mine by default
 			square.hasMine = false;
-	              
+
 			// Square is unmarked by default
 			square.marked = false;
-	              
+
 			// Assign the board position to the square
 			square.xPos = xPos;
 			square.yPos = yPos;
-	              
+
 			return square;
 		},
 
@@ -251,7 +251,7 @@ define([
 				x: 0, y:0,
 				width: (this.xSize*20), height: (this.ySize*20)
 			}).setFill([ 225,225,225,0.75 ]);
-			
+
 			var app = nlsApp;//i18n.getLocalization("scene", "games",this.lang);
 			this.resultMessage = this.surface.createText({
 				x: ((this.xSize * 20)/2), y: ((this.ySize * 20)/2),
@@ -279,24 +279,24 @@ define([
 			this.resultMessage.setFont({
 				weight: "bold",
 				size: 20
-			});	
+			});
 		},
 
 		squareReveal: function( square ){
-			if ( square.revealed == true ) return;	
-	              
+			if ( square.revealed == true ) return;
+
 			// disconnect this squares events
 			dojo.disconnect( square.mousedown );
 			dojo.disconnect( square.mouseover );
 			dojo.disconnect( square.mouseout );
 			dojo.disconnect( square.mouseright );
-	              
+
 			// mark it as revealed
 			square.revealed = true;
-	              
+
 			// fetch the squares bounding box
 			var bbox = square.getBoundingBox();
-	              
+
 			// does this square contain a mine?
 			if ( square.hasMine == true ){
 				square.setFill("#FF0000");
@@ -316,16 +316,16 @@ define([
 				this.gameOver();
 				return;
 			}
-	              
+
 			square.setFill("#EFEFEF");
-	              
+
 			this.squaresRevealed++;
 			//console.debug( this.squaresRevealed + " squares revealed.. " + this.squaresToWin + " needed to win" );
 			if ( this.squaresRevealed >= this.squaresToWin ){
 				this.gameWin();
 				return;
 			}
-	              
+
 			if ( square.numMines > 0 ){
 				var textColor = "#000000";
 				if ( square.numMines == 1 ) textColor = "#0000FF";
@@ -344,7 +344,7 @@ define([
 			}else{
 				this.clearAdjacentSquares( square.xPos, square.yPos );
 			}
-	              
+
 			//this.surface.remove(square);
 		},
 
@@ -352,48 +352,48 @@ define([
 			// When the player reveals a clear square, we should reveal all adjacent clear squares
 			// (as well as as all adjacen clear squares to those clear squares)
 			// (( as well as.. well.. you get it.. its recursive! ))
-	              
+
 			// Not sure if i should do this diagonally as well..
-	              
+
 			// Check square to the north
 			if ( yPos > 0 ){
 				if ( !this.board[xPos][yPos-1].hasMine  && !this.board[xPos][yPos-1].revealed) this.squareReveal( this.board[xPos][yPos-1] );
 			}
-	              
+
 			// Check square to the east
 			if ( xPos < (this.xSize-1) ){
 				if ( !this.board[xPos+1][yPos].hasMine && !this.board[xPos+1][yPos].revealed) this.squareReveal( this.board[xPos+1][yPos] );
 			}
-	              
+
 			// Check square to south
 			if ( yPos < (this.ySize-1) ){
 				if ( !this.board[xPos][yPos+1].hasMine && this.board[xPos][yPos+1].revealed) this.squareReveal( this.board[xPos][yPos+1] );
 			}
-	              
+
 			// Check square to west
 			if ( xPos > 0 ){
 				if ( !this.board[xPos-1][yPos].hasMine && !this.board[xPos-1][yPos].revealed) this.squareReveal( this.board[xPos-1][yPos] );
 			}
-	              
+
 			// check square to northeast
 			if ( yPos > 0 && xPos < (this.xSize-1) ){
 				if ( !this.board[xPos+1][yPos-1].hasMine && !this.board[xPos+1][yPos-1].revealed) this.squareReveal( this.board[xPos+1][yPos-1] );
 			}
-	              
+
 			// check square to southeast
 			if ( yPos < (this.ySize-1) && xPos < (this.xSize-1) ){
 				if ( !this.board[xPos+1][yPos+1].hasMine && !this.board[xPos+1][yPos+1].revealed) this.squareReveal( this.board[xPos+1][yPos+1] );
 			}
-	              
+
 			// check square to southwest
 			if ( yPos < (this.ySize-1) && xPos > 0 ){
 				if ( !this.board[xPos-1][yPos+1].hasMine && !this.board[xPos-1][yPos+1].revealed) this.squareReveal( this.board[xPos-1][yPos+1] );
 			}
-	              
+
 			// check square to northwest
 			if ( yPos > 0 && xPos > 0 ){
 				if ( !this.board[xPos-1][yPos-1].hasMine && !this.board[xPos-1][yPos-1].revealed) this.squareReveal( this.board[xPos-1][yPos-1] );
-			}    
+			}
 		},
 
 		squareFillMarked: function( square ){
@@ -445,7 +445,7 @@ define([
 					{ offset: 0, color: "#E5E5E5"},
 					{ offset: 1, color: "#AAAAAA"}
 				]
-			});	
+			});
 		},
 
 		kill: function(){

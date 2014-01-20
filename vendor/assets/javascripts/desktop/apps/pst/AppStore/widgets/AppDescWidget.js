@@ -1,13 +1,15 @@
 define([
   "dojo/on",
+  "dojo/json",
   "dojo/mouse",
+  "dojo/topic",
   "dojo/dom-class",
   "dojo/dom-construct",
   "dojo/_base/declare",
   "dojo/_base/array",
+  "dojo/_base/event",
   "dijit/_WidgetBase",
   "dijit/_TemplatedMixin",
-  "dijit/Dialog",
   "dijit/form/MultiSelect",
   "dijit/form/Button",
   "dojo/text!./templates/AppDescWidget.html",
@@ -15,16 +17,16 @@ define([
   "dojo/dom-style",
   "dojo/_base/fx",
   "dojo/_base/lang",
-  "qface/Runtime"
-  ],function(on,mouse,domClass,domConstruct,declare,array,WidgetBase,TemplatedMixin,Dialog,MultiSelect,Button,template,nlsAppStore,domStyle,baseFx,lang,
-    qface){
+  "qface/Runtime",
+  "qface/system/tools/FontAwesome"
+  ],function(on,json,mouse,topic,domClass,domConstruct,declare,array,event,WidgetBase,TemplatedMixin,MultiSelect,Button,
+    template,nlsAppStore,domStyle,baseFx,lang,qface,FontAwesome){
     return declare([WidgetBase, TemplatedMixin], {
-      appStore:null,
-      name: "No Name",
-      appIcon: "",
-      icon: "",
-      app_id:"",
-      author:"",
+      app:null,// Object
+      appIcon:"", // default app icon
+      author:"lihongwang",
+      authorAvatar:"/uploads/user/avatar/51/IMG_0137.JPG",
+      authorLink:"",
       fav_count:100,
       download_count:100,
       view_count:200,
@@ -34,18 +36,11 @@ define([
       defaultDescription: "this is a default description\r\na good app\r\ndo you like it?\r\nxxxxx",
       templateString: template,
       baseClass: "appDesc",
-      mouseAnim: null,
-      appClass: null,
-      width: "500px",
-      height: "10px",
-      baseBackgroundColor: "#fff",
-      mouseBackgroundColor: "#def",
-      hasName: true,
-      hasAuthor: true,
-      hasAction: true,
-      hasTime: true,
-      hasIcon: true,
-      hasDescription: true,
+
+      constructor: function(args){
+        this.inherited(arguments);
+      },
+
       postCreate: function(){
         // var domNode = this.domNode;
         var self = this;
@@ -55,41 +50,80 @@ define([
         array.forEach(actionList,function(action){
           // var liNode = domConstruct.create("li",{},ulNode);
           var aNode = domConstruct.create("a",{
-            class:"actionBtn",
+            class:"actionBtn action" + self.__capitaliseFirstLetter(action),
             href:"javascript:void(0);",
+            title:nlsAppStore[action],
             onclick: function(){
-              self._selectDialog();
+              if(action == "get"){
+
+              }
+              this.lastChild.innerHTML = parseInt(this.lastChild.innerHTML,10) + 1;
+              // self._selectDialog();
               // _SceneBase.addApp();
             }
           },self.actionNode);
-          var iconSpan = domConstruct.create("span",{class:"actionIcon"},aNode);
-          var textSpan = domConstruct.create("span",{class:"actionText",innerHTML:nlsAppStore[action]},aNode);
+          var iconSpan = domConstruct.create("i",{class:"actionIcon " + FontAwesome[action]},aNode);
+          var textSpan = domConstruct.create("i",{class:"actionText",innerHTML:200},aNode);
         });
+        domConstruct.create("i",{class:"runIcon " + FontAwesome["run2"]},this.runNode);
+        domConstruct.create("i",{class:"runText",innerHTML:nlsAppStore["run"]},this.runNode);
         // this._chooseBaseNode();
+        this._actions();
         this.inherited(arguments);
-        on(this.domNode,mouse.enter,lang.hitch(this,function(){
-          domStyle.set(this.actionNode,"opacity","1.0");
-        }));
-        on(this.domNode,mouse.leave,lang.hitch(this,function(){
-          domStyle.set(this.actionNode,"opacity",".0");
-        }));
       },
 
-      /*_setIconAttr: function(icon) {
-        if(icon === null){
-          iconUrl = this.appIcon;
-        } else{
+      _actions: function(){
+        var self = this;
+        on(this.domNode,mouse.enter,function(){
+          domStyle.set(self.actionNode,"opacity","1.0");
+        });
+
+        on(this.domNode,mouse.leave,function(){
+          domStyle.set(self.actionNode,"opacity",".0");
+        });
+
+        /*on(this.domNode,"click",function(){
+          self.__runApp(self.runNode);
+        });*/
+
+        on(this.runNode,mouse.enter,function(e){
+          domStyle.set(self.actionNode,"opacity",".0");
+        });
+
+        on(this.runNode,mouse.leave,function(e){
+          domStyle.set(self.actionNode,"opacity",".0");
+        });
+
+        on(this.runNode,"click",function(){
+          self.__runApp(this);
+        });
+      },
+
+      __runApp: function(obj){
+        domClass.contains(obj,"active") ? domClass.remove(obj,"active") : domClass.add(obj,"active");
+        topic.publish("appStore/runApp",this.app);
+      },
+
+      _setAppAttr: function(app){
+        this.__formatIcon(app.icon);
+      },
+
+      __formatIcon:function(icon){
+        if(icon !== null){
           var matcher = icon.match(/icon-32-apps-(.*)/);
           // var theme = this.appStore.scene.get("theme");
           var theme = "Soria";
-          iconUrl = matcher === null ? this.appIcon : ("assets/desktop/resources/qfacex/themes/" + theme + "/icons/32x32/apps/" + matcher[1] + ".png");
+          if(matcher !== null){
+            this.appIcon = "assets/desktop/resources/qfacex/themes/" + theme + "/icons/32x32/apps/" + matcher[1] + ".png";
+          }
         }
-        if (icon != "") {
-          this.appIconNode.lastChild.src = iconUrl;
-        }
+        this.iconNode.firstChild.src = this.appIcon;
       },
 
-      _setAppClassAttr: function(className){
+      __capitaliseFirstLetter: function(s){
+        return s.charAt(0).toUpperCase() + s.slice(1);
+      },
+      /*_setAppClassAttr: function(className){
         this._set("appClass", className);
         domClass.add(this.domNode,className);
       },

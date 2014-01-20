@@ -40,11 +40,15 @@ dojoConfig = {
 			location:"resources"
 		},
 		{
+			name:"resources",
+			location:"resources"
+		},
+		{
 			name:"tools",
 			location:"qface/system/tools"
 		},
 		{
-	    name: 'dbootstrap',									
+			name: 'dbootstrap',
 			location: 'resources/qfacex/themes/dbootstrap'
 		}
 	]

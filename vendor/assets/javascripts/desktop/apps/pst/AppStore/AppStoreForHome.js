@@ -17,6 +17,8 @@ define([
 	"qface/system/app/Application",
 	"qfacex/widgets/window/Window",
 	"dojo/data/ItemFileWriteStore",
+	"dijit/registry",
+  "dijit/Dialog",
 	"dijit/Tree",
 	"dijit/tree/ForestStoreModel",
 	"qfacex/widgets/layout/BorderContainer",
@@ -34,17 +36,51 @@ define([
 	"./widgets/AuthorInfoWidget",
 	"./widgets/LoginDialog",
 	"qface/system/desktop/scene/impl/singleap/Scene",
+  "qface/Runtime",
 	"dojo/i18n!./nls/AppStore",
 	"./widgets/AppDescWidget",
 	"./widgets/TopAppDescWidget",
 	"./AppStore"
 ],function(on,JSON,domConstruct,declare,array,lang,connect,event,domStyle,domClass,query,hash,ioQuery,topic,Memory,_App,Window,
-	ItemFileWriteStore,Tree,ForestStoreModel,BorderContainer,ContentPane,ToggleSplitter,qface,AutoRotator,RotatorSlide,RotatorController,
-	txtConfig,SearchWidget,SortWidget,PaginateWidget,AppInfoWidget,AuthorInfoWidget,LoginDialog,Scene,nlsApp,AppDesc,TopAppDesc,AppStore){
+	ItemFileWriteStore,registry,Dialog,Tree,ForestStoreModel,BorderContainer,ContentPane,ToggleSplitter,qface,AutoRotator,RotatorSlide,RotatorController,
+	txtConfig,SearchWidget,SortWidget,PaginateWidget,AppInfoWidget,AuthorInfoWidget,LoginDialog,Scene,qRun,nlsApp,AppDesc,TopAppDesc,AppStore){
 	return declare([AppStore], {
 		needHash: true,
 		init: function(args){
       this.inherited(arguments);
+      var self = this;
+      topic.subscribe("appStore/runApp",function(appObj){
+				// var appObj = appDescObj.app;
+				runContainer = new Dialog({title:appObj.name,class:"runContainer",style:"width:80%;height:80%;"});
+				var scene = this.scene = new Scene();
+				scene.init({app:appObj});
+				runContainer.containerNode.appendChild(scene.containerNode);
+				runContainer.show();
+				domStyle.set(runContainer.containerNode,{
+					width:"100%",
+					height:"580px",
+					position:"absolute"
+				});
+				connect.connect(runContainer,"hide",function(){
+					// setTimeout(function() { registry.byId(this.id).destroyRecursive(); }, 0);
+					// registry.byId(this.id).destroyRecursive();
+					scene.app.win.close();
+					registry.byId(this.id).destroy();
+				});
+				// fix the bug which run again the window didn't show.
+				if(scene.app){
+					scene.app.win.shown = false;
+					scene.app.win.show();
+					// appDescObj.appWin = scene.app.win;
+				}
+				/*var path = "apps/"+appObj.sysname.replace(/[.]/g, "/");
+				require([path],function(Application){
+					var app  = new Application({scene:self.scene});
+					app.init();
+					runContainer.containerNode.appendChild(app.win.domNode);
+					runContainer.show();
+				});*/
+			});
 		},
 
 		_createBaseLayout: function(){
@@ -56,9 +92,13 @@ define([
 			var topContainer = new ContentPane({
 				region:"top",
 				class:"topContainer",
-				style:"height:180px;width:1000px;"
+				style:"height:180px;width:1000px;overflow:hidden"
 			});
-			var descContainer = domConstruct.create("div",{class:"descContainer"},topContainer.domNode);
+			var descContainer = domConstruct.create("div",{
+				class:"descContainer",
+				innerHTML:"<p><span>UtilHub</span>是一个基于web组件的易分享、可版本控制的开放平台，开发者可以基于自己的想法独自或者从社区中组建“虚拟团队”，来快速的开发、组合组件，从而实现开源或私有的web应用程序。</p>"
+			},topContainer.domNode);
+
 			var viewContainer = domConstruct.create("div",{class:"viewContainer"},topContainer.domNode);
 
 			var leftContainer = this.treeContainer = new ContentPane({
@@ -134,7 +174,7 @@ define([
 
     _windowAction: function(win){
 			// win maximize
-			win.full();
+			win.expand();
     },
 
 		_createAppContainerPage: function(apps,sortValue){
@@ -146,7 +186,7 @@ define([
 			var self = this;
 			var appViewItems = [];
 			array.forEach(apps,function(app){
-				var appDesc = new AppDesc(app);
+				var appDesc = new AppDesc({app:app});
 				appViewItems.push(appDesc.domNode);
 			});
 			var appPage = new PaginateWidget({baseData:appViewItems,baseClass:"pagination"});
@@ -154,9 +194,11 @@ define([
 		},
 
 		__addChildCssLink: function(){
-			this.__addCss("apps/pst/AppStore/resources/stylesheets/AppDescWidget.css");
-      this.__addCss("qface/system/tools/resources/stylesheets/baseWidgets.css");
-      // this.__addCss("apps/pst/AppStore/resources/stylesheets/appForHome.css");
+			qRun.addDojoCss("apps/pst/AppStore/resources/stylesheets/AppDescWidget.css");
+      qRun.addDojoCss("qface/system/tools/resources/stylesheets/baseWidgets.css");
+      qRun.addDojoCss("res/qfacex/themes/soria/window.css");
+      qRun.addDojoCss("res/qfacex/themes/soria/dijit/Toolbar.css");
+      // qRun.addDojoCss("apps/pst/AppStore/resources/stylesheets/appForHome.css");
 		},
 
 		__createBaseTree: function(treeModel){

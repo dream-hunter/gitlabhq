@@ -1,18 +1,13 @@
 <div class="${baseClass}" data-dojo-attach-point="baseNode" style="float:left">
-  <a data-dojo-attache-point="bgImageNode">
-    <img class="bgImage"/>
-  </a>
+  <div class="bgImage" data-dojo-attach-point="iconNode"><img/></div>
   <div class="action" data-dojo-attach-point="actionNode"></div>
   <div class="details" data-dojo-attach-point="detailsNode">
-    <!--<div class="author author_img">
-      <a href="/timbrown" title="Tim Brown" class="notranslate ga-track-content_ssod_-_author_img_link" rel="nofollow"><img alt="Tim Brown" src="//cdn.slidesharecdn.com/profile-photo-timbrown-48x48.jpg?cb=1389287614"></a>
-      <a href="/timbrown" title="Tim Brown" class="j-author_text notranslate ga-track-content_ssod_-_author_link" rel="nofollow">Tim Brown</a>
+    <div class="author">
+      <a href="${authorLink}" title="${author}" class="authorAvatar" rel="nofollow"><img alt="${author}" src="${authorAvatar}"></a>
+      <a href="${authorLink}" title="${author}" class="authorName" rel="nofollow">${author}</a>
     </div>
-    <a class="title grid_thumbnail_title_link ga-track-content_ssod_-_title_link" href="/timbrown/ideo-values-slideshare1" title="The Little Book of IDEO: Values">
-      The Little Book of IDEO: Values
-    </a>
-    <div class="info">
-      34,255 views
-    </div>-->
+    <span class="appName" title="${app.name}">${app.name}</span>
+    <!-- <span class="viewInfo">${view_count}</span> -->
+    <a class="run" data-dojo-attach-point="runNode"></a>
   </div>
 </div>

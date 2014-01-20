@@ -5,12 +5,18 @@
     height: 200px;
     margin: 9px 19px;
     display: inline;
+    position: relative;
 }
 
 .appDesc .bgImage{
     background: #ccc;
-    width: 230px;
-    height: 142px;
+    width: 210px;
+    height: 130px;
+    line-height: 9em;
+}
+
+.appDesc .action{
+    opacity: .0;
 }
 
 .appDesc .action .actionBtn {
@@ -23,12 +29,95 @@
     color: #fff!important;
     cursor: pointer;
     filter: alpha(opacity=0);
-    height: 44px;
-    opacity: .0;
+    height: 34px;
     position: absolute;
     right: 8px;
     text-decoration: none;
     top: 8px;
     transition: opacity .3s;
-    width: 44px;
+    width: 34px;
+}
+
+.appDesc .action .actionBtn:hover {
+    background:#07a;
+}
+
+.appDesc .action .actionLike{
+    top: 50px
+}
+
+.appDesc .action .actionShare{
+    top: 90px;
+}
+
+.appDesc .action .actionBtn .actionIcon{
+    display: block;
+    padding-top: 3px;
+}
+
+.appDesc .action .actionBtn .actionText{
+    display: block;
+}
+
+.appDesc .details{
+    text-align:left;
+    background-color: #fff;
+    border-top: 1px solid #dadada;
+    font-size: 13px;
+    padding: 0 10px 0 10px;
+    position: relative;
+}
+
+.appDesc .details .author{
+    overflow: hidden;
+}
+
+.appDesc .details .author .authorAvatar img{
+    width:32px;
+    height:32px;
+    background: #fff;
+    border: 4px solid #FFF;
+    border-bottom: 0;
+    border-left: 0;
+    height: 44px;
+    left: 0;
+    position: absolute;
+    top: -25px;
+}
+
+.appDesc .details .author .authorName{
+    white-space: nowrap;
+    margin-left: 40px;
+}
+
+.appDesc .details .appName{
+    color: #505050;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .01em;
+    margin: 4px 0;
+    overflow: hidden;
+}
+
+.appDesc .details .run {
+    font-size: 12px;
+    text-align: center;
+    position: relative;
+    top: -12px;
+    left: 138px;
+    padding: 12px 8px;
+    color: #fff;
+    background:#272722;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    display: inline;
+}
+
+.appDesc .details .run:hover {
+    background:#07a;
+}
+
+.appDesc .details .run .runText{
+    padding-left:3px;
 }

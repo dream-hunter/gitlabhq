@@ -34,11 +34,12 @@ define([
 	"./widgets/AuthorInfoWidget",
 	"./widgets/LoginDialog",
 	"qface/system/desktop/scene/impl/singleap/Scene",
+  "qface/Runtime",
 	"dojo/i18n!./nls/AppStore"
 ],function(on,JSON,domConstruct,declare,array,lang,connect,event,domStyle,domClass,query,hash,ioQuery,topic,
 	Memory,_App,Window,ItemFileWriteStore,Tree,ForestStoreModel,BorderContainer,ContentPane,ToggleSplitter,qface,
 	AutoRotator,RotatorSlide,RotatorController,txtConfig,SearchWidget,SortWidget,PaginateWidget,AppInfoWidget,
-	AuthorInfoWidget,LoginDialog,Scene,nlsApp){
+	AuthorInfoWidget,LoginDialog,Scene,qRun,nlsApp){
 
 	return declare(_App, {
 		apps: [],
@@ -276,9 +277,9 @@ define([
 		},
 
 		__addChildCssLink: function(){
-			this.__addCss("apps/pst/AppStore/resources/stylesheets/AppWidget.css");
-      this.__addCss("apps/pst/AppStore/resources/stylesheets/app.css");
-      this.__addCss("qface/system/tools/resources/stylesheets/baseWidgets.css");
+			qRun.addDojoCss("apps/pst/AppStore/resources/stylesheets/AppWidget.css");
+      qRun.addDojoCss("apps/pst/AppStore/resources/stylesheets/app.css");
+      qRun.addDojoCss("qface/system/tools/resources/stylesheets/baseWidgets.css");
 		},
 
 		__createBaseTree: function(treeModel){
@@ -321,16 +322,6 @@ define([
 			});
 		},
 
-		__addCss: function(path){
-			var cssUrl =  require.toUrl(path);
-			var element = document.createElement("link");
-			element.rel = "stylesheet";
-			element.type = "text/css";
-			element.media = "screen";
-			element.href = cssUrl;
-			document.getElementsByTagName("head")[0].appendChild(element);
-		},
-
 		__uniqueArray: function(/*Array*/ arrayList){
 			var check = {};
 			var result = [];
@@ -351,7 +342,7 @@ define([
 			// var value = hash() === "" ? "sort=name" : hash();
 			var obj = ioQuery.queryToObject(hash());
 			obj[key] = value;
-        hash(decodeURIComponent(ioQuery.objectToQuery(obj)));
+      hash(decodeURIComponent(ioQuery.objectToQuery(obj)));
 		},
 
 		__deleteHash: function(key){

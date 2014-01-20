@@ -18,9 +18,10 @@ define([
   "dijit/_TemplatedMixin",
   "dijit/_WidgetsInTemplateMixin",
   "dojo/i18n!../nls/widgets",
+  "qface/system/tools/FontAwesome",
   "dojo/text!./templates/paginateWidget.html"
 ],function(dom,on,request,html,domConstruct,domAttr,array,dJson,lang,declare,domStyle,domClass,query,aspect,Memory,WidgetBase,TemplatedMixin,
-  _WidgetsInTemplateMixin,nls,template){
+  _WidgetsInTemplateMixin,nls,FontAwesome,template){
 
   return declare([WidgetBase, TemplatedMixin,_WidgetsInTemplateMixin], {
     templateString: template,
@@ -73,16 +74,18 @@ define([
       var self = this;
       // previous page
       domConstruct.create("a",{
-        class:"prevPg pg",
+        class:"prevPg pg " + FontAwesome["prev"],
         id:"prevPg",
         href:"javascript:void(0);",
-        innerHTML: nls["previousPage"],
+        title: nls["previousPage"],
         style:"display:none",
         onclick: function(){
           if(self.currentPgNum > 1){
             var numPlaceObj = self.__getShowPagesBeginAndEndNum(self.currentPgNum - 1);
             self.__modifyShowPg(numPlaceObj["beginPgNum"],numPlaceObj["endPgNum"],self.currentPgNum - 1);
           }
+          if(self.currentPgNum == 1) domStyle.set(this,"display","none");
+          domStyle.set(dom.byId("nextPg"),"display","inline-block");
         }
       },self.pageNavCnt);
 
@@ -94,15 +97,17 @@ define([
 
       // next page
       domConstruct.create("a",{
-        class:"nextPg pg",
+        class:"nextPg pg " + FontAwesome["next"],
         id:"nextPg",
-        innerHTML: nls["nextPage"],
+        title: nls["nextPage"],
         href:"javascript:void(0);",
         onclick: function(){
           if(self.currentPgNum < self.pageSize){
             var numPlaceObj = self.__getShowPagesBeginAndEndNum(self.currentPgNum + 1);
             self.__modifyShowPg(numPlaceObj["beginPgNum"],numPlaceObj["endPgNum"],self.currentPgNum + 1);
           }
+          if(self.currentPgNum == self.pageSize) domStyle.set(this,"display","none");
+          domStyle.set(dom.byId("prevPg"),"display","inline-block");
         }
       },self.pageNavCnt);
     },
@@ -177,10 +182,10 @@ define([
             self.goToPage(pgNum);
             self.currentPgNum = pgNum;
 
-            var prevShowStyle = pgNum === 1 ? "none" : "inline";
+            var prevShowStyle = pgNum === 1 ? "none" : "inline-block";
             domStyle.set(dom.byId("prevPg"),"display",prevShowStyle);
 
-            var nextShowStyle = pgNum === self.pageSize ? "none" : "inline";
+            var nextShowStyle = pgNum === self.pageSize ? "none" : "inline-block";
             domStyle.set(dom.byId("nextPg"),"display",nextShowStyle);
 
             var numPlaceObj = self.__getShowPagesBeginAndEndNum(pgNum);

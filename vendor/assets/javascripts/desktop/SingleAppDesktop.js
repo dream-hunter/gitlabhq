@@ -102,6 +102,7 @@ define([
 			// toolBar.addChild(fullScreen);
 
 			var linkArea = this.linkArea = new AppletLinkArea({settings:{},pos:0.85,configName:"signIn"});
+
 			toolBar.addChild(linkArea);
 			this.mainBorder.addChild(toolBar);
 		},

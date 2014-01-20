@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2013 psteam Inc.(http://www.psteam.co.jp)
  * http://www.psteam.co.jp/qface/license
- * 
+ *
  * @Author: liwenfeng
  * @Date: 2013/02/28
  */
@@ -17,7 +17,7 @@ define([
 	"qface/system/desktop/scene/impl/icons/Scene",
 ],function(domStyle,query,declare,lang,array,Area,Scene) {
 	var Scene = declare([Scene],{
-		
+
 		init: function(config){
 			if(this._drawn === true) return;
 			this._drawn = true;
@@ -26,7 +26,7 @@ define([
 			// this.makeAreaContainer();
 			// this.makePanels();
 		},
-		
+
 		makeArea : function() {
 			this._area = new Area({
 				style:"width:100%;height:100%",
@@ -35,7 +35,7 @@ define([
 				scene:this
 			});
 			this.addChild(this._area);
-			this.updateWallpaper(this._config.wallpaper);
+			// this.updateWallpaper(this._config.wallpaper);
 		},
 
 		updateWallpaper: function(wallpaper){
