@@ -92,11 +92,12 @@
 
 .appDesc .details .appName{
     color: #505050;
+    position: absolute;
     display: block;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 500;
     letter-spacing: .01em;
-    margin: 4px 0;
+    margin: 15px 0;
     overflow: hidden;
 }
 
@@ -104,14 +105,14 @@
     font-size: 12px;
     text-align: center;
     position: relative;
-    top: -12px;
-    left: 138px;
-    padding: 12px 8px;
+    top: 6px;
+    left: 150px;
+    padding: 5px 10px;
     color: #fff;
     background:#272722;
     border: 1px solid #ccc;
     text-decoration: none;
-    display: inline;
+    display: inline-block;
 }
 
 .appDesc .details .run:hover {

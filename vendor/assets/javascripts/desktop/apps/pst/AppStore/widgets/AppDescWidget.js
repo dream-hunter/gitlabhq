@@ -37,18 +37,10 @@ define([
       templateString: template,
       baseClass: "appDesc",
 
-      constructor: function(args){
-        this.inherited(arguments);
-      },
-
       postCreate: function(){
-        // var domNode = this.domNode;
         var self = this;
         var actionList = ["get","like","share"];
-        // var actionList = [nlsAppStore.like,nlsAppStore.view,nlsAppStore.download];
-        // var ulNode = domConstruct.create("ul",{},this.actionNode);
         array.forEach(actionList,function(action){
-          // var liNode = domConstruct.create("li",{},ulNode);
           var aNode = domConstruct.create("a",{
             class:"actionBtn action" + self.__capitaliseFirstLetter(action),
             href:"javascript:void(0);",
@@ -58,16 +50,13 @@ define([
 
               }
               this.lastChild.innerHTML = parseInt(this.lastChild.innerHTML,10) + 1;
-              // self._selectDialog();
-              // _SceneBase.addApp();
             }
           },self.actionNode);
           var iconSpan = domConstruct.create("i",{class:"actionIcon " + FontAwesome[action]},aNode);
           var textSpan = domConstruct.create("i",{class:"actionText",innerHTML:200},aNode);
         });
         domConstruct.create("i",{class:"runIcon " + FontAwesome["run2"]},this.runNode);
-        domConstruct.create("i",{class:"runText",innerHTML:nlsAppStore["run"]},this.runNode);
-        // this._chooseBaseNode();
+        this.runNode.title = nlsAppStore["run"];
         this._actions();
         this.inherited(arguments);
       },
@@ -100,7 +89,6 @@ define([
       },
 
       __runApp: function(obj){
-        domClass.contains(obj,"active") ? domClass.remove(obj,"active") : domClass.add(obj,"active");
         topic.publish("appStore/runApp",this.app);
       },
 

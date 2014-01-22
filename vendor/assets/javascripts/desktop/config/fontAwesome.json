@@ -3,7 +3,11 @@
 	"get":"fa fa-cloud-download",
 	"like":"fa fa-heart",
 	"run":"fa fa-eys",
-	"run2":"fa fa-eye fa-2",
-	"next":"fa fa-chevron-right fa-3",
-	"prev":"fa fa-chevron-left fa-3"
+	"run2":"fa fa-eye fa-2x",
+	"next":"fa fa-chevron-right",
+	"prev":"fa fa-chevron-left",
+	"next3":"fa fa-hand-o-right fa-3x",
+	"prev3":"fa fa-hand-o-left fa-3x",
+	"pageCircle":"fa fa-circle",
+	"pageCircleO":"fa fa-circle-o"
 }

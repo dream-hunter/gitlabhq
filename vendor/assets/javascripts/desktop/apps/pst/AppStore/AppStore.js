@@ -22,7 +22,6 @@ define([
 	"qfacex/widgets/layout/BorderContainer",
 	"dijit/layout/ContentPane",
 	"dojox/layout/ToggleSplitter",
-	"qface/Runtime",
 	"dojox/widget/AutoRotator",
 	"dojox/widget/rotator/Slide",
 	"dojox/widget/rotator/Controller",
@@ -37,7 +36,7 @@ define([
   "qface/Runtime",
 	"dojo/i18n!./nls/AppStore"
 ],function(on,JSON,domConstruct,declare,array,lang,connect,event,domStyle,domClass,query,hash,ioQuery,topic,
-	Memory,_App,Window,ItemFileWriteStore,Tree,ForestStoreModel,BorderContainer,ContentPane,ToggleSplitter,qface,
+	Memory,_App,Window,ItemFileWriteStore,Tree,ForestStoreModel,BorderContainer,ContentPane,ToggleSplitter,
 	AutoRotator,RotatorSlide,RotatorController,txtConfig,SearchWidget,SortWidget,PaginateWidget,AppInfoWidget,
 	AuthorInfoWidget,LoginDialog,Scene,qRun,nlsApp){
 

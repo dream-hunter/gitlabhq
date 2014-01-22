@@ -32,6 +32,7 @@ define([
 	"qface/system/tools/widgets/SearchWidget",
 	"qface/system/tools/widgets/SortWidget",
 	"qface/system/tools/widgets/PaginateWidget",
+	"qface/system/tools/widgets/SlidesWidget",
 	"./widgets/AppInfoWidget",
 	"./widgets/AuthorInfoWidget",
 	"./widgets/LoginDialog",
@@ -43,7 +44,7 @@ define([
 	"./AppStore"
 ],function(on,JSON,domConstruct,declare,array,lang,connect,event,domStyle,domClass,query,hash,ioQuery,topic,Memory,_App,Window,
 	ItemFileWriteStore,registry,Dialog,Tree,ForestStoreModel,BorderContainer,ContentPane,ToggleSplitter,qface,AutoRotator,RotatorSlide,RotatorController,
-	txtConfig,SearchWidget,SortWidget,PaginateWidget,AppInfoWidget,AuthorInfoWidget,LoginDialog,Scene,qRun,nlsApp,AppDesc,TopAppDesc,AppStore){
+	txtConfig,SearchWidget,SortWidget,PaginateWidget,SlidesWidget,AppInfoWidget,AuthorInfoWidget,LoginDialog,Scene,qRun,nlsApp,AppDesc,TopAppDesc,AppStore){
 	return declare([AppStore], {
 		needHash: true,
 		init: function(args){
@@ -81,6 +82,7 @@ define([
 					runContainer.show();
 				});*/
 			});
+			this._createSlidesContainer();
 		},
 
 		_createBaseLayout: function(){
@@ -89,7 +91,7 @@ define([
 				region:"leading"
 			});
 
-			var topContainer = new ContentPane({
+			var topContainer = this.topContainer = new ContentPane({
 				region:"top",
 				class:"topContainer",
 				style:"height:180px;width:1000px;overflow:hidden"
@@ -98,8 +100,6 @@ define([
 				class:"descContainer",
 				innerHTML:"<p><span>UtilHub</span>是一个基于web组件的易分享、可版本控制的开放平台，开发者可以基于自己的想法独自或者从社区中组建“虚拟团队”，来快速的开发、组合组件，从而实现开源或私有的web应用程序。</p>"
 			},topContainer.domNode);
-
-			var viewContainer = domConstruct.create("div",{class:"viewContainer"},topContainer.domNode);
 
 			var leftContainer = this.treeContainer = new ContentPane({
 				region:"left",
@@ -137,39 +137,24 @@ define([
 			return appLayout;
 		},
 
-		_getTopApps: function(){
-			var paneDiv = domConstruct.create("div",{"class":"paneContainer"},this.viewItem.domNode);
+		_createSlidesContainer: function(){
 			var panes = [];
 
-			array.forEach(this.apps,function(app,index){
-				var appWidget = new TopAppWidget(app);
-				colorClass = index % 2 === 0 ? "evenPane" : "oddPane";
-				panes.push({className: "pane " + colorClass + " pane" + index, innerHTML: appWidget.domNode.innerHTML});
+			array.forEach(this.apps,lang.hitch(this,function(app,index){
+				if(index <3){
+					var appWidget = new TopAppDesc({app:app});
+					// this.slidesContainer.addPane(appWidget);
+					colorClass = index % 2 === 0 ? "evenPane" : "oddPane";
+					var pane = {className: "pane " + colorClass + " pane" + index, innerHTML: appWidget.domNode.innerHTML};
+					panes.push(pane);
+				}
+			}));
+			var slidesContainer = this.slidesContainer = new SlidesWidget({
+				panes:panes,
+				duration:1000
 			});
-			// var autoItem = new RotatorSlide(
-			var autoItem = new AutoRotator({
-				transition: "dojox.widget.rotator.slideLeft",
-				transitionParams: "quick:true,continuous:true",
-				duration: 3500,
-				panes: panes
-			},paneDiv);
-			domConstruct.create("a",{
-				href:"javascript:void(0);",
-				class:"prevPane",
-				innerHTML:'<img src="openstar/apps/AppStore/resources/images/arrow-prev.png" width="24" height="43" alt="Arrow Prev">',
-        onclick: function(){
-					autoItem.prev();
-        }
-			}, paneDiv);
-
-			domConstruct.create("a",{
-				href:"javascript:void(0);",
-				class:"nextPane",
-        innerHTML:'<img src="openstar/apps/AppStore/resources/images/arrow-next.png" width="24" height="43" alt="Arrow Prev">',
-        onclick: function(){
-					autoItem.next();
-        }
-			}, paneDiv);
+			// domClass.add(slidesContainer.domNode,"slidesContainer");
+			this.topContainer.addChild(slidesContainer);
 		},
 
     _windowAction: function(win){

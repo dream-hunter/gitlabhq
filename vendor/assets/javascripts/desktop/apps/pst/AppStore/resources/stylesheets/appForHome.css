@@ -56,8 +56,9 @@ body {
     padding: 0 10px 0 25px;
 }
 
-.storeMainContainer .topContainer .viewContainer{
-    float: right;
+.storeMainContainer .topContainer .slidesContainer{
+    margin-left: 360px;
+    position: relative;
     height: 170px;
     width: 600px;
     margin-right:30px;
