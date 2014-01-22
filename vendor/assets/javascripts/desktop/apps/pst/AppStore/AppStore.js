@@ -13,6 +13,7 @@ define([
 	"dojo/hash",
 	"dojo/io-query",
 	"dojo/topic",
+	"dojo/request",
 	"dojo/store/Memory",
 	"qface/system/app/Application",
 	"qfacex/widgets/window/Window",
@@ -22,10 +23,6 @@ define([
 	"qfacex/widgets/layout/BorderContainer",
 	"dijit/layout/ContentPane",
 	"dojox/layout/ToggleSplitter",
-	"dojox/widget/AutoRotator",
-	"dojox/widget/rotator/Slide",
-	"dojox/widget/rotator/Controller",
-	"dojo/text!config/config.json",
 	"qface/system/tools/widgets/SearchWidget",
 	"qface/system/tools/widgets/SortWidget",
 	"qface/system/tools/widgets/PaginateWidget",
@@ -36,8 +33,8 @@ define([
   "qface/Runtime",
 	"dojo/i18n!./nls/AppStore"
 ],function(on,JSON,domConstruct,declare,array,lang,connect,event,domStyle,domClass,query,hash,ioQuery,topic,
-	Memory,_App,Window,ItemFileWriteStore,Tree,ForestStoreModel,BorderContainer,ContentPane,ToggleSplitter,
-	AutoRotator,RotatorSlide,RotatorController,txtConfig,SearchWidget,SortWidget,PaginateWidget,AppInfoWidget,
+	request,Memory,_App,Window,ItemFileWriteStore,Tree,ForestStoreModel,BorderContainer,ContentPane,ToggleSplitter,
+	SearchWidget,SortWidget,PaginateWidget,AppInfoWidget,
 	AuthorInfoWidget,LoginDialog,Scene,qRun,nlsApp){
 
 	return declare(_App, {
@@ -162,56 +159,64 @@ define([
 		},
 
 		_readyForTreeData: function(configFile){
-			config = JSON.parse(txtConfig);
-			apps = this.apps = config.scenes["icons"].apps;
-			var appType = ["app","theme","applet"];
 			var self = this;
-			var categoryList = ["全部"];
-			var formatData = [];
-			array.forEach(apps,function(app){
-				categoryList.push(app.category);
-			});
-			var categoryUniqList = this.categoryUniqList = this.__uniqueArray(categoryList);
+			request("/qface/dashboard/desktop").then(function(text){
+        config = JSON.parse(text);
+				// config = JSON.parse(txtConfig);
+				apps = self.apps = config.scenes["icons"].apps;
+				var appType = ["app","theme","applet"];
+				var categoryList = ["全部"];
+				var formatData = [];
+				array.forEach(apps,function(app){
+					categoryList.push(app.category);
+				});
+				var categoryUniqList = self.categoryUniqList = self.__uniqueArray(categoryList);
 
-			array.forEach(appType, function(name, index){
-				var oData = {};
-				oData.label = name;
-				oData.id =  index + 1;
-				oData.type =  'folder';
-				oData.icon = 'category';
-				oData.folders = [];
-				if(name =="app"){
-					array.forEach(categoryUniqList, function(category, sindex){
-						oItem = {};
-						oItem.id = (index + 1) * 1000 + sindex;
-						oItem.label = category;
-						oItem.iconClass = "icon-16-categories-applications-"+category.toLowerCase();
-						oItem.icon = "icon-16-categories-applications-"+category.toLowerCase();
-						oData.folders.push(oItem);
-					});
-				}
-				formatData.push(oData);
-			});
+				array.forEach(appType, function(name, index){
+					var oData = {};
+					oData.label = name;
+					oData.id =  index + 1;
+					oData.type =  'folder';
+					oData.icon = 'category';
+					oData.folders = [];
+					if(name =="app"){
+						array.forEach(categoryUniqList, function(category, sindex){
+							oItem = {};
+							oItem.id = (index + 1) * 1000 + sindex;
+							oItem.label = category;
+							oItem.iconClass = "icon-16-categories-applications-"+category.toLowerCase();
+							oItem.icon = "icon-16-categories-applications-"+category.toLowerCase();
+							oData.folders.push(oItem);
+						});
+					}
+					formatData.push(oData);
+				});
 
-			var treeData = {
-				id: 0,
-				identifier: 'id',
-				label: 'label',
-				items: formatData
-			};
+				var treeData = {
+					id: 0,
+					identifier: 'id',
+					label: 'label',
+					items: formatData
+				};
 
-			var treeStore = this.treeStore = new ItemFileWriteStore({data: treeData});
-			var treeModel = new ForestStoreModel({
-				store: treeStore,
-				query: {type:'folder'},
-				labelAttr:"label" ,
-				label:"application",
-				childrenAttrs: ["folders"]
-			});
+				var treeStore = self.treeStore = new ItemFileWriteStore({data: treeData});
+				var treeModel = new ForestStoreModel({
+					store: treeStore,
+					query: {type:'folder'},
+					labelAttr:"label" ,
+					label:"application",
+					childrenAttrs: ["folders"]
+				});
 
-			var appTree = this.__createBaseTree(treeModel);
-			this.treeContainer.addChild(appTree);
-			this._createAppContainerPage(apps);
+				var appTree = self.__createBaseTree(treeModel);
+				self.treeContainer.addChild(appTree);
+				self._createAppContainerPage(apps);
+				self._createSlidesContainer();
+      });
+		},
+
+		_createSlidesContainer: function(){
+
 		},
 
 		_selectTreeRootNode: function(item,apps){

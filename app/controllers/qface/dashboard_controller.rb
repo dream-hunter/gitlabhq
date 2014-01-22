@@ -2,7 +2,7 @@
 class Qface::DashboardController < ApplicationController
 	layout false
 	skip_before_filter :authenticate_user!
-	
+
 	def single_app
 		# project = Project.find(params[:project_id]);
 		# app = WebApp.where(:project_id => params[:project_id]).first
@@ -30,7 +30,7 @@ class Qface::DashboardController < ApplicationController
 			}
 		}
 	end
-	
+
 	def home
 		render :json => {
 			:username => current_user ? current_user.username : "guest",
@@ -152,15 +152,6 @@ class Qface::DashboardController < ApplicationController
 								:version => "1.0",
 								:updated_at => "2013-10-21",
 								:fav_count => "32"
-							},
-							{
-								:sysname => "pst.AppStore.AppStore",
-								:name => "AppStore",
-								:category => "System",
-								:icon => "icon-32-apps-preferences-desktop-theme",
-								:version => "1.0",
-								:updated_at => "2013-10-11",
-								:fav_count => "22"
 							}
 						]
 					},
@@ -176,8 +167,8 @@ class Qface::DashboardController < ApplicationController
 						:apps => {
 							:identifier => "id",
 							:label => "label",
-							:items =>	[					
-								{ 
+							:items =>	[
+								{
 									:type => "folder",
 									:id => "003",
 									:sysname => "accessories",
@@ -194,7 +185,7 @@ class Qface::DashboardController < ApplicationController
 										:version => "1.0"
 									}]
 								},
-								{ 
+								{
 									:type => "folder",
 									:id => "005",
 									:sysname => "games",
@@ -312,8 +303,8 @@ class Qface::DashboardController < ApplicationController
 		render :json => json_data
 	end
 
-	private 
-	def get_link_json_data 
+	private
+	def get_link_json_data
 		{
 			:actionZone	=> [
 				{
@@ -407,6 +398,6 @@ class Qface::DashboardController < ApplicationController
 				:title => "Sign in",
 				:class => "has_bottom_tooltip"
 			}]
-		end 
+		end
 	end
 end

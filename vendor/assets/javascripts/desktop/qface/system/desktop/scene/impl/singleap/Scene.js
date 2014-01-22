@@ -55,8 +55,6 @@ define([
 					scene: this
 				});
 				instance.init(args||{});
-				// app full window
-				// instance.win.expand();
 				if(args && args["loadCssPath"]) this.desktop.addDojoCss(dojo.moduleUrl(path,args["loadCssPath"]));
 			}));
 		},

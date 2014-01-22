@@ -12,7 +12,8 @@ define([
   "dojo/_base/fx",
   "dojo/_base/lang",
   "./AppDescWidget"
-  ],function(on,mouse,domClass,domStyle,domConstruct,declare,array,WidgetBase,TemplatedMixin, domStyle, baseFx, lang,AppDescWidget){
+  ],function(on,mouse,domClass,domStyle,domConstruct,declare,array,WidgetBase,TemplatedMixin,domStyle,baseFx,
+    lang,AppDescWidget){
     return declare(AppDescWidget, {
       baseClass:"topDescAppWidget",
       hasName: true,
@@ -20,7 +21,8 @@ define([
       hasAction: false,
       hasIcon: true,
       postCreate: function(){
-        domStyle.set(this.detailsNode,"display","none");
+        // domStyle.set(this.detailsNode,"display","none");
+        domStyle.set(this.authorNode,"display","none");
         this.inherited(arguments);
       }
     });

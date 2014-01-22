@@ -51,7 +51,6 @@ define([
       this.inherited(arguments);
       var self = this;
       topic.subscribe("appStore/runApp",function(appObj){
-				// var appObj = appDescObj.app;
 				runContainer = new Dialog({title:appObj.name,class:"runContainer",style:"width:80%;height:80%;"});
 				var scene = this.scene = new Scene();
 				scene.init({app:appObj});
@@ -63,16 +62,12 @@ define([
 					position:"absolute"
 				});
 				connect.connect(runContainer,"hide",function(){
-					// setTimeout(function() { registry.byId(this.id).destroyRecursive(); }, 0);
-					// registry.byId(this.id).destroyRecursive();
-					scene.app.win.close();
 					registry.byId(this.id).destroy();
 				});
 				// fix the bug which run again the window didn't show.
 				if(scene.app){
 					scene.app.win.shown = false;
 					scene.app.win.show();
-					// appDescObj.appWin = scene.app.win;
 				}
 				/*var path = "apps/"+appObj.sysname.replace(/[.]/g, "/");
 				require([path],function(Application){
@@ -82,7 +77,12 @@ define([
 					runContainer.show();
 				});*/
 			});
-			this._createSlidesContainer();
+			this._someIntegrateCss();
+		},
+
+		_someIntegrateCss: function(){
+			query(".win-bmw",this.win.domNode).addClass("integrateWinBmw");
+			query(".win-mc",this.win.domNode).addClass("integrateWinMc");
 		},
 
 		_createBaseLayout: function(){
@@ -107,15 +107,12 @@ define([
 				style:"width:230px;"
 			});
 
-			// this._getTopApps();
-
 			var centerContainer = this.appItemsContainer = new ContentPane({
 				region:"center",
 				class:"itemContanier",
 				style:"width:750px;height:530px;"
 			});
 
-			// var actionContainer = domConstruct.create("div",{class:"actionContainer"},centerContainer.domNode);
 			var sortItem = this.sortItem = new SortWidget({
         options: [
           { label: "最新", value: "updated_at" },
@@ -139,21 +136,16 @@ define([
 
 		_createSlidesContainer: function(){
 			var panes = [];
-
 			array.forEach(this.apps,lang.hitch(this,function(app,index){
 				if(index <3){
 					var appWidget = new TopAppDesc({app:app});
-					// this.slidesContainer.addPane(appWidget);
 					colorClass = index % 2 === 0 ? "evenPane" : "oddPane";
 					var pane = {className: "pane " + colorClass + " pane" + index, innerHTML: appWidget.domNode.innerHTML};
 					panes.push(pane);
 				}
 			}));
-			var slidesContainer = this.slidesContainer = new SlidesWidget({
-				panes:panes,
-				duration:1000
-			});
-			// domClass.add(slidesContainer.domNode,"slidesContainer");
+			var slidesContainer = this.slidesContainer = new SlidesWidget({panes:panes,duration:5000});
+			slidesContainer.init();
 			this.topContainer.addChild(slidesContainer);
 		},
 

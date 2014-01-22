@@ -2,8 +2,12 @@ body {
     /*overflow: auto !important;*/
 }
 /* mixin */
-.win .win-bmw{
-    /*top:0 !important;*/
+.win .integrateWinBmw{
+    top:0 !important;
+}
+
+.win .integrateWinMc{
+    background: url("/assets/desktop/resources/sky.jpg"), none;
 }
 
 .win .win-mc .dijitToolbar {

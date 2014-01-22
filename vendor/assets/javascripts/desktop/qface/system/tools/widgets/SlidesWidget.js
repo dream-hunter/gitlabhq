@@ -30,31 +30,56 @@ define([
     postCreate: function(){
       domClass.add(this.prevNode,FontAwesome["prev3"]);
       domClass.add(this.nextNode,FontAwesome["next3"]);
-      var slidesContainer = this.slidesContainer = new AutoRotator({
-        transition: "dojox.widget.rotator.fade",
-        duration: this.duration,
-        panes:this.panes
-      },this.slidesNode);
       this._createThumbCnt();
+    },
 
+    init: function(){
+      this._createSlides();
       on(this.prevNode,"click",lang.hitch(this,function(){
-        connect.disconnect(self.rotatorGoHandle);
-        // this.rotatorGoHandle.remove();
-        slidesContainer.prev();
+        connect.disconnect(this.rotatorGoHandle);
+        this.slidesContainer.prev();
         var index = this.slidesContainer.idx - 1 >= 0 ? this.slidesContainer.idx - 1 : this.panes.length - 1;
         this.__selectThumb(index);
         this._aspectRotatorGo();
       }));
 
       on(this.nextNode,"click",lang.hitch(this,function(){
-        connect.disconnect(self.rotatorGoHandle);
-        // this.rotatorGoHandle.remove();
-        slidesContainer.next();
+        connect.disconnect(this.rotatorGoHandle);
+        this.slidesContainer.next();
         var index = this.panes.length - this.slidesContainer.idx > 1 ?　this.slidesContainer.idx + 1 : 0;
         this.__selectThumb(index);
         this._aspectRotatorGo();
       }));
       this._aspectRotatorGo();
+    },
+
+    addPane: function(paneObj){
+      var html = paneObj.domNode ? paneObj.domNode.innerHTML : paneObj.innerHTML;
+      var pane = {className: "pane", innerHTML: html};
+      this.panes.push(pane);
+    },
+
+    createPane: function(paneObjs){
+      var pane = domConstruct.create("div",{class:"pane"});
+      if(paneObjs.imageUrl) domConstruct.create("img",{class:"paneImage",src:paneObjs.imageUrl},pane);
+      if(paneObjs.textCnt) domConstruct.create("span",{class:"paneText",innerHTML:paneObjs.textCnt},pane);
+      if(paneObjs.actionList){
+        var actionNode = domConstruct.create("div",{class:"actions"},pane);
+        array.forEach(paneObjs.actionList,function(/*object*/ action){
+          var key = Object.keys(action)[0];
+          var value = action[key];
+          domConstruct.create("i",{class:"actionItem " + value,innerHTML:key},actionNode);
+        });
+      }
+      this.addPane(pane);
+    },
+
+    _createSlides: function(){
+      this.slidesContainer = new AutoRotator({
+        transition: "dojox.widget.rotator.fade",
+        duration: this.duration,
+        panes:this.panes
+      },this.slidesNode);
     },
 
     _createThumbCnt: function(){
@@ -67,7 +92,6 @@ define([
             class:"thumbItem item" + j + " " + currentClass,
             onclick: function(){
               connect.disconnect(self.rotatorGoHandle);
-              // .remove();
               topic.publish(self.slidesContainer.id + "/rotator/control",'go',j);
               self.__selectThumb(j);
               self._aspectRotatorGo();
@@ -78,7 +102,6 @@ define([
     },
 
     _aspectRotatorGo: function(){
-      // onAfterIn
       this.rotatorGoHandle  = connect.connect(this.slidesContainer,"go",lang.hitch(this,function(){
         var index;
         index = this.panes.length - this.slidesContainer.idx > 1 ?　this.slidesContainer.idx + 1 : 0;
@@ -89,27 +112,6 @@ define([
     __selectThumb: function(index){
       query(".thumbItem",this.thumbsNode).replaceClass(FontAwesome["pageCircleO"],FontAwesome["pageCircle"]);
       query(".item" + index,this.thumbsNode).replaceClass(FontAwesome["pageCircle"],FontAwesome["pageCircleO"]);
-    },
-
-    addPane: function(objPane){
-      var html = objPane.domNode ? objPane.domNode.innerHTML : objPane.innerHTML;
-      var pane = {className: "pane", innerHTML: html};
-      this.slidesContainer.panes.push(pane);
-    },
-
-    createPane: function(obj){
-      var pane = domConstruct.create("div",{class:"pane"});
-      if(obj.imageUrl) domConstruct.create("img",{class:"paneImage",src:obj.imageUrl},pane);
-      if(obj.textCnt) domConstruct.create("span",{class:"paneText",innerHTML:obj.textCnt},pane);
-      if(obj.actionList){
-        var actionNode = domConstruct.create("div",{class:"actions"},pane);
-        array.forEach(obj.actionList,function(/*object*/ action){
-          var key = Object.keys(action)[0];
-          var value = action[key];
-          domConstruct.create("i",{class:"actionItem " + value,innerHTML:key},actionNode);
-        });
-      }
-      this.addPane(pane);
     }
   });
 });
