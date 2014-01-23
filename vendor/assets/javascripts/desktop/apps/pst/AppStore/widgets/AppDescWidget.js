@@ -25,7 +25,7 @@ define([
       app:null,// Object
       appIcon:"", // default app icon
       author:"lihongwang",
-      authorAvatar:"/uploads/user/avatar/51/IMG_0137.JPG",
+      authorAvatar:"/assets/desktop/resources/qfacex/images/defaultAvatar.png",
       authorLink:"",
       fav_count:100,
       download_count:100,

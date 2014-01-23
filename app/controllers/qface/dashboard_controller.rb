@@ -29,6 +29,7 @@ class Qface::DashboardController < ApplicationController
 				}]
 			}
 		}
+		return
 	end
 
 	def home
@@ -46,6 +47,7 @@ class Qface::DashboardController < ApplicationController
 				:args => {:loadCssPath => "../resources/stylesheets/appForHome.css"}
 			}
 		}
+		return
 	end
 
 	def desktop
@@ -294,13 +296,17 @@ class Qface::DashboardController < ApplicationController
 					}
 				}
 			}
+		else
+			render :json => {:status =>false}
 		end
+		return
 	end
 
 	def link
 		json_data = current_user ? get_link_json_data : {}
 		get_sign_in_content(json_data)
 		render :json => json_data
+		return
 	end
 
 	private
