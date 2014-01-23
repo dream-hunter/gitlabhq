@@ -42,5 +42,6 @@ module API
     mount Files
     mount WebApps
     mount Scenes
+    mount Namespaces
   end
 end

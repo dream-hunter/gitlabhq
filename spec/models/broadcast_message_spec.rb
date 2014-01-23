@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: broadcast_messages
+#
+#  id         :integer          not null, primary key
+#  message    :text             default(""), not null
+#  starts_at  :datetime
+#  ends_at    :datetime
+#  alert_type :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  color      :string(255)
+#  font       :string(255)
+#
+
 require 'spec_helper'
 
 describe BroadcastMessage do

@@ -70,6 +70,8 @@ module ProjectsHelper
       scope: params[:scope],
       label_name: params[:label_name],
       milestone_id: params[:milestone_id],
+      assignee_id: params[:assignee_id],
+      sort: params[:sort],
     }
 
     options = exist_opts.merge(options)
@@ -80,7 +82,7 @@ module ProjectsHelper
   end
 
   def project_active_milestones
-    @project.milestones.active.order("due_date, title ASC").all
+    @project.milestones.active.order("due_date, title ASC")
   end
 
   def project_issues_trackers(current_tracker = nil)
@@ -135,12 +137,63 @@ module ProjectsHelper
     end
   end
 
-  def repository_size
-    "#{@project.repository.size} MB"
+  def repository_size(project = nil)
+    "#{(project || @project).repository.size} MB"
   rescue
     # In order to prevent 500 error
     # when application cannot allocate memory
     # to calculate repo size - just show 'Unknown'
     'unknown'
+  end
+
+  def project_head_title
+    title = @project.name_with_namespace
+
+    title = if current_controller?(:tree)
+              "#{@project.path}\/#{@path} at #{@ref} - " + title
+            elsif current_controller?(:issues)
+              if current_action?(:show)
+                "Issue ##{@issue.iid} - #{@issue.title} - " + title
+              else
+                "Issues - " + title
+              end
+            elsif current_controller?(:blob)
+              "#{@project.path}\/#{@blob.path} at #{@ref} - " + title
+            elsif current_controller?(:commits)
+              "Commits at #{@ref} - " + title
+            elsif current_controller?(:merge_requests)
+              if current_action?(:show)
+                "Merge request ##{@merge_request.iid} - " + title
+              else
+                "Merge requests - " + title
+              end
+            elsif current_controller?(:wikis)
+              "Wiki - " + title
+            elsif current_controller?(:network)
+              "Network graph - " + title
+            elsif current_controller?(:graphs)
+              "Graphs - " + title
+            else
+              title
+            end
+
+    title
+  end
+
+  def default_url_to_repo(project = nil)
+    project = project || @project
+    current_user ? project.url_to_repo : project.http_url_to_repo
+  end
+
+  def default_clone_protocol
+    current_user ? "ssh" : "http"
+  end
+
+  def project_last_activity(project)
+    if project.last_activity_at
+      time_ago_with_tooltip(project.last_activity_at, 'bottom', 'last_activity_time_ago')
+    else
+      "Never"
+    end
   end
 end

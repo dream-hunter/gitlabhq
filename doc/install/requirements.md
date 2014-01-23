@@ -1,40 +1,45 @@
 # Operating Systems
 
-## Linux
-
 GitLab is developed for the Linux operating system.
 
-GitLab officially supports (recent versions of) these Linux distributions:
+## GitLab officially supports
 
 - Ubuntu Linux
 - Debian/GNU Linux
 
-It should also work on (though they are not officially supported):
+## GitLab.com offers paid support for
 
-- Arch
+- Red Hat Enterprise Linux (RHEL)
 - CentOS
+- Oracle Linux
+
+## Not officially supported
+
+- Arch Linux
 - Fedora
 - Gentoo
-- RHEL
 
-## Other Unix Systems
+On the above distributions it is pretty easy to install GitLab yourself.
 
-There is nothing that prevents GitLab from running on other Unix operating
-systems. This means you may get it to work on systems running FreeBSD or OS X.
-**If you want to try, please proceed with caution!**
+## Unsupported Unix Systems
 
-## Windows
+There is nothing that prevents GitLab from running on other Unix operating systems.
+This means you may get it to work on systems running FreeBSD or OS X.
+If you want to do this, please be aware it could be a lot of work.
+Please consider using a virtual machine to run GitLab.
 
-GitLab does **not** run on Windows and we have no plans of supporting it in the
-near future. Please consider using a virtual machine to run GitLab.
+## Other operating systems such as Windows
+
+GitLab does **not** run on Windows and we have no plans of supporting it in the near future.
+Please consider using a virtual machine to run GitLab.
 
 
-# Rubies
+# Ruby versions
 
-GitLab requires Ruby (MRI) 1.9.3 and several Gems with native components.
-While it is generally possible to use other Rubies (like
-[JRuby](http://jruby.org/) or [Rubinius](http://rubini.us/)) it might require
-some work on your part.
+GitLab requires Ruby (MRI) 1.9.3 or 2.0+.
+While it is generally possible to use other Rubies
+(like [JRuby](http://jruby.org/) or [Rubinius](http://rubini.us/))
+it might require some work since GitLab uses several Gems that have native extensions.
 
 
 # Hardware requirements
@@ -50,7 +55,7 @@ some work on your part.
 
 - 512MB is too little memory, GitLab will be very slow and you will need 250MB of swap
 - 768MB is the minimal memory size but we advise against this
-- 1GB supports up to 100 users if you do not have individual repo's over 250MB
+- 1GB supports up to 100 users (with individual repositories under 250MB, otherwise git memory usage necessitates using swap space)
 - **2GB** is the **recommended** memory size and supports up to 1,000 users
 - 4GB supports up to 10,000 users
 
@@ -71,3 +76,11 @@ If you have enough RAM memory and a recent CPU the speed of GitLab is mainly lim
 If you have troubles installing GitLab following the [official installation guide](installation.md)
 or want to share your experience installing GitLab on a not officially supported
 platform, please follow the the [contribution guide](/CONTRIBUTING.md).
+
+# Supported webbrowsers
+
+- Chrome (Latest stable version)
+- Firefox (Latest released version) 
+- Safari 7+ (Know problem: required fields in html5 do not work)
+- Opera (Latest released version)
+- IE 10+

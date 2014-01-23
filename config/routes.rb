@@ -6,6 +6,7 @@ Gitlab::Application.routes.draw do
   # Search
   #
   get 'search' => "search#show"
+  get 'search/autocomplete' => "search#autocomplete", as: :search_autocomplete
 
   # API
   API::API.logger Rails.logger
@@ -22,7 +23,7 @@ Gitlab::Application.routes.draw do
     project_root: Gitlab.config.gitlab_shell.repos_path,
     upload_pack:  Gitlab.config.gitlab_shell.upload_pack,
     receive_pack: Gitlab.config.gitlab_shell.receive_pack
-  }), at: '/', constraints: lambda { |request| /[-\/\w\.]+\.git\//.match(request.path_info) }
+  }), at: '/', constraints: lambda { |request| /[-\/\w\.]+\.git\//.match(request.path_info) }, via: [:get, :post]
 
   #
   # Help
@@ -89,7 +90,13 @@ Gitlab::Application.routes.draw do
     resources :broadcast_messages, only: [:index, :create, :destroy]
     resource :logs, only: [:show]
     resource :background_jobs, controller: 'background_jobs', only: [:show]
-    resources :projects, constraints: { id: /[a-zA-Z.\/0-9_\-]+/ }, only: [:index, :show]
+
+    resources :projects, constraints: { id: /[a-zA-Z.\/0-9_\-]+/ }, only: [:index, :show] do
+      member do
+        put :transfer
+      end
+    end
+
     root to: "dashboard#index"
   end
 
@@ -121,17 +128,18 @@ Gitlab::Application.routes.draw do
           delete :leave
         end
       end
+      resource :avatar, only: [:destroy]
     end
   end
 
-  match "/u/:username" => "users#show", as: :user, constraints: { username: /.*/ }
+  match "/u/:username" => "users#show", as: :user, constraints: { username: /.*/ }, via: :get
 
 
 
   #
   # Dashboard Area
   #
-  match "/:username/desktop" => "dashboard#show"
+  match "/:username/desktop" => "dashboard#show", via: :get
   resource :dashboard, controller: "dashboard", only: [:show,:events] do
     member do
       get :projects
@@ -164,12 +172,14 @@ Gitlab::Application.routes.draw do
     member do
       put :transfer
       post :fork
+      post :archive
+      post :unarchive
       get :autocomplete_sources
       get :run
     end
 
     scope module: :projects do
-      resources :blob,      only: [:show], constraints: {id: /.+/}
+      resources :blob,      only: [:show, :destroy], constraints: {id: /.+/}
       resources :raw,       only: [:show], constraints: {id: /.+/}
       resources :tree,      only: [:show], constraints: {id: /.+/, format: /(html|js)/ }
       resources :edit_tree, only: [:show, :update], constraints: {id: /.+/}, path: 'edit'
@@ -210,7 +220,7 @@ Gitlab::Application.routes.draw do
       resource :repository, only: [:show] do
         member do
           get "stats"
-          get "archive"
+          get "archive", constraints: { format: Gitlab::Regex.archive_formats_regex }
         end
       end
 
@@ -314,7 +324,7 @@ Gitlab::Application.routes.draw do
 
   # qface
   namespace :qface do
-    resources :dashboard do 
+    resources :dashboard do
       collection do
         get :single_app
         get :desktop
@@ -322,9 +332,9 @@ Gitlab::Application.routes.draw do
         get :link
       end
     end
-  end 
+  end
 
 
   # root to: "dashboard#show"
-  root to: "public::projects#index"
+  root to: "public/projects#index"
 end

@@ -57,7 +57,7 @@ class Repository
 
   def recent_branches(limit = 20)
     branches.sort do |a, b|
-      a.commit.committed_date <=> b.commit.committed_date
+      b.commit.committed_date <=> a.commit.committed_date
     end[0..limit]
   end
 
@@ -133,6 +133,7 @@ class Repository
     Rails.cache.delete(cache_key(:tag_names))
     Rails.cache.delete(cache_key(:commit_count))
     Rails.cache.delete(cache_key(:graph_log))
+    Rails.cache.delete(cache_key(:readme))
   end
 
   def graph_log
@@ -158,5 +159,11 @@ class Repository
 
   def blob_at(sha, path)
     Gitlab::Git::Blob.find(self, sha, path)
+  end
+
+  def readme
+    Rails.cache.fetch(cache_key(:readme)) do
+      Tree.new(self, self.root_ref).readme
+    end
   end
 end
