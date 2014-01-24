@@ -53,20 +53,17 @@ define([
 
     _createPageCnt: function(/*array*/ pageItems){
       // first empty page items container
-      domConstruct.empty(this.pageCnt);
+      // domConstruct.empty(this.pageCnt);
+      this.pageCnt.innerHTML = "";
+      // var pageItems = lang.clone(pageObjs);
       // add page content to this container
       array.forEach(pageItems,lang.hitch(this,function(item){
+        if(item.domNode){
+          // lang.hitch(item,"_actions")();
+          item = item.domNode;
+        }
         this.pageCnt.appendChild(item);
       }));
-      /*var ul = domConstruct.create("ul",{},this.pageCnt);
-      array.forEach(pageItems,lang.hitch(this,function(item,index){
-        var li = domConstruct.create("li",{class: "pageItem"},ul);
-        if(this.needEvenClass){
-          var colorClass = index % 2 === 0 ? "even" : "odd";
-          domClass.add(li,colorClass);
-        }
-        li.appendChild(item);
-      }));*/
     },
 
     _createPageNavCnt: function(){
@@ -179,14 +176,6 @@ define([
             query(".cntPg",self.pageNavCnt).removeClass("cntPg");
             domClass.add(this,"cntPg");
             var pgNum = parseInt(this.text);
-            self.goToPage(pgNum);
-            self.currentPgNum = pgNum;
-
-            var prevShowStyle = pgNum === 1 ? "none" : "inline-block";
-            domStyle.set(dom.byId("prevPg"),"display",prevShowStyle);
-
-            var nextShowStyle = pgNum === self.pageSize ? "none" : "inline-block";
-            domStyle.set(dom.byId("nextPg"),"display",nextShowStyle);
 
             var numPlaceObj = self.__getShowPagesBeginAndEndNum(pgNum);
             self.__modifyShowPg(numPlaceObj["beginPgNum"],numPlaceObj["endPgNum"],pgNum);
@@ -234,76 +223,6 @@ define([
       var endPgNum = currentPgNum + pgHalfShowCt;
       if(endPgNum > self.pageSize) endPgNum = self.pageSize;
       return {beginPgNum:beginPgNum,endPgNum:endPgNum};
-    },
-
-    __addPaginationAfterEvent: function(currentPg){
-      var self = this;
-      query(".showPg",self.pageNavCnt).forEach(function(aNode,index){
-        var pgNum = parseInt(aNode.text);
-        // init first page num and page cursor num
-        if(index === 0){
-          self.firstPgNum = pgNum;
-          self.pgCursor = pgNum + self.pgLeftShowCt;
-          self.lastPgNum = self.firstPgNum + self.pgShowCt - 1;
-        }
-      });
-
-      // click cursor after node
-      if(currentPg > self.pgCursor){
-        var afterLastPgNum = self.pgRightShowCt + currentPg; // 2 + 4 = 6
-        if(afterLastPgNum >= self.pageSize) afterLastPgNum = self.pageSize;
-        //show first page
-        if(self.pgShowCt < self.pageSize)
-          query(".firstPg",self.pageNavCnt).style("display","inline-block");
-        //show last page
-        if(afterLastPgNum < self.pageSize){ //eg: 8 - 2 = 6; 4,5 show
-          query(".lastPg",self.pageNavCnt).style("display","inline-block");
-        }else{
-          query(".lastPg",self.pageNavCnt).style("display","none");
-        }
-        // show after pages
-        for(i=self.pgCursor+self.pgRightShowCt + 1; i<=afterLastPgNum;i++){ // 3 + 2 + 1 begin in 6
-          var pgId = "pg" + i;
-          domClass.add(pgId,"showPg");
-          domStyle.set(dom.byId(pgId),"display","inline-block");
-        }
-        // hidden before pages
-        var beforeFirstPgNum = afterLastPgNum - self.pgShowCt; // 7-5 =2
-        for(i=1; i<=beforeFirstPgNum;i++){ // hidden 1 page
-          var pgId = "pg" + i;
-          domClass.remove(pgId,"showPg");
-          domStyle.set(dom.byId(pgId),"display","none");
-        }
-      } else {
-        // show last page
-        if(self.pgShowCt < self.pageSize)
-          query(".lastPg",self.pageNavCnt).style("display","inline-block");
-        if(self.firstPgNum > 1){
-          // hidden after pages
-          var afterLastPgNum = currentPg + self.pgRightShowCt + 1;
-          for(i=afterLastPgNum; i<=self.lastPgNum; i++){
-            var pgId = "pg" + i;
-            domClass.remove(pgId,"showPg");
-            domStyle.set(dom.byId(pgId),"display","none");
-          }
-
-          // show before pages
-          var beforeFirstPgNum = currentPg - self.pgLeftShowCt;
-          // show first page
-          if(beforeFirstPgNum > 1)
-            query(".firstPg",self.pageNavCnt).style("display","inline-block");
-          else
-            query(".firstPg",self.pageNavCnt).style("display","none");
-
-          for(i=beforeFirstPgNum; i<self.firstPgNum; i++){
-            var pgId = "pg" + i;
-            domClass.add(pgId,"showPg");
-            domStyle.set(dom.byId(pgId),"display","inline-block");
-          }
-        } else {
-          query(".firstPg",self.pageNavCnt).style("display","none");
-        }
-      }
     },
 
     __modifyShowPg: function(/*integer*/ beginPgNum,/*integer*/ endPgNum, /*integer*/ currentPgNum){

@@ -17,28 +17,28 @@ define([
 		fileList: ["dijit", "dojox","theme", "window", "icons"],
 		_config	: null,
 		_loadedThemes : null,
-		
+
 		constructor : function(config) {
 			this._config = config;
 			this._loadedThemes = [];
 			this._termMode = _Desktop.TermMode.PC;
 		},
-		
+
 		_createHost : function(){
 			var mainBorder = this.mainBorder = new BorderContainer({
 				design: "headline",
 				gutters: false,
 				liveSplitters: false,
-				style:"width:100%;height:100%;"
+				style:"width:100%;height:100%;position:absolute;top:0;"
 			});
-			//domClass.add(mainBorder.domNode,"dijit soria tundra tsunami");		
+			//domClass.add(mainBorder.domNode,"dijit soria tundra tsunami");
 			document.body.appendChild(mainBorder.domNode);
 			mainBorder.startup();
 		},
-		
+
 		_createSystemToolBar : function() {
 		},
-		
+
 		_createSceneContainer : function() {
 			var sceneContainer = this.sceneContainer = new _MultiSceneContainer({
 				region:'center',
@@ -48,7 +48,7 @@ define([
 			this.mainBorder.addChild(sceneContainer);
 			return sceneContainer;
 		},
-		
+
 		init : function(config) {
 			this._config = config;
 			var deferred = new Deferred();
@@ -56,15 +56,15 @@ define([
 			this._createHost();
 			dojo.dnd.autoScroll = function(e){} //in order to prevent autoscrolling of the window
 			on(window,"resize",lang.hitch(this,this.resize));
-			
+
 			var html =  dojo.doc.documentElement;
 			var termClass = this._termMode == _Desktop.TermMode.PC?"pc":"mobile";
 			domClass.add(html,termClass);
-			
+
 			deferredHost.then(lang.hitch(this,function(){
 				var sceneContainer  = this._createSceneContainer();
 				this._createSystemToolBar();
-				
+
 				var config = this._config;
 				var defers = [];
 
@@ -93,21 +93,21 @@ define([
 			deferredHost.resolve();
 			return deferred;
 		},
-		
-		
+
+
 		start : function() {
-			
+
 		},
-		
+
 		addScene : function(scene) {
 			this.sceneContainer.addChild(scene);
 			this.sceneList.push(scene);
 		},
-		
+
 		findScene: function(name){
 			return array.filter(this.sceneList,function(item){return item.name === name;})[0];
 		},
-		
+
 		resize : function () {
 			if(this.mainBorder){this.mainBorder.resize();}
 		},
@@ -115,7 +115,7 @@ define([
 		log : function(/*String*/str){
 			//	summary:
 			//		logs a string onto any console that is open
-			//	
+			//
 			//	str:
 			//		the string to log onto the consoles
 			str = dojo.toJson(str);
@@ -124,11 +124,11 @@ define([
 			});
 			console.log(str);
 		},
-		
+
 		getTermMode : function() {
 			return this._termMode;
 		},
-		
+
 		changeTermMode : function(termMode) {
 			if (termMode && termMode.isInstanceOf(_Desktop.TermMode) && termMode != this._termMode) {
 				this._termMode = termMode;
@@ -138,14 +138,14 @@ define([
 				domClass.replace(html,newtmClass,oldtmClass);
 			}
 		},
-		
+
 		addDojoCss : function(/*String*/path){
 			//	summary:
 			//		Adds an additional dojo CSS file (useful for the dojox modules)
 			//
 			//	path:
 			//		the path to the css file (the path to dojo is placed in front)
-			//	
+			//
 			//	example:
 			//	|	api.addDojoCss("/dojox/widget/somewidget/foo.css");
 			var cssUrl =  require.toUrl(path);
@@ -156,7 +156,7 @@ define([
 			element.href = cssUrl;
 			document.getElementsByTagName("head")[0].appendChild(element);
     },
-    
+
 		addDojoJs : function(/*String*/path){
 			var jsUrl =  require.toUrl(path);
 			var jsElement = document.createElement("script");
@@ -168,13 +168,13 @@ define([
 		getTheme: function(scene) {
 			return scene.get("theme");
 		},
-			
+
 		changeTheme: function(scene,/*String*/theme)	{
 			this.enableTheme(theme).then(function(){
 				scene.set("theme",theme);
 			});
 		},
-		
+
 		enableTheme: function(/*String|Array*/theme)	{
 			var themes;
 			if(lang.isString(theme)) {
@@ -183,7 +183,7 @@ define([
 				themes = theme;
 			}
 			var deferred = new Deferred();
-			
+
 			if (!themes) {
 				themes = array.filter(themes,function(item,index,array){
 					return (this._loadedThemes.indexOf(theme)<0);
@@ -193,7 +193,7 @@ define([
 				deferred.resolve();
 				return deferred;
 			}
-			
+
 			var defers=[];
 
 			array.forEach(themes,function(theme) {
@@ -219,7 +219,7 @@ define([
 				});
 				this._loadedThemes.push(theme);
 			},this);
-				
+
 			var cssDeferredList = new DeferredList(defers);
 			cssDeferredList.then(function() {
 				deferred.resolve();
@@ -230,9 +230,9 @@ define([
 		},
 
 		disableTheme: function(/*String*/theme)	{
-			
+
 		},
-		
+
 		applyTheme : function(theme) {
 			if (this._theme == theme) {return;}
 			if (this._theme) {

@@ -85,11 +85,6 @@ define([
 			}
 		},
 
-		_createHost : function(){
-			// need change
-			this.inherited(arguments);
-			domStyle.set(this.mainBorder.domNode,"margin-top","-13px");
-		},
 
 		_createSystemToolBar : function() {
 			var toolBar  = this.toolBar = new SystemToolBar({

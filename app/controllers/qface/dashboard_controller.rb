@@ -51,10 +51,10 @@ class Qface::DashboardController < ApplicationController
 	end
 
 	def desktop
-		if current_user
+		# if current_user
 			render :json => {
-				:username => current_user.username,
-				:userAvatar => current_user.avatar.url,
+				:username => "lhw",#current_user.username,
+				:userAvatar => "",#current_user.avatar.url,
 				:theme => "soria",
 				:logoname => "UTILHUB",
 				:scenes => {
@@ -296,9 +296,9 @@ class Qface::DashboardController < ApplicationController
 					}
 				}
 			}
-		else
-			render :json => {:status =>false}
-		end
+		# else
+		# 	render :json => {:status =>false}
+		# end
 		return
 	end
 

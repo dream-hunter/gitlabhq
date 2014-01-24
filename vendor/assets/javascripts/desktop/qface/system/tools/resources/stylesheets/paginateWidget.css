@@ -1,11 +1,13 @@
 .pagination{
 	/*margin: 10px auto;*/
 	text-align: center;
+	width: 100%;
 	/*border:1px solid #ccc;*/
 }
 
 .pagination .pageCnt{
   display: inline-block;
+  width: 100%;
 }
 
 .pagination .pageNavCnt{

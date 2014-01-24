@@ -81,12 +81,6 @@ define([
 			return deferred;
 		},
 
-		_createHost : function(){
-			// need change
-			this.inherited(arguments);
-			domStyle.set(this.mainBorder.domNode,"margin-top","-20px");
-		},
-
 		_createSystemToolBar : function() {
 			var toolBar  = this.toolBar = new SystemToolBar({
 				region: "top",
@@ -105,16 +99,6 @@ define([
 
 			toolBar.addChild(linkArea);
 			this.mainBorder.addChild(toolBar);
-		},
-
-		_createSceneContainer: function(){
-			var sceneContainer = this.sceneContainer = new _MultiSceneContainer({
-				region:'center',
-				controllerWidget: "dijit.layout.StackController",
-				style:"width:1100px;margin:0 auto;"
-			});
-			this.mainBorder.addChild(sceneContainer);
-			return sceneContainer;
 		}
 	});
 

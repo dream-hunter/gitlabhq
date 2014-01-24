@@ -45,7 +45,7 @@ define([
 				iconClass: "icon-16-apps-accessories-calculator",
 				onClose: lang.hitch(this, "kill")
 			});
-			var tab = new TabContainer({style:"height:100%;width:100%;",class:"configuration"});
+			var tab = new TabContainer({region:"center",style:"height:100%;width:100%;",class:"configuration"});
 
 			tab.addChild(this._createChangeThemeForm());
 			tab.addChild(this._createAddSceneForm());
@@ -178,7 +178,7 @@ define([
 				},label);
 				domConstruct.create("span",{innerHTML:item},label);
 			});
-			
+
 			array.forEach(wallpapers,function(item,i){
 				var label = domConstruct.create("label",{class:"wallpaperImage"},wallpaperOptsDiv);
 				var imageDiv = domConstruct.create("div",{class:"prev" },label);
@@ -223,7 +223,7 @@ define([
 			className = className ? className + " formText" : "formText";
 			form.domNode.appendChild((new ValidationTextBox({required:true,name:name,placeHolder:placeHolder,class:className})).domNode);
 		},
-		
+
 		__createLabel: function(/*obj*/form,/*string*/name){
 			var label = domConstruct.create("label",{},form.domNode);
 			domConstruct.create("span",{innerHTML:name + ":"},label);

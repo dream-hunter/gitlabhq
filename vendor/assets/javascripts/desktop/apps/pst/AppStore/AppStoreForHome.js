@@ -113,6 +113,7 @@ define([
 				style:"width:750px;height:530px;"
 			});
 
+			var actionsDiv = domConstruct.create("div",{class:"actions"},centerContainer.domNode);
 			var sortItem = this.sortItem = new SortWidget({
         options: [
           { label: "最新", value: "updated_at" },
@@ -121,12 +122,11 @@ define([
         ]
 			});
 			topic.publish("qface/sort",this,"_sortApp");
-			centerContainer.addChild(sortItem);
-
+			actionsDiv.appendChild(sortItem.domNode);
 			var searchItem = new SearchWidget({class: "search"});
 			topic.publish("qface/search",this,"_searchApp");
-			centerContainer.addChild(searchItem);
-			searchItem.startup();
+			actionsDiv.appendChild(searchItem.domNode);
+			// searchItem.startup();
 
 			appLayout.addChild(topContainer);
 			appLayout.addChild(leftContainer);
@@ -164,7 +164,7 @@ define([
 			var appViewItems = [];
 			array.forEach(apps,function(app){
 				var appDesc = new AppDesc({app:app});
-				appViewItems.push(appDesc.domNode);
+				appViewItems.push(appDesc);
 			});
 			var appPage = new PaginateWidget({baseData:appViewItems,baseClass:"pagination"});
 			this.appItemsContainer.domNode.appendChild(appPage.domNode);

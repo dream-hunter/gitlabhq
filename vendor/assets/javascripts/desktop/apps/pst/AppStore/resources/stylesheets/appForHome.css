@@ -78,8 +78,10 @@ body {
 
 /* center */
 .storeMainContainer .itemContanier {
-    /*border-right:1px solid #E0E0E0;*/
     overflow: hidden;
+}
+
+.storeMainContainer .itemContanier .actions {
     text-align: center;
 }
 

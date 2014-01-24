@@ -35,4 +35,5 @@ doc/code/*
 *.log
 public/uploads.*
 vendor/assets/javascripts/desktop/lib/*
+vendor/assets/javascripts/desktop/lib
 public/assets/

@@ -24,15 +24,15 @@
       require([
         "dbootstrap",
         "dojo/json",
-        "dijit/dijit-all",
+        "dojo/query",
         "qface/Runtime",
         "/assets/desktop/SingleAppDesktop",
         "dojo/request",
         "dojo/domReady!"
-      ], function(dbootstrap,JSON,dijit,Runtime,Desktop,request) {
+      ], function(dbootstrap,JSON,query,Runtime,Desktop,request) {
         var config;
         function hideLoadingPane() {
-          var loading = dojo.query('.loading');
+          var loading = query('.loading');
           if (loading[0]){ // remove the loading div
             loading[0].parentNode.removeChild(loading[0]);
           }
